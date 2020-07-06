@@ -28,7 +28,13 @@ export const Comics = ({}) => {
                         passHref
                         href={`/comics/${comic.filename}`}
                     >
-                        <Stack as='a' shadow='lg' borderRadius='md' p='6'>
+                        <Stack
+                            as='a'
+                            borderRadius='md'
+                            bg='white'
+                            shadow='lg'
+                            p='6'
+                        >
                             {<Box>{comic.filename}</Box>}
                         </Stack>
                     </NextLink>

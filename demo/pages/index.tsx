@@ -3,7 +3,7 @@ import { Comics } from '../components/Comics'
 
 export default function Page(props) {
     return (
-        <Stack p='20'>
+        <Stack minWidth='100vw' minHeight='100vh' bg='gray.100' p='20'>
             <Comics />
         </Stack>
     )
