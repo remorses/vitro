@@ -1,5 +1,7 @@
 ## UI and personality
 
+**this project is under heavy development**
+
 The ui should resemble a comic board, using bordered rectangles to contain the components
 
 In the top right there should be a button group to choose the container rectangles size (like in dribbble.com, choose between 2 per row, 4 per row, ...)
@@ -33,7 +35,7 @@ The index page displays all the different comics available, it should resemble a
 -   Links
 -   Props
 
-## Unique features
+## Unique features (in progress)
 
 - CSS debug (injects border to every div, to see all components outlines)
 
