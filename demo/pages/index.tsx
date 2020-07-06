@@ -1,16 +1,10 @@
-
-
-const context = require.context('example-package/', true)
+import { Stack } from '@chakra-ui/core'
+import { Comics } from '../components/Comics'
 
 export default function Page(props) {
-    const C = context('./src/index').Component
-    const exports = Object.keys(context('./src/index'))
-
     return (
-        <div>
-            <div>{JSON.stringify({ keys: context.keys() })}</div>
-            <div>{JSON.stringify({ exports })}</div>
-            <C />
-        </div>
+        <Stack p='20'>
+            <Comics />
+        </Stack>
     )
 }
