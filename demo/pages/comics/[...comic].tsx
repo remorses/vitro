@@ -35,9 +35,9 @@ export default function Page(props) {
                 const Component = exported[k]
                 const title = k // TODO replace camel case with spaces
                 return (
-                    <Stack p='20' borderWidth='1px'>
+                    <Stack key={k + String(i)} p='20' borderWidth='1px'>
                         <Box>{title}</Box>
-                        <Component key={k + String(i)} />
+                        <Component  />
                     </Stack>
                 )
             })}
