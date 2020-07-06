@@ -73,7 +73,8 @@ The index page displays all the different stories available, it should resemble 
 ## Things to do
 
 -   `storyboards` cli package
-    -   **storyboards new**: downloads the nextjs template app from github to folder `.storyboards` (can be customized using `.storyboards.js` to change extension, babel config, ...)
+    -   **storyboards new**: downloads the nextjs template app from github to folder `.storyboards` (can be customized using `.storyboards.js` to change extension), creates a base config file to enter the target packages, extension, babel config, 
+    storyboards start: generates the next.config.js with given packages and attaches a wathcer
 -   stories index UI
 -   sub stories in a file UI
 -   sidebar to list all stories (by filename) in story page
