@@ -23,14 +23,12 @@ export const Comics = ({}) => {
         <Stack spacing='10'>
             {comics.exports.map((comic) => {
                 return (
-                    <NextLink passHref href={`/comics/${comic.filename}`}>
-                        <Stack
-                            as='a'
-                            shadow='lg'
-                            borderRadius='md'
-                            p='6'
-                            key={comic.filename}
-                        >
+                    <NextLink
+                        key={comic.filename}
+                        passHref
+                        href={`/comics/${comic.filename}`}
+                    >
+                        <Stack as='a' shadow='lg' borderRadius='md' p='6'>
                             {<Box>{comic.filename}</Box>}
                         </Stack>
                     </NextLink>
