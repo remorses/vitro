@@ -1,6 +1,6 @@
 import { getComics } from '../../components/Comics'
 import { useRouter } from 'next/router'
-import { Stack } from '@chakra-ui/core'
+import { Stack, Box } from '@chakra-ui/core'
 
 export default function Page(props) {
     const comics = getComics()
@@ -10,7 +10,7 @@ export default function Page(props) {
         return null
     }
     console.log({ comic })
-    const components = comics.exports
+    const exported = comics.exports
         .map((x) => {
             console.log(x)
             return x
@@ -28,12 +28,18 @@ export default function Page(props) {
             return path === queryPath
         })
         .getExports()
-    console.log(components)
+    console.log(exported)
     return (
-        <Stack>
-            {Object.keys(components).map((k, i) => {
-                const Component = components[k]
-                return <Component key={k + String(i)} />
+        <Stack spacing='10' p='20'>
+            {Object.keys(exported).map((k, i) => {
+                const Component = exported[k]
+                const title = k // TODO replace camel case with spaces
+                return (
+                    <Stack p='20' borderWidth='1px'>
+                        <Box>{title}</Box>
+                        <Component key={k + String(i)} />
+                    </Stack>
+                )
             })}
         </Stack>
     )

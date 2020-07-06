@@ -1,13 +1,15 @@
 import React from 'react'
+import { Box } from '@chakra-ui/core'
 
-export const Component = ({}) => {
+export const Component = ({ ...rest }) => {
     return (
-        <div
+        <Box
+            bg='lightblue'
             style={{
                 width: 200,
                 height: 200,
-                background: 'lightblue',
             }}
+            {...rest}
         />
     )
 }
