@@ -1,16 +1,16 @@
-import { getComics } from '../../components/Comics'
+import { getStories } from '../../components/StoriesIndex'
 import { useRouter } from 'next/router'
 import { Stack, Box } from '@chakra-ui/core'
 
 export default function Page(props) {
-    const comics = getComics()
+    const stories = getStories()
     const { query } = useRouter()
-    const { comic } = query
-    if (!comic) {
+    const { story } = query
+    if (!story) {
         return null
     }
-    console.log({ comic })
-    const exported = comics.exports
+    console.log({ story })
+    const exported = stories.exports
         .map((x) => {
             console.log(x)
             return x
@@ -19,7 +19,7 @@ export default function Page(props) {
             const path = normalizePath(x.filename)
             console.log(x.getExports())
             const queryPath = normalizePath(
-                Array.isArray(comic) ? comic.join('/') : comic,
+                Array.isArray(story) ? story.join('/') : story,
             )
             console.log({
                 path,
@@ -37,7 +37,7 @@ export default function Page(props) {
                 return (
                     <Stack key={k + String(i)} p='20' borderWidth='1px'>
                         <Box>{title}</Box>
-                        <Component  />
+                        <Component />
                     </Stack>
                 )
             })}

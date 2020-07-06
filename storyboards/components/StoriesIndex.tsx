@@ -1,9 +1,8 @@
 import { Stack, Box } from '@chakra-ui/core'
 import NextLink from 'next/link'
-import { DEFAULT_COMIC_EXTENSION } from '../constants'
 
-export function getComics() {
-    const context = require.context('example-package', true, /comic\.tsx$/)
+export function getStories() {
+    const context = require.context('example-package', true, /story\.tsx$/)
     const exports = context.keys()
     return {
         exports: exports.map((filename) => {
@@ -17,16 +16,16 @@ export function getComics() {
     }
 }
 
-export const Comics = ({}) => {
-    const comics = getComics()
+export const StoriesIndex = ({}) => {
+    const stories = getStories()
     return (
         <Stack spacing='10'>
-            {comics.exports.map((comic) => {
+            {stories.exports.map((story) => {
                 return (
                     <NextLink
-                        key={comic.filename}
+                        key={story.filename}
                         passHref
-                        href={`/comics/${comic.filename}`}
+                        href={`/stories/${story.filename}`}
                     >
                         <Stack
                             as='a'
@@ -35,7 +34,7 @@ export const Comics = ({}) => {
                             shadow='lg'
                             p='6'
                         >
-                            {<Box>{comic.filename}</Box>}
+                            {<Box>{story.filename}</Box>}
                         </Stack>
                     </NextLink>
                 )

@@ -1,16 +1,16 @@
-# react-comics
+# storyboards
 
 ## UI and personality
 
 **this project is under heavy development**
 
-The ui should resemble a comic board, using bordered rectangles to contain the components
+The ui should resemble a story board, using bordered rectangles to contain the components
 
 In the top right there should be a button group to choose the container rectangles size (like in dribbble.com, choose between 2 per row, 4 per row, ...)
 
 Every rectangle has a title that simply is the exported component name
 
-The index page displays all the different comics available, it should resemble a comic book where every cell points to a comic board
+The index page displays all the different stories available, it should resemble a story book where every cell points to a story board
 
 
 ## Differences with story book
@@ -43,16 +43,16 @@ The index page displays all the different comics available, it should resemble a
 
 ## How it works
 
--   a comic is just an exported react component
--   ./index.tsx lists all the comics available, grouped by file
--   to get the comics i use context.require with the extension of `.comic.js`
+-   a story is just an exported react component
+-   ./index.tsx lists all the stories available, grouped by file
+-   to get the stories i use context.require with the extension of `.story.js`
 -   to get the title for the sidebar nav i get the module.default.title or just use the filename without extension
 -   the nav children are simply all other exports
 -   to choose what export to render i get the current page path
 
 ## Problems
 
--   if the sidebar requires to read the module exports then i need to compile everything on first render, instead i could just use the filename and render the different components choices in a column, just like a comic
+-   if the sidebar requires to read the module exports then i need to compile everything on first render, instead i could just use the filename and render the different components choices in a column, just like a story book
 -   the require.context params must be constants, to be able to do that i must inject these constants in webpack and configure them in next.config.js
 
 ## How to add stories (to be automated)
