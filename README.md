@@ -8,15 +8,34 @@ Every rectangle has a title that simply is the exported component name
 
 The index page displays all the different comics available, it should resemble a comic book where every cell points to a comic board
 
+
 ## Differences with story book
 
-- No addons, if you want more features open a pull request here, we want a cohesive and coherent code base
-- Many features inherited by using next.js like
-    - Zero config typescript, babel, css support
-    - Incremental compilation
-    - React Fast refresh
-    - Awesome Nextjs plugins like `next-transpile-modules`, `next-images` and more
-    - SSR
+-   No addons, if you want more features open a pull request here, we want a cohesive and coherent code base
+-   Many features inherited by using next.js like
+    -   Zero config typescript, babel, css support
+    -   Incremental compilation
+    -   React Fast refresh
+    -   Awesome Nextjs plugins like `next-transpile-modules`, `next-images` and more
+    -   SSR
+
+### Features missing from story book (in progress)
+
+-   Viewport sizing
+-   Display source code
+
+### Addons that won't be implemented
+
+-   Actions
+-   Knobs
+-   Docs
+-   Console
+-   Links
+-   Props
+
+## Unique features
+
+- CSS debug (injects border to every div, to see all components outlines)
 
 ## How it works
 
