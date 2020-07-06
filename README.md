@@ -1,3 +1,5 @@
+# react-comics
+
 ## UI and personality
 
 **this project is under heavy development**
