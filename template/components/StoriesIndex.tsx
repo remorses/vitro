@@ -5,7 +5,7 @@ import NextLink from 'next/link'
 const contexts = [
     // because require.context can't receive non literal values
     // TODO remove the node_modules packages
-    require.context('../../', true, /^\.\/(?!.*(?:node_modules)).*story\.tsx$/),
+    require.context(STORIES_PATH, STORIES_RECURSIVE, STORIES_EXTENSION),
    
 ].filter(Boolean)
 

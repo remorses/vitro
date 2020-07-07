@@ -1,35 +1,25 @@
 {
     "name": "storyboards",
     "version": "0.0.0",
-    "files": [
-        "src"
-    ],
+    "description": "",
+    "main": "index.js",
     "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "keywords": [],
+    "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
+    "license": "ISC",
     "dependencies": {
+        "glob-base": "^0.3.0",
+        "micromatch": "^4.0.2"
+    },
+    "devDependencies": {
         "@chakra-ui/core": "^0.8.0",
         "@emotion/core": "^10.0.28",
         "@emotion/styled": "^10.0.27",
-        "@example-package-scope/example-sub-package-1": "*",
-        "@example-package-scope/example-sub-package-2": "*",
-        "@types/lodash": "^4.14.157",
-        "dokz": "latest",
-        "emotion-theming": "^10.0.27",
-        "example-package": "*",
-        "lodash": "^4.17.15",
-        "next": "latest",
-        "react": "16.13.1",
-        "react-dom": "16.13.1"
-    },
-    "devDependencies": {
-        "@types/node": "^14.0.14",
         "@types/react": "^16.9.41",
-        "@types/webpack-env": "^1.15.2",
-        "compose-function": "^3.0.3",
-        "next-transpile-modules": "^3.3.0",
+        "emotion-theming": "^10.0.27",
+        "react": "^16.13.1",
         "typescript": "^3.9.6"
     }
 }
