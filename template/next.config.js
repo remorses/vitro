@@ -12,7 +12,7 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-const input = '../../**/*.story.tsx' // TODO this path is relative to template/components/
+const input = path.join(path.resolve(__dirname, '../'), './**/*.story.tsx') // TODO this path is relative to template/components/
 
 module.exports = composed({
     webpack: (config, options) => {
