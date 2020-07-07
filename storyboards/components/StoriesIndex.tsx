@@ -8,9 +8,13 @@ export function getStories(): {
 }[] {
     const contexts = [
         // TODO generate require.context calls when cmd start, because require.context can't receive non literal values
-        require.context('example-package', true, /story\.tsx$/),
-        require.context('@example-package-scope', true, /story\.tsx$/),
-    ]
+        // TODO create some constant webpack defined consts with PACKAGE_1, PACKAGE_1, to PACKAGE_10, then
+        // require.context('../../', true, /^((?![\\/]node_modules|vendor[\\/]).)*story\.tsx$/),
+        typeof TARGET_PACKAGE_1 === 'string' &&
+            require.context(TARGET_PACKAGE_1, true, STORIES_EXTENSION),
+        typeof TARGET_PACKAGE_2 === 'string' &&
+            require.context(TARGET_PACKAGE_2, true, STORIES_EXTENSION),
+    ].filter(Boolean)
     const exports = flatten(
         contexts.map((c, i) =>
             c.keys().map((filename) => ({ filename, context: contexts[i] })),
