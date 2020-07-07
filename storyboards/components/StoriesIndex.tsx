@@ -7,6 +7,7 @@ export function getStories(): {
     getExports: () => Record<string, any>
 }[] {
     const contexts = [
+        // TODO generate require.context calls when cmd start, because require.context can't receive non literal values
         require.context('example-package', true, /story\.tsx$/),
         require.context('@example-package-scope', true, /story\.tsx$/),
     ]
