@@ -5,6 +5,11 @@ const webpack = require('webpack') // eslint-disable-line
 // TODO the watcher should notify the user should call `start` again to make changes take effect (next dev does not reload config)
 const targetPackages = ['example-package', '@example-package-scope']
 
+if (targetPackages.length > 10) {
+    console.log(`target packages cannot be more than 10`)
+    process.exit(1)
+}
+
 const transpile = require('next-transpile-modules')(targetPackages)
 
 const composed = compose(transpile)

@@ -2,19 +2,37 @@ import { Stack, Box } from '@chakra-ui/core'
 import flatten from 'lodash/flatten'
 import NextLink from 'next/link'
 
+const contexts = [
+    // because require.context can't receive non literal values
+    // require.context('../../', true, /^((?![\\/]node_modules|vendor[\\/]).)*story\.tsx$/),
+    typeof TARGET_PACKAGE_1 === 'string' &&
+        require.context(TARGET_PACKAGE_1, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_2 === 'string' &&
+        require.context(TARGET_PACKAGE_2, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_2 === 'string' &&
+        require.context(TARGET_PACKAGE_2, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_3 === 'string' &&
+        require.context(TARGET_PACKAGE_3, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_4 === 'string' &&
+        require.context(TARGET_PACKAGE_4, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_5 === 'string' &&
+        require.context(TARGET_PACKAGE_5, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_6 === 'string' &&
+        require.context(TARGET_PACKAGE_6, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_7 === 'string' &&
+        require.context(TARGET_PACKAGE_7, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_8 === 'string' &&
+        require.context(TARGET_PACKAGE_8, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_9 === 'string' &&
+        require.context(TARGET_PACKAGE_9, true, STORIES_EXTENSION),
+    typeof TARGET_PACKAGE_10 === 'string' &&
+        require.context(TARGET_PACKAGE_10, true, STORIES_EXTENSION),
+].filter(Boolean)
+
 export function getStories(): {
     filename: string
     getExports: () => Record<string, any>
 }[] {
-    const contexts = [
-        // TODO generate require.context calls when cmd start, because require.context can't receive non literal values
-        // TODO create some constant webpack defined consts with PACKAGE_1, PACKAGE_1, to PACKAGE_10, then
-        // require.context('../../', true, /^((?![\\/]node_modules|vendor[\\/]).)*story\.tsx$/),
-        typeof TARGET_PACKAGE_1 === 'string' &&
-            require.context(TARGET_PACKAGE_1, true, STORIES_EXTENSION),
-        typeof TARGET_PACKAGE_2 === 'string' &&
-            require.context(TARGET_PACKAGE_2, true, STORIES_EXTENSION),
-    ].filter(Boolean)
     const exports = flatten(
         contexts.map((c, i) =>
             c.keys().map((filename) => ({ filename, context: contexts[i] })),
