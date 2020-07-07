@@ -10,7 +10,7 @@ export default function Page(props) {
         return null
     }
     console.log({ story })
-    const exported = stories.exports
+    const exported = stories
         .map((x) => {
             console.log(x)
             return x

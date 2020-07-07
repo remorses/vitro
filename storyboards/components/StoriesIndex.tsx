@@ -2,7 +2,10 @@ import { Stack, Box } from '@chakra-ui/core'
 import flatten from 'lodash/flatten'
 import NextLink from 'next/link'
 
-export function getStories() {
+export function getStories(): {
+    filename: string
+    getExports: () => Record<string, any>
+}[] {
     const contexts = [
         require.context('example-package', true, /story\.tsx$/),
         require.context('@example-package-scope', true, /story\.tsx$/),
@@ -12,23 +15,21 @@ export function getStories() {
             c.keys().map((filename) => ({ filename, context: contexts[i] })),
         ),
     )
-    return {
-        exports: exports.map(({ context, filename }) => {
-            return {
-                filename,
-                getExports: () => {
-                    return context(filename)
-                },
-            }
-        }),
-    }
+    return exports.map(({ context, filename }) => {
+        return {
+            filename,
+            getExports: () => {
+                return context(filename)
+            },
+        }
+    })
 }
 
 export const StoriesIndex = ({}) => {
     const stories = getStories()
     return (
         <Stack spacing='10'>
-            {stories.exports.map((story) => {
+            {stories.map((story) => {
                 return (
                     <Box>
                         <NextLink
