@@ -5,7 +5,7 @@ const compose = require('compose-function')
 const targetPackages = ['example-package', '@example-package-scope']
 
 if (targetPackages.length > 10) {
-    console.log(`target packages cannot be more than 10`)
+    console.log(`target packages cannot be more than 10, if your packages are scoped with '@scope', you can simply add '@scope' as a package`)
     process.exit(1)
 }
 
