@@ -1,5 +1,4 @@
 const compose = require('compose-function')
-const webpack = require('webpack') // eslint-disable-line
 
 // TODO generate packages to transpile list on command start, or maybe pass them via environment
 // TODO the watcher should notify the user should call `start` again to make changes take effect (next dev does not reload config)
@@ -18,9 +17,10 @@ module.exports = composed({
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         const variablesToInject = Object.assign(
             {},
-            ...targetPackages.map((value, i) => {
+            ...new Array(10).fill('').map((_, i) => {
+                const value = targetPackages[i] || ''
                 return {
-                    [`TARGET_PACKAGE_${i}`]: JSON.stringify(value),
+                    [`TARGET_PACKAGE_${i + 1}`]: JSON.stringify(value),
                 }
             }),
         )
