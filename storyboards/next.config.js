@@ -12,11 +12,6 @@ const composed = compose(transpile)
 module.exports = composed({
     webpack: (config, options) => {
         const { webpack } = options
-        config.plugins.push(
-            new webpack.DefinePlugin({
-                REQUIRE_CONTEXT: `require.context('../../', true, /(?!.*(?:node_modules)).*story\.tsx$/)`,
-            }),
-        )
         // TODO add React and chakra to externals packages to not duplicate them in stories
         // config.module.rules.push({
         //     test: /\.+(js|jsx|mjs|ts|tsx)$/,
