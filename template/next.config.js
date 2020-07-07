@@ -28,6 +28,7 @@ module.exports = composed({
                 STORIES_RECURSIVE: JSON.stringify(recursive),
             }),
         )
+        // replace the stories react packages with local ones to not dedupe
         config.resolve.alias = {
             ...config.resolve.alias,
             ...aliasOfPackages(['react', '@chakra-ui']),
