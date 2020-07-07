@@ -1,35 +1,30 @@
 const compose = require('compose-function')
+const path = require('path')
 
-// TODO generate packages to transpile list on command start, or maybe pass them via environment
 // TODO the watcher should notify the user should call `start` again to make changes take effect (next dev does not reload config)
-const targetPackages = ['example-package', '@example-package-scope']
 
-if (targetPackages.length > 10) {
-    console.log(`target packages cannot be more than 10, if your packages are scoped with '@scope', you can simply add '@scope' as a package`)
-    process.exit(1)
-}
+// TODO generate the context.require expression here, so i can make it as complex as i can and inject it via define plugin
 
-const transpile = require('next-transpile-modules')(targetPackages)
+const transpile = require('next-transpile-modules')([path.resolve(__dirname, '../')])
 
 const composed = compose(transpile)
 
 module.exports = composed({
-    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-        const variablesToInject = Object.assign(
-            {},
-            ...new Array(10).fill('').map((_, i) => {
-                const value = targetPackages[i] || ''
-                return {
-                    [`TARGET_PACKAGE_${i + 1}`]: JSON.stringify(value),
-                }
-            }),
-        )
-        config.plugins.push(new webpack.DefinePlugin(variablesToInject))
+    webpack: (config, options) => {
+        const { webpack } = options
         config.plugins.push(
             new webpack.DefinePlugin({
-                STORIES_EXTENSION: '/story.tsx$/',
+                REQUIRE_CONTEXT: `require.context('../../', true, /(?!.*(?:node_modules)).*story\.tsx$/)`,
             }),
         )
+        // TODO add React and chakra to externals packages to not duplicate them in stories
+        // config.module.rules.push({
+        //     test: /\.+(js|jsx|mjs|ts|tsx)$/,
+        //     loader: options.defaultLoaders.babel,
+        //     include: [path.resolve(__dirname, '../example-package')],
+        //     exclude: /node_modules/,
+        // })
+
         return config
     },
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
