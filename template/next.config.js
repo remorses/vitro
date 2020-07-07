@@ -12,18 +12,12 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-const input = '../../**/*.story.tsx'
+const input = '../../**/*.story.tsx' // TODO this path is relative to template/components/
 
 module.exports = composed({
     webpack: (config, options) => {
         const { webpack } = options
         // TODO add React and chakra to externals packages to not duplicate them in stories
-        // config.module.rules.push({
-        //     test: /\.+(js|jsx|mjs|ts|tsx)$/,
-        //     loader: options.defaultLoaders.babel,
-        //     include: [path.resolve(__dirname, '../example-package')],
-        //     exclude: /node_modules/,
-        // })
         const { path, recursive, match } = toRequireContext(input)
         console.log({ path, recursive, match })
         config.plugins.push(
