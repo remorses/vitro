@@ -15,6 +15,16 @@ const contexts = [
         require.context(TARGET_PACKAGE_4, true, STORIES_EXTENSION),
     TARGET_PACKAGE_5 &&
         require.context(TARGET_PACKAGE_5, true, STORIES_EXTENSION),
+    TARGET_PACKAGE_6 &&
+        require.context(TARGET_PACKAGE_6, true, STORIES_EXTENSION),
+    TARGET_PACKAGE_7 &&
+        require.context(TARGET_PACKAGE_7, true, STORIES_EXTENSION),
+    TARGET_PACKAGE_8 &&
+        require.context(TARGET_PACKAGE_8, true, STORIES_EXTENSION),
+    TARGET_PACKAGE_9 &&
+        require.context(TARGET_PACKAGE_9, true, STORIES_EXTENSION),
+    TARGET_PACKAGE_10 &&
+        require.context(TARGET_PACKAGE_10, true, STORIES_EXTENSION),
 ].filter(Boolean)
 
 export function getStories(): {
