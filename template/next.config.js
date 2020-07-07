@@ -18,15 +18,16 @@ module.exports = composed({
     webpack: (config, options) => {
         const { webpack } = options
         // TODO add React and chakra to externals packages to not duplicate them in stories
-        const { path, recursive, match } = toRequireContext(input)
-        console.log({ path, recursive, match })
+        const { path: dir, recursive, match } = toRequireContext(input)
+        console.log({ dir, recursive, match })
         config.plugins.push(
             new webpack.DefinePlugin({
                 STORIES_EXTENSION: match,
-                STORIES_PATH: JSON.stringify(path),
+                STORIES_PATH: JSON.stringify(dir),
                 STORIES_RECURSIVE: JSON.stringify(recursive),
             }),
         )
+        // config.resolve.alias['react'] = path.resolve(__dirname, '.', 'node_modules', 'react');
         return config
     },
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
