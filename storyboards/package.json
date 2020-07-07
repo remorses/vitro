@@ -1,7 +1,9 @@
 {
     "name": "storyboards",
     "version": "0.0.0",
-    "files": ["src"],
+    "files": [
+        "src"
+    ],
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -11,9 +13,13 @@
         "@chakra-ui/core": "^0.8.0",
         "@emotion/core": "^10.0.28",
         "@emotion/styled": "^10.0.27",
+        "@example-package-scope/example-sub-package-1": "*",
+        "@example-package-scope/example-sub-package-2": "*",
+        "@types/lodash": "^4.14.157",
         "dokz": "latest",
         "emotion-theming": "^10.0.27",
         "example-package": "*",
+        "lodash": "^4.17.15",
         "next": "latest",
         "react": "16.13.1",
         "react-dom": "16.13.1"

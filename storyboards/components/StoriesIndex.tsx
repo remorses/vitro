@@ -1,11 +1,19 @@
 import { Stack, Box } from '@chakra-ui/core'
+import flatten from 'lodash/flatten'
 import NextLink from 'next/link'
 
 export function getStories() {
-    const context = require.context('example-package', true, /story\.tsx$/)
-    const exports = context.keys()
+    const contexts = [
+        require.context('example-package', true, /story\.tsx$/),
+        require.context('@example-package-scope', true, /story\.tsx$/),
+    ]
+    const exports = flatten(
+        contexts.map((c, i) =>
+            c.keys().map((filename) => ({ filename, context: contexts[i] })),
+        ),
+    )
     return {
-        exports: exports.map((filename) => {
+        exports: exports.map(({ context, filename }) => {
             return {
                 filename,
                 getExports: () => {
@@ -22,21 +30,23 @@ export const StoriesIndex = ({}) => {
         <Stack spacing='10'>
             {stories.exports.map((story) => {
                 return (
-                    <NextLink
-                        key={story.filename}
-                        passHref
-                        href={`/stories/${story.filename}`}
-                    >
-                        <Stack
-                            as='a'
-                            borderRadius='md'
-                            bg='white'
-                            shadow='lg'
-                            p='6'
+                    <Box>
+                        <NextLink
+                            key={story.filename}
+                            passHref
+                            href={`/stories/${story.filename}`}
                         >
-                            {<Box>{story.filename}</Box>}
-                        </Stack>
-                    </NextLink>
+                            <Stack
+                                as='a'
+                                borderRadius='md'
+                                bg='white'
+                                shadow='lg'
+                                p='6'
+                            >
+                                {<Box>{story.filename}</Box>}
+                            </Stack>
+                        </NextLink>
+                    </Box>
                 )
             })}
         </Stack>
