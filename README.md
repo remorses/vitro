@@ -1,16 +1,7 @@
 # storyboards
 
-## UI and personality
-
 **this project is under heavy development**
 
-The ui should resemble a story board, using bordered rectangles to contain the components
-
-In the top right there should be a button group to choose the container rectangles size (like in dribbble.com, choose between 2 per row, 4 per row, ...)
-
-Every rectangle has a title that simply is the exported component name
-
-The index page displays all the different stories available, it should resemble a story book where every cell points to a story board
 
 ## Differences with story book
 
@@ -69,6 +60,19 @@ The index page displays all the different stories available, it should resemble 
     -   custom babel config (to be passed to nextjs)
     -   custom webpack config
     -   custom nextjs config
+
+
+## UI and personality
+
+
+The ui should resemble a story board, using bordered rectangles to contain the components
+
+In the top right there should be a button group to choose the container rectangles size (like in dribbble.com, choose between 2 per row, 4 per row, ...)
+
+Every rectangle has a title that simply is the exported component name
+
+The index page displays all the different stories available, it should resemble a story book where every cell points to a story board
+
 
 ## Things to do
 
