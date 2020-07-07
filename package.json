@@ -2,7 +2,6 @@
     "private": true,
     "workspaces": [
         "storyboards",
-        "template",
         "example-package-scope/*",
         "example-package"
     ]

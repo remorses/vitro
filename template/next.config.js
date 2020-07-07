@@ -1,5 +1,6 @@
 const compose = require('compose-function')
 const path = require('path')
+const fs = require('fs')
 const { toRequireContext } = require('storyboards/dist')
 
 // TODO the watcher should notify the user should call `start` again to make changes take effect (next dev does not reload config)
@@ -27,8 +28,31 @@ module.exports = composed({
                 STORIES_RECURSIVE: JSON.stringify(recursive),
             }),
         )
-        // config.resolve.alias['react'] = path.resolve(__dirname, '.', 'node_modules', 'react');
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            ...aliasOfPackages(['react', '@chakra-ui']),
+        }
         return config
     },
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 })
+
+function aliasOfPackages(packages) {
+    return Object.assign(
+        {},
+        ...packages.map((p) => {
+            const pkgPath = path.resolve(
+                __dirname,
+                '.',
+                'node_modules',
+                p,
+            )
+            if (fs.existsSync(pkgPath)) {
+                return {
+                    [p]: pkgPath,
+                }
+            }
+            return {}
+        }),
+    )
+}
