@@ -78,7 +78,7 @@ export default function Page(props) {
                             // my='6'
                             spacing='3'
                             width='100%'
-                            height='400px'
+                            minH='400px'
                             key={k + String(i)}
                         >
                             <Stack
