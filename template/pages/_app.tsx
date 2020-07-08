@@ -7,10 +7,35 @@ import {
     InputGroup,
     InputLeftElement,
     Icon,
+    Box,
 } from '@chakra-ui/core'
 import Head from 'next/head'
 import { StoriesIndex } from '../components/StoriesIndex'
 import { Global, css } from '@emotion/core'
+
+export const Logo = ({ ...rest }) => {
+    return (
+        <Stack
+            direction='row'
+            align='center'
+            fontSize='24px'
+            fontWeight='500'
+            spacing='2'
+            {...rest}
+        >
+            <Stack
+                align='center'
+                justify='center'
+                w='1em'
+                h='1em'
+                bg='gray.600'
+                borderWidth='1px'
+                children='S'
+            />
+            <Box>Storyboards</Box>
+        </Stack>
+    )
+}
 
 export default function App(props) {
     const { Component, pageProps } = props
@@ -26,6 +51,7 @@ export default function App(props) {
             >
                 <Stack direction='row' spacing='10' m='20'>
                     <Stack spacing='6' width={['260px']}>
+                        <Logo />
                         <InputGroup size='sm'>
                             <InputLeftElement
                                 children={
@@ -35,10 +61,10 @@ export default function App(props) {
                             <Input
                                 variant='filled'
                                 bg='white'
-                                borderRadius='lg'
+                                borderRadius='md'
                             />
                         </InputGroup>
-                        <StoriesIndex />
+                        <StoriesIndex fontWeight='500'  />
                     </Stack>
                     <Stack
                         as='main'
