@@ -40,6 +40,9 @@ The index page displays all the different stories available, it should resemble 
 ## Unique features (in progress)
 
 -   CSS debug (injects border to every div, to see all components outlines)
+-   Open in Vscode (via url with `vscode://file`)
+-   view in Full screen
+-   see render counts and time
 
 ## How it works
 
@@ -73,11 +76,11 @@ The index page displays all the different stories available, it should resemble 
 ## Things to do
 
 -   `storyboards` cli package
-    -   **storyboards new**: 
-        - downloads the nextjs template app from github to folder `.storyboards` (can be customized using `.storyboards.js` to change extension), 
-        - creates a base config file to enter the target packages, extension, babel config, 
-    - **storyboards dev**: 
-        - generates the `next.config.js` with given packages and attaches a watcher to the main config, regenerating the `next.config.js` and the `require.context` code
+    -   **storyboards new**:
+        -   downloads the nextjs template app from github to folder `.storyboards` (can be customized using `.storyboards.js` to change extension),
+        -   creates a base config file to enter the target packages, extension, babel config,
+    -   **storyboards dev**:
+        -   generates the `next.config.js` with given packages and attaches a watcher to the main config, regenerating the `next.config.js` and the `require.context` code
 -   stories index UI
 -   sub stories in a file UI
 -   sidebar to list all stories (by filename) in story page
