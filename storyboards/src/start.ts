@@ -29,13 +29,12 @@ async function start({ port }) {
     if (!existsSync(NEXT_APP_PATH)) {
         printRed(
             `There is no ${NEXT_APP_PATH} folder, you probably need to run '${CMD} new' first`,
+            true,
         )
         return process.exit(1)
     }
-    const command = `yarn next dev -p ${port}`
     return await runCommand({
-        command: command[0],
-        env: {},
+        command: `yarn next dev -p ${port}`,
         cwd: path.resolve('.', NEXT_APP_PATH),
     }).catch((e) => {
         throw new Error(`could not start ${CMD}`)
