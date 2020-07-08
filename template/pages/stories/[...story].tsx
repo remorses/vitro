@@ -5,8 +5,7 @@ import { FaBug } from 'react-icons/fa'
 import { jsx, css } from '@emotion/core'
 jsx
 import { Stack, Box, SimpleGrid, Select, Button } from '@chakra-ui/core'
-
-import { useMemo, useState } from 'react'
+import { useMemo, useState, Fragment } from 'react'
 import { DebugCSS } from '../../debugCSS'
 
 export default function Page(props) {
@@ -37,10 +36,13 @@ export default function Page(props) {
             return path === queryPath
         })
 
-    const { title } = storyObject || {}
     const exported = useMemo(() => storyObject?.getExports?.() || {}, [
         storyObject,
     ])
+    const StoryWrapper = useMemo(() => exported?.default?.wrapper || Fragment, [
+        exported,
+    ])
+    const storyTitle = exported?.default?.title || storyObject?.title || 'Untitled'
     // if (!exported || !story || !storyObject) {
     //     // TODO return 404
     //     return null
@@ -49,7 +51,7 @@ export default function Page(props) {
         <Stack spacing='10'>
             <Stack>
                 <Box fontSize='32px' fontWeight='medium'>
-                    {title}
+                    {storyTitle}
                 </Box>
                 <Box fontSize='18px' opacity={0.6}>
                     powered by storyboards
@@ -103,61 +105,65 @@ export default function Page(props) {
                 justify='space-between'
                 spacing='12'
             >
-                {Object.keys(exported).map((k, i) => {
-                    const Component = exported[k]
-                    const title = k // TODO replace camel case with spaces
-                    return (
-                        <Stack
-                            my='10'
-                            spacing='3'
-                            flexShrink={0}
-                            flexGrow={0}
-                            // minW='100px'
-                            flexBasis={blockWidth}
-                            minH='340px'
-                            key={k + String(i)}
-                            position='relative'
-                        >
+                {Object.keys(exported)
+                    .filter((k) => k !== 'default')
+                    .map((k, i) => {
+                        const Component = exported[k]
+                        const title = k // TODO replace camel case with spaces
+                        return (
                             <Stack
-                                position='absolute'
-                                top='10px'
-                                left='20px'
-                                right='20px'
-                                opacity={0.8}
-                                direction='row'
-                                align='center'
+                                my='10'
+                                spacing='3'
+                                flexShrink={0}
+                                flexGrow={0}
+                                // minW='100px'
+                                flexBasis={blockWidth}
+                                minH='340px'
+                                key={k + String(i)}
+                                position='relative'
                             >
-                                <Box
-                                    borderRadius='md'
-                                    p='2px'
-                                    bg='white'
-                                    fontSize='18px'
-                                    fontWeight='medium'
+                                <Stack
+                                    position='absolute'
+                                    top='10px'
+                                    left='20px'
+                                    right='20px'
+                                    opacity={0.8}
+                                    direction='row'
+                                    align='center'
                                 >
-                                    {title}
-                                </Box>
+                                    <Box
+                                        borderRadius='md'
+                                        p='2px'
+                                        bg='white'
+                                        fontSize='18px'
+                                        fontWeight='medium'
+                                    >
+                                        {title}
+                                    </Box>
+                                </Stack>
+                                <Stack
+                                    // shadow='sm'
+                                    as={cssDebugEnabled ? DebugCSS : 'div'}
+                                    flex='1'
+                                    overflow='hidden'
+                                    borderRadius='10px'
+                                    bg='white'
+                                    minH='100%'
+                                    spacing='0'
+                                    align='center'
+                                    justify='center'
+                                    // p='6'
+                                    // css={cssDebugEnabled ? debugCSS : css``}
+                                >
+                                    <GlobalWrapper>
+                                        <StoryWrapper>
+                                            <Component />
+                                        </StoryWrapper>
+                                    </GlobalWrapper>
+                                </Stack>
                             </Stack>
-                            <Stack
-                                // shadow='sm'
-                                as={cssDebugEnabled ? DebugCSS : 'div'}
-                                flex='1'
-                                overflow='hidden'
-                                borderRadius='10px'
-                                bg='white'
-                                minH='100%'
-                                spacing='0'
-                                align='center'
-                                justify='center'
-                                // p='6'
-                                // css={cssDebugEnabled ? debugCSS : css``}
-                            >
-                                <GlobalWrapper>
-                                    <Component />
-                                </GlobalWrapper>
-                            </Stack>
-                        </Stack>
-                    )
-                })}
+                        )
+                    })}
             </Stack>
         </Stack>
     )

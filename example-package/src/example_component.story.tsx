@@ -5,8 +5,21 @@ import {
     AlertIcon,
     AlertDescription,
     Box,
+    Stack,
 } from '@chakra-ui/core'
 import { Component } from './index'
+
+export default {
+    title: 'My Awesome Component!',
+    wrapper: ({ children }) => {
+        return (
+            <Stack p='4'>
+                <Box>This text comes from a wrapper</Box>
+                {children}
+            </Stack>
+        )
+    },
+}
 
 export const SimpleButton = ({}) => {
     return <Button>Click me</Button>
