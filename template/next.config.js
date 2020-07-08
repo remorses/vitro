@@ -13,7 +13,10 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-const input = path.join(path.resolve(__dirname, '../'), './example-package/**/*.story.tsx') // TODO this path is relative to template/components/
+const input = path.join(
+    path.resolve(__dirname, '../'),
+    './example-package/**/*.story.tsx',
+) // TODO this path is relative to template/components/
 
 module.exports = composed({
     webpack: (config, options) => {
@@ -31,7 +34,10 @@ module.exports = composed({
         // replace the stories react packages with local ones to not dedupe
         config.resolve.alias = {
             ...config.resolve.alias,
-            ...aliasOfPackages(['react', '@chakra-ui']),
+            ...aliasOfPackages([
+                'react',
+                // '@chakra-ui'
+            ]),
         }
         return config
     },
@@ -42,12 +48,7 @@ function aliasOfPackages(packages) {
     return Object.assign(
         {},
         ...packages.map((p) => {
-            const pkgPath = path.resolve(
-                __dirname,
-                '.',
-                'node_modules',
-                p,
-            )
+            const pkgPath = path.resolve(__dirname, '.', 'node_modules', p)
             if (fs.existsSync(pkgPath)) {
                 return {
                     [p]: pkgPath,

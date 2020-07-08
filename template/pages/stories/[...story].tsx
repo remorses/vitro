@@ -84,6 +84,7 @@ export default function Page(props) {
                             key={k + String(i)}
                         >
                             <Stack
+                                position='relative'
                                 as={cssDebugEnabled ? DebugCSS : 'div'}
                                 flex='1'
                                 overflow='hidden'
@@ -92,15 +93,28 @@ export default function Page(props) {
                                 spacing='0'
                                 align='center'
                                 justify='center'
-                                p='6'
+                                // p='6'
                                 // css={cssDebugEnabled ? debugCSS : css``}
                             >
+                                <Stack
+                                    position='absolute'
+                                    top='10px'
+                                    left='20px'
+                                    right='20px'
+                                    opacity={0.8}
+                                    direction='row'
+                                    align='center'
+                                >
+                                    <Box
+                                        bg='white'
+                                        fontSize='18px'
+                                        fontWeight='medium'
+                                    >
+                                        {title}
+                                    </Box>
+                                </Stack>
+
                                 <Component />
-                            </Stack>
-                            <Stack opacity={0.8} direction='row' align='center'>
-                                <Box fontSize='18px' fontWeight='medium'>
-                                    {title}
-                                </Box>
                             </Stack>
                         </Stack>
                     )
