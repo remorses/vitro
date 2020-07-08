@@ -9,6 +9,7 @@ import {
     Icon,
     Box,
 } from '@chakra-ui/core'
+import {FiBook as LogoPart} from 'react-icons/fi'
 import Head from 'next/head'
 import { StoriesIndex } from '../components/StoriesIndex'
 import { Global, css } from '@emotion/core'
@@ -23,15 +24,7 @@ export const Logo = ({ ...rest }) => {
             spacing='2'
             {...rest}
         >
-            <Stack
-                align='center'
-                justify='center'
-                w='1em'
-                h='1em'
-                bg='gray.600'
-                borderWidth='1px'
-                children='S'
-            />
+            <Box as={LogoPart} size='1.1em' />
             <Box>Storyboards</Box>
         </Stack>
     )
