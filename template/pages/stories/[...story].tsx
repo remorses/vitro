@@ -15,23 +15,23 @@ export default function Page(props) {
     const { query } = useRouter()
     const { story = '' } = query
 
-    console.log({ story })
+    // console.log({ story })
     const storyObject = stories
         .map((x) => {
-            console.log(x)
+            // console.log(x)
             return x
         })
         .filter(Boolean)
         .find((x) => {
             const path = normalizePath(x.filename || '')
-            console.log(x.getExports())
+            // console.log(x.getExports())
             const queryPath = normalizePath(
                 Array.isArray(story) ? story.join('/') : story,
             )
-            console.log({
-                path,
-                queryPath,
-            })
+            // console.log({
+            //     path,
+            //     queryPath,
+            // })
             return path === queryPath
         })
 

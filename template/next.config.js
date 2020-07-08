@@ -3,27 +3,23 @@ const path = require('path')
 const fs = require('fs')
 const { toRequireContext } = require('storyboards/dist')
 
-// TODO the watcher should notify the user should call `start` again to make changes take effect (next dev does not reload config)
-
-// TODO generate the context.require expression here, so i can make it as complex as i can and inject it via define plugin
-
 const transpile = require('next-transpile-modules')([
     path.resolve(__dirname, '../'),
 ])
 
 const composed = compose(transpile)
 
-const input = path.join(
-    path.resolve(__dirname, '../'),
-    './example-package/**/*.story.tsx',
-) // TODO this path is relative to template/components/
+const { stories } = getConfig() || {}
+
+const storiesGlobs = stories.map((g) =>
+    path.join(path.resolve(__dirname, '../'), g),
+)
 
 module.exports = composed({
     webpack: (config, options) => {
         const { webpack } = options
-        // TODO add React and chakra to externals packages to not duplicate them in stories
-        const { path: dir, recursive, match } = toRequireContext(input)
-        console.log({ dir, recursive, match })
+        const { path: dir, recursive, match } = toRequireContext(storiesGlobs[0]) // TODO support for array stories paths
+        // console.log({ dir, recursive, match })
         config.plugins.push(
             new webpack.DefinePlugin({
                 STORIES_EXTENSION: match,
@@ -42,7 +38,7 @@ module.exports = composed({
         }
         return config
     },
-    pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+    pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
 })
 
 function aliasOfPackages(packages) {
@@ -58,4 +54,13 @@ function aliasOfPackages(packages) {
             return {}
         }),
     )
+}
+
+function getConfig() {
+    try {
+        return require('../storyboards.config')
+    } catch (e) {
+        console.log(`cannot find './storyboards.config.js'`)
+        process.exit(1)
+    }
 }
