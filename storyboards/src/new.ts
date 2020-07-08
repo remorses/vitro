@@ -37,10 +37,10 @@ const command: CommandModule = {
             printGreen(`creating default ${CONFIG_PATH}`, true)
             await writeFile(CONFIG_PATH, DEFAULT_CONFIG)
         }
-        if (existsSync('.gitignore')) {
-            printGreen(`adding ${NEXT_APP_PATH} to .gitignore`, true)
-            await appendFile('.gitignore', '\n' + NEXT_APP_PATH)
-        }
+        // if (existsSync('.gitignore')) {
+        //     printGreen(`adding ${NEXT_APP_PATH} to .gitignore`, true)
+        //     await appendFile('.gitignore', '\n' + NEXT_APP_PATH)
+        // }
         printGreen('created storyboard successfully!', true)
     },
 } // as CommandModule
