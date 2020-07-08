@@ -11,6 +11,7 @@ import { DebugCSS } from '../../debugCSS'
 
 export default function Page(props) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
+    const [blockWidth, setBlockWidth] = useState('100%')
     const stories = getStories()
     const { query } = useRouter()
     const { story = '' } = query
@@ -65,21 +66,53 @@ export default function Page(props) {
                     CSS debug
                 </Button>
                 <Box flex='1' />
-                <Select defaultValue='3' variant='filled' bg='white' w='auto'>
+                <Select
+                    onChange={(e) => {
+                        const columns = String(e.target.value).trim()
+                        // console.log({ columns })
+                        switch (columns) {
+                            case '1':
+                                setBlockWidth('100%')
+                                break
+                            case '2':
+                                setBlockWidth('40%')
+                                break
+                            case '3':
+                                setBlockWidth('30%')
+                                break
+                            default:
+                                throw new Error(
+                                    `unrecognized columns count ${columns}`,
+                                )
+                        }
+                    }}
+                    defaultValue='1'
+                    variant='filled'
+                    bg='white'
+                    w='auto'
+                >
                     <option value='1'>1 columns</option>
                     <option value='2'>2 columns</option>
                     <option value='3'>3 columns</option>
                 </Select>
             </Stack>
-            <Stack flexWrap='wrap' spacing='12'>
+            <Stack
+                direction='row'
+                flexWrap='wrap'
+                justify='space-between'
+                spacing='12'
+            >
                 {Object.keys(exported).map((k, i) => {
                     const Component = exported[k]
                     const title = k // TODO replace camel case with spaces
                     return (
                         <Stack
-                            // my='6'
+                            my='10'
                             spacing='3'
-                            width='100%'
+                            flexShrink={0}
+                            flexGrow={0}
+                            // minW='100px'
+                            flexBasis={blockWidth}
                             minH='340px'
                             key={k + String(i)}
                             position='relative'
