@@ -46,7 +46,7 @@ export default function App(props) {
                 <Stack direction='row' spacing='10' m='10'>
                     <Stack display={['none', null, 'flex']} spacing='6' width={['260px']}>
                         <Logo />
-                        <InputGroup size='sm'>
+                        <InputGroup shadow='sm' size='sm'>
                             <InputLeftElement
                                 children={
                                     <Icon name='search' color='gray.400' />
