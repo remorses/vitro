@@ -1,0 +1,44 @@
+---
+name: Getting Started
+---
+
+# Getting Started
+
+## 1. Install the cli
+
+First install the cli with
+
+```sh
+npm i -g storyboards
+```
+
+## 2. Init the project
+
+Init the project with
+
+```sh
+storyboards new
+```
+
+The command above creates a `storyboards.config.js` config file and a `.storyboards` directory
+
+You can customize the config changing the stories location and an optional wrapper path that points to a file has a react component as default export
+
+```js
+// storyboards.config.js
+
+module.exports = {
+    stories: ['./example-package/.story.tsx'], // glob to your stories
+    wrapper: './example-package/src/Wrapper.tsx', // file that has a react component as default export
+}
+```
+
+## 3. Start the server
+
+Now you can start the server with
+
+```sh
+storyboards start -p 6006
+```
+
+This will start a web server on [localhost:6006](http://localhost:6006) with your stories
