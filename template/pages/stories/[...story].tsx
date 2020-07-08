@@ -1,6 +1,6 @@
 import { getStories } from '../../support'
 import { useRouter } from 'next/router'
-import { Stack, Box, SimpleGrid, Select, } from '@chakra-ui/core'
+import { Stack, Box, SimpleGrid, Select } from '@chakra-ui/core'
 import { useMemo } from 'react'
 
 export default function Page(props) {
@@ -46,15 +46,15 @@ export default function Page(props) {
             </Stack>
             <Box h='4' />
             <Stack direction='row'>
+                <Select defaultValue='3' variant='filled' bg='white' w='auto' />
+                <Box flex='1' />
                 <Select defaultValue='3' variant='filled' bg='white' w='auto'>
                     <option value='1'>1 columns</option>
                     <option value='2'>2 columns</option>
                     <option value='3'>3 columns</option>
-                    
                 </Select>
-                <Box flex='1' />
             </Stack>
-            <SimpleGrid columns={[1, 1, 1, 2, 3]} flexWrap='wrap' spacingX='20' spacingY='20' >
+            <Stack flexWrap='wrap' spacing='12'>
                 {Object.keys(exported).map((k, i) => {
                     const Component = exported[k]
                     const title = k // TODO replace camel case with spaces
@@ -62,7 +62,7 @@ export default function Page(props) {
                         <Stack
                             // my='6'
                             spacing='3'
-                            width='400px'
+                            width='100%'
                             height='400px'
                             key={k + String(i)}
                         >
@@ -86,7 +86,7 @@ export default function Page(props) {
                         </Stack>
                     )
                 })}
-            </SimpleGrid>
+            </Stack>
         </Stack>
     )
 }

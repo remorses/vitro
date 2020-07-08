@@ -73,7 +73,7 @@ export default function App(props) {
                         borderLeftWidth='2px'
                         width='100%'
                         align='stretch'
-                        px='10'
+                        pl='10'
                     >
                         <Component {...pageProps} />
                     </Stack>
