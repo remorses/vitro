@@ -89,3 +89,10 @@ The index page displays all the different stories available, it should resemble 
 -   sub stories in a file UI
 -   sidebar to list all stories (by filename) in story page
 -   layout select button to change stories sizes
+-   add a wrapper field to the config that points to a file with a default exported component, this file will be imported with require and used as parent component
+-   get the title, description, wrapper fields from the default export of the stories
+-   get the inout glb and wrapper path from the storyboards.config.js (requiring it from the .. path) inside the next.config
+-   storybaords cmd just wraps the next dev command, moves the template in .storyboards if missing, checks that the config.js is present, generates a default config if missing, adds the .storyboards to gitignore, runs npm ci if needed
+-   fix the path functions that rely on unix paths
+-   remove the chakra alias in webpack
+-   the template should be a standalone package with pavkage lock
