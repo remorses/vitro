@@ -40,15 +40,17 @@ export default function Page(props) {
                     powered by storyboards
                 </Box>
             </Stack>
+            <Box h='4' />
             <Stack direction='row'>
-                <Select variant='filled' bg='white' w='auto'>
-                    <option value='option1'>Option 1</option>
-                    <option value='option2'>Option 2</option>
-                    <option value='option3'>Option 3</option>
+                <Select defaultValue='3' variant='filled' bg='white' w='auto'>
+                    <option value='1'>1 columns</option>
+                    <option value='2'>2 columns</option>
+                    <option value='3'>3 columns</option>
+                    
                 </Select>
                 <Box flex='1' />
             </Stack>
-            <SimpleGrid columns={[1, 1, 1, 2, 3]} flexWrap='wrap' spacing='10'>
+            <SimpleGrid columns={[1, 1, 1, 2, 3]} flexWrap='wrap' spacingX='10' spacingY='20'>
                 {Object.keys(exported).map((k, i) => {
                     const Component = exported[k]
                     const title = k // TODO replace camel case with spaces
