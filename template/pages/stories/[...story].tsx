@@ -1,10 +1,18 @@
 // @jsx jsx
 import { getStories, getWrapperComponent } from '../../support'
 import { useRouter } from 'next/router'
-import { FaBug, FaLink } from 'react-icons/fa'
+import { FaBug, FaLink, FaClock } from 'react-icons/fa'
 import { jsx, css } from '@emotion/core'
 jsx
-import { Stack, Box, SimpleGrid, Select, Button, Link } from '@chakra-ui/core'
+import {
+    Stack,
+    Box,
+    SimpleGrid,
+    Select,
+    Button,
+    Link,
+    BoxProps,
+} from '@chakra-ui/core'
 import {
     useMemo,
     useState,
@@ -17,6 +25,7 @@ import {
 } from 'react'
 import { DebugCSS } from '../../debugCSS'
 import { profile } from 'console'
+import { FiClock, FiHash, FiZap } from 'react-icons/fi'
 
 export default function Page(props) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
@@ -67,10 +76,17 @@ export default function Page(props) {
                 {/* <Box fontSize='18px' opacity={0.6}>
                     powered by storyboards
                 </Box> */}
-                <Link as='a' fontWeight='500' href={vscodeUrl} opacity={0.6}>
-                    <Box d='inline' size='.8em' mr='3' as={FaLink} />
-                    Open in vscode
-                </Link>
+                {process.env.NODE_ENV == 'development' && (
+                    <Link
+                        as='a'
+                        fontWeight='500'
+                        href={vscodeUrl}
+                        opacity={0.6}
+                    >
+                        <Box d='inline' size='.8em' mr='3' as={FaLink} />
+                        Open in vscode
+                    </Link>
+                )}
             </Stack>
             <Box h='4' />
             <Stack direction='row'>
@@ -156,9 +172,16 @@ export default function Page(props) {
 }
 
 const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
-    const profile: ProfilerOnRenderCallback = useCallback((id, _, actualDuration) => {
-        console.log({ actualDuration })
-    }, [])
+    const actualDurationRef = useRef('0.00ms')
+    const renderCount = useRef(0)
+    const profile: ProfilerOnRenderCallback = useCallback(
+        (id, _, actualDuration) => {
+            console.log({ id, actualDuration })
+            renderCount.current++
+            actualDurationRef.current = actualDuration.toFixed(2) + 'ms'
+        },
+        [],
+    )
     return (
         <Stack
             my='10'
@@ -172,6 +195,7 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
             {...rest}
         >
             <Stack
+                spacing='8'
                 position='absolute'
                 top='10px'
                 left='20px'
@@ -182,7 +206,7 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
             >
                 <Box
                     borderRadius='md'
-                    p='2px'
+                    px='4px'
                     bg='white'
                     fontSize='18px'
                     fontWeight='medium'
@@ -190,7 +214,27 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                     {title}
                 </Box>
                 <Box flex='1' />
-                
+                <Couple
+                    opacity={0.8}
+                    a={<Box as={FiZap} size='1em' />}
+                    b={
+                        <AutoUpdateBox
+                            fontWeight='500'
+                            contentRef={actualDurationRef}
+                        />
+                    }
+                />
+                <Couple
+                    opacity={0.8}
+                    a={<Box as={FiHash} size='1em' />}
+                    b={
+                        <AutoUpdateBox
+                            fontWeight='500'
+                            map={(x) => x + ' renders'}
+                            contentRef={renderCount}
+                        />
+                    }
+                />
             </Stack>
             <Stack
                 // shadow='sm'
@@ -213,6 +257,39 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
     )
 }
 
+const AutoUpdateBox = ({
+    after = 1000,
+    map,
+    contentRef,
+    ...rest
+}: BoxProps & {
+    after?: number
+    contentRef: { current: any }
+    map?: Function
+}) => {
+    const [x, render] = useState(null)
+    useEffect(() => {
+        const id = setInterval(() => {
+            render('')
+        }, after)
+        return () => clearInterval(id)
+    }, [])
+    return (
+        <Box
+            {...rest}
+            children={map ? map(contentRef.current) : contentRef.current}
+        />
+    )
+}
+
+export const Couple = ({ a, b, ...rest }) => {
+    return (
+        <Stack isTruncated direction='row' align='center' spacing='1' {...rest}>
+            <Box>{a}</Box>
+            <Box>{b}</Box>
+        </Stack>
+    )
+}
 
 function normalizePath(path: string): string {
     return path
