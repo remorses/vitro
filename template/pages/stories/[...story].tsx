@@ -1,23 +1,30 @@
+// @jsx jsx
 import { getStories } from '../../support'
 import { useRouter } from 'next/router'
-import { Stack, Box, SimpleGrid, Select } from '@chakra-ui/core'
-import { useMemo } from 'react'
+import { FaBug } from 'react-icons/fa'
+import { jsx } from '@emotion/core'
+jsx
+import { Stack, Box, SimpleGrid, Select, Button } from '@chakra-ui/core'
+import { debug } from 'styles-debugger'
+
+import { useMemo, useState } from 'react'
+import { debugCSS } from '../../debugCSS'
 
 export default function Page(props) {
+    const [CssDebugEnabled, setCssDebug] = useState(false)
     const stories = getStories()
     const { query } = useRouter()
-    const { story } = query
-    if (!story) {
-        return null
-    }
+    const { story = '' } = query
+
     console.log({ story })
     const storyObject = stories
         .map((x) => {
             console.log(x)
             return x
         })
+        .filter(Boolean)
         .find((x) => {
-            const path = normalizePath(x.filename)
+            const path = normalizePath(x.filename || '')
             console.log(x.getExports())
             const queryPath = normalizePath(
                 Array.isArray(story) ? story.join('/') : story,
@@ -28,12 +35,13 @@ export default function Page(props) {
             })
             return path === queryPath
         })
-    if (!storyObject) {
+
+    const { title } = storyObject || {}
+    const exported = useMemo(() => storyObject?.getExports?.(), [])
+    if (!exported || !story || !storyObject) {
         // TODO return 404
         return null
     }
-    const { title } = storyObject || {}
-    const exported = useMemo(() => storyObject.getExports(), [])
     return (
         <Stack spacing='10'>
             <Stack>
@@ -46,7 +54,15 @@ export default function Page(props) {
             </Stack>
             <Box h='4' />
             <Stack direction='row'>
-                <Select defaultValue='3' variant='filled' bg='white' w='auto' />
+                <Button
+                    onClick={() => setCssDebug((x) => !x)}
+                    opacity={0.8}
+                    bg='white'
+                    w='auto'
+                >
+                    <Box mr='2' d='inline-block' as={FaBug} />
+                    CSS debug
+                </Button>
                 <Box flex='1' />
                 <Select defaultValue='3' variant='filled' bg='white' w='auto'>
                     <option value='1'>1 columns</option>
@@ -75,6 +91,7 @@ export default function Page(props) {
                                 align='center'
                                 justify='center'
                                 p='6'
+                                css={CssDebugEnabled ? debugCSS : {}}
                             >
                                 <Component />
                             </Stack>

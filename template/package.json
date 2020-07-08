@@ -21,7 +21,8 @@
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-icons": "^3.10.0",
-        "storyboards": "*"
+        "storyboards": "*",
+        "styles-debugger": "^1.0.0"
     },
     "devDependencies": {
         "@types/node": "^14.0.14",
