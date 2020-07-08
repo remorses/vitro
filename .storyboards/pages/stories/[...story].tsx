@@ -1,19 +1,39 @@
 // @jsx jsx
-import { getStories } from '../../support'
+import { getStories, getWrapperComponent } from '../../support'
 import { useRouter } from 'next/router'
-import { FaBug } from 'react-icons/fa'
+import { FaBug, FaLink, FaClock } from 'react-icons/fa'
 import { jsx, css } from '@emotion/core'
 jsx
-import { Stack, Box, SimpleGrid, Select, Button } from '@chakra-ui/core'
-
-import { useMemo, useState } from 'react'
+import {
+    Stack,
+    Box,
+    SimpleGrid,
+    Select,
+    Button,
+    Link,
+    BoxProps,
+} from '@chakra-ui/core'
+import {
+    useMemo,
+    useState,
+    Fragment,
+    Profiler,
+    ProfilerOnRenderCallback,
+    useCallback,
+    useRef,
+    useEffect,
+} from 'react'
 import { DebugCSS } from '../../debugCSS'
+import { profile } from 'console'
+import { FiClock, FiHash, FiZap } from 'react-icons/fi'
 
 export default function Page(props) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
+    const [blockWidth, setBlockWidth] = useState('100%')
     const stories = getStories()
     const { query } = useRouter()
     const { story = '' } = query
+    const GlobalWrapper = useMemo(() => getWrapperComponent(), [])
 
     // console.log({ story })
     const storyObject = stories
@@ -34,24 +54,39 @@ export default function Page(props) {
             // })
             return path === queryPath
         })
-
-    const { title } = storyObject || {}
+    const vscodeUrl = `vscode://file${storyObject?.absolutePath}`
     const exported = useMemo(() => storyObject?.getExports?.() || {}, [
         storyObject,
     ])
+    const StoryWrapper = useMemo(() => exported?.default?.wrapper || Fragment, [
+        exported,
+    ])
+    const storyTitle =
+        exported?.default?.title || storyObject?.title || 'Untitled'
     // if (!exported || !story || !storyObject) {
     //     // TODO return 404
     //     return null
     // }
     return (
         <Stack spacing='10'>
-            <Stack>
+            <Stack align='flex-start' spacing='4'>
                 <Box fontSize='32px' fontWeight='medium'>
-                    {title}
+                    {storyTitle}
                 </Box>
-                <Box fontSize='18px' opacity={0.6}>
+                {/* <Box fontSize='18px' opacity={0.6}>
                     powered by storyboards
-                </Box>
+                </Box> */}
+                {process.env.NODE_ENV == 'development' && (
+                    <Link
+                        as='a'
+                        fontWeight='500'
+                        href={vscodeUrl}
+                        opacity={0.6}
+                    >
+                        <Box d='inline' size='.8em' mr='3' as={FaLink} />
+                        Open in vscode
+                    </Link>
+                )}
             </Stack>
             <Box h='4' />
             <Stack direction='row'>
@@ -65,64 +100,193 @@ export default function Page(props) {
                     CSS debug
                 </Button>
                 <Box flex='1' />
-                <Select defaultValue='3' variant='filled' bg='white' w='auto'>
+                <Select
+                    onChange={(e) => {
+                        const columns = String(e.target.value).trim()
+                        // console.log({ columns })
+                        switch (columns) {
+                            case '1':
+                                setBlockWidth('100%')
+                                break
+                            case '2':
+                                setBlockWidth('40%')
+                                break
+                            case '3':
+                                setBlockWidth('30%')
+                                break
+                            default:
+                                throw new Error(
+                                    `unrecognized columns count ${columns}`,
+                                )
+                        }
+                    }}
+                    defaultValue='1'
+                    variant='filled'
+                    bg='white'
+                    w='auto'
+                >
                     <option value='1'>1 columns</option>
                     <option value='2'>2 columns</option>
                     <option value='3'>3 columns</option>
                 </Select>
             </Stack>
-            <Stack flexWrap='wrap' spacing='12'>
-                {Object.keys(exported).map((k, i) => {
-                    const Component = exported[k]
-                    const title = k // TODO replace camel case with spaces
-                    return (
-                        <Stack
-                            // my='6'
-                            spacing='3'
-                            width='100%'
-                            minH='340px'
-                            key={k + String(i)}
-                            position='relative'
-                        >
-                            <Stack
-                                position='absolute'
-                                top='10px'
-                                left='20px'
-                                right='20px'
-                                opacity={0.8}
-                                direction='row'
-                                align='center'
+            <Stack
+                direction='row'
+                flexWrap='wrap'
+                justify='space-between'
+                spacing='12'
+            >
+                {Object.keys(exported)
+                    .filter((k) => k !== 'default')
+                    .map((k, i) => {
+                        const Component = exported[k]
+
+                        return (
+                            <StoryBlock
+                                title={k}
+                                blockWidth={blockWidth}
+                                key={k + String(i)}
                             >
-                                <Box
-                                    borderRadius='md'
-                                    p='2px'
-                                    bg='white'
-                                    fontSize='18px'
-                                    fontWeight='medium'
+                                <Stack
+                                    flex='1'
+                                    w='100%'
+                                    h='100%'
+                                    minH='100%'
+                                    spacing='0'
+                                    align='center'
+                                    justify='center'
+                                    as={cssDebugEnabled ? DebugCSS : 'div'}
                                 >
-                                    {title}
-                                </Box>
-                            </Stack>
-                            <Stack
-                                // shadow='sm'
-                                as={cssDebugEnabled ? DebugCSS : 'div'}
-                                flex='1'
-                                overflow='hidden'
-                                borderRadius='10px'
-                                bg='white'
-                                minH='100%'
-                                spacing='0'
-                                align='center'
-                                justify='center'
-                                // p='6'
-                                // css={cssDebugEnabled ? debugCSS : css``}
-                            >
-                                <Component />
-                            </Stack>
-                        </Stack>
-                    )
-                })}
+                                    <GlobalWrapper>
+                                        <StoryWrapper>
+                                            <Component />
+                                        </StoryWrapper>
+                                    </GlobalWrapper>
+                                </Stack>
+                            </StoryBlock>
+                        )
+                    })}
             </Stack>
+        </Stack>
+    )
+}
+
+const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
+    const actualDurationRef = useRef('0.00ms')
+    const renderCount = useRef(0)
+    const profile: ProfilerOnRenderCallback = useCallback(
+        (id, _, actualDuration) => {
+            console.log({ id, actualDuration })
+            renderCount.current++
+            actualDurationRef.current = actualDuration.toFixed(2) + 'ms'
+        },
+        [],
+    )
+    return (
+        <Stack
+            my='10'
+            spacing='3'
+            flexShrink={0}
+            flexGrow={0}
+            // minW='100px'
+            flexBasis={blockWidth}
+            minH='340px'
+            position='relative'
+            {...rest}
+        >
+            <Stack
+                spacing='8'
+                position='absolute'
+                top='10px'
+                left='20px'
+                right='20px'
+                opacity={0.8}
+                direction='row'
+                align='center'
+            >
+                <Box
+                    borderRadius='md'
+                    px='4px'
+                    bg='white'
+                    fontSize='18px'
+                    fontWeight='medium'
+                >
+                    {title}
+                </Box>
+                <Box flex='1' />
+                <Couple
+                    opacity={0.8}
+                    a={<Box as={FiZap} size='1em' />}
+                    b={
+                        <AutoUpdateBox
+                            fontWeight='500'
+                            contentRef={actualDurationRef}
+                        />
+                    }
+                />
+                <Couple
+                    opacity={0.8}
+                    a={<Box as={FiHash} size='1em' />}
+                    b={
+                        <AutoUpdateBox
+                            fontWeight='500'
+                            map={(x) => x + ' renders'}
+                            contentRef={renderCount}
+                        />
+                    }
+                />
+            </Stack>
+            <Stack
+                // shadow='sm'
+                flex='1'
+                overflow='hidden'
+                borderRadius='10px'
+                bg='white'
+                minH='100%'
+                spacing='0'
+                align='center'
+                justify='center'
+                // p='6'
+                // css={cssDebugEnabled ? debugCSS : css``}
+            >
+                <Profiler id={title} onRender={profile}>
+                    {children}
+                </Profiler>
+            </Stack>
+        </Stack>
+    )
+}
+
+const AutoUpdateBox = ({
+    after = 1000,
+    map,
+    contentRef,
+    ...rest
+}: BoxProps & {
+    after?: number
+    contentRef: { current: any }
+    map?: Function
+}) => {
+    const [x, render] = useState(null)
+    useEffect(() => {
+        const id = setInterval(() => {
+            render('')
+        }, after)
+        return () => clearInterval(id)
+    }, [])
+    return (
+        <Box
+            {...rest}
+            children={map ? map(contentRef.current) : contentRef.current}
+        />
+    )
+}
+
+export const Couple = ({ a, b, ...rest }) => {
+    return (
+        <Stack isTruncated direction='row' align='center' spacing='1' {...rest}>
+            <Box>{a}</Box>
+            <Box>{b}</Box>
         </Stack>
     )
 }
