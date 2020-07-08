@@ -9,14 +9,15 @@ export const StoriesIndex = ({
     filter,
     ...p
 }: StackProps & { filter: string }) => {
+    filter = filter.toLowerCase()
     const stories = useMemo(() => getStories(), [])
     return (
         <Stack spacing='4' {...p}>
             {stories.map(({ title, filename }) => {
                 if (
                     filter &&
-                    !title.includes(filter) &&
-                    !filename.includes(filter)
+                    !title.toLowerCase().includes(filter) &&
+                    !filename.toLowerCase().includes(filter)
                 ) {
                     return null
                 }
@@ -28,7 +29,11 @@ export const StoriesIndex = ({
                                 align='center'
                                 direction='row'
                             >
-                                <Box as={AiFillCaretRight} opacity={.6} size='0.9em' />
+                                <Box
+                                    as={AiFillCaretRight}
+                                    opacity={0.6}
+                                    size='0.9em'
+                                />
                                 <Box as='a'>{title}</Box>
                             </Stack>
                         </NextLink>
