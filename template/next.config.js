@@ -9,7 +9,7 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-const { stories } = getConfig() || {}
+const { stories, wrapper } = getConfig() || {}
 
 const storiesGlobs = stories.map((g) =>
     path.join(path.resolve(__dirname, '../'), g),
@@ -18,10 +18,15 @@ const storiesGlobs = stories.map((g) =>
 module.exports = composed({
     webpack: (config, options) => {
         const { webpack } = options
-        const { path: dir, recursive, match } = toRequireContext(storiesGlobs[0]) // TODO support for array stories paths
+        const { path: dir, recursive, match } = toRequireContext(
+            storiesGlobs[0],
+        ) // TODO support for array stories paths
         // console.log({ dir, recursive, match })
         config.plugins.push(
             new webpack.DefinePlugin({
+                WRAPPER_COMPONENT_PATH: JSON.stringify(
+                    path.join(path.resolve(__dirname, '../'), wrapper),
+                ),
                 STORIES_EXTENSION: match,
                 STORIES_PATH: JSON.stringify(dir),
                 STORIES_RECURSIVE: JSON.stringify(recursive),

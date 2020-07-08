@@ -1,6 +1,7 @@
 import flatten from 'lodash/flatten'
 import memoize from 'lodash/memoize'
 import startCase from 'lodash/startCase'
+import { Fragment } from 'react'
 
 const contexts = [
     // because require.context can't receive non literal values
@@ -42,4 +43,12 @@ export function formatPathToTitle(path: string) {
         .reverse()[0]
     const withoutExt = endPath.split('.')[0]
     return startCase(withoutExt)
+}
+
+export function getWrapperComponent() {
+    try {
+        return require(WRAPPER_COMPONENT_PATH).default
+    } catch(e) {
+        return Fragment
+    }
 }

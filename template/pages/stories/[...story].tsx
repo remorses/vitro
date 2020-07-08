@@ -1,5 +1,5 @@
 // @jsx jsx
-import { getStories } from '../../support'
+import { getStories, getWrapperComponent } from '../../support'
 import { useRouter } from 'next/router'
 import { FaBug } from 'react-icons/fa'
 import { jsx, css } from '@emotion/core'
@@ -15,6 +15,7 @@ export default function Page(props) {
     const stories = getStories()
     const { query } = useRouter()
     const { story = '' } = query
+    const GlobalWrapper = useMemo(() => getWrapperComponent(), [])
 
     // console.log({ story })
     const storyObject = stories
@@ -150,7 +151,9 @@ export default function Page(props) {
                                 // p='6'
                                 // css={cssDebugEnabled ? debugCSS : css``}
                             >
-                                <Component />
+                                <GlobalWrapper>
+                                    <Component />
+                                </GlobalWrapper>
                             </Stack>
                         </Stack>
                     )
