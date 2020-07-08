@@ -7,7 +7,7 @@ jsx
 import { Stack, Box, SimpleGrid, Select, Button } from '@chakra-ui/core'
 
 import { useMemo, useState } from 'react'
-import { debugCSS } from '../../debugCSS'
+import { DebugCSS } from '../../debugCSS'
 
 export default function Page(props) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
@@ -36,7 +36,9 @@ export default function Page(props) {
         })
 
     const { title } = storyObject || {}
-    const exported = useMemo(() => storyObject?.getExports?.() || {}, [storyObject])
+    const exported = useMemo(() => storyObject?.getExports?.() || {}, [
+        storyObject,
+    ])
     // if (!exported || !story || !storyObject) {
     //     // TODO return 404
     //     return null
@@ -82,6 +84,7 @@ export default function Page(props) {
                             key={k + String(i)}
                         >
                             <Stack
+                                as={cssDebugEnabled ? DebugCSS : 'div'}
                                 flex='1'
                                 overflow='hidden'
                                 borderRadius='10px'
@@ -90,7 +93,7 @@ export default function Page(props) {
                                 align='center'
                                 justify='center'
                                 p='6'
-                                css={cssDebugEnabled ? debugCSS : css``}
+                                // css={cssDebugEnabled ? debugCSS : css``}
                             >
                                 <Component />
                             </Stack>

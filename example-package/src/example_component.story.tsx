@@ -1,5 +1,11 @@
 import React from 'react'
-import { Button, Alert, AlertIcon, AlertDescription } from '@chakra-ui/core'
+import {
+    Button,
+    Alert,
+    AlertIcon,
+    AlertDescription,
+    Box,
+} from '@chakra-ui/core'
 import { Component } from './index'
 
 export const SimpleButton = ({}) => {
@@ -8,9 +14,11 @@ export const SimpleButton = ({}) => {
 
 export const AlertStory = ({}) => {
     return (
-        <Alert variant='left-accent' status='info'>
-            <AlertIcon />
-            Chakra is awesome
-        </Alert>
+        <Box p='2'>
+            <Alert variant='left-accent' status='info'>
+                <AlertIcon />
+                Chakra is awesome
+            </Alert>
+        </Box>
     )
 }

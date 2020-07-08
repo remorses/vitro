@@ -1,6 +1,7 @@
 import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 
-export const debugCSS = css`
+export const DebugCSS = styled.div`
     /* pesticide v0.1.0 . @mrmrs . MIT
     */
     body {
