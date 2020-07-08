@@ -1,6 +1,6 @@
 import { getStories } from '../../support'
 import { useRouter } from 'next/router'
-import { Stack, Box, SimpleGrid } from '@chakra-ui/core'
+import { Stack, Box, SimpleGrid, Select } from '@chakra-ui/core'
 import { useMemo } from 'react'
 
 export default function Page(props) {
@@ -31,7 +31,7 @@ export default function Page(props) {
     const { title } = storyObject
     const exported = useMemo(() => storyObject.getExports(), [])
     return (
-        <Stack spacing='20'>
+        <Stack spacing='10'>
             <Stack>
                 <Box fontSize='32px' fontWeight='medium'>
                     {title}
@@ -40,13 +40,21 @@ export default function Page(props) {
                     powered by storyboards
                 </Box>
             </Stack>
-            <SimpleGrid columns={[1, 1, 1, 2,  3]} flexWrap='wrap' spacing='10'>
+            <Stack direction='row'>
+                <Select variant='filled' bg='white' w='auto'>
+                    <option value='option1'>Option 1</option>
+                    <option value='option2'>Option 2</option>
+                    <option value='option3'>Option 3</option>
+                </Select>
+                <Box flex='1' />
+            </Stack>
+            <SimpleGrid columns={[1, 1, 1, 2, 3]} flexWrap='wrap' spacing='10'>
                 {Object.keys(exported).map((k, i) => {
                     const Component = exported[k]
                     const title = k // TODO replace camel case with spaces
                     return (
                         <Stack
-                            my='6'
+                            // my='6'
                             spacing='4'
                             width='400px'
                             height='400px'
@@ -65,7 +73,9 @@ export default function Page(props) {
                                 <Component />
                             </Stack>
                             <Stack opacity={0.8} direction='row' align='center'>
-                                <Box fontSize='18px' fontWeight='medium'>{title}</Box>
+                                <Box fontSize='18px' fontWeight='medium'>
+                                    {title}
+                                </Box>
                             </Stack>
                         </Stack>
                     )
