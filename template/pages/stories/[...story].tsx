@@ -42,7 +42,8 @@ export default function Page(props) {
     const StoryWrapper = useMemo(() => exported?.default?.wrapper || Fragment, [
         exported,
     ])
-    const storyTitle = exported?.default?.title || storyObject?.title || 'Untitled'
+    const storyTitle =
+        exported?.default?.title || storyObject?.title || 'Untitled'
     // if (!exported || !story || !storyObject) {
     //     // TODO return 404
     //     return null
@@ -109,51 +110,21 @@ export default function Page(props) {
                     .filter((k) => k !== 'default')
                     .map((k, i) => {
                         const Component = exported[k]
-                        const title = k // TODO replace camel case with spaces
                         return (
-                            <Stack
-                                my='10'
-                                spacing='3'
-                                flexShrink={0}
-                                flexGrow={0}
-                                // minW='100px'
-                                flexBasis={blockWidth}
-                                minH='340px'
+                            <StoryBlock
+                                title={k}
+                                blockWidth={blockWidth}
                                 key={k + String(i)}
-                                position='relative'
                             >
                                 <Stack
-                                    position='absolute'
-                                    top='10px'
-                                    left='20px'
-                                    right='20px'
-                                    opacity={0.8}
-                                    direction='row'
-                                    align='center'
-                                >
-                                    <Box
-                                        borderRadius='md'
-                                        p='2px'
-                                        bg='white'
-                                        fontSize='18px'
-                                        fontWeight='medium'
-                                    >
-                                        {title}
-                                    </Box>
-                                </Stack>
-                                <Stack
-                                    // shadow='sm'
-                                    as={cssDebugEnabled ? DebugCSS : 'div'}
                                     flex='1'
-                                    overflow='hidden'
-                                    borderRadius='10px'
-                                    bg='white'
+                                    w='100%'
+                                    h='100%'
                                     minH='100%'
                                     spacing='0'
                                     align='center'
                                     justify='center'
-                                    // p='6'
-                                    // css={cssDebugEnabled ? debugCSS : css``}
+                                    as={cssDebugEnabled ? DebugCSS : 'div'}
                                 >
                                     <GlobalWrapper>
                                         <StoryWrapper>
@@ -161,9 +132,60 @@ export default function Page(props) {
                                         </StoryWrapper>
                                     </GlobalWrapper>
                                 </Stack>
-                            </Stack>
+                            </StoryBlock>
                         )
                     })}
+            </Stack>
+        </Stack>
+    )
+}
+
+const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
+    return (
+        <Stack
+            my='10'
+            spacing='3'
+            flexShrink={0}
+            flexGrow={0}
+            // minW='100px'
+            flexBasis={blockWidth}
+            minH='340px'
+            position='relative'
+            {...rest}
+        >
+            <Stack
+                position='absolute'
+                top='10px'
+                left='20px'
+                right='20px'
+                opacity={0.8}
+                direction='row'
+                align='center'
+            >
+                <Box
+                    borderRadius='md'
+                    p='2px'
+                    bg='white'
+                    fontSize='18px'
+                    fontWeight='medium'
+                >
+                    {title}
+                </Box>
+            </Stack>
+            <Stack
+                // shadow='sm'
+                flex='1'
+                overflow='hidden'
+                borderRadius='10px'
+                bg='white'
+                minH='100%'
+                spacing='0'
+                align='center'
+                justify='center'
+                // p='6'
+                // css={cssDebugEnabled ? debugCSS : css``}
+            >
+                {children}
             </Stack>
         </Stack>
     )
