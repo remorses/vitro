@@ -94,6 +94,8 @@ export default function Page(props) {
                                 align='center'
                             >
                                 <Box
+                                    borderRadius='md'
+                                    p='2px'
                                     bg='white'
                                     fontSize='18px'
                                     fontWeight='medium'
@@ -102,12 +104,12 @@ export default function Page(props) {
                                 </Box>
                             </Stack>
                             <Stack
-                                
                                 as={cssDebugEnabled ? DebugCSS : 'div'}
                                 flex='1'
                                 overflow='hidden'
                                 borderRadius='10px'
                                 bg='white'
+                                minH='100%'
                                 spacing='0'
                                 align='center'
                                 justify='center'
