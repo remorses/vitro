@@ -9,10 +9,8 @@ export const Component = ({ ...rest }) => {
     return (
         <Box
             bg='lightblue'
-            style={{
-                width: 200,
-                height: 200,
-            }}
+            width='200px'
+            h='200px'
             children={state}
             {...rest}
         />
