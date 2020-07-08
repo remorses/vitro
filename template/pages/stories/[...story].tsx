@@ -80,7 +80,7 @@ export default function Page(props) {
                             // my='6'
                             spacing='3'
                             width='100%'
-                            minH='400px'
+                            minH='340px'
                             key={k + String(i)}
                             position='relative'
                         >
@@ -104,6 +104,7 @@ export default function Page(props) {
                                 </Box>
                             </Stack>
                             <Stack
+                                // shadow='sm'
                                 as={cssDebugEnabled ? DebugCSS : 'div'}
                                 flex='1'
                                 overflow='hidden'

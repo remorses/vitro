@@ -36,6 +36,7 @@ module.exports = composed({
             ...config.resolve.alias,
             ...aliasOfPackages([
                 'react',
+                'react-dom',
                 // '@chakra-ui'
             ]),
         }

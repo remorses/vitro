@@ -1,5 +1,8 @@
 {
     "private": true,
+    "scripts": {
+        "cli": "yarn --cwd storyboards play"
+    },
     "workspaces": [
         "storyboards",
         "example-package-scope/*",
