@@ -1,49 +1,25 @@
-import { Stack, Box } from '@chakra-ui/core'
-import flatten from 'lodash/flatten'
+import { Stack, Box, StackProps } from '@chakra-ui/core'
+import { FiChevronRight } from 'react-icons/fi'
+
 import NextLink from 'next/link'
+import { getStories } from '../support'
+import { useMemo } from 'react'
 
-const contexts = [
-    // because require.context can't receive non literal values
-    // TODO remove the node_modules packages
-    require.context(STORIES_PATH, STORIES_RECURSIVE, STORIES_EXTENSION),
-   
-].filter(Boolean)
-
-export function getStories(): {
-    filename: string
-    getExports: () => Record<string, any>
-}[] {
-    const exports = flatten(
-        contexts.map((c, i) =>
-            c.keys().map((filename) => ({ filename, context: contexts[i] })),
-        ),
-    )
-    return exports.map(({ context, filename }) => {
-        return {
-            filename,
-            getExports: () => {
-                return context(filename)
-            },
-        }
-    })
-}
-
-export const StoriesIndex = ({}) => {
-    const stories = getStories()
+export const StoriesIndex = (p: StackProps) => {
+    const stories = useMemo(() => getStories(), [])
     return (
-        <Stack spacing='10'>
-            {stories.map((story) => {
+        <Stack spacing='4' {...p}>
+            {stories.map(({ title, filename }) => {
                 return (
-                    <Box key={story.filename}>
-                        <NextLink passHref href={`/stories/${story.filename}`}>
+                    <Box key={filename}>
+                        <NextLink passHref href={`/stories/${filename}`}>
                             <Stack
-                                as='a'
-                                borderRadius='md'
-                                bg='white'
-                                shadow='lg'
-                                p='6'
+                                cursor='pointer'
+                                align='center'
+                                direction='row'
                             >
-                                {<Box>{story.filename}</Box>}
+                                <Box as={FiChevronRight} size='1em' />
+                                <Box as='a'>{title}</Box>
                             </Stack>
                         </NextLink>
                     </Box>

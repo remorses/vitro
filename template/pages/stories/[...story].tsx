@@ -1,4 +1,4 @@
-import { getStories } from '../../components/StoriesIndex'
+import { getStories } from '../../support'
 import { useRouter } from 'next/router'
 import { Stack, Box } from '@chakra-ui/core'
 
@@ -30,7 +30,7 @@ export default function Page(props) {
         .getExports()
     console.log(exported)
     return (
-        <Stack spacing='10' p='20'>
+        <Stack spacing='10' >
             {Object.keys(exported).map((k, i) => {
                 const Component = exported[k]
                 const title = k // TODO replace camel case with spaces

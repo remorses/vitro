@@ -5818,7 +5818,7 @@ react-frame-component@^4.1.1:
   resolved "https://registry.yarnpkg.com/react-frame-component/-/react-frame-component-4.1.2.tgz#c88fcc1e73fbe83eea6c82d95d66eefe44cd1ea4"
   integrity sha512-gWTtpOoi8Mgxayj0iWLL3SXRu2jW4eW4oim6B/FycaOH9HHIsCTPulC9u7CZ2BwY0CtqA+v8FsINp6qPuaN6qQ==
 
-react-icons@^3.9.0:
+react-icons@^3.10.0, react-icons@^3.9.0:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.10.0.tgz#6c217a2dde2e8fa8d293210023914b123f317297"
   integrity sha512-WsQ5n1JToG9VixWilSo1bHv842Cj5aZqTGiS3Ud47myF6aK7S/IUY2+dHcBdmkQcCFRuHsJ9OMUI0kTDfjyZXQ==

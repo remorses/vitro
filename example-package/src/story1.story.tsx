@@ -1,10 +1,10 @@
 import React from 'react'
-import { Component1 } from './index'
+import { Component } from './index'
 
 export const Simple = ({}) => {
-    return <Component1 />
+    return <Component />
 }
 
 export const DifferentColor = ({}) => {
-    return <Component1 bg='red.900' />
+    return <Component bg='red.100' />
 }
