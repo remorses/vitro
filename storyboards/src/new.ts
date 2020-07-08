@@ -30,7 +30,7 @@ const command: CommandModule = {
         })
         printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
         await runCommand({
-            command: 'npm ci --ignore-scripts',
+            command: 'npm ci --quiet --ignore-scripts',
             cwd: path.resolve('.', NEXT_APP_PATH),
         })
         if (!existsSync(CONFIG_PATH)) {
