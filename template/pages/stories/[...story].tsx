@@ -1,6 +1,6 @@
 import { getStories } from '../../support'
 import { useRouter } from 'next/router'
-import { Stack, Box, SimpleGrid, Select } from '@chakra-ui/core'
+import { Stack, Box, SimpleGrid, Select, } from '@chakra-ui/core'
 import { useMemo } from 'react'
 
 export default function Page(props) {
@@ -28,7 +28,11 @@ export default function Page(props) {
             })
             return path === queryPath
         })
-    const { title } = storyObject
+    if (!storyObject) {
+        // TODO return 404
+        return null
+    }
+    const { title } = storyObject || {}
     const exported = useMemo(() => storyObject.getExports(), [])
     return (
         <Stack spacing='10'>
@@ -50,14 +54,14 @@ export default function Page(props) {
                 </Select>
                 <Box flex='1' />
             </Stack>
-            <SimpleGrid columns={[1, 1, 1, 2, 3]} flexWrap='wrap' spacingX='10' spacingY='20'>
+            <SimpleGrid columns={[1, 1, 1, 2, 3]} flexWrap='wrap' spacingX='20' spacingY='20' >
                 {Object.keys(exported).map((k, i) => {
                     const Component = exported[k]
                     const title = k // TODO replace camel case with spaces
                     return (
                         <Stack
                             // my='6'
-                            spacing='4'
+                            spacing='3'
                             width='400px'
                             height='400px'
                             key={k + String(i)}
