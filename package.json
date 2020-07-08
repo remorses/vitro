@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "cli": "yarn --cwd storyboards play"
+        "cli": "cross-env NODE_ENV=test node -r sucrase/register storyboards/src/main.ts"
     },
     "workspaces": [
         "storyboards",

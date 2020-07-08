@@ -1,4 +1,5 @@
 import { runCommand, printGreen } from './support'
+import path from 'path'
 import {
     TEMPLATE_PATH,
     DEFAULT_CONFIG,
@@ -24,12 +25,17 @@ const command: CommandModule = {
     handler: async (argv) => {
         console.log(`creating ${NEXT_APP_PATH}`)
         await copy(TEMPLATE_PATH, NEXT_APP_PATH)
+        printGreen(`installing dependencies`)
+        await runCommand({
+            command: 'npm ci',
+            cwd: path.resolve('.', NEXT_APP_PATH),
+        })
         if (!existsSync(CONFIG_PATH)) {
-            console.log(`creating default ${CONFIG_PATH}`)
+            printGreen(`creating default ${CONFIG_PATH}`)
             await writeFile(CONFIG_PATH, DEFAULT_CONFIG)
         }
         if (existsSync('.gitignore')) {
-            console.log(`adding ${NEXT_APP_PATH} to .gitignore`)
+            printGreen(`adding ${NEXT_APP_PATH} to .gitignore`)
             await appendFile('.gitignore', '\n' + NEXT_APP_PATH)
         }
         console.log()
