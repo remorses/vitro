@@ -1,0 +1,25 @@
+
+# Deploy
+
+The simplest way to deploy a storyboards website is to use Vercel
+
+First create a `vercel.json` file that tells Vercel how to deploy the storyboards package
+
+```json
+{
+    "version": 2,
+    "builds": [
+        { "src": ".storyboards/next.config.js", "use": "@now/next" }
+    ],
+    "rewrites": [
+        { "source": "/", "destination": "/.storyboards/" }
+    ]
+}
+```
+
+Install vercel if missing and deploy 
+
+```sh
+npm i -g vercel
+vercel
+```
