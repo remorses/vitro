@@ -1,7 +1,7 @@
 const compose = require('compose-function')
 const path = require('path')
 const fs = require('fs')
-const { toRequireContext } = require('storyboards/dist')
+const { toRequireContext } = require('./configSupport')
 
 const transpile = require('next-transpile-modules')([
     path.resolve(__dirname, '../'),

@@ -4,5 +4,8 @@
         { "src": "website/next.config.js", "use": "@now/next" },
         { "src": ".storyboards/next.config.js", "use": "@now/next" }
     ],
-    "rewrites": [{ "source": "/docs/(.*)", "destination": "/website/$1" }]
+    "rewrites": [
+        { "source": "/docs/(.*)", "destination": "/website/$1" },
+        { "source": "/", "destination": "/website/" }
+    ]
 }
