@@ -5,8 +5,18 @@ import { FaBug, FaLink } from 'react-icons/fa'
 import { jsx, css } from '@emotion/core'
 jsx
 import { Stack, Box, SimpleGrid, Select, Button, Link } from '@chakra-ui/core'
-import { useMemo, useState, Fragment } from 'react'
+import {
+    useMemo,
+    useState,
+    Fragment,
+    Profiler,
+    ProfilerOnRenderCallback,
+    useCallback,
+    useRef,
+    useEffect,
+} from 'react'
 import { DebugCSS } from '../../debugCSS'
+import { profile } from 'console'
 
 export default function Page(props) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
@@ -35,7 +45,7 @@ export default function Page(props) {
             // })
             return path === queryPath
         })
-    const vscodeUrl = `vscode://file${storyObject.absolutePath}`
+    const vscodeUrl = `vscode://file${storyObject?.absolutePath}`
     const exported = useMemo(() => storyObject?.getExports?.() || {}, [
         storyObject,
     ])
@@ -146,6 +156,9 @@ export default function Page(props) {
 }
 
 const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
+    const profile: ProfilerOnRenderCallback = useCallback((id, _, actualDuration) => {
+        console.log({ actualDuration })
+    }, [])
     return (
         <Stack
             my='10'
@@ -176,6 +189,8 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                 >
                     {title}
                 </Box>
+                <Box flex='1' />
+                
             </Stack>
             <Stack
                 // shadow='sm'
@@ -190,11 +205,14 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                 // p='6'
                 // css={cssDebugEnabled ? debugCSS : css``}
             >
-                {children}
+                <Profiler id={title} onRender={profile}>
+                    {children}
+                </Profiler>
             </Stack>
         </Stack>
     )
 }
+
 
 function normalizePath(path: string): string {
     return path
