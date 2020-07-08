@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import {
     ThemeProvider,
     CSSReset,
@@ -38,6 +38,7 @@ export const Logo = ({ ...rest }) => {
 }
 
 export default function App(props) {
+    const [filter, setFilter] = useState('')
     const { Component, pageProps } = props
     return (
         <ThemeProvider>
@@ -59,12 +60,13 @@ export default function App(props) {
                                 }
                             />
                             <Input
+                                onChange={(e) => setFilter(e.target.value)}
                                 variant='filled'
                                 bg='white'
                                 borderRadius='md'
                             />
                         </InputGroup>
-                        <StoriesIndex fontWeight='500'  />
+                        <StoriesIndex filter={filter} fontWeight='500' />
                     </Stack>
                     <Stack
                         as='main'
