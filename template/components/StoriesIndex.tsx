@@ -1,5 +1,5 @@
 import { Stack, Box, StackProps } from '@chakra-ui/core'
-import { FiChevronRight } from 'react-icons/fi'
+import { AiFillCaretRight } from 'react-icons/ai'
 
 import NextLink from 'next/link'
 import { getStories } from '../support'
@@ -28,7 +28,7 @@ export const StoriesIndex = ({
                                 align='center'
                                 direction='row'
                             >
-                                <Box as={FiChevronRight} size='1em' />
+                                <Box as={AiFillCaretRight} opacity={.6} size='0.9em' />
                                 <Box as='a'>{title}</Box>
                             </Stack>
                         </NextLink>
