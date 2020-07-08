@@ -1,10 +1,10 @@
 // @jsx jsx
 import { getStories, getWrapperComponent } from '../../support'
 import { useRouter } from 'next/router'
-import { FaBug } from 'react-icons/fa'
+import { FaBug, FaLink } from 'react-icons/fa'
 import { jsx, css } from '@emotion/core'
 jsx
-import { Stack, Box, SimpleGrid, Select, Button } from '@chakra-ui/core'
+import { Stack, Box, SimpleGrid, Select, Button, Link } from '@chakra-ui/core'
 import { useMemo, useState, Fragment } from 'react'
 import { DebugCSS } from '../../debugCSS'
 
@@ -35,7 +35,7 @@ export default function Page(props) {
             // })
             return path === queryPath
         })
-
+    const vscodeUrl = `vscode://file${storyObject.absolutePath}`
     const exported = useMemo(() => storyObject?.getExports?.() || {}, [
         storyObject,
     ])
@@ -50,13 +50,17 @@ export default function Page(props) {
     // }
     return (
         <Stack spacing='10'>
-            <Stack>
+            <Stack align='flex-start' spacing='4'>
                 <Box fontSize='32px' fontWeight='medium'>
                     {storyTitle}
                 </Box>
-                <Box fontSize='18px' opacity={0.6}>
+                {/* <Box fontSize='18px' opacity={0.6}>
                     powered by storyboards
-                </Box>
+                </Box> */}
+                <Link as='a' fontWeight='500' href={vscodeUrl} opacity={0.6}>
+                    <Box d='inline' size='.8em' mr='3' as={FaLink} />
+                    Open in vscode
+                </Link>
             </Stack>
             <Box h='4' />
             <Stack direction='row'>
@@ -110,6 +114,7 @@ export default function Page(props) {
                     .filter((k) => k !== 'default')
                     .map((k, i) => {
                         const Component = exported[k]
+
                         return (
                             <StoryBlock
                                 title={k}
