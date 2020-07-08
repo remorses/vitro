@@ -82,9 +82,27 @@ export default function Page(props) {
                             width='100%'
                             minH='400px'
                             key={k + String(i)}
+                            position='relative'
                         >
                             <Stack
-                                position='relative'
+                                position='absolute'
+                                top='10px'
+                                left='20px'
+                                right='20px'
+                                opacity={0.8}
+                                direction='row'
+                                align='center'
+                            >
+                                <Box
+                                    bg='white'
+                                    fontSize='18px'
+                                    fontWeight='medium'
+                                >
+                                    {title}
+                                </Box>
+                            </Stack>
+                            <Stack
+                                
                                 as={cssDebugEnabled ? DebugCSS : 'div'}
                                 flex='1'
                                 overflow='hidden'
@@ -96,24 +114,6 @@ export default function Page(props) {
                                 // p='6'
                                 // css={cssDebugEnabled ? debugCSS : css``}
                             >
-                                <Stack
-                                    position='absolute'
-                                    top='10px'
-                                    left='20px'
-                                    right='20px'
-                                    opacity={0.8}
-                                    direction='row'
-                                    align='center'
-                                >
-                                    <Box
-                                        bg='white'
-                                        fontSize='18px'
-                                        fontWeight='medium'
-                                    >
-                                        {title}
-                                    </Box>
-                                </Stack>
-
                                 <Component />
                             </Stack>
                         </Stack>
