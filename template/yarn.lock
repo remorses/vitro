@@ -6683,11 +6683,6 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-styles-debugger@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/styles-debugger/-/styles-debugger-1.0.0.tgz#29e88605bf8b44e97f337c51ecc14fb6470664e2"
-  integrity sha512-LNpO/ObbXgpCzXyVfuXi50iaKkUD1ikbLqOx0nLG/3D0Weozk7qDiWuwxT8S56BO+ivIbLLkpmSfQbeZXqqRRA==
-
 stylis-rule-sheet@0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/stylis-rule-sheet/-/stylis-rule-sheet-0.0.10.tgz#44e64a2b076643f4b52e5ff71efc04d8c3c4a430"

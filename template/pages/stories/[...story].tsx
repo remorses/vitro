@@ -2,16 +2,15 @@
 import { getStories } from '../../support'
 import { useRouter } from 'next/router'
 import { FaBug } from 'react-icons/fa'
-import { jsx } from '@emotion/core'
+import { jsx, css } from '@emotion/core'
 jsx
 import { Stack, Box, SimpleGrid, Select, Button } from '@chakra-ui/core'
-import { debug } from 'styles-debugger'
 
 import { useMemo, useState } from 'react'
 import { debugCSS } from '../../debugCSS'
 
 export default function Page(props) {
-    const [CssDebugEnabled, setCssDebug] = useState(false)
+    const [cssDebugEnabled, setCssDebug] = useState(false)
     const stories = getStories()
     const { query } = useRouter()
     const { story = '' } = query
@@ -37,11 +36,11 @@ export default function Page(props) {
         })
 
     const { title } = storyObject || {}
-    const exported = useMemo(() => storyObject?.getExports?.(), [])
-    if (!exported || !story || !storyObject) {
-        // TODO return 404
-        return null
-    }
+    const exported = useMemo(() => storyObject?.getExports?.() || {}, [storyObject])
+    // if (!exported || !story || !storyObject) {
+    //     // TODO return 404
+    //     return null
+    // }
     return (
         <Stack spacing='10'>
             <Stack>
@@ -91,7 +90,7 @@ export default function Page(props) {
                                 align='center'
                                 justify='center'
                                 p='6'
-                                css={CssDebugEnabled ? debugCSS : {}}
+                                css={cssDebugEnabled ? debugCSS : css``}
                             >
                                 <Component />
                             </Stack>
