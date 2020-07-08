@@ -40,13 +40,13 @@ export default function Page(props) {
                     powered by storyboards
                 </Box>
             </Stack>
-            <SimpleGrid columns={[1, 1, 1, 2,  3]} flexWrap='wrap' spacing='20'>
+            <SimpleGrid columns={[1, 1, 1, 2,  3]} flexWrap='wrap' spacing='10'>
                 {Object.keys(exported).map((k, i) => {
                     const Component = exported[k]
                     const title = k // TODO replace camel case with spaces
                     return (
                         <Stack
-                            my='10'
+                            my='6'
                             spacing='4'
                             width='400px'
                             height='400px'
