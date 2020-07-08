@@ -50,8 +50,8 @@ export default function App(props) {
                 minHeight='100vh'
                 bg='gray.100'
             >
-                <Stack direction='row' spacing='10' m='20'>
-                    <Stack spacing='6' width={['260px']}>
+                <Stack direction='row' spacing='10' m='10'>
+                    <Stack display={['none', null, 'flex']} spacing='6' width={['260px']}>
                         <Logo />
                         <InputGroup size='sm'>
                             <InputLeftElement
@@ -70,10 +70,10 @@ export default function App(props) {
                     </Stack>
                     <Stack
                         as='main'
-                        borderLeftWidth='2px'
+                        borderLeftWidth={['0', null, '2px']}
+                        pl={['0', null, '10']}
                         width='100%'
                         align='stretch'
-                        pl='10'
                     >
                         <Component {...pageProps} />
                     </Stack>
