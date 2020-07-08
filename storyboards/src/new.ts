@@ -5,6 +5,7 @@ import {
     DEFAULT_CONFIG,
     CONFIG_PATH,
     NEXT_APP_PATH,
+    TESTING,
 } from './contsants'
 import { copy, writeFile, exists, existsSync, appendFile } from 'fs-extra'
 import { CommandModule } from 'yargs'
@@ -23,24 +24,24 @@ const command: CommandModule = {
         return argv
     },
     handler: async (argv) => {
-        console.log(`creating ${NEXT_APP_PATH}`)
-        await copy(TEMPLATE_PATH, NEXT_APP_PATH)
-        printGreen(`installing dependencies`)
+        printGreen(`creating ${NEXT_APP_PATH}`, true)
+        await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
+            filter: (src: string) => !src.includes('node_modules'),
+        })
+        printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
         await runCommand({
-            command: 'npm ci',
+            command: 'npm ci --ignore-scripts',
             cwd: path.resolve('.', NEXT_APP_PATH),
         })
         if (!existsSync(CONFIG_PATH)) {
-            printGreen(`creating default ${CONFIG_PATH}`)
+            printGreen(`creating default ${CONFIG_PATH}`, true)
             await writeFile(CONFIG_PATH, DEFAULT_CONFIG)
         }
         if (existsSync('.gitignore')) {
-            printGreen(`adding ${NEXT_APP_PATH} to .gitignore`)
+            printGreen(`adding ${NEXT_APP_PATH} to .gitignore`, true)
             await appendFile('.gitignore', '\n' + NEXT_APP_PATH)
         }
-        console.log()
-        printGreen('created storyboard!')
-        console.log()
+        printGreen('created storyboard successfully!', true)
     },
 } // as CommandModule
 
