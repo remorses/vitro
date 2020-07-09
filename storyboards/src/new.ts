@@ -17,7 +17,7 @@ const command: CommandModule = {
         // argv.option('port', {
         //     alias: 'p',
         //     type: 'string',
-        //     default: '6006',
+        //     default: '7007',
         //     required: false,
         //     description: 'The port for the dev server',
         // })
