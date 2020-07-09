@@ -23,7 +23,7 @@ export const StoriesIndex = ({
                 }
                 return (
                     <Box key={filename}>
-                        <NextLink passHref href={`/stories/${filename}`}>
+                        <NextLink passHref as={`/stories/${filename}`} href={`/stories/[...story]`}>
                             <Stack
                                 cursor='pointer'
                                 align='center'
