@@ -1,0 +1,83 @@
+# Writing Stories
+
+A story is simply a file that exports some components
+
+```jsx
+// example.stories.jsx
+
+import React from 'react'
+import { Component } from './'
+
+export const Simple = ({}) => {
+    return <Component />
+}
+
+export const DifferentColor = ({}) => {
+    return <Component flex='1' w='100%' minH='100%' bg='blue.100' />
+}
+```
+
+Every exported component will be displayed as a block on the storyboards ui
+
+## Changing title
+
+you can declare an object as default export to add story information like
+
+-   title
+
+```jsx
+// example.stories.jsx
+import { Button } from './'
+
+export default {
+    title: 'My Awesome Component!',
+}
+
+export const SimpleButton = () => {
+    return <Button>Click me</Button>
+}
+```
+
+## Adding a wrapper component
+
+You can pass a wrapper key to the default export to add a component to be used as wrapper
+
+This is useful to add necessary react providers like a `ThemeProvider` or redux `Provider`
+
+```jsx
+// example.stories.jsx
+import { Button } from './'
+
+export default {
+    title: 'My Awesome Component!',
+    wrapper: ({ children }) => {
+        return (
+            <>
+                <div>This text comes from a wrapper</div>
+                {children}
+            </>
+        )
+    },
+}
+
+export const SimpleButton = () => {
+    return <Button>Click me</Button>
+}
+```
+
+## Adding a global wrapper to all stories
+
+If you want to add a wrapper to all stories you can pass a path to the wrapper field in `storyboards.config.js`
+
+The path must have a default export with the wrapper component
+
+The file will be transpiled so you can use typescript and ESNext features
+
+```js
+// storyboards.config.js
+
+module.exports = {
+    stories: ['./example-package/.story.tsx'], // glob to your stories
+    wrapper: './example-package/src/Wrapper.tsx', // file that has a react component as default export
+}
+```
