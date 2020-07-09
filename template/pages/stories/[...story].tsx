@@ -32,13 +32,17 @@ import { profile } from 'console'
 import { FiClock, FiHash, FiZap } from 'react-icons/fi'
 import { AiOutlineFullscreen } from 'react-icons/ai'
 
+const GlobalWrapper = getWrapperComponent()
+
 export default function Page(props) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
-    const stories = getStories()
+    const [stories, setStories] = useState(getStories())
     const { query } = useRouter()
     const { story = '' } = query
-    const GlobalWrapper = useMemo(() => getWrapperComponent(), [])
+    useEffect(() => {
+        setStories(getStories())
+    }, [story])
 
     // console.log({ story })
     const storyObject = stories
