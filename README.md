@@ -28,6 +28,7 @@
 
 ## Things to do
 
+-   investigate if doing SSR or not
 -   throttle the search bar
 -   check that the global wrapper is a component before using it and give an error if not
 -   make the sidebar fixed and scrollable
