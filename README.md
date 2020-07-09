@@ -47,4 +47,6 @@
 -   support for multiple globs paths adding more context.require (up to 10)
 -   add emotion to aliases
 -   add a button to make a block full screen
-- remove render counts and time on small blocks
+-   remove render counts and time on small blocks
+-   how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the storybaords new and start command
+
