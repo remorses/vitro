@@ -215,8 +215,8 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
             >
                 <Box
                     borderRadius='md'
-                    px='4px'
                     bg='white'
+                    px='4px'
                     fontSize='18px'
                     fontWeight='medium'
                 >
@@ -224,6 +224,8 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                 </Box>
                 <Box flex='1' />
                 <Couple
+                    borderRadius='md'
+                    bg='white'
                     opacity={0.8}
                     a={<Box as={FiZap} size='1em' />}
                     b={
@@ -234,6 +236,8 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                     }
                 />
                 <Couple
+                    borderRadius='md'
+                    bg='white'
                     opacity={0.8}
                     a={<Box as={FiHash} size='1em' />}
                     b={
@@ -245,10 +249,13 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                     }
                 />
                 <IconButton
+                    borderRadius='md'
+                    bg='white'
                     // isRound
+                    size='sm'
                     onClick={() => setFullScreen((x) => !x)}
                     fontSize='1.4em'
-                    bg='transparent'
+                    // bg='transparent'
                     icon={fullScreen ? MdFullscreenExit : MdFullscreen}
                     aria-label='full-screen'
                 />
