@@ -2,6 +2,8 @@
     "compilerOptions": {
         "esModuleInterop": true,
         "outDir": "dist",
+        "sourceMap": true,
         "skipLibCheck": true
-    }
+    },
+    "exclude": ["template"]
 }

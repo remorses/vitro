@@ -21,7 +21,7 @@
     ],
     "scripts": {
         "test": "NODE_ENV=test mocha --colors --exit",
-        "build": "tsc && cp -r ../template ./template",
+        "build": "tsc && cp -r ../template/ ./template/",
         "compile": "sucrase -q ./src -d ./dist --transforms typescript,imports",
         "play": "cross-env NODE_ENV=test node -r sucrase/register src/main.ts"
     },
