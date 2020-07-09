@@ -177,6 +177,7 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
             flexShrink={0}
             flexGrow={0}
             // minW='100px'
+            overflow='hidden'
             flexBasis={blockWidth}
             minH='340px'
             position='relative'
