@@ -228,31 +228,35 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                     {title}
                 </Box>
                 <Box flex='1' />
-                <Couple
-                    borderRadius='md'
-                    bg='white'
-                    opacity={0.8}
-                    a={<Box as={FiZap} size='1em' />}
-                    b={
-                        <AutoUpdateBox
-                            fontWeight='500'
-                            contentRef={actualDurationRef}
-                        />
-                    }
-                />
-                <Couple
-                    borderRadius='md'
-                    bg='white'
-                    opacity={0.8}
-                    a={<Box as={FiHash} size='1em' />}
-                    b={
-                        <AutoUpdateBox
-                            fontWeight='500'
-                            map={(x) => x + ' renders'}
-                            contentRef={renderCount}
-                        />
-                    }
-                />
+                {process.env.NODE_ENV !== 'production' && (
+                    <Couple
+                        borderRadius='md'
+                        bg='white'
+                        opacity={0.8}
+                        a={<Box as={FiZap} size='1em' />}
+                        b={
+                            <AutoUpdateBox
+                                fontWeight='500'
+                                contentRef={actualDurationRef}
+                            />
+                        }
+                    />
+                )}
+                {process.env.NODE_ENV !== 'production' && (
+                    <Couple
+                        borderRadius='md'
+                        bg='white'
+                        opacity={0.8}
+                        a={<Box as={FiHash} size='1em' />}
+                        b={
+                            <AutoUpdateBox
+                                fontWeight='500'
+                                map={(x) => x + ' renders'}
+                                contentRef={renderCount}
+                            />
+                        }
+                    />
+                )}
                 <IconButton
                     borderRadius='md'
                     bg='white'
@@ -296,7 +300,7 @@ const AutoUpdateBox = ({
     contentRef: { current: any }
     map?: Function
 }) => {
-    const [x, render] = useState(null)
+    const [_, render] = useState(null)
     useEffect(() => {
         const id = setInterval(() => {
             render('')
