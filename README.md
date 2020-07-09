@@ -26,15 +26,21 @@
 -   Links
 -   Props
 
-
 ## Things to do
 
+-   make the sidebar fixed and scrollable
+-   add a error boundary to every story block and display a pretty error
+-   add max zIndex to story toolbar
+-   investigate if the render count is accurate given that the profiler is parent of Component
+-   make the profiler id unique adding the filename path to it
+-   investigate slow startup time, try to optimize the regex and context.require flow
+-   make a benchmark with storybook for startup time
 -   ~~CSS debug (injects border to every div, to see all components outlines)~~
 -   ~~Open in Vscode (via url with `vscode://file`)~~
 -   ~~see render counts and time~~
 -   ~~view in Full screen~~
 -   ~~better multi columns support~~
--   fix the path functions that rely on unix paths
+-   fix the path functions that rely on unix paths, check if runs on windows
 -   remove as much logic as possible from the .storyboards folder, move it to dependency package
 -   move UI components to `storyboards-ui` package
 -   when generating the .storyboards add a version file with the current version
@@ -48,3 +54,4 @@
 -   remove render counts and time on small blocks
 -   how to easily deploy a storyboard to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
 -   how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the storyboards new and start command
+-   next run on top direcotry, this way urls are clickable in vscode

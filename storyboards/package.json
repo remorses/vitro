@@ -2,7 +2,7 @@
     "name": "storyboards",
     "_": "[bump]",
     "version": "2.0.33",
-    "description": "Goke cli",
+    "description": "Storyboards cli",
     "keywords": [],
     "main": "dist/index.js",
     "module": "esm/index.js",

@@ -3,7 +3,6 @@ const path = require('path')
 const fs = require('fs')
 const { toRequireContext } = require('./configSupport')
 
-
 /*
 parameters used
 - transpiled packages, no pass them explicity
@@ -11,7 +10,6 @@ parameters used
 - wrapper component path
 - aliases
 */
-
 
 const transpile = require('next-transpile-modules')([
     path.resolve(__dirname, '../'),
@@ -38,7 +36,9 @@ module.exports = composed({
         config.plugins.push(
             new webpack.DefinePlugin({
                 WRAPPER_COMPONENT_PATH: JSON.stringify(
-                    path.join(path.resolve(__dirname, '../'), wrapper),
+                    wrapper
+                        ? path.join(path.resolve(__dirname, '../'), wrapper)
+                        : '',
                 ),
                 STORIES_EXTENSION: match,
                 STORIES_PATH: JSON.stringify(dir),
