@@ -3,6 +3,16 @@ const path = require('path')
 const fs = require('fs')
 const { toRequireContext } = require('./configSupport')
 
+
+/*
+parameters used
+- transpiled packages, no pass them explicity
+- required config obj
+- wrapper component path
+- aliases
+*/
+
+
 const transpile = require('next-transpile-modules')([
     path.resolve(__dirname, '../'),
 ])
