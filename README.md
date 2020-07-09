@@ -43,7 +43,7 @@
 -   make a Vercel deployer package that points to a `storybaords.config.js`, this wraps the nextjs deployer but runs the new command before and optionally another command to build packages it depends on (like run yarn on root), this way i can add .storyboards to .gitignore
 -   ~~the profiler does not run on hydration, maybe disable it when in production~~
 -   support for multiple globs paths adding more context.require (up to 10)
--   add emotion to aliases
+-   ~~add emotion to aliases~~
 -   add a button to make a block full screen
 -   remove render counts and time on small blocks
 -   how to easily deploy a storyboard to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547

@@ -42,6 +42,9 @@ module.exports = composed({
             ...aliasOfPackages([
                 'react',
                 'react-dom',
+                '@emotion',
+                'emotion-theming',
+                'next',
                 // '@chakra-ui'
             ]),
         }
