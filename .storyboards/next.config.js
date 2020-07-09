@@ -10,7 +10,7 @@ const transpile = require('next-transpile-modules')([
 const composed = compose(transpile)
 
 let { stories, wrapper, basePath } = getConfig() || {}
-if (basePath.trim() === '/') {
+if (basePath && basePath.trim() === '/') {
     basePath = ''
 }
 
