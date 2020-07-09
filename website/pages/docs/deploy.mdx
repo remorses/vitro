@@ -1,4 +1,3 @@
-
 # Deploy
 
 The simplest way to deploy a storyboards website is to use Vercel
@@ -8,18 +7,38 @@ First create a `vercel.json` file that tells Vercel how to deploy the storyboard
 ```json
 {
     "version": 2,
-    "builds": [
-        { "src": ".storyboards/next.config.js", "use": "@now/next" }
-    ],
-    "rewrites": [
-        { "source": "/", "destination": "/.storyboards/" }
-    ]
+    "builds": [{ "src": ".storyboards/next.config.js", "use": "@now/next" }],
+    "rewrites": [{ "source": "/(.*)", "destination": "/.storyboards/$1" }]
 }
 ```
 
-Install vercel if missing and deploy 
+Install vercel if missing and deploy
 
 ```sh
 npm i -g vercel
 vercel
 ```
+
+## Deploying to a subpath
+
+Nextjs serves its assets on the `/` path by default, you can change that using the `basePath` feature
+
+Notice that after adding a `basePath` you will have your storyboards served on `http://localhost:6006/:basePath`
+
+```js
+modules.exports = {
+    stories: './**.stories.js',
+    basePath: '/.storyboards',
+}
+```
+
+```json
+{
+    "version": 2,
+    "builds": [{ "src": ".storyboards/next.config.js", "use": "@now/next" }]
+}
+```
+
+> Notice that we uses the same name for the `basePath` and for the storyboards path
+
+Now you can run `vercel` to deploy

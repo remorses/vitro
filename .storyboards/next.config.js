@@ -9,7 +9,7 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-const { stories, wrapper } = getConfig() || {}
+const { stories, wrapper, basePath } = getConfig() || {}
 
 const storiesGlobs = stories.map((g) =>
     path.join(path.resolve(__dirname, '../'), g),
@@ -44,6 +44,7 @@ module.exports = composed({
         return config
     },
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    ...(basePath ? { experimental: { basePath } } : {}),
 })
 
 function aliasOfPackages(packages) {

@@ -9,7 +9,7 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-const { stories, wrapper } = getConfig() || {}
+const { stories, wrapper, basePath } = getConfig() || {}
 
 const storiesGlobs = stories.map((g) =>
     path.join(path.resolve(__dirname, '../'), g),
@@ -29,6 +29,7 @@ module.exports = composed({
                 ),
                 STORIES_EXTENSION: match,
                 STORIES_PATH: JSON.stringify(dir),
+                BASE_PATH: JSON.stringify(basePath || '/'),
                 STORIES_RECURSIVE: JSON.stringify(recursive),
             }),
         )
@@ -43,6 +44,7 @@ module.exports = composed({
         }
         return config
     },
+    ...(basePath ? { experimental: { basePath } } : {}),
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
 })
 
