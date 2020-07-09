@@ -28,13 +28,17 @@
 
 ## Things to do
 
+-   throttle the search bar
+-   check that the global wrapper is a component before using it and give an error if not
 -   make the sidebar fixed and scrollable
--   add a error boundary to every story block and display a pretty error
+-   ~~add a error boundary to every story block and display a pretty error~~
+-   catch errors in server, wait for https://github.com/vercel/next.js/issues/5070
 -   add max zIndex to story toolbar
 -   investigate if the render count is accurate given that the profiler is parent of Component
 -   make the profiler id unique adding the filename path to it
 -   investigate slow startup time, try to optimize the regex and context.require flow
 -   make a benchmark with storybook for startup time
+-   exit from full screen with esc key
 -   ~~CSS debug (injects border to every div, to see all components outlines)~~
 -   ~~Open in Vscode (via url with `vscode://file`)~~
 -   ~~see render counts and time~~

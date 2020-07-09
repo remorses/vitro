@@ -17,8 +17,9 @@ import {
     BoxProps,
     StackProps,
     IconButton,
+    Collapse,
 } from '@chakra-ui/core'
-import {
+import React, {
     useMemo,
     useState,
     Fragment,
@@ -282,9 +283,11 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                 // p='6'
                 // css={cssDebugEnabled ? debugCSS : css``}
             >
-                <Profiler id={title} onRender={profile}>
-                    {children}
-                </Profiler>
+                <ErrorBoundary>
+                    <Profiler id={title} onRender={profile}>
+                        {children}
+                    </Profiler>
+                </ErrorBoundary>
             </Stack>
         </Stack>
     )
@@ -313,6 +316,75 @@ const AutoUpdateBox = ({
             children={map ? map(contentRef.current) : contentRef.current}
         />
     )
+}
+
+class ErrorBoundary extends React.Component {
+    state = { hasError: false, message: '', trace: '', traceOpen: false }
+
+    static getDerivedStateFromError(error: Error, info) {
+        // Update state so the next render will show the fallback UI.
+        return {
+            hasError: true,
+            message: error?.message || 'no error message found',
+            trace: error?.stack,
+        }
+    }
+
+    componentDidCatch(error, errorInfo) {
+        // You can also log the error to an error reporting service
+        console.error(error, errorInfo)
+    }
+
+    render() {
+        const { hasError, message, trace, traceOpen } = this.state
+        if (hasError) {
+            // You can render any custom fallback UI
+            return (
+                <Stack
+                    m='20'
+                    fontWeight='500'
+                    align='center'
+                    justify='center'
+                    color='red.500'
+                    spacing='6'
+                    maxW='100%'
+                >
+                    <Stack align='center' spacing='2'>
+                        <Box
+                            fontWeight='bold'
+                            textAlign='center'
+                            display='inline-block'
+                        >
+                            Error
+                        </Box>
+                        <Box textAlign='center' display='inline-block'>
+                            {message}
+                        </Box>
+                        <Button
+                            display='inline-block'
+                            size='sm'
+                            variant='ghost'
+                            onClick={() =>
+                                this.setState((x: any) => ({
+                                    ...x,
+                                    traceOpen: !x.traceOpen,
+                                }))
+                            }
+                        >
+                            see trace
+                        </Button>
+                    </Stack>
+                    <Collapse overflowX='auto' isOpen={traceOpen}>
+                        <Box fontSize='0.9em' as='pre'>
+                            {trace}
+                        </Box>
+                    </Collapse>
+                </Stack>
+            )
+        }
+
+        return this.props.children
+    }
 }
 
 export const Couple = ({ a, b, ...rest }) => {
