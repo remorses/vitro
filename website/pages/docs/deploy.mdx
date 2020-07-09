@@ -28,7 +28,7 @@ Notice that after adding a `basePath` you will have your storyboards served on `
 ```js
 modules.exports = {
     stories: './**.stories.js',
-    basePath: process.env.NODE_ENV == 'prod' ? '/.storyboards' : '/',
+    basePath: process.env.NODE_ENV == 'production' ? '/.storyboards' : '/',
 }
 ```
 
@@ -39,6 +39,7 @@ modules.exports = {
 }
 ```
 
-> Notice that we uses the same name for the `basePath` and for the storyboards path
-
 Now you can run `vercel` to deploy
+
+
+<!-- TODO run a build step before deploy -->
