@@ -2,6 +2,8 @@
 import { getStories, getWrapperComponent } from '../../support'
 import { useRouter } from 'next/router'
 import { FaBug, FaLink, FaClock } from 'react-icons/fa'
+import { RiFullscreenLine } from 'react-icons/ri'
+import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { jsx, css } from '@emotion/core'
 jsx
 import {
@@ -12,6 +14,8 @@ import {
     Button,
     Link,
     BoxProps,
+    StackProps,
+    IconButton,
 } from '@chakra-ui/core'
 import {
     useMemo,
@@ -26,6 +30,7 @@ import {
 import { DebugCSS } from '../../debugCSS'
 import { profile } from 'console'
 import { FiClock, FiHash, FiZap } from 'react-icons/fi'
+import { AiOutlineFullscreen } from 'react-icons/ai'
 
 export default function Page(props) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
@@ -61,6 +66,7 @@ export default function Page(props) {
     const StoryWrapper = useMemo(() => exported?.default?.wrapper || Fragment, [
         exported,
     ])
+
     const storyTitle =
         exported?.default?.title || storyObject?.title || 'Untitled'
     // if (!exported || !story || !storyObject) {
@@ -105,7 +111,6 @@ export default function Page(props) {
                         const columns = Number(String(e.target.value).trim())
                         setColumnsCount(columns)
                         // console.log({ columns })
-                        
                     }}
                     defaultValue='1'
                     variant='filled'
@@ -160,6 +165,20 @@ export default function Page(props) {
 }
 
 const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
+    const [fullScreen, setFullScreen] = useState(false)
+    const fullScreenStyles: StackProps = useMemo(
+        () => ({
+            w: '100vw',
+            h: '100vh',
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            right: '0',
+            bottom: '0',
+            zIndex: 100,
+        }),
+        [],
+    )
     const actualDurationRef = useRef('0.00ms')
     const renderCount = useRef(0)
     const profile: ProfilerOnRenderCallback = useCallback(
@@ -182,6 +201,7 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
             minH='340px'
             position='relative'
             {...rest}
+            {...(fullScreen ? fullScreenStyles : {})}
         >
             <Stack
                 spacing='8'
@@ -223,6 +243,14 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                             contentRef={renderCount}
                         />
                     }
+                />
+                <IconButton
+                    // isRound
+                    onClick={() => setFullScreen((x) => !x)}
+                    fontSize='1.4em'
+                    bg='transparent'
+                    icon={fullScreen ? MdFullscreenExit : MdFullscreen}
+                    aria-label='full-screen'
                 />
             </Stack>
             <Stack
