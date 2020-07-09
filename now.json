@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "builds": [
-        { "src": ".storyboards/next.config.js", "use": "@now/next" }
-    ]
+    "builds": [{ "src": ".storyboards/next.config.js", "use": "@now/next" }],
+    "rewrites": [{ "source": "/(.*)", "destination": "/.storyboards/$1" }]
 }

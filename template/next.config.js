@@ -9,7 +9,10 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-const { stories, wrapper, basePath } = getConfig() || {}
+let { stories, wrapper, basePath } = getConfig() || {}
+if (basePath.trim() === '/') {
+    basePath = ''
+}
 
 const storiesGlobs = stories.map((g) =>
     path.join(path.resolve(__dirname, '../'), g),
