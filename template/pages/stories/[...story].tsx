@@ -131,7 +131,8 @@ export default function Page(props) {
                 columns={columns}
                 flexWrap='wrap'
                 // justify='space-between'
-                spacing='12'
+                spacingX='12'
+                spacingY='16'
             >
                 {Object.keys(exported)
                     .filter((k) => k !== 'default')
@@ -195,7 +196,6 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
     )
     return (
         <Stack
-            my='10'
             spacing='3'
             flexShrink={0}
             flexGrow={0}
