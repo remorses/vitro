@@ -28,7 +28,7 @@ Notice that after adding a `basePath` you will have your storyboards served on `
 ```js
 modules.exports = {
     stories: './**.stories.js',
-    basePath: '/.storyboards',
+    basePath: process.env.NODE_ENV == 'prod' ? '/.storyboards' : '/',
 }
 ```
 
