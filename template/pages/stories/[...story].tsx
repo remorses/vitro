@@ -29,7 +29,7 @@ import { FiClock, FiHash, FiZap } from 'react-icons/fi'
 
 export default function Page(props) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
-    const [blockWidth, setBlockWidth] = useState('100%')
+    const [columns, setColumnsCount] = useState(1)
     const stories = getStories()
     const { query } = useRouter()
     const { story = '' } = query
@@ -102,38 +102,26 @@ export default function Page(props) {
                 <Box flex='1' />
                 <Select
                     onChange={(e) => {
-                        const columns = String(e.target.value).trim()
+                        const columns = Number(String(e.target.value).trim())
+                        setColumnsCount(columns)
                         // console.log({ columns })
-                        switch (columns) {
-                            case '1':
-                                setBlockWidth('100%')
-                                break
-                            case '2':
-                                setBlockWidth('40%')
-                                break
-                            case '3':
-                                setBlockWidth('30%')
-                                break
-                            default:
-                                throw new Error(
-                                    `unrecognized columns count ${columns}`,
-                                )
-                        }
+                        
                     }}
                     defaultValue='1'
                     variant='filled'
                     bg='white'
                     w='auto'
                 >
-                    <option value='1'>1 columns</option>
+                    <option value='1'>1 column</option>
                     <option value='2'>2 columns</option>
                     <option value='3'>3 columns</option>
                 </Select>
             </Stack>
-            <Stack
-                direction='row'
+            <SimpleGrid
+                // direction='row'
+                columns={columns}
                 flexWrap='wrap'
-                justify='space-between'
+                // justify='space-between'
                 spacing='12'
             >
                 {Object.keys(exported)
@@ -144,7 +132,7 @@ export default function Page(props) {
                         return (
                             <StoryBlock
                                 title={k}
-                                blockWidth={blockWidth}
+                                blockWidth='100%'
                                 key={k + String(i)}
                             >
                                 <Stack
@@ -166,7 +154,7 @@ export default function Page(props) {
                             </StoryBlock>
                         )
                     })}
-            </Stack>
+            </SimpleGrid>
         </Stack>
     )
 }
