@@ -60,3 +60,4 @@
 -   how to easily deploy a storyboard to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
 -   how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the storyboards new and start command
 -   next run on top direcotry, this way urls are clickable in vscode
+-   css debug withour rerender
