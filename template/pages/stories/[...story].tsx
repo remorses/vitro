@@ -5,6 +5,7 @@ import { FaBug, FaLink, FaClock } from 'react-icons/fa'
 import { RiFullscreenLine } from 'react-icons/ri'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { jsx, css } from '@emotion/core'
+import path from 'path'
 jsx
 import {
     Stack,
@@ -319,8 +320,8 @@ export const Couple = ({ a, b, ...rest }) => {
     )
 }
 
-function normalizePath(path: string): string {
-    return path
+function normalizePath(p: string): string {
+    return p
         .split('/')
         .map((x) => x.trim())
         .filter((x) => x !== '.')

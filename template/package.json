@@ -1,9 +1,6 @@
 {
     "name": "template",
     "version": "0.0.0",
-    "files": [
-        "src"
-    ],
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -15,16 +12,16 @@
         "@emotion/styled": "^10.0.27",
         "@types/lodash": "^4.14.157",
         "emotion-theming": "^10.0.27",
+        "glob-base": "^0.3.0",
         "lodash": "^4.17.15",
+        "micromatch": "^4.0.2",
         "next": "latest",
         "react": "16.13.1",
         "react-dom": "16.13.1",
-        "react-icons": "^3.10.0",
-        "glob-base": "^0.3.0",
-        "micromatch": "^4.0.2"
+        "react-icons": "^3.10.0"
     },
     "devDependencies": {
-        "@types/node": "^14.0.14",
+        "@types/node": "^14.0.20",
         "@types/react": "^16.9.41",
         "@types/webpack-env": "^1.15.2",
         "compose-function": "^3.0.3",
