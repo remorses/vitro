@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import '../nprogress.css'
 import {
     ThemeProvider,
     CSSReset,
@@ -9,10 +10,19 @@ import {
     Icon,
     Box,
 } from '@chakra-ui/core'
-import {FiBook as LogoPart} from 'react-icons/fi'
+import { FiBook as LogoPart } from 'react-icons/fi'
 import Head from 'next/head'
 import { StoriesIndex } from '../components/StoriesIndex'
 import { Global, css } from '@emotion/core'
+import NProgress from 'nprogress'
+import { Router } from 'next/router'
+
+Router.events.on('routeChangeStart', (url) => {
+    console.log(`Loading: ${url}`)
+    NProgress.start()
+})
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
 
 export const Logo = ({ ...rest }) => {
     return (
@@ -44,7 +54,11 @@ export default function App(props) {
                 bg='gray.100'
             >
                 <Stack direction='row' spacing='10' m='10'>
-                    <Stack display={['none', null, 'flex']} spacing='6' width={['260px']}>
+                    <Stack
+                        display={['none', null, 'flex']}
+                        spacing='6'
+                        width={['260px']}
+                    >
                         <Logo />
                         <InputGroup shadow='sm'>
                             <InputLeftElement

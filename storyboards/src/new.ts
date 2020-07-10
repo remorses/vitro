@@ -16,8 +16,8 @@ const command: CommandModule = {
     builder: (argv) => {
         argv.option('no-install', {
             type: 'boolean',
+            boolean: true,
             default: false,
-            required: false,
         })
 
         return argv
@@ -28,7 +28,7 @@ const command: CommandModule = {
             filter: (src: string) => !src.includes('node_modules'),
         })
 
-        if (!argv['no-install']) {
+        if (!argv.noInstall) {
             printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
             await runCommand({
                 command: 'npm ci --quiet --ignore-scripts',

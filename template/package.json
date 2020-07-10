@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "lock": "rm -rf node_modules && npm i && rm -rf node_modules && yarn",
+        "lock": "rm -rf node_modules && npm i --ignore-scripts && rm -rf node_modules && yarn",
         "start": "next start"
     },
     "license": "MIT",
@@ -17,10 +17,11 @@
         "inspect-loader": "^1.0.0",
         "lodash": "^4.17.15",
         "next": "latest",
+        "nprogress": "^0.2.0",
         "react": "16.13.1",
         "react-dom": "16.13.1",
-        "storyboards": "*",
-        "react-icons": "^3.10.0"
+        "react-icons": "^3.10.0",
+        "storyboards": "*"
     },
     "devDependencies": {
         "@types/node": "^14.0.20",
