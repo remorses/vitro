@@ -3,7 +3,7 @@ import uniq from 'lodash/uniq'
 import path from 'path'
 import { glob, GlobOptions } from './glob'
 
-export async function generateModulesMap({ cwd = '.', globs, ignore }) {
+export async function generateModulesMap({ cwd = '.', globs, ignore, base='./' }) {
     const options: GlobOptions = {
         ignore,
         cwd,
@@ -13,13 +13,13 @@ export async function generateModulesMap({ cwd = '.', globs, ignore }) {
         globs.map((s) => glob(s, options)),
     )
     const files: string[] = uniq(flatten(results))
-    return printModulesMap({ files, base: cwd })
+    return printModulesMap({ files, base })
 }
 
 function printModulesMap(p: { files: string[]; base: string }) {
     let result = 'module.exports = {\n'
     p.files.forEach((f) => {
-        const importPath = path.join(p.base || '.', f)
+        const importPath = p.base + path.join(f)
         result += '    '
         result += `'${f}': () => require('${importPath}'),`
         result += '\n'

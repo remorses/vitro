@@ -18,7 +18,8 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-let { stories, wrapper, basePath } = getConfig() || {}
+let { stories, wrapper, basePath, ignore = ['node_modules'] } =
+    getConfig() || {}
 if (basePath && basePath.trim() === '/') {
     basePath = ''
 }
@@ -29,7 +30,8 @@ console.log({ storiesGlobs })
 generateModulesMap({
     globs: storiesGlobs,
     cwd: path.resolve(path.join(__dirname, '..')),
-    ignore: ['node_modules'],
+    base: '../',
+    ignore,
 })
     .then((code) => {
         fs.writeFileSync(path.join(__dirname, 'modules.js'), code)
