@@ -53,8 +53,9 @@ export default function Page(props) {
             return x
         })
         .filter(Boolean)
-        .find((x) => {
-            const path = normalizePath(x.filename || '')
+        .find(({ filename }) => {
+            const path = normalizePath(filename || '')
+            console.log({ path, filename })
             // console.log(x.getExports())
             const queryPath = normalizePath(
                 Array.isArray(story) ? story.join('/') : story,
@@ -66,9 +67,12 @@ export default function Page(props) {
             return path === queryPath
         })
     const vscodeUrl = `vscode://file${storyObject?.absolutePath}`
+    // console.log(storyObject)
     const exported = useMemo(() => storyObject?.getExports?.() || {}, [
         storyObject,
     ])
+    // exported.then(z => console.log(Object.keys(z)))
+    console.log(exported)
     const StoryWrapper = useMemo(() => exported?.default?.wrapper || Fragment, [
         exported,
     ])

@@ -1,4 +1,5 @@
 const compose = require('compose-function')
+
 const path = require('path')
 const fs = require('fs')
 const { toRequireContext } = require('./configSupport')
@@ -58,6 +59,19 @@ module.exports = composed({
                 // '@chakra-ui'
             ]),
         }
+        config.module.rules.push({
+            test: /\.tsx?$/,
+            loader: {
+                loader: 'inspect-loader',
+                options: {
+                    callback(inspect) {
+                        // console.log(inspect.arguments)
+                        console.log(inspect.context.resourcePath)
+                        // console.log(inspect.options)
+                    },
+                },
+            },
+        })
         return config
     },
     ...(basePath ? { experimental: { basePath } } : {}),
