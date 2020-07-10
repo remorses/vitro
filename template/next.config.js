@@ -1,5 +1,5 @@
 const compose = require('compose-function')
-
+const { generateModulesMap } = require('../storyboards/dist/modules_map')
 const path = require('path')
 const fs = require('fs')
 const { toRequireContext } = require('./configSupport')
@@ -23,9 +23,18 @@ if (basePath && basePath.trim() === '/') {
     basePath = ''
 }
 
-const storiesGlobs = stories.map((g) =>
-    path.join(path.resolve(__dirname, '../'), g),
-)
+const storiesGlobs = stories.map((g) => path.normalize(path.join('./', g)))
+console.log({ storiesGlobs })
+
+generateModulesMap({
+    globs: storiesGlobs,
+    cwd: path.resolve(path.join(__dirname, '..')),
+    ignore: ['node_modules'],
+})
+    .then((code) => {
+        fs.writeFileSync(path.join(__dirname, 'modules.js'), code)
+    })
+    .catch(console.error)
 
 module.exports = composed({
     webpack: (config, options) => {
