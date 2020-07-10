@@ -4,6 +4,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
+        "lock": "rm -rf node_modules && npm i && rm -rf node_modules && yarn",
         "start": "next start"
     },
     "license": "MIT",
@@ -13,10 +14,8 @@
         "@emotion/styled": "^10.0.27",
         "@types/lodash": "^4.14.157",
         "emotion-theming": "^10.0.27",
-        "glob-base": "^0.3.0",
         "inspect-loader": "^1.0.0",
         "lodash": "^4.17.15",
-        "micromatch": "^4.0.2",
         "next": "latest",
         "react": "16.13.1",
         "react-dom": "16.13.1",

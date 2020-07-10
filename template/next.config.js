@@ -1,5 +1,5 @@
 const compose = require('compose-function')
-const { generateStories, generateStoriesMap } = require('../storyboards')
+const { generateStories, generateStoriesMap } = require('storyboards')
 const path = require('path')
 const fs = require('fs')
 const { toRequireContext } = require('./configSupport')
