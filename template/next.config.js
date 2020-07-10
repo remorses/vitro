@@ -12,24 +12,30 @@ parameters used
 - aliases
 */
 
-const transpile = require('next-transpile-modules')([
-    path.resolve(__dirname, '../'),
-])
-
-const composed = compose(transpile)
-
 const excludedDirs = ['.storyboards']
 if (process.env.STORYBOARDS_TEMPLATE) {
     excludedDirs.push('template')
 }
 
-let { stories, wrapper, basePath, ignore = ['node_modules'] } =
-    getConfig() || {}
+let {
+    stories,
+    wrapper,
+    basePath,
+    ignore = ['node_modules'],
+    transpileModules = [],
+} = getConfig() || {}
 
 stories = stories.map(path.normalize)
 if (basePath && basePath.trim() === '/') {
     basePath = ''
 }
+
+const transpile = require('next-transpile-modules')([
+    path.resolve(__dirname, '../'),
+    ...transpileModules,
+])
+
+const composed = compose(transpile)
 
 // const storiesGlobs = stories.map((g) => path.normalize(path.join('./', g)))
 // console.log({ storiesGlobs })
