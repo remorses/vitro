@@ -15,7 +15,7 @@ type GetStoriesReturnType = {
 export const getStories = (): GetStoriesReturnType => {
     return Object.keys(storiesMap).map((filename) => {
         return {
-            absolutePath: path.join(STORIES_PATH, filename),
+            absolutePath: storiesMap[filename],
             filename,
             title: formatPathToTitle(filename),
         }

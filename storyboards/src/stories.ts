@@ -9,10 +9,9 @@ export async function generateStories(p: {
     globs: string[]
     targetDir: string
     ignore?: string[]
-    base: string
     cwd?: string
 }) {
-    const { globs, targetDir, base = '', ignore, cwd = '.' } = p
+    const { globs, targetDir, ignore, cwd = '.' } = p
     const options: GlobOptions = {
         ignore,
         cwd,
@@ -27,7 +26,7 @@ export async function generateStories(p: {
         return outputFile(
             path.join(targetDir, p),
             generateStoryPage({
-                importPath: removeExtension(path.join('@/../' + (p))), 
+                importPath: removeExtension('@/../' + path.normalize(p)),
                 absolutePath: path.resolve('..', p),
             }),
         )
@@ -36,7 +35,7 @@ export async function generateStories(p: {
 
 function generateStoryPage({ importPath, absolutePath }) {
     return `
-import * as exported from '${(importPath)}'
+import * as exported from '${importPath}'
 const absolutePath = '${absolutePath}'
 import React, { Fragment } from 'react'
 import { StoryPage } from 'storyboards/dist/story'
@@ -60,16 +59,10 @@ function getWrapperComponent() {
         return Fragment
     }
 }
-
 `
 }
 
-export async function generateStoriesMap({
-    cwd = '.',
-    globs,
-    ignore,
-    base = './',
-}) {
+export async function generateStoriesMap({ cwd = '.', globs, ignore }) {
     const options: GlobOptions = {
         ignore,
         cwd,
@@ -80,15 +73,15 @@ export async function generateStoriesMap({
         globs.map((s) => glob(s, options)),
     )
     const files: string[] = uniq(flatten(results))
-    return printStoriesMap({ files, base })
+    return printStoriesMap({ files })
 }
 
-function printStoriesMap(p: { files: string[]; base: string }) {
+function printStoriesMap(p: { files: string[] }) {
     let result = 'module.exports = {\n'
     p.files.forEach((f) => {
         // const importPath = p.base + path.join(f)
         result += '    '
-        result += `'${removeExtension(f)}': '${path.parse(f).name}',`
+        result += `'${removeExtension(f)}': '${path.resolve('..', f)}',`
         result += '\n'
     })
     result += '}'

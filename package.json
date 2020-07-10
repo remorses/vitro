@@ -1,7 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "cli": "cross-env NODE_ENV=test node -r sucrase/register storyboards/src/main.ts"
+        "cli": "cross-env NODE_ENV=test node -r sucrase/register storyboards/src/main.ts",
+        "template": "cross-env STORYBOARDS_TEMPLATE=1 yarn --cwd template dev"
     },
     "workspaces": [
         "storyboards",

@@ -23,4 +23,3 @@ function getWrapperComponent() {
         return Fragment
     }
 }
-

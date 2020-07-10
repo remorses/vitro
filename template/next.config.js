@@ -18,42 +18,43 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
-const excludedDirs = ['template', '.storyboards']
+const excludedDirs = ['.storyboards']
+if (process.env.STORYBOARDS_TEMPLATE) {
+    excludedDirs.push('template')
+}
 
 let { stories, wrapper, basePath, ignore = ['node_modules'] } =
     getConfig() || {}
+
+stories = stories.map(path.normalize)
 if (basePath && basePath.trim() === '/') {
     basePath = ''
 }
 
-const storiesGlobs = stories.map((g) => path.normalize(path.join('./', g)))
-console.log({ storiesGlobs })
+// const storiesGlobs = stories.map((g) => path.normalize(path.join('./', g)))
+// console.log({ storiesGlobs })
 
-generateStoriesMap({
-    globs: storiesGlobs,
-    cwd: path.resolve(path.join(__dirname, '..')),
-    base: '../',
-    ignore: [...ignore, ...excludedDirs],
-})
-    .then((code) => {
-        fs.writeFileSync(path.join(__dirname, 'storiesMap.js'), code)
+const generate = once(async () => {
+    const storiesMap = await generateStoriesMap({
+        globs: stories,
+        cwd: path.resolve(path.join(__dirname, '..')),
+        ignore: [...ignore, ...excludedDirs],
     })
-    .catch(console.error)
 
-generateStories({
-    globs: storiesGlobs,
-    cwd: path.resolve(path.join(__dirname, '..')),
-    base: '../../',
-    targetDir: path.resolve(path.join(__dirname, './pages/stories')),
-    ignore,
+    fs.writeFileSync(path.join(__dirname, 'storiesMap.js'), storiesMap)
+
+    await generateStories({
+        globs: stories,
+        cwd: path.resolve(path.join(__dirname, '..')),
+        targetDir: path.resolve(path.join(__dirname, './pages/stories')),
+        ignore,
+    })
 })
+generate()
 
 module.exports = composed({
     webpack: (config, options) => {
         const { webpack } = options
-        const { path: dir, recursive, match } = toRequireContext(
-            storiesGlobs[0],
-        ) // TODO support for array stories paths
         // console.log({ dir, recursive, match })
         config.plugins.push(
             new webpack.DefinePlugin({
@@ -62,10 +63,7 @@ module.exports = composed({
                         ? path.join(path.resolve(__dirname, '../'), wrapper)
                         : '',
                 ),
-                STORIES_EXTENSION: match,
-                STORIES_PATH: JSON.stringify(dir),
                 BASE_PATH: JSON.stringify(basePath || '/'),
-                STORIES_RECURSIVE: JSON.stringify(recursive),
             }),
         )
         // replace the stories react packages with local ones to not dedupe
@@ -120,5 +118,16 @@ function getConfig() {
     } catch (e) {
         console.log(`cannot find './storyboards.config.js'`)
         process.exit(1)
+    }
+}
+
+function once(fn) {
+    var result
+    return function () {
+        if (fn) {
+            result = fn.apply(this, arguments)
+            fn = null
+        }
+        return result
     }
 }
