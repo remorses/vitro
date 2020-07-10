@@ -14,13 +14,12 @@ const command: CommandModule = {
     command: ['new'],
     describe: 'Creates a new storyboard',
     builder: (argv) => {
-        // argv.option('port', {
-        //     alias: 'p',
-        //     type: 'string',
-        //     default: '7007',
-        //     required: false,
-        //     description: 'The port for the dev server',
-        // })
+        argv.option('no-install', {
+            type: 'boolean',
+            default: false,
+            required: false,
+        })
+
         return argv
     },
     handler: async (argv) => {
@@ -28,11 +27,14 @@ const command: CommandModule = {
         await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
             filter: (src: string) => !src.includes('node_modules'),
         })
-        printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
-        await runCommand({
-            command: 'npm ci --quiet --ignore-scripts',
-            cwd: path.resolve('.', NEXT_APP_PATH),
-        })
+
+        if (!argv['no-install']) {
+            printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
+            await runCommand({
+                command: 'npm ci --quiet --ignore-scripts',
+                cwd: path.resolve('.', NEXT_APP_PATH),
+            })
+        }
         if (!existsSync(CONFIG_PATH)) {
             printGreen(`creating default ${CONFIG_PATH}`, true)
             await writeFile(CONFIG_PATH, DEFAULT_CONFIG)
