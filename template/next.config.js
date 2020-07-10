@@ -1,5 +1,5 @@
 const compose = require('compose-function')
-const { generateModulesMap } = require('../storyboards/dist/modules_map')
+const { generateStories, generateStoriesMap } = require('../storyboards')
 const path = require('path')
 const fs = require('fs')
 const { toRequireContext } = require('./configSupport')
@@ -18,6 +18,8 @@ const transpile = require('next-transpile-modules')([
 
 const composed = compose(transpile)
 
+const excludedDirs = ['template', '.storyboards']
+
 let { stories, wrapper, basePath, ignore = ['node_modules'] } =
     getConfig() || {}
 if (basePath && basePath.trim() === '/') {
@@ -27,16 +29,24 @@ if (basePath && basePath.trim() === '/') {
 const storiesGlobs = stories.map((g) => path.normalize(path.join('./', g)))
 console.log({ storiesGlobs })
 
-generateModulesMap({
+generateStoriesMap({
     globs: storiesGlobs,
     cwd: path.resolve(path.join(__dirname, '..')),
     base: '../',
-    ignore,
+    ignore: [...ignore, ...excludedDirs],
 })
     .then((code) => {
-        fs.writeFileSync(path.join(__dirname, 'modules.js'), code)
+        fs.writeFileSync(path.join(__dirname, 'storiesMap.js'), code)
     })
     .catch(console.error)
+
+generateStories({
+    globs: storiesGlobs,
+    cwd: path.resolve(path.join(__dirname, '..')),
+    base: '../../',
+    targetDir: path.resolve(path.join(__dirname, './pages/stories')),
+    ignore,
+})
 
 module.exports = composed({
     webpack: (config, options) => {

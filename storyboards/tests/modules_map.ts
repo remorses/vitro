@@ -1,4 +1,4 @@
-import { generateModulesMap } from '../src/modules_map'
+import { generateModulesMap } from '../src/stories'
 
 describe('modules map', () => {
     it('generate', async () => {

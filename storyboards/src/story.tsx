@@ -1,6 +1,7 @@
 // @jsx jsx
-import { getStories, getWrapperComponent } from '../../support'
+
 import { useRouter } from 'next/router'
+import startCase from 'lodash/startCase'
 import { FaBug, FaLink, FaClock } from 'react-icons/fa'
 import { RiFullscreenLine } from 'react-icons/ri'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
@@ -29,56 +30,30 @@ import React, {
     useRef,
     useEffect,
 } from 'react'
-import { DebugCSS } from '../../debugCSS'
+import { DebugCSS } from './debugCSS'
 import { profile } from 'console'
 import { FiClock, FiHash, FiZap } from 'react-icons/fi'
 import { AiOutlineFullscreen } from 'react-icons/ai'
 
-const GlobalWrapper = getWrapperComponent()
-
-export default function Page(props) {
+export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
-    const [stories, setStories] = useState(getStories())
     const { query } = useRouter()
     const { story = '' } = query
-    useEffect(() => {
-        setStories(getStories())
-    }, [story])
 
-    // console.log({ story })
-    const storyObject = stories
-        .map((x) => {
-            // console.log(x)
-            return x
-        })
-        .filter(Boolean)
-        .find(({ filename }) => {
-            const path = normalizePath(filename || '')
-            console.log({ path, filename })
-            // console.log(x.getExports())
-            const queryPath = normalizePath(
-                Array.isArray(story) ? story.join('/') : story,
-            )
-            // console.log({
-            //     path,
-            //     queryPath,
-            // })
-            return path === queryPath
-        })
-    const vscodeUrl = `vscode://file${storyObject?.absolutePath}`
+    const vscodeUrl = `vscode://file${absolutePath}`
     // console.log(storyObject)
-    const exported = useMemo(() => storyObject?.getExports?.() || {}, [
-        storyObject,
-    ])
     // exported.then(z => console.log(Object.keys(z)))
-    console.log(exported)
-    const StoryWrapper = useMemo(() => exported?.default?.wrapper || Fragment, [
-        exported,
-    ])
+    console.log({storyExports})
+    const StoryWrapper = useMemo(
+        () => storyExports?.default?.wrapper || Fragment,
+        [storyExports],
+    )
 
     const storyTitle =
-        exported?.default?.title || storyObject?.title || 'Untitled'
+        storyExports?.default?.title ||
+        formatPathToTitle(absolutePath) ||
+        'Untitled'
     // if (!exported || !story || !storyObject) {
     //     // TODO return 404
     //     return null
@@ -140,10 +115,10 @@ export default function Page(props) {
                 spacingX='12'
                 spacingY='16'
             >
-                {Object.keys(exported)
+                {Object.keys(storyExports)
                     .filter((k) => k !== 'default')
                     .map((k, i) => {
-                        const Component = exported[k]
+                        const Component = storyExports[k]
 
                         return (
                             <StoryBlock
@@ -407,4 +382,14 @@ function normalizePath(p: string): string {
         .filter((x) => x !== '.')
         .filter(Boolean)
         .join('/')
+}
+
+export function formatPathToTitle(path: string) {
+    const endPath = path
+        .split('/')
+        .map((x) => x.trim())
+        .filter(Boolean)
+        .reverse()[0]
+    const withoutExt = endPath.split('.')[0]
+    return startCase(withoutExt)
 }

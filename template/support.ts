@@ -3,22 +3,21 @@ import memoize from 'lodash/memoize'
 import startCase from 'lodash/startCase'
 import { Fragment } from 'react'
 import path from 'path'
-import modulesMap from './modules'
+import storiesMap from './storiesMap'
 
 type GetStoriesReturnType = {
     filename: string
     title: string
     absolutePath: string
-    getExports: () => Record<string, any>
+    // getExports: () => Record<string, any>
 }[]
 
 export const getStories = (): GetStoriesReturnType => {
-    return Object.keys(modulesMap).map((filename) => {
+    return Object.keys(storiesMap).map((filename) => {
         return {
             absolutePath: path.join(STORIES_PATH, filename),
             filename,
             title: formatPathToTitle(filename),
-            getExports: modulesMap[filename],
         }
     })
 }
@@ -57,6 +56,7 @@ export function formatPathToTitle(path: string) {
     return startCase(withoutExt)
 }
 
+// TODO memoize this
 export function getWrapperComponent() {
     try {
         return require(WRAPPER_COMPONENT_PATH).default

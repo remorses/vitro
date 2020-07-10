@@ -6,6 +6,7 @@
     "workspaces": [
         "storyboards",
         "website",
+        "template",
         "example-package-scope/*",
         "example-package"
     ]

@@ -3,7 +3,8 @@
         "esModuleInterop": true,
         "outDir": "dist",
         "sourceMap": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "jsx": "react"
     },
     "exclude": ["template", "tests"]
 }
