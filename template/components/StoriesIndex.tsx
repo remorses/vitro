@@ -37,13 +37,7 @@ export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
                 />
             </InputGroup>
             <Stack spacing='4'>
-                {[
-                    ...stories,
-                    ...stories,
-                    ...stories,
-                    ...stories,
-                    ...stories,
-                ].map(({ title, filename }) => {
+                {stories.map(({ title, filename }) => {
                     if (
                         filter &&
                         !title.toLowerCase().includes(filter) &&

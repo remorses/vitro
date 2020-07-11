@@ -51,6 +51,7 @@ const generate = once(async () => {
 
     await generateStories({
         globs: stories,
+        wrapperComponentPath: wrapper,
         cwd: path.resolve(path.join(__dirname, '..')),
         targetDir: path.resolve(path.join(__dirname, './pages/stories')),
         ignore,

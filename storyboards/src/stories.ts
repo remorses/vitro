@@ -8,10 +8,17 @@ import { memoizedGlob, GlobOptions } from 'smart-glob'
 export async function generateStories(p: {
     globs: string[]
     targetDir: string
+    wrapperComponentPath: string
     ignore?: string[]
     cwd?: string
 }) {
-    const { globs, targetDir, ignore, cwd = '.' } = p
+    const {
+        globs,
+        targetDir,
+        ignore,
+        cwd = '.',
+        wrapperComponentPath = 'storyboards/src/default_wrapper',
+    } = p
     const options: GlobOptions = {
         ignore,
         cwd,
@@ -26,7 +33,7 @@ export async function generateStories(p: {
         // TODO batched promise.all
         files.map((p) => {
             const target = path.join(targetDir, p)
-            if (existsSync(target)) {
+            if (existsSync(target) && !process.env.STORYBOARDS_TEMPLATE) {
                 return
             }
             return outputFile(
@@ -34,6 +41,9 @@ export async function generateStories(p: {
                 generateStoryPage({
                     importPath: removeExtension('@/../' + path.normalize(p)),
                     absolutePath: path.resolve('..', p),
+                    wrapperComponentPath: removeExtension(
+                        '@/../' + path.normalize(wrapperComponentPath),
+                    ),
                 }),
             )
         }),
@@ -42,14 +52,14 @@ export async function generateStories(p: {
 
 // TODO remove the src and only on DEV
 
-function generateStoryPage({ importPath, absolutePath }) {
+function generateStoryPage({ importPath, absolutePath, wrapperComponentPath }) {
     return `
 import * as exported from '${importPath}'
-const absolutePath = '${absolutePath}'
-import React, { Fragment } from 'react'
-import { StoryPage } from 'storyboards/src/story' 
+import { default as GlobalWrapper } from '${wrapperComponentPath}'
+import React from 'react'
+import { StoryPage } from 'storyboards/src/story'
 
-const GlobalWrapper = getWrapperComponent()
+const absolutePath = '${absolutePath}'
 
 export default function Page() {
     return (
@@ -59,14 +69,6 @@ export default function Page() {
             storyExports={exported}
         />
     )
-}
-
-function getWrapperComponent() {
-    try {
-        return require(WRAPPER_COMPONENT_PATH).default
-    } catch (e) {
-        return Fragment
-    }
 }
 `
 }

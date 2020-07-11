@@ -1,10 +1,10 @@
 
 import * as exported from '@/../example-package/src/example_component.story'
-const absolutePath = '/Users/morse/Documents/GitHub/react-comics/example-package/src/example_component.story.tsx'
-import React, { Fragment } from 'react'
-import { StoryPage } from 'storyboards/dist/story'
+import { default as GlobalWrapper } from '@/../storyboards/src/default_wrapper'
+import React from 'react'
+import { StoryPage } from 'storyboards/src/story'
 
-const GlobalWrapper = getWrapperComponent()
+const absolutePath = '/Users/morse/Documents/GitHub/react-comics/example-package/src/example_component.story.tsx'
 
 export default function Page() {
     return (
@@ -14,12 +14,4 @@ export default function Page() {
             storyExports={exported}
         />
     )
-}
-
-function getWrapperComponent() {
-    try {
-        return require(WRAPPER_COMPONENT_PATH).default
-    } catch (e) {
-        return Fragment
-    }
 }

@@ -2,7 +2,7 @@
     "name": "template",
     "version": "0.0.0",
     "scripts": {
-        "dev": "next dev",
+        "dev": "STORYBOARDS_TEMPLATE=1 next dev",
         "build": "next build",
         "lock": "rm -rf node_modules && npm i --ignore-scripts && rm -rf node_modules && yarn",
         "start": "next start"
