@@ -30,6 +30,7 @@
 
 -   dont recreate the stories if already present when running start (because mac and vscode go crazy)
 -   reset render count to zero when rendering above profiler
+-   enable the paths inspection compiled only if --verbose (also make it a separate package)
 -   investigate if doing SSR or not
 -   throttle the search bar
 -   check that the global wrapper is a component before using it and give an error if not

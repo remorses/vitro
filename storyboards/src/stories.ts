@@ -1,7 +1,7 @@
 import flatten from 'lodash/flatten'
 
 import uniq from 'lodash/uniq'
-import { outputFile } from 'fs-extra'
+import { outputFile, existsSync } from 'fs-extra'
 import path, { ParsedPath } from 'path'
 import { glob, GlobOptions } from './glob'
 
@@ -22,15 +22,21 @@ export async function generateStories(p: {
     )
     const files: string[] = uniq(flatten(results))
 
-    files.map((p) => {
-        return outputFile(
-            path.join(targetDir, p),
-            generateStoryPage({
-                importPath: removeExtension('@/../' + path.normalize(p)),
-                absolutePath: path.resolve('..', p),
-            }),
-        )
-    })
+    await Promise.all( // TODO batched promise.all
+        files.map((p) => {
+            const target = path.join(targetDir, p)
+            if (existsSync(target)) {
+                return
+            }
+            return outputFile(
+                target,
+                generateStoryPage({
+                    importPath: removeExtension('@/../' + path.normalize(p)),
+                    absolutePath: path.resolve('..', p),
+                }),
+            )
+        }),
+    )
 }
 
 function generateStoryPage({ importPath, absolutePath }) {
