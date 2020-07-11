@@ -1,14 +1,10 @@
-import {
-    CSSReset,
-    Stack, ThemeProvider
-} from '@chakra-ui/core'
+import { CSSReset, Stack, ThemeProvider, Box } from '@chakra-ui/core'
 import { css, Global } from '@emotion/core'
 import { Router } from 'next/router'
 import NProgress from 'nprogress'
 import React from 'react'
 import { StoriesIndex } from '../components/StoriesIndex'
 import '../nprogress.css'
-
 
 Router.events.on('routeChangeStart', (url) => {
     console.log(`Loading: ${url}`)
@@ -17,6 +13,7 @@ Router.events.on('routeChangeStart', (url) => {
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
+const PAGE_PADDING = '40px'
 
 export default function App(props) {
     const { Component, pageProps } = props
@@ -25,23 +22,39 @@ export default function App(props) {
             <CSSReset />
             <Global styles={globalStyles} />
             <Stack
+                position='relative'
                 overflowX='hidden'
                 minWidth='100vw'
                 minHeight='100vh'
+                // position='absolute'
                 bg='gray.100'
             >
-                <Stack direction='row' spacing='10' m='10'>
-                    <StoriesIndex fontWeight='500' />
-
-                    <Stack
-                        as='main'
-                        borderLeftWidth={['0', null, '2px']}
-                        pl={['0', null, '10']}
-                        width='100%'
-                        align='stretch'
-                    >
-                        <Component {...pageProps} />
-                    </Stack>
+                <Box position='fixed' left={PAGE_PADDING} top={PAGE_PADDING}>
+                    <StoriesIndex
+                        // overflowY='auto'
+                        fontWeight='500'
+                        display={['none', null, 'flex']}
+                        width={['260px']}
+                        height='100%'
+                    />
+                </Box>
+                <Stack
+                    position='fixed'
+                    right='0px'
+                    top='0'
+                    bottom='0'
+                    left='360px'
+                    as='main'
+                    borderLeftWidth={['0', null, '2px']}
+                    pl={['0', null, '10']}
+                    pt={PAGE_PADDING}
+                    pr={PAGE_PADDING}
+                    pb={PAGE_PADDING}
+                    // width='100%'
+                    align='stretch'
+                    overflowY='scroll'
+                >
+                    <Component {...pageProps} />
                 </Stack>
             </Stack>
         </ThemeProvider>

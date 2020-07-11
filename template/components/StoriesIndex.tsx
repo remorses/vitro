@@ -23,12 +23,7 @@ export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
     ])
     const stories = useMemo(() => getStories(), [])
     return (
-        <Stack
-            display={['none', null, 'flex']}
-            spacing='6'
-            width={['260px']}
-            {...p}
-        >
+        <Stack spacing='6' {...p}>
             <Logo />
             <InputGroup shadow='sm' {...p}>
                 <InputLeftElement

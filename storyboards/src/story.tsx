@@ -157,6 +157,9 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
         () => ({
             w: '100vw',
             h: '100vh',
+            p: '50px',
+            pt: '80px',
+            bg: 'gray.100',
             position: 'fixed',
             top: '0',
             left: '0',
@@ -195,9 +198,9 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
             <Stack
                 spacing='8'
                 position='absolute'
-                top='10px'
-                left='20px'
-                right='20px'
+                top={fullScreen ? '20px' : '10px'}
+                left={fullScreen ? '50px' : '20px'}
+                right={fullScreen ? '50px' : '20px'}
                 opacity={0.8}
                 direction='row'
                 align='center'
