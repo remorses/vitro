@@ -28,12 +28,13 @@
 
 ## Things to do
 
--   dont recreate the stories if already present when running start (because mac and vscode go crazy)
+-   store columns count in localstorage
+-   ~~dont recreate the stories if already present when running start (because mac and vscode go crazy)~~
 -   reset render count to zero when rendering above profiler
 -   enable the paths inspection compiled only if --verbose (also make it a separate package)
 -   investigate if doing SSR or not
 -   ~~throttle the search bar~~
--   check that the global wrapper is a component before using it and give an error if not
+-   ~~check that the global wrapper is a component before using it and give an error if not~~
 -   ~~make the sidebar fixed and scrollable~~
 -   ~~add a error boundary to every story block and display a pretty error~~
 -   catch errors in server, wait for https://github.com/vercel/next.js/issues/5070
