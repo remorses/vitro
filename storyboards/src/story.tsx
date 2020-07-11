@@ -91,7 +91,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
                         as='a'
                         fontWeight='500'
                         href={vscodeUrl}
-                        opacity={0.6}
+                        opacity={0.7}
                     >
                         <Box d='inline' size='.8em' mr='3' as={FaLink} />
                         Open in vscode

@@ -81,7 +81,7 @@ export default function Page(props) {
                         as='a'
                         fontWeight='500'
                         href={vscodeUrl}
-                        opacity={0.6}
+                        // opacity={0.8}
                     >
                         <Box d='inline' size='.8em' mr='3' as={FaLink} />
                         Open in vscode
