@@ -1,21 +1,14 @@
-import React, { Fragment, useState } from 'react'
-import '../nprogress.css'
 import {
-    ThemeProvider,
     CSSReset,
-    Stack,
-    Input,
-    InputGroup,
-    InputLeftElement,
-    Icon,
-    Box,
+    Stack, ThemeProvider
 } from '@chakra-ui/core'
-import { FiBook as LogoPart } from 'react-icons/fi'
-import Head from 'next/head'
-import { StoriesIndex } from '../components/StoriesIndex'
-import { Global, css } from '@emotion/core'
-import NProgress from 'nprogress'
+import { css, Global } from '@emotion/core'
 import { Router } from 'next/router'
+import NProgress from 'nprogress'
+import React from 'react'
+import { StoriesIndex } from '../components/StoriesIndex'
+import '../nprogress.css'
+
 
 Router.events.on('routeChangeStart', (url) => {
     console.log(`Loading: ${url}`)
@@ -24,24 +17,8 @@ Router.events.on('routeChangeStart', (url) => {
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-export const Logo = ({ ...rest }) => {
-    return (
-        <Stack
-            direction='row'
-            align='center'
-            fontSize='24px'
-            fontWeight='500'
-            spacing='2'
-            {...rest}
-        >
-            <Box as={LogoPart} size='1.1em' />
-            <Box>Storyboards</Box>
-        </Stack>
-    )
-}
 
 export default function App(props) {
-    const [filter, setFilter] = useState('')
     const { Component, pageProps } = props
     return (
         <ThemeProvider>
@@ -54,27 +31,8 @@ export default function App(props) {
                 bg='gray.100'
             >
                 <Stack direction='row' spacing='10' m='10'>
-                    <Stack
-                        display={['none', null, 'flex']}
-                        spacing='6'
-                        width={['260px']}
-                    >
-                        <Logo />
-                        <InputGroup shadow='sm'>
-                            <InputLeftElement
-                                children={
-                                    <Icon name='search' color='gray.400' />
-                                }
-                            />
-                            <Input
-                                onChange={(e) => setFilter(e.target.value)}
-                                variant='filled'
-                                bg='white'
-                                borderRadius='md'
-                            />
-                        </InputGroup>
-                        <StoriesIndex filter={filter} fontWeight='500' />
-                    </Stack>
+                    <StoriesIndex fontWeight='500' />
+
                     <Stack
                         as='main'
                         borderLeftWidth={['0', null, '2px']}
