@@ -25,7 +25,7 @@ export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
     return (
         <Stack spacing='6' {...p}>
             <Logo />
-            <InputGroup shadow='sm' {...p}>
+            <InputGroup shadow='sm'>
                 <InputLeftElement
                     children={<Icon name='search' color='gray.400' />}
                 />
@@ -37,7 +37,13 @@ export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
                 />
             </InputGroup>
             <Stack spacing='4'>
-                {stories.map(({ title, filename }) => {
+                {[
+                    ...stories,
+                    ...stories,
+                    ...stories,
+                    ...stories,
+                    ...stories,
+                ].map(({ title, filename }) => {
                     if (
                         filter &&
                         !title.toLowerCase().includes(filter) &&

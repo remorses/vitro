@@ -26,24 +26,32 @@ export default function App(props) {
                 overflowX='hidden'
                 minWidth='100vw'
                 minHeight='100vh'
-                // position='absolute'
                 bg='gray.100'
             >
-                <Box position='fixed' left={PAGE_PADDING} top={PAGE_PADDING}>
+                <Box
+                    // overflowY='auto'
+                    width='100%'
+                    position='fixed'
+                    // pr={PAGE_PADDING}
+                    left={PAGE_PADDING}
+                    top='0'
+                    pt={PAGE_PADDING}
+                    bottom='0'
+                    overflowX='hidden'
+                >
                     <StoriesIndex
-                        // overflowY='auto'
                         fontWeight='500'
                         display={['none', null, null, 'flex']}
                         width={['260px']}
-                        height='100%'
                     />
+                    <Box h={PAGE_PADDING} />
                 </Box>
                 <Stack
                     position='fixed'
                     right='0px'
                     top='0'
                     bottom='0'
-                    left={[PAGE_PADDING, null, null, '360px']}
+                    left={[PAGE_PADDING, null, null, '350px']}
                     as='main'
                     borderLeftWidth={['0', null, null, '2px']}
                     pl={['0', null, null, PAGE_PADDING]}
