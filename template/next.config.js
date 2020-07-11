@@ -32,6 +32,7 @@ if (basePath && basePath.trim() === '/') {
 const transpile = require('next-transpile-modules')([
     path.resolve(__dirname, '../'),
     ...transpileModules,
+    'storyboards', // TODO transpile only on DEV
 ])
 
 const composed = compose(transpile)

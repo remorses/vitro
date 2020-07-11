@@ -44,7 +44,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     const vscodeUrl = `vscode://file${absolutePath}`
     // console.log(storyObject)
     // exported.then(z => console.log(Object.keys(z)))
-    console.log({storyExports})
+    console.log({ storyExports })
     const StoryWrapper = useMemo(
         () => storyExports?.default?.wrapper || Fragment,
         [storyExports],
@@ -117,14 +117,15 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
             >
                 {Object.keys(storyExports)
                     .filter((k) => k !== 'default')
-                    .map((k, i) => {
+                    .map((k) => {
                         const Component = storyExports[k]
-
+                        const id = `${absolutePath}/${k}`
                         return (
                             <StoryBlock
                                 title={k}
                                 blockWidth='100%'
-                                key={k + String(i)}
+                                key={id}
+                                id={id}
                             >
                                 <Stack
                                     flex='1'
@@ -150,7 +151,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     )
 }
 
-const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
+const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
     const [fullScreen, setFullScreen] = useState(false)
     const fullScreenStyles: StackProps = useMemo(
         () => ({
@@ -167,6 +168,9 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
     )
     const actualDurationRef = useRef('0.00ms')
     const renderCount = useRef(0)
+
+    // renderCount.current = 0
+    console.log({ id })
     const profile: ProfilerOnRenderCallback = useCallback(
         (id, _, actualDuration) => {
             console.log({ id, actualDuration })
@@ -263,7 +267,7 @@ const StoryBlock = ({ children, blockWidth, title, ...rest }) => {
                 // css={cssDebugEnabled ? debugCSS : css``}
             >
                 <ErrorBoundary>
-                    <Profiler id={title} onRender={profile}>
+                    <Profiler id={id} onRender={profile}>
                         {children}
                     </Profiler>
                 </ErrorBoundary>

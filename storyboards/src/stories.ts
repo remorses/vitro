@@ -40,12 +40,14 @@ export async function generateStories(p: {
     )
 }
 
+// TODO remove the src and only on DEV
+
 function generateStoryPage({ importPath, absolutePath }) {
     return `
 import * as exported from '${importPath}'
 const absolutePath = '${absolutePath}'
 import React, { Fragment } from 'react'
-import { StoryPage } from 'storyboards/dist/story'
+import { StoryPage } from 'storyboards/src/story' 
 
 const GlobalWrapper = getWrapperComponent()
 
