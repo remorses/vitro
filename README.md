@@ -28,6 +28,7 @@
 
 ## Things to do
 
+-   dark mode
 -   use more complex @/ because user could be using it already
 -   store columns count in localstorage
 -   ~~dont recreate the stories if already present when running start (because mac and vscode go crazy)~~
@@ -66,3 +67,10 @@
 -   how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the storyboards new and start command
 -   next run on top directory, this way urls are clickable in vscode
 -   css debug without rerender
+
+## Sustainability
+
+-   offer a pro managed service that
+    -   notifies vai email on components visual changes
+    -   notifies on broken components
+    -   tells you the average, value over time of web vitals of every component (render time, count, accessibility, )
