@@ -3,7 +3,7 @@ import flatten from 'lodash/flatten'
 import uniq from 'lodash/uniq'
 import { outputFile, existsSync } from 'fs-extra'
 import path, { ParsedPath } from 'path'
-import { glob, GlobOptions } from 'smart-glob'
+import { memoizedGlob, GlobOptions } from 'smart-glob'
 
 export async function generateStories(p: {
     globs: string[]
@@ -18,11 +18,12 @@ export async function generateStories(p: {
         filesOnly: true,
     }
     const results: string[][] = await Promise.all(
-        globs.map((s) => glob(s, options)),
+        globs.map((s) => memoizedGlob(s, options)),
     )
     const files: string[] = uniq(flatten(results))
 
-    await Promise.all( // TODO batched promise.all
+    await Promise.all(
+        // TODO batched promise.all
         files.map((p) => {
             const target = path.join(targetDir, p)
             if (existsSync(target)) {
@@ -76,7 +77,7 @@ export async function generateStoriesMap({ cwd = '.', globs, ignore }) {
     }
     const results: string[][] = await Promise.all(
         // TODO memoize glob
-        globs.map((s) => glob(s, options)),
+        globs.map((s) => memoizedGlob(s, options)),
     )
     const files: string[] = uniq(flatten(results))
     return printStoriesMap({ files })
