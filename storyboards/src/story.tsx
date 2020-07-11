@@ -162,7 +162,9 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
                                         <StoryWrapper
                                             dark={colorMode == 'dark'}
                                         >
-                                            <Component />
+                                            <Component
+                                                dark={colorMode == 'dark'}
+                                            />
                                         </StoryWrapper>
                                     </ValidGlobalWrapper>
                                 </Stack>
