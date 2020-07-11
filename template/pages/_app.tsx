@@ -26,7 +26,8 @@ export default function App(props) {
     const { Component, pageProps } = props
 
     return (
-        <ColorModeProvider>
+        <ColorModeProvider value='light'>
+            {/* TODO make initial color mode configurable via webpack define */}
             <ThemeProvider>
                 <CSSReset />
                 <Global styles={globalStyles} />

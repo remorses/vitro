@@ -194,7 +194,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
             bottom: '0',
             zIndex: 100,
         }),
-        [],
+        [bg],
     )
 
     const actualDurationRef = useRef('0.00ms')
