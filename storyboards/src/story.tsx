@@ -141,6 +141,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
                         const id = `${absolutePath}/${k}`
                         return (
                             <StoryBlock
+                                columns={columns}
                                 title={k}
                                 blockWidth='100%'
                                 key={id}
@@ -176,7 +177,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     )
 }
 
-const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
+const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
     const [fullScreen, setFullScreen] = useState(false)
     const { colorMode } = useColorMode()
     const bg = useMemo(
@@ -249,6 +250,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 {process.env.NODE_ENV !== 'production' && (
                     <Couple
                         borderRadius='md'
+                        hide={columns > 2}
                         bg={bg}
                         p='4px'
                         a={<Box as={FiZap} size='1em' />}
@@ -263,6 +265,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 {process.env.NODE_ENV !== 'production' && (
                     <Couple
                         borderRadius='md'
+                        hide={columns > 2}
                         bg={bg}
                         p='4px'
                         a={<Box as={FiHash} size='1em' />}
@@ -404,9 +407,16 @@ class ErrorBoundary extends React.Component {
     }
 }
 
-export const Couple = ({ a, b, ...rest }) => {
+export const Couple = ({ a, b, hide, ...rest }) => {
     return (
-        <Stack isTruncated direction='row' align='center' spacing='1' {...rest}>
+        <Stack
+            display={hide ? 'none' : ['none', null, 'flex']}
+            isTruncated
+            direction='row'
+            align='center'
+            spacing='1'
+            {...rest}
+        >
             <Box>{a}</Box>
             <Box>{b}</Box>
         </Stack>

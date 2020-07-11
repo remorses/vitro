@@ -62,7 +62,7 @@
 -   ~~no more needed, support for multiple globs paths adding more context.require (up to 10)~~
 -   ~~add emotion to aliases~~
 -   ~~add a button to make a block full screen~~
--   remove render counts and time on small blocks
+-   ~~remove render counts and time on small blocks~~
 -   how to easily deploy a storyboard to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
 -   how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the storyboards new and start command
 -   next run on top directory, this way urls are clickable in vscode
