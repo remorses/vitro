@@ -1,52 +1,48 @@
 // @jsx jsx
 
-import { useRouter } from 'next/router'
-import { isValidElementType } from 'react-is'
-
-import startCase from 'lodash/startCase'
-import { FaBug, FaLink, FaClock } from 'react-icons/fa'
-import { RiFullscreenLine } from 'react-icons/ri'
-import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
-import { jsx, css } from '@emotion/core'
-import path from 'path'
-jsx
 import {
-    Stack,
     Box,
-    SimpleGrid,
-    Select,
-    Button,
-    Link,
     BoxProps,
-    StackProps,
-    IconButton,
+    Button,
     Collapse,
+    IconButton,
+    Link,
+    Select,
+    SimpleGrid,
+    Stack,
+    StackProps,
     useColorMode,
 } from '@chakra-ui/core'
+import { jsx } from '@emotion/core'
+import startCase from 'lodash/startCase'
 import React, {
-    useMemo,
-    useState,
-    Fragment,
     Profiler,
     ProfilerOnRenderCallback,
     useCallback,
-    useRef,
     useEffect,
+    useMemo,
+    useRef,
+    useState,
 } from 'react'
+import { FaBug, FaLink } from 'react-icons/fa'
+import { FiHash, FiZap } from 'react-icons/fi'
+import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
+import { isValidElementType } from 'react-is'
 import { DebugCSS } from './debugCSS'
-import { profile } from 'console'
-import { FiClock, FiHash, FiZap } from 'react-icons/fi'
-import { AiOutlineFullscreen } from 'react-icons/ai'
+import { DefaultWrapper } from './default_wrapper'
+
+jsx
 
 export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
-    const { query } = useRouter()
 
-    const [ValidGlobalWrapper] = useState(
-        !GlobalWrapper || !isValidElementType(GlobalWrapper)
-            ? GlobalWrapper
-            : Fragment,
+    const ValidGlobalWrapper = useMemo(
+        () =>
+            !GlobalWrapper || !isValidElementType(GlobalWrapper)
+                ? GlobalWrapper
+                : DefaultWrapper,
+        [GlobalWrapper],
     )
 
     useEffect(() => {
@@ -63,7 +59,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     // exported.then(z => console.log(Object.keys(z)))
     console.log({ storyExports })
     const StoryWrapper = useMemo(
-        () => storyExports?.default?.wrapper || Fragment,
+        () => storyExports?.default?.wrapper || DefaultWrapper,
         [storyExports],
     )
 
@@ -71,6 +67,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
         storyExports?.default?.title ||
         formatPathToTitle(absolutePath) ||
         'Untitled'
+
     const { colorMode } = useColorMode()
     const bg = useMemo(
         () => ({ light: 'white', dark: 'gray.700' }[colorMode]),
@@ -159,8 +156,12 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
                                     justify='center'
                                     as={cssDebugEnabled ? DebugCSS : 'div'}
                                 >
-                                    <ValidGlobalWrapper>
-                                        <StoryWrapper>
+                                    <ValidGlobalWrapper
+                                        dark={colorMode == 'dark'}
+                                    >
+                                        <StoryWrapper
+                                            dark={colorMode == 'dark'}
+                                        >
                                             <Component />
                                         </StoryWrapper>
                                     </ValidGlobalWrapper>
