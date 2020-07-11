@@ -28,6 +28,7 @@
 
 ## Things to do
 
+-   use more complex @/ because user could be using it already
 -   store columns count in localstorage
 -   ~~dont recreate the stories if already present when running start (because mac and vscode go crazy)~~
 -   reset render count to zero when rendering above profiler
