@@ -3,7 +3,7 @@ import flatten from 'lodash/flatten'
 import uniq from 'lodash/uniq'
 import { outputFile, existsSync } from 'fs-extra'
 import path, { ParsedPath } from 'path'
-import { glob, GlobOptions } from './glob'
+import { glob, GlobOptions } from 'smart-glob'
 
 export async function generateStories(p: {
     globs: string[]
