@@ -33,7 +33,7 @@ export default function App(props) {
                     <StoriesIndex
                         // overflowY='auto'
                         fontWeight='500'
-                        display={['none', null, 'flex']}
+                        display={['none', null, null, 'flex']}
                         width={['260px']}
                         height='100%'
                     />
@@ -43,10 +43,10 @@ export default function App(props) {
                     right='0px'
                     top='0'
                     bottom='0'
-                    left='360px'
+                    left={[PAGE_PADDING, null, null, '360px']}
                     as='main'
-                    borderLeftWidth={['0', null, '2px']}
-                    pl={['0', null, '10']}
+                    borderLeftWidth={['0', null, null, '2px']}
+                    pl={['0', null, null, PAGE_PADDING]}
                     pt={PAGE_PADDING}
                     pr={PAGE_PADDING}
                     pb={PAGE_PADDING}

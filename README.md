@@ -34,10 +34,10 @@
 -   investigate if doing SSR or not
 -   ~~throttle the search bar~~
 -   check that the global wrapper is a component before using it and give an error if not
--   make the sidebar fixed and scrollable
+-   ~~make the sidebar fixed and scrollable~~
 -   ~~add a error boundary to every story block and display a pretty error~~
 -   catch errors in server, wait for https://github.com/vercel/next.js/issues/5070
--   add max zIndex to story toolbar
+-   add max zIndex to story toolbar (no this way is difficult to cover them with overlay in full screen)
 -   investigate if the render count is accurate given that the profiler is parent of Component
 -   ~~make the profiler id unique adding the filename path to it~~
 -   ~~investigate slow startup time, try to optimize the regex and context.require flow~~
@@ -56,11 +56,11 @@
 -   the start command keeps the `.storyboards` updated running the new command when it sees that its version is greater than the generated one
 -   make a Vercel runtime package that points to a `storybaords.config.js`, this wraps the nextjs deployer but runs the new command before and optionally another command to build packages it depends on (like run yarn on root), this way i can add .storyboards to .gitignore
 -   ~~the profiler does not run on hydration, maybe disable it when in production~~
--   support for multiple globs paths adding more context.require (up to 10)
+-   ~~no more needed, support for multiple globs paths adding more context.require (up to 10)~~
 -   ~~add emotion to aliases~~
 -   ~~add a button to make a block full screen~~
 -   remove render counts and time on small blocks
 -   how to easily deploy a storyboard to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
 -   how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the storyboards new and start command
--   next run on top direcotry, this way urls are clickable in vscode
--   css debug withour rerender
+-   next run on top directory, this way urls are clickable in vscode
+-   css debug without rerender

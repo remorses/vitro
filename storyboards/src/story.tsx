@@ -1,6 +1,8 @@
 // @jsx jsx
 
 import { useRouter } from 'next/router'
+import { isValidElementType } from 'react-is'
+
 import startCase from 'lodash/startCase'
 import { FaBug, FaLink, FaClock } from 'react-icons/fa'
 import { RiFullscreenLine } from 'react-icons/ri'
@@ -40,6 +42,21 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     const [columns, setColumnsCount] = useState(1)
     const { query } = useRouter()
     const { story = '' } = query
+
+    const [ValidGlobalWrapper] = useState(
+        !GlobalWrapper || !isValidElementType(GlobalWrapper)
+            ? GlobalWrapper
+            : Fragment,
+    )
+
+    useEffect(() => {
+        if (!GlobalWrapper || !isValidElementType(GlobalWrapper)) {
+            console.warn(
+                `your global wrapper is not a valid react component: ` +
+                    String(GlobalWrapper),
+            )
+        }
+    }, [GlobalWrapper])
 
     const vscodeUrl = `vscode://file${absolutePath}`
     // console.log(storyObject)
@@ -137,11 +154,11 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
                                     justify='center'
                                     as={cssDebugEnabled ? DebugCSS : 'div'}
                                 >
-                                    <GlobalWrapper>
+                                    <ValidGlobalWrapper>
                                         <StoryWrapper>
                                             <Component />
                                         </StoryWrapper>
-                                    </GlobalWrapper>
+                                    </ValidGlobalWrapper>
                                 </Stack>
                             </StoryBlock>
                         )
