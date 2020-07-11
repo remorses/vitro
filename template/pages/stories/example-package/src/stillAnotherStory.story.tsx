@@ -1,6 +1,5 @@
-
 import * as exported from '@/../example-package/src/stillAnotherStory.story'
-import { default as GlobalWrapper } from '@/../storyboards/src/default_wrapper'
+import { default as GlobalWrapper } from '@/../example-package/src/Wrapper'
 import React from 'react'
 import { StoryPage } from 'storyboards/src/story'
 

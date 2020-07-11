@@ -1,7 +1,7 @@
 import flatten from 'lodash/flatten'
 
 import uniq from 'lodash/uniq'
-import { outputFile, existsSync } from 'fs-extra'
+import { outputFile, existsSync, exists, readFile } from 'fs-extra'
 import path, { ParsedPath } from 'path'
 import { memoizedGlob, GlobOptions } from 'smart-glob'
 
@@ -31,21 +31,23 @@ export async function generateStories(p: {
 
     await Promise.all(
         // TODO batched promise.all
-        files.map((p) => {
+        files.map(async (p) => {
             const target = path.join(targetDir, p)
-            if (existsSync(target) && !process.env.STORYBOARDS_TEMPLATE) {
+            const code = generateStoryPage({
+                importPath: removeExtension('@/../' + path.normalize(p)),
+                absolutePath: path.resolve('..', p),
+                wrapperComponentPath: removeExtension(
+                    '@/../' + path.normalize(wrapperComponentPath),
+                ),
+            }).trim()
+            const existing = await readFile(target)
+                .catch(() => '')
+                .toString()
+                .trim()
+            if (existing === code) {
                 return
             }
-            return outputFile(
-                target,
-                generateStoryPage({
-                    importPath: removeExtension('@/../' + path.normalize(p)),
-                    absolutePath: path.resolve('..', p),
-                    wrapperComponentPath: removeExtension(
-                        '@/../' + path.normalize(wrapperComponentPath),
-                    ),
-                }),
-            )
+            return await outputFile(target, code + '\n')
         }),
     )
 }
