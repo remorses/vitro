@@ -7,6 +7,8 @@ import {
     Icon,
     Input,
     InputGroupProps,
+    useColorMode,
+    IconButton,
 } from '@chakra-ui/core'
 import { AiFillCaretRight } from 'react-icons/ai'
 import { FiBook as LogoPart } from 'react-icons/fi'
@@ -21,10 +23,23 @@ export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
     const throttledSetFilter = useCallback<any>(throttle(setFilter, 300), [
         setFilter,
     ])
+    const { colorMode, toggleColorMode } = useColorMode()
     const stories = useMemo(() => getStories(), [])
     return (
         <Stack spacing='6' {...p}>
-            <Logo />
+            <Stack direction='row' spacing='2' align='center'>
+                <Logo fontSize='28px' />
+                <Box flex='1' />
+                <IconButton
+                    // bg={{ light: 'white', dark: 'gray.700' }[colorMode]}
+                    // size='sm'
+                    // shadow='sm'
+                    onClick={toggleColorMode}
+                    fontSize='1.2em'
+                    aria-label='color-mode-toggle'
+                    icon={colorMode === 'dark' ? 'moon' : 'sun'}
+                />
+            </Stack>
             <InputGroup shadow='sm'>
                 <InputLeftElement
                     children={<Icon name='search' color='gray.400' />}
@@ -32,7 +47,7 @@ export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
                 <Input
                     onChange={(e) => throttledSetFilter(e?.target?.value)}
                     variant='filled'
-                    bg='white'
+                    bg={{ light: 'white', dark: 'gray.700' }[colorMode]}
                     borderRadius='md'
                 />
             </InputGroup>

@@ -28,7 +28,7 @@
 
 ## Things to do
 
--   dark mode
+-   ~~dark mode~~
 -   use more complex @/ because user could be using it already
 -   store columns count in localstorage
 -   ~~dont recreate the stories if already present when running start (because mac and vscode go crazy)~~

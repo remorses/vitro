@@ -39,6 +39,7 @@
         "yargs": "^15.3.1"
     },
     "devDependencies": {
+        "@chakra-ui/core": "^0.8.0",
         "@types/lodash": "^4.14.157",
         "@types/mocha": "^7.0.2",
         "@types/node": "^14.0.11",

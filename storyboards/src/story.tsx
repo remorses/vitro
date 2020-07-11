@@ -21,6 +21,7 @@ import {
     StackProps,
     IconButton,
     Collapse,
+    useColorMode,
 } from '@chakra-ui/core'
 import React, {
     useMemo,
@@ -41,7 +42,6 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
     const { query } = useRouter()
-    const { story = '' } = query
 
     const [ValidGlobalWrapper] = useState(
         !GlobalWrapper || !isValidElementType(GlobalWrapper)
@@ -71,6 +71,11 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
         storyExports?.default?.title ||
         formatPathToTitle(absolutePath) ||
         'Untitled'
+    const { colorMode } = useColorMode()
+    const bg = useMemo(
+        () => ({ light: 'white', dark: 'gray.700' }[colorMode]),
+        [colorMode],
+    )
     // if (!exported || !story || !storyObject) {
     //     // TODO return 404
     //     return null
@@ -101,7 +106,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
                 <Button
                     onClick={() => setCssDebug((x) => !x)}
                     opacity={0.8}
-                    bg='white'
+                    bg={bg}
                     w='auto'
                 >
                     <Box mr='2' d='inline-block' as={FaBug} />
@@ -116,7 +121,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
                     }}
                     defaultValue='1'
                     variant='filled'
-                    bg='white'
+                    bg={bg}
                     w='auto'
                 >
                     <option value='1'>1 column</option>
@@ -170,13 +175,18 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
 
 const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
     const [fullScreen, setFullScreen] = useState(false)
+    const { colorMode } = useColorMode()
+    const bg = useMemo(
+        () => ({ light: 'white', dark: 'gray.700' }[colorMode]),
+        [colorMode],
+    )
     const fullScreenStyles: StackProps = useMemo(
         () => ({
             w: '100vw',
             h: '100vh',
             p: '50px',
             pt: '80px',
-            bg: 'gray.100',
+            bg: bg,
             position: 'fixed',
             top: '0',
             left: '0',
@@ -186,6 +196,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
         }),
         [],
     )
+
     const actualDurationRef = useRef('0.00ms')
     const renderCount = useRef(0)
 
@@ -215,17 +226,17 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
             <Stack
                 spacing='8'
                 position='absolute'
+                opacity={0.7}
                 top={fullScreen ? '20px' : '10px'}
                 left={fullScreen ? '50px' : '20px'}
                 right={fullScreen ? '50px' : '20px'}
-                opacity={0.8}
                 direction='row'
                 align='center'
             >
                 <Box
                     borderRadius='md'
-                    bg='white'
-                    px='4px'
+                    bg={bg}
+                    p='4px'
                     fontSize='18px'
                     fontWeight='medium'
                 >
@@ -235,8 +246,8 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 {process.env.NODE_ENV !== 'production' && (
                     <Couple
                         borderRadius='md'
-                        bg='white'
-                        opacity={0.8}
+                        bg={bg}
+                        p='4px'
                         a={<Box as={FiZap} size='1em' />}
                         b={
                             <AutoUpdateBox
@@ -249,8 +260,8 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 {process.env.NODE_ENV !== 'production' && (
                     <Couple
                         borderRadius='md'
-                        bg='white'
-                        opacity={0.8}
+                        bg={bg}
+                        p='4px'
                         a={<Box as={FiHash} size='1em' />}
                         b={
                             <AutoUpdateBox
@@ -263,7 +274,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 )}
                 <IconButton
                     borderRadius='md'
-                    bg='white'
+                    bg={bg}
                     // isRound
                     size='sm'
                     onClick={() => setFullScreen((x) => !x)}
@@ -278,7 +289,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 flex='1'
                 overflow='hidden'
                 borderRadius='10px'
-                bg='white'
+                bg={bg}
                 minH='100%'
                 spacing='0'
                 align='center'
