@@ -15,12 +15,12 @@ import { FiBook as LogoPart } from 'react-icons/fi'
 import NextLink from 'next/link'
 import { getStories } from '../support'
 import { useMemo, useState, useCallback } from 'react'
-import throttle from 'lodash/throttle'
+import debounce from 'lodash/debounce'
 
 export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
     let [filter, setFilter] = useState('')
     filter = filter.toLowerCase()
-    const throttledSetFilter = useCallback<any>(throttle(setFilter, 300), [
+    const throttledSetFilter = useCallback<any>(debounce(setFilter, 300), [
         setFilter,
     ])
     const { colorMode, toggleColorMode } = useColorMode()
