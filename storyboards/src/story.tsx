@@ -12,6 +12,7 @@ import {
     Stack,
     StackProps,
     useColorMode,
+    css,
 } from '@chakra-ui/core'
 import { jsx } from '@emotion/core'
 import startCase from 'lodash/startCase'
@@ -196,7 +197,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             left: '0',
             right: '0',
             bottom: '0',
-            zIndex: 100,
+            zIndex: 100000,
         }),
         [bg],
     )

@@ -28,6 +28,10 @@
 
 ## Things to do
 
+-   sidebar in safari has zindex too high
+-   render components inside iframes when specified, to not let css files modify the UI
+-   add a globalCSS options to pass an array of css files to include in global scope (inside the iframe)
+-   add the next css plugin to let users import css files that are not css modules
 -   ~~dark mode~~
 -   use more complex @/ because user could be using it already
 -   store columns count in localstorage
@@ -66,7 +70,6 @@
 -   how to easily deploy a storyboard to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
 -   how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the storyboards new and start command
 -   next run on top directory, this way urls are clickable in vscode
--   css debug without rerender
 
 ## Sustainability
 
@@ -74,3 +77,4 @@
     -   notifies vai email on components visual changes
     -   notifies on broken components
     -   tells you the average, value over time of web vitals of every component (render time, count, accessibility, )
+    -   bundle size over time
