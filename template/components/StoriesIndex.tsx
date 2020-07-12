@@ -11,7 +11,7 @@ import {
     IconButton,
 } from '@chakra-ui/core'
 import { AiFillCaretRight } from 'react-icons/ai'
-import { FiBook as LogoPart } from 'react-icons/fi'
+import { BsGrid1X2Fill as LogoPart } from 'react-icons/bs'
 import NextLink from 'next/link'
 import { getStories } from '../support'
 import { useMemo, useState, useCallback } from 'react'
@@ -94,12 +94,12 @@ export const Logo = ({ ...rest }) => {
             direction='row'
             align='center'
             fontSize='24px'
-            fontWeight='500'
-            spacing='2'
+            fontWeight='600'
+            spacing='3'
             {...rest}
         >
             <Box as={LogoPart} size='1.1em' />
-            <Box>Storyboards</Box>
+            <Box fontSize='32px'>Vitrine</Box>
         </Stack>
     )
 }
