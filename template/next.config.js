@@ -92,7 +92,14 @@ module.exports = composed({
                 options: {
                     callback(inspect) {
                         // console.log(inspect.arguments)
-                        console.log(inspect.context.resourcePath)
+                        // TODO only show for client or node
+                        console.log(
+                            'compiling',
+                            path.relative(
+                                path.resolve('..'),
+                                inspect.context.resourcePath,
+                            ),
+                        )
                         // console.log(inspect.options)
                     },
                 },

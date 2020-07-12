@@ -20,7 +20,7 @@ import debounce from 'lodash/debounce'
 export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
     let [filter, setFilter] = useState('')
     filter = filter.toLowerCase()
-    const throttledSetFilter = useCallback<any>(debounce(setFilter, 300), [
+    const throttledSetFilter = useCallback<any>(debounce(setFilter, 100), [
         setFilter,
     ])
     const { colorMode, toggleColorMode } = useColorMode()
