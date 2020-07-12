@@ -28,7 +28,7 @@
 
 ## Things to do
 
--   sidebar in safari has zindex too high
+-   ~~sidebar in safari has zindex too high~~
 -   render components inside iframes when specified, to not let css files modify the UI
 -   add a globalCSS options to pass an array of css files to include in global scope (inside the iframe)
 -   add the next css plugin to let users import css files that are not css modules
