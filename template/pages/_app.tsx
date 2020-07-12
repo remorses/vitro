@@ -68,7 +68,7 @@ export const Content = ({ children }) => {
             </Box>
             <Stack
                 position='absolute'
-                height='auto'
+                height='content'
                 right='0'
                 top='0'
                 bottom='0'
@@ -178,6 +178,8 @@ const nprogressStyles = css`
 const globalStyles = css`
     * {
         box-sizing: border-box;
+        flex-shrink: 0;
+        flex-grow: 0;
     }
     html {
         overflow: hidden;
