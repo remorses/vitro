@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "dev": "STORYBOARDS_TEMPLATE=1 next dev",
-        "build": "yarn --cwd .. install && next build",
+        "build": "yarn --cwd .. install && yarn --cwd ../storyboards build && next build",
         "lock": "rm -rf node_modules && npm i --ignore-scripts && rm -rf node_modules && yarn",
         "start": "next start"
     },
