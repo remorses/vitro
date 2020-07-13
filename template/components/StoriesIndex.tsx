@@ -28,7 +28,7 @@ export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
     return (
         <Stack spacing='6' {...p}>
             <Stack direction='row' spacing='2' align='center'>
-                <Logo fontSize='28px' />
+                <Logo />
                 <Box flex='1' />
                 <IconButton
                     // bg={{ light: 'white', dark: 'gray.700' }[colorMode]}
@@ -98,8 +98,10 @@ export const Logo = ({ ...rest }) => {
             spacing='3'
             {...rest}
         >
-            <Box as={Beaker} size='1.5em' />
-            <Box fontSize='42px'>Vitro</Box>
+            <Box as={Beaker} size='1.6em' />
+            <Box letterSpacing='0.08em' fontSize='1.6em'>
+                Vitro
+            </Box>
         </Stack>
     )
 }
