@@ -1,7 +1,7 @@
 {
-    "name": "storyboards",
+    "name": "vitro",
     "_": "[bump]",
-    "version": "2.0.33",
+    "version": "0.0.0",
     "description": "Storyboards cli",
     "keywords": [],
     "main": "dist/index.js",
@@ -13,10 +13,7 @@
         "timeout": 9999999999
     },
     "files": [
-        "dist",
-        "src",
-        "template",
-        "esm"
+        "dist"
     ],
     "scripts": {
         "test": "NODE_ENV=test mocha --colors --exit",
