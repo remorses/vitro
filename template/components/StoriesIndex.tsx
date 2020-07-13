@@ -99,7 +99,7 @@ export const Logo = ({ ...rest }) => {
             {...rest}
         >
             <Box as={Beaker} size='1.6em' />
-            <Box letterSpacing='0.08em' fontSize='1.6em'>
+            <Box letterSpacing='0.06em' fontSize='1.6em'>
                 Vitro
             </Box>
         </Stack>
