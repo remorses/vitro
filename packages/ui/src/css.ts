@@ -84,7 +84,7 @@ const nprogressStyles = css`
 }
 `
 
-export const globalStyles = css`
+export const globalStyles: any = css`
 * {
     box-sizing: border-box;
     flex-shrink: 0;
