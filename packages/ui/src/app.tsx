@@ -1,17 +1,20 @@
-import React from 'react'
-import {globalStyles} from './css'
+// @jsx jsx
 import {
+    Box,
+    ColorModeProvider,
     CSSReset,
     Stack,
     ThemeProvider,
-    Box,
     useColorMode,
-    ColorModeProvider,
 } from '@chakra-ui/core'
-import { css, Global } from '@emotion/core'
+import { Global, jsx } from '@emotion/core'
 import { Router } from 'next/router'
 import NProgress from 'nprogress'
+import React from 'react'
+import { globalStyles } from './css'
 import { StoriesNav } from './stories_nav'
+
+jsx
 
 Router.events.on('routeChangeStart', (url) => {
     console.log(`Loading: ${url}`)

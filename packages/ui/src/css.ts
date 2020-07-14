@@ -1,4 +1,4 @@
-import { css } from "@chakra-ui/core"
+import { css } from "@emotion/core"
 
 const nprogressStyles = css`
 /* Make clicks pass-through */
@@ -84,7 +84,7 @@ const nprogressStyles = css`
 }
 `
 
-export const globalStyles: any = css`
+export const globalStyles = css`
 * {
     box-sizing: border-box;
     flex-shrink: 0;
