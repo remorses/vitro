@@ -4,7 +4,7 @@
     "scripts": {
         "cli": "cross-env NODE_ENV=test node -r sucrase/register packages/cli/src/main.ts",
         "start": "lerna exec --parallel --ignore example* --ignore website -- tsc -w",
-        "template": "cross-env STORYBOARDS_TEMPLATE=1 yarn --cwd template dev"
+        "template": "cross-env VITRO_TEMPLATE=1 yarn --cwd packages/template dev"
     },
     "workspaces": [
         "packages/*",

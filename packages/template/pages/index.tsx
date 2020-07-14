@@ -18,7 +18,7 @@ export default function Page(props) {
                     Navigate to a story page to see the rendered exported
                     components
                 </Box>
-                <Image w='300px' src={path.join(BASE_PATH, 'share-reuse.png')} />
+                {/* <Image w='300px' src={path.join(BASE_PATH, 'share-reuse.png')} /> */}
             </Stack>
         </Stack>
     )
