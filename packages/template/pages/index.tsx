@@ -1,3 +1,3 @@
-import {Home} from '@vitro/ui/src'
+import { Home } from '@vitro/ui'
 
 export default Home

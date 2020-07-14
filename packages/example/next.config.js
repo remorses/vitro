@@ -4,6 +4,7 @@ const { withVitro } = require('@vitro/plugin')
 
 const transpile = require('next-transpile-modules')([
     path.resolve(__dirname, '../'),
+    '@vitro', // TODO transpile only on DEV
 ])
 
 const vitro = withVitro({
