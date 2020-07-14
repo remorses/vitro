@@ -1,8 +1,7 @@
 {
     "version": 2,
     "builds": [
-        { "src": "template/next.config.js", "use": "@now/next" },
-        { "src": "website/next.config.js", "use": "@now/next" }
+        { "src": "packages/template/next.config.js", "use": "@now/next" }
     ],
     "rewrites": [{ "source": "/(.*)", "destination": "/template/$1" }]
 }

@@ -17,7 +17,7 @@ export const DifferentColor = ({}) => {
 }
 ```
 
-Every exported component will be displayed as a block on the storyboards ui
+Every exported component will be displayed as a block on the vitro ui
 
 ## Changing title
 
@@ -67,14 +67,14 @@ export const SimpleButton = () => {
 
 ## Adding a global wrapper to all stories
 
-If you want to add a wrapper to all stories you can pass a path to the wrapper field in `storyboards.config.js`
+If you want to add a wrapper to all stories you can pass a path to the wrapper field in `vitro.config.js`
 
 The path must have a default export with the wrapper component
 
 The file will be transpiled so you can use typescript and ESNext features
 
 ```js
-// storyboards.config.js
+// vitro.config.js
 
 module.exports = {
     stories: ['./example-package/.story.tsx'], // glob to your stories

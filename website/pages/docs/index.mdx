@@ -9,7 +9,7 @@ name: Getting Started
 First install the cli with
 
 ```sh
-npm i -g storyboards
+npm i -g @vitro/cli
 ```
 
 ## 2. Init the project
@@ -17,15 +17,15 @@ npm i -g storyboards
 Init the project with
 
 ```sh
-storyboards new
+vitro new
 ```
 
-The command above creates a `storyboards.config.js` config file and a `.storyboards` directory
+The command above creates a `vitro.config.js` config file and a `.vitro` directory
 
 You can customize the config changing the stories location and an optional wrapper path that points to a file that has a react component as default export
 
 ```js
-// storyboards.config.js
+// vitro.config.js
 
 module.exports = {
     stories: ['./example-package/.story.tsx'], // glob to your stories
@@ -38,7 +38,7 @@ module.exports = {
 Now you can start the server with
 
 ```sh
-storyboards start -p 7007
+vitro start -p 7007
 ```
 
 This will start a web server on [localhost:7007](http://localhost:7007) with your stories

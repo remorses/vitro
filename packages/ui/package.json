@@ -1,0 +1,41 @@
+{
+    "name": "@vitro/ui",
+    "_": "[bump]",
+    "version": "0.0.0",
+    "description": "Storyboards ui components",
+    "keywords": [],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "bin": "./dist/main.js",
+    "mocha": {
+        "require": "sucrase/register",
+        "spec": "tests/**.ts",
+        "timeout": 9999999999
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "test": "NODE_ENV=test mocha --colors --exit"
+    },
+    "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
+    "repository": {
+        "url": "https://github.com/remorses/vitro"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "react-is": "^16.13.1",
+        "react-icons": "latest",
+        "tslib": "^2.0.0"
+    },
+    "devDependencies": {
+        "@chakra-ui/core": "^0.8.0",
+        "@types/mocha": "^7.0.2",
+        "assert": "^2.0.0",
+        "cross-env": "^7.0.2",
+        "dotenv": "^8.2.0",
+        "mocha": "^7.2.0",
+        "sucrase": "^3.15.0",
+        "typescript": "3.9.6"
+    }
+}

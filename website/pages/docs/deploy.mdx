@@ -1,14 +1,14 @@
 # Deploy
 
-The simplest way to deploy a storyboards website is to use Vercel
+The simplest way to deploy a vitro website is to use Vercel
 
-First create a `vercel.json` file that tells Vercel how to deploy the storyboards package
+First create a `vercel.json` file that tells Vercel how to deploy the vitro package
 
 ```json
 {
     "version": 2,
-    "builds": [{ "src": ".storyboards/next.config.js", "use": "@now/next" }],
-    "rewrites": [{ "source": "/(.*)", "destination": "/.storyboards/$1" }]
+    "builds": [{ "src": ".vitro/next.config.js", "use": "@now/next" }],
+    "rewrites": [{ "source": "/(.*)", "destination": "/.vitro/$1" }]
 }
 ```
 
@@ -23,19 +23,19 @@ vercel
 
 Nextjs serves its assets on the `/` path by default, you can change that using the `basePath` feature
 
-Notice that after adding a `basePath` you will have your storyboards served on `http://localhost:7007/:basePath`
+Notice that after adding a `basePath` you will have your vitro served on `http://localhost:7007/:basePath`
 
 ```js
 modules.exports = {
     stories: './**.stories.js',
-    basePath: process.env.NODE_ENV == 'production' ? '/.storyboards' : '/',
+    basePath: process.env.NODE_ENV == 'production' ? '/.vitro' : '/',
 }
 ```
 
 ```json
 {
     "version": 2,
-    "builds": [{ "src": ".storyboards/next.config.js", "use": "@now/next" }]
+    "builds": [{ "src": ".vitro/next.config.js", "use": "@now/next" }]
 }
 ```
 
