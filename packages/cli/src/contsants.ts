@@ -8,7 +8,7 @@ export const CONFIG_PATH = 'vitro.config.js'
 
 export const TEMPLATE_PATH = TESTING
     ? path.resolve(__dirname, '../../template')
-    : path.resolve(__dirname, '../template') // TODO when building copy the template in the root folder
+    : path.resolve(__dirname, '../template')
 
 export const DEFAULT_CONFIG = `
 module.exports = {

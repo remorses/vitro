@@ -82,7 +82,6 @@ export async function generateStoriesMap({ cwd = '.', globs, ignore }) {
         filesOnly: true,
     }
     const results: string[][] = await Promise.all(
-        // TODO memoize glob
         globs.map((s) => memoizedGlob(s, options)),
     )
     const files: string[] = uniq(flatten(results))

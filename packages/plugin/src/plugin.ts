@@ -72,7 +72,7 @@ export const withVitro = ({
                     options: {
                         callback(inspect) {
                             // console.log(inspect.arguments)
-                            // TODO only show for client or node
+                            // TODO only show for client or node, use an env variable to do that
                             console.log(
                                 'compiling',
                                 path.relative(
