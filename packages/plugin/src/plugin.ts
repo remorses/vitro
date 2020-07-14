@@ -2,13 +2,6 @@ import { generateStories, generateStoriesMap } from './stories'
 import path from 'path'
 import fs from 'fs'
 
-/*
-parameters used
-- transpiled packages, no pass them explicity
-- wrapper component path
-- aliases
-*/
-
 const excludedDirs = ['.vitro']
 if (process.env.VITRO_TEMPLATE) {
     excludedDirs.push('template')
