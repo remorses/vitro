@@ -6,10 +6,15 @@
         "start": "lerna exec --parallel --ignore example* --ignore website -- tsc -w",
         "example": "cross-env VITRO_TEMPLATE=1 yarn --cwd packages/example dev"
     },
-    "workspaces": [
-        "packages/*",
-        "website"
-    ],
+    "workspaces": {
+        "packages": [
+            "packages/*",
+            "website"
+        ],
+        "nohoist": [
+            "**/next"
+        ]
+    },
     "devDependencies": {
         "lerna": "^3.22.1"
     }

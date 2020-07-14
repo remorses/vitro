@@ -8,9 +8,9 @@
     },
     "license": "MIT",
     "dependencies": {
-        "next": "*",
-        "react": "*",
-        "react-dom": "*",
+        "next": "^9.4.4",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
         "@vitro/ui": "*",
         "@vitro/plugin": "*"
     },

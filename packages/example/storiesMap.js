@@ -4,4 +4,6 @@ module.exports = {
     'example-package/src/example_component.story': '/Users/morse/Documents/GitHub/react-comics/packages/example-package/src/example_component.story.tsx',
     'example-package/src/stillAnotherStory.story': '/Users/morse/Documents/GitHub/react-comics/packages/example-package/src/stillAnotherStory.story.tsx',
     'example-package/src/story1.story': '/Users/morse/Documents/GitHub/react-comics/packages/example-package/src/story1.story.tsx',
+    'example-package-scope/example-sub-package-1/src/index.story': '/Users/morse/Documents/GitHub/react-comics/packages/example-package-scope/example-sub-package-1/src/index.story.tsx',
+    'example-package-scope/example-sub-package-2/src/index.story': '/Users/morse/Documents/GitHub/react-comics/packages/example-package-scope/example-sub-package-2/src/index.story.tsx',
 }

@@ -3,6 +3,6 @@ console.log('NODE_ENV', NODE_ENV)
 
 module.exports = {
     // basePath: NODE_ENV == 'production' ? '/.vitro' : '/',
-    stories: ['./example-package/**/*.story.tsx'],
+    stories: ['./example-package/**/*.story.tsx', './example-package-scope/**/*.story.tsx'],
     wrapper: './example-package/src/Wrapper.tsx',
 }

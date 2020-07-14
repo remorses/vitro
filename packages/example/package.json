@@ -11,9 +11,9 @@
     "dependencies": {
         "@vitro/plugin": "*",
         "@vitro/ui": "*",
-        "next": "*",
-        "react": "*",
-        "react-dom": "*"
+        "next": "^9.4.4",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1"
     },
     "devDependencies": {
         "@types/node": "^14.0.20",

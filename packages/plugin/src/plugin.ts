@@ -13,7 +13,7 @@ export const withVitro = ({
     basePath,
     __dirname,
     ignore = ['node_modules'],
-}) => {
+}) => (nextConfig = {} as any) => {
     stories = stories.map(path.normalize)
     if (basePath && basePath.trim() === '/') {
         basePath = ''
@@ -39,6 +39,7 @@ export const withVitro = ({
     generate()
 
     return {
+        ...nextConfig,
         webpack: (config, options) => {
             const { webpack } = options
             // console.log({ dir, recursive, match })
@@ -84,6 +85,10 @@ export const withVitro = ({
                     },
                 },
             })
+            if (typeof nextConfig.webpack === 'function') {
+                return nextConfig.webpack(config, options)
+            }
+
             return config
         },
         ...(basePath ? { experimental: { basePath } } : {}),
