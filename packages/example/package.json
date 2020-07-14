@@ -1,5 +1,6 @@
 {
     "name": "example",
+    "private": true,
     "version": "0.0.0",
     "scripts": {
         "dev": "VITRO_TEMPLATE=1 next dev",
