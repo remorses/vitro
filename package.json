@@ -4,7 +4,10 @@
     "scripts": {
         "cli": "cross-env NODE_ENV=test node -r sucrase/register packages/cli/src/main.ts",
         "start": "lerna exec --parallel --ignore example* --ignore website -- tsc -w",
-        "example": "cross-env VITRO_TEMPLATE=1 yarn --cwd packages/example dev"
+        "example": "cross-env VITRO_TEMPLATE=1 yarn --cwd packages/example dev",
+        "build": "yarn build:cjs && yarn build:esm",
+        "build:cjs": "lerna exec --parallel --ignore example* --ignore website -- yarn tsc",
+        "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc -m ESNext --outDir esm"
     },
     "workspaces": {
         "packages": [

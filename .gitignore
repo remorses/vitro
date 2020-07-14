@@ -9,6 +9,7 @@ node_modules
 .next
 
 dist
+esm
 
 sidebar.json
 

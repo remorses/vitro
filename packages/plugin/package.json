@@ -24,11 +24,11 @@
     },
     "license": "ISC",
     "dependencies": {
-        "inspect-loader": "^1.0.0",
         "@types/fs-extra": "^9.0.1",
         "fs-extra": "^9.0.1",
-        "smart-glob": "^0.0.9",
+        "inspect-loader": "^1.0.0",
         "lodash": "latest",
+        "smart-glob": "^0.0.9",
         "tslib": "^2.0.0"
     },
     "devDependencies": {
