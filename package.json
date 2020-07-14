@@ -7,7 +7,8 @@
         "example": "cross-env VITRO_TEMPLATE=1 yarn --cwd packages/example dev",
         "build": "yarn build:cjs && yarn build:esm",
         "build:cjs": "lerna exec --parallel --ignore example* --ignore website -- yarn tsc",
-        "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc -m ESNext --outDir esm"
+        "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc -m ESNext --outDir esm",
+        "prepare": "yarn build"
     },
     "workspaces": {
         "packages": [
