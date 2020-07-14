@@ -1,30 +1,34 @@
 import {
-    Stack,
     Box,
-    StackProps,
-    InputGroup,
-    InputLeftElement,
     Icon,
-    Input,
-    InputGroupProps,
-    useColorMode,
     IconButton,
+    Input,
+    InputGroup,
+    InputGroupProps,
+    InputLeftElement,
+    Stack,
+    useColorMode,
 } from '@chakra-ui/core'
-import { AiFillCaretRight } from 'react-icons/ai'
-import { BsGrid1X2Fill as LogoPart } from 'react-icons/bs'
-import NextLink from 'next/link'
-import { getStories } from '../support'
-import { useMemo, useState, useCallback } from 'react'
 import debounce from 'lodash/debounce'
+import startCase from 'lodash/startCase'
+import NextLink from 'next/link'
+import React, { Fragment, useCallback, useMemo, useState } from 'react'
+import { AiFillCaretRight } from 'react-icons/ai'
+import { getStories } from './support'
 
-export const StoriesIndex = ({ ...p }: Omit<InputGroupProps, 'children'>) => {
+export const StoriesNav = ({
+    storiesMap,
+    ...p
+}: Omit<InputGroupProps, 'children'> & {
+    storiesMap: Record<string, string>
+}) => {
     let [filter, setFilter] = useState('')
     filter = filter.toLowerCase()
     const throttledSetFilter = useCallback<any>(debounce(setFilter, 100), [
         setFilter,
     ])
     const { colorMode, toggleColorMode } = useColorMode()
-    const stories = useMemo(() => getStories(), [])
+    const stories = useMemo(() => getStories(storiesMap), [])
     return (
         <Stack spacing='6' {...p}>
             <Stack direction='row' spacing='2' align='center'>

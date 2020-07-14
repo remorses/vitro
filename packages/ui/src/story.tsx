@@ -31,6 +31,7 @@ import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
 import { DebugCSS } from './debugCSS'
 import { DefaultWrapper } from './default_wrapper'
+import { formatPathToTitle } from './support'
 
 jsx
 
@@ -424,21 +425,3 @@ export const Couple = ({ a, b, hide, ...rest }) => {
     )
 }
 
-function normalizePath(p: string): string {
-    return p
-        .split('/')
-        .map((x) => x.trim())
-        .filter((x) => x !== '.')
-        .filter(Boolean)
-        .join('/')
-}
-
-export function formatPathToTitle(path: string) {
-    const endPath = path
-        .split('/')
-        .map((x) => x.trim())
-        .filter(Boolean)
-        .reverse()[0]
-    const withoutExt = endPath.split('.')[0]
-    return startCase(withoutExt)
-}

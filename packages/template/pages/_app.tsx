@@ -10,7 +10,8 @@ import { css, Global } from '@emotion/core'
 import { Router } from 'next/router'
 import NProgress from 'nprogress'
 import React from 'react'
-import { StoriesIndex } from '../components/StoriesIndex'
+import { StoriesNav } from '@vitro/ui/src'
+import storiesMap from '@/storiesMap'
 
 Router.events.on('routeChangeStart', (url) => {
     console.log(`Loading: ${url}`)
@@ -59,7 +60,8 @@ export const Content = ({ children }) => {
                 bottom='0'
                 // overflowX='hidden'
             >
-                <StoriesIndex
+                <StoriesNav
+                    storiesMap={storiesMap}
                     width='100%'
                     fontWeight='500'
                     display={['none', null, null, 'flex']}

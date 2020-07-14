@@ -1,6 +1,4 @@
-import { Stack, Box, Image } from '@chakra-ui/core'
-import path from 'path'
-import { StoriesIndex } from '../components/StoriesIndex'
+import { Box, Stack } from '@chakra-ui/core'
 
 export default function Page(props) {
     return (
