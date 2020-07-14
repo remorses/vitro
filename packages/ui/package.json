@@ -24,14 +24,21 @@
     },
     "license": "ISC",
     "dependencies": {
+        "@chakra-ui/core": "*",
+        "@emotion/core": "*",
+        "@emotion/styled": "^10.0.27",
+        "emotion-theming": "^10.0.27",
+        "next": "*",
+        "react": "*",
+        "nprogress": "^0.2.0",
+        "react-dom": "16.13.1",
         "@types/lodash": "^4.14.157",
         "lodash": "^4.17.19",
-        "react-icons": "latest",
+        "react-icons": "*",
         "react-is": "^16.13.1",
         "tslib": "^2.0.0"
     },
     "devDependencies": {
-        "@chakra-ui/core": "^0.8.0",
         "@types/mocha": "^7.0.2",
         "assert": "^2.0.0",
         "cross-env": "^7.0.2",
