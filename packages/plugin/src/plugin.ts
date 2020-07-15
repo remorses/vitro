@@ -81,7 +81,6 @@ export const withVitro = ({
                     options: {
                         callback(inspect) {
                             // console.log(inspect.arguments)
-                            // TODO only show for client or node, use an env variable to do that
                             const context: loader.LoaderContext =
                                 inspect.context
                             console.log(

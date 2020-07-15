@@ -6,7 +6,6 @@ import path, { ParsedPath } from 'path'
 import { memoizedGlob, GlobOptions } from 'smart-glob'
 import { TESTING } from './constants'
 
-
 export async function generateStories(p: {
     globs: string[]
     targetDir: string
@@ -19,7 +18,9 @@ export async function generateStories(p: {
         targetDir,
         ignore,
         cwd = '.',
-        wrapperComponentPath = '@vitro/ui/src/default_wrapper', // TODO replace src path when not in template
+        wrapperComponentPath = `@vitro/ui/${
+            TESTING ? 'src' : 'dist'
+        }/default_wrapper`,
     } = p
     const options: GlobOptions = {
         ignore,
@@ -53,8 +54,6 @@ export async function generateStories(p: {
         }),
     )
 }
-
-// TODO remove the src and only on DEV
 
 function generateStoryPage({ importPath, absolutePath, wrapperComponentPath }) {
     return `
