@@ -4,6 +4,8 @@ import uniq from 'lodash/uniq'
 import { outputFile, existsSync, exists, readFile } from 'fs-extra'
 import path, { ParsedPath } from 'path'
 import { memoizedGlob, GlobOptions } from 'smart-glob'
+import { TESTING } from './constants'
+
 
 export async function generateStories(p: {
     globs: string[]
@@ -59,7 +61,7 @@ function generateStoryPage({ importPath, absolutePath, wrapperComponentPath }) {
 import * as exported from '${importPath}'
 import { default as GlobalWrapper } from '${wrapperComponentPath}'
 import React from 'react'
-import { StoryPage } from '@vitro/ui/src/story'
+import { StoryPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
 const absolutePath = '${absolutePath}'
 

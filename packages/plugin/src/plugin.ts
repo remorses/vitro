@@ -1,9 +1,11 @@
 import { generateStories, generateStoriesMap } from './stories'
+import { loader } from 'webpack'
 import path from 'path'
 import fs from 'fs'
+import { TESTING } from './constants'
 
 const excludedDirs = ['.vitro']
-if (process.env.VITRO_TEMPLATE) {
+if (TESTING) {
     excludedDirs.push('template')
 }
 
@@ -73,11 +75,13 @@ export const withVitro = ({
                         callback(inspect) {
                             // console.log(inspect.arguments)
                             // TODO only show for client or node, use an env variable to do that
+                            const context: loader.LoaderContext =
+                                inspect.context
                             console.log(
                                 'compiling',
                                 path.relative(
                                     path.resolve('..'),
-                                    inspect.context.resourcePath,
+                                    context.resourcePath,
                                 ),
                             )
                             // console.log(inspect.options)
