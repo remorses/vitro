@@ -1,5 +1,6 @@
 import { generateStories, generateStoriesMap } from './stories'
 import { loader } from 'webpack'
+import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import fs from 'fs'
 import { TESTING } from './constants'
@@ -12,7 +13,8 @@ if (TESTING) {
 export const withVitro = ({
     stories,
     wrapper,
-    basePath,
+    basePath = '',
+    transpileModules = [],
     __dirname,
     ignore = ['node_modules'],
 }) => (nextConfig = {} as any) => {
@@ -40,7 +42,12 @@ export const withVitro = ({
     })
     generate()
 
-    return {
+    const transpile = transpilePlugin([
+        path.resolve(__dirname, '../'),
+        ...transpileModules,
+    ])
+
+    return transpile({
         ...nextConfig,
         webpack: (config, options) => {
             const { webpack } = options
@@ -62,7 +69,7 @@ export const withVitro = ({
                     'react',
                     'react-dom',
                     '@emotion/core',
-                    'emotion-theming',
+                    // 'emotion-theming',
                     'next',
                     // '@chakra-ui'
                 ]),
@@ -96,7 +103,7 @@ export const withVitro = ({
             return config
         },
         ...(basePath ? { experimental: { basePath } } : {}),
-    }
+    })
 }
 
 function aliasOfPackages(packages) {

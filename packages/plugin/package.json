@@ -29,6 +29,7 @@
         "inspect-loader": "^1.0.0",
         "lodash": "latest",
         "smart-glob": "^0.0.9",
+        "next-transpile-modules": "^3.3.0",
         "tslib": "^2.0.0"
     },
     "devDependencies": {
