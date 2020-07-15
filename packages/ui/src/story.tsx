@@ -59,7 +59,7 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     const vscodeUrl = `vscode://file${absolutePath}`
     // console.log(storyObject)
     // exported.then(z => console.log(Object.keys(z)))
-    console.log({ storyExports })
+    // console.log({ storyExports })
     const StoryWrapper = useMemo(
         () => storyExports?.default?.wrapper || DefaultWrapper,
         [storyExports],
@@ -207,7 +207,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
     const renderCount = useRef(0)
 
     // renderCount.current = 0
-    console.log({ id })
+    // console.log({ id })
     const profile: ProfilerOnRenderCallback = useCallback(
         (id, _, actualDuration) => {
             console.log({ id, actualDuration })
