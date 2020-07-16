@@ -7,7 +7,7 @@ import {
     ThemeProvider,
     useColorMode,
 } from '@chakra-ui/core'
-import { Global, jsx } from '@emotion/core'
+import { Global, jsx, css } from '@emotion/core'
 import { Router } from 'next/router'
 import NProgress from 'nprogress'
 import React from 'react'
@@ -27,13 +27,12 @@ const PAGE_PADDING = '40px'
 
 export function VitroApp({ storiesMap, ...props }) {
     const { Component, pageProps } = props
-
     return (
         <ColorModeProvider value='light'>
             {/* TODO make initial color mode configurable via webpack define */}
             <ThemeProvider>
                 <CSSReset />
-                <Global styles={globalStyles} />
+                <Global styles={[globalStyles]} />
                 <Content storiesMap={storiesMap}>
                     <Component {...pageProps} />
                 </Content>
@@ -51,13 +50,19 @@ const Content = ({
 }) => {
     const { colorMode } = useColorMode()
     return (
-        <Stack
-            position='relative'
-            overflowX='hidden'
-            minWidth='100vw'
-            minHeight='100vh'
-            bg={{ light: 'gray.200', dark: 'gray.800' }[colorMode]}
-        >
+        <>
+            <Global
+                styles={css`
+                    body {
+                        min-height: 100vh;
+                        min-width: 100vw;
+                        background-color: ${{
+                            light: '#EDF2F7',
+                            dark: '#1A202C',
+                        }[colorMode]};
+                    }
+                `}
+            />
             <Box
                 // overflowY='auto'
                 width={['270px']}
@@ -70,6 +75,7 @@ const Content = ({
                 // overflowX='hidden'
             >
                 <StoriesNav
+                    className='vitro smoothscroll'
                     storiesMap={storiesMap}
                     width='100%'
                     fontWeight='500'
@@ -78,6 +84,7 @@ const Content = ({
                 <Box h={PAGE_PADDING} />
             </Box>
             <Stack
+                className='vitro smoothscroll'
                 position='absolute'
                 height='content'
                 right='0'
@@ -98,6 +105,6 @@ const Content = ({
             >
                 {children}
             </Stack>
-        </Stack>
+        </>
     )
 }
