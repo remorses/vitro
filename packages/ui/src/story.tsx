@@ -76,11 +76,12 @@ export function StoryPage({
         formatPathToTitle(absolutePath) ||
         'Untitled'
 
-    const { colorMode } = useColorMode()
+    const { colorMode, toggleColorMode } = useColorMode()
     const bg = useMemo(
         () => ({ light: 'white', dark: 'gray.700' }[colorMode]),
         [colorMode],
     )
+
     // if (!exported || !story || !storyObject) {
     //     // TODO return 404
     //     return null
@@ -88,11 +89,21 @@ export function StoryPage({
     return (
         <Stack spacing='10'>
             <Stack align='flex-start' spacing='4'>
-                <Stack align='center' direction='row' width='100%'>
+                <Stack spacing='3' align='center' direction='row' width='100%'>
                     <Box fontSize='32px' isTruncated fontWeight='medium'>
                         {storyTitle}
                     </Box>
                     <Box flex='1' />
+                    <IconButton
+                        // bg={{ light: 'white', dark: 'gray.700' }[colorMode]}
+                        // size='sm'
+                        // shadow='sm'
+                        mr={['0px', null, null, '-10px !important']}
+                        onClick={toggleColorMode}
+                        fontSize='1.2em'
+                        aria-label='color-mode-toggle'
+                        icon={colorMode === 'dark' ? 'moon' : 'sun'}
+                    />
                     <MobileNav
                         display={['flex', null, null, 'none']}
                         storiesMap={storiesMap}

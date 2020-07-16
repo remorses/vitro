@@ -14,7 +14,7 @@ import startCase from 'lodash/startCase'
 import NextLink from 'next/link'
 import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
-import { getStories } from './support'
+import { getStories, version } from './support'
 
 export const StoriesNav = ({
     storiesMap,
@@ -27,22 +27,16 @@ export const StoriesNav = ({
     const throttledSetFilter = useCallback<any>(debounce(setFilter, 100), [
         setFilter,
     ])
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { colorMode } = useColorMode()
     const stories = useMemo(() => getStories(storiesMap), [])
     return (
         <Stack spacing='6' {...p}>
-            <Stack direction='row' spacing='2' align='center'>
+            <Stack direction='row' spacing='2' align='baseline'>
                 <Logo />
                 <Box flex='1' />
-                <IconButton
-                    // bg={{ light: 'white', dark: 'gray.700' }[colorMode]}
-                    // size='sm'
-                    // shadow='sm'
-                    onClick={toggleColorMode}
-                    fontSize='1.2em'
-                    aria-label='color-mode-toggle'
-                    icon={colorMode === 'dark' ? 'moon' : 'sun'}
-                />
+                <Box fontSize='0.9em' fontWeight='500' opacity={0.6}>
+                    v{version}
+                </Box>
             </Stack>
             <InputGroup
             // opacity={0.7}
