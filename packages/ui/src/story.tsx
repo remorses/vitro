@@ -32,10 +32,16 @@ import { isValidElementType } from 'react-is'
 import { DebugCSS } from './debugCSS'
 import { DefaultWrapper } from './default_wrapper'
 import { formatPathToTitle } from './support'
+import { MobileNav } from './mobile_nav'
 
 jsx
 
-export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
+export function StoryPage({
+    storiesMap,
+    GlobalWrapper,
+    absolutePath,
+    storyExports,
+}) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
 
@@ -82,9 +88,16 @@ export function StoryPage({ GlobalWrapper, absolutePath, storyExports }) {
     return (
         <Stack spacing='10'>
             <Stack align='flex-start' spacing='4'>
-                <Box fontSize='32px' fontWeight='medium'>
-                    {storyTitle}
-                </Box>
+                <Stack align='center' direction='row' width='100%'>
+                    <Box fontSize='32px' fontWeight='medium'>
+                        {storyTitle}
+                    </Box>
+                    <Box flex='1' />
+                    <MobileNav
+                        display={['flex', null, null, 'none']}
+                        storiesMap={storiesMap}
+                    />
+                </Stack>
                 {/* <Box fontSize='18px' opacity={0.6}>
                     powered by vitro
                 </Box> */}
@@ -424,4 +437,3 @@ export const Couple = ({ a, b, hide, ...rest }) => {
         </Stack>
     )
 }
-

@@ -57,9 +57,10 @@ export async function generateStories(p: {
 
 function generateStoryPage({ importPath, absolutePath, wrapperComponentPath }) {
     return `
+import React from 'react'
 import * as exported from '${importPath}'
 import { default as GlobalWrapper } from '${wrapperComponentPath}'
-import React from 'react'
+import storiesMap from '@/storiesMap'
 import { StoryPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
 const absolutePath = '${absolutePath}'
@@ -67,6 +68,7 @@ const absolutePath = '${absolutePath}'
 export default function Page() {
     return (
         <StoryPage
+            storiesMap={storiesMap}
             GlobalWrapper={GlobalWrapper}
             absolutePath={absolutePath}
             storyExports={exported}

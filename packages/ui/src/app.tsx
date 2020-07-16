@@ -24,6 +24,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 const PAGE_PADDING = '40px'
+const SM_PAGE_PADDING = '20px'
 
 export function VitroApp({ storiesMap, ...props }) {
     const { Component, pageProps } = props
@@ -90,13 +91,13 @@ const Content = ({
                 right='0'
                 top='0'
                 bottom='0'
-                left={[PAGE_PADDING, null, null, '350px']}
+                left={[SM_PAGE_PADDING, null, null, '350px']}
                 as='main'
                 borderLeftWidth={['0', null, null, '2px']}
                 pl={['0', null, null, PAGE_PADDING]}
-                pt={PAGE_PADDING}
-                pr={PAGE_PADDING}
-                pb={PAGE_PADDING}
+                pt={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                pr={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                pb={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
                 // width='100%'
                 // overflowX='visible'
                 // zIndex={0}

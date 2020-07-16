@@ -45,9 +45,9 @@ export const StoriesNav = ({
                 />
             </Stack>
             <InputGroup
-                // opacity={0.7}
-                // borderWidth='1px'
-                // shadow='sm'
+            // opacity={0.7}
+            // borderWidth='1px'
+            // shadow='sm'
             >
                 <InputLeftElement
                     children={<Icon name='search' color='gray.400' />}
