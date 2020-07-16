@@ -56,7 +56,7 @@ const Content = ({
             overflowX='hidden'
             minWidth='100vw'
             minHeight='100vh'
-            bg={{ light: 'gray.100', dark: 'gray.800' }[colorMode]}
+            bg={{ light: 'gray.200', dark: 'gray.800' }[colorMode]}
         >
             <Box
                 // overflowY='auto'

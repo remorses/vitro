@@ -44,7 +44,11 @@ export const StoriesNav = ({
                     icon={colorMode === 'dark' ? 'moon' : 'sun'}
                 />
             </Stack>
-            <InputGroup shadow='sm'>
+            <InputGroup
+                // opacity={0.7}
+                // borderWidth='1px'
+                // shadow='sm'
+            >
                 <InputLeftElement
                     children={<Icon name='search' color='gray.400' />}
                 />
@@ -105,9 +109,7 @@ export const Logo = ({ ...rest }) => {
             {...rest}
         >
             <Box as={Beaker} size='1.5em' />
-            <Box  fontSize='1.7em'>
-                vitro
-            </Box>
+            <Box fontSize='1.7em'>vitro</Box>
         </Stack>
     )
 }
