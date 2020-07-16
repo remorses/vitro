@@ -98,13 +98,15 @@ export const Logo = ({ ...rest }) => {
             direction='row'
             align='baseline'
             fontSize='24px'
-            fontWeight='500'
-            spacing='3'
+            fontFamily='ITF Devangari' // TODO make the logo font outlines
+            fontWeight='bold'
+            letterSpacing='0.04em'
+            spacing='2'
             {...rest}
         >
             <Box as={Beaker} size='1.5em' />
-            <Box letterSpacing='0.06em' fontSize='1.6em'>
-                Vitro
+            <Box  fontSize='1.7em'>
+                vitro
             </Box>
         </Stack>
     )
