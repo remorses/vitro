@@ -89,7 +89,7 @@ export function StoryPage({
         <Stack spacing='10'>
             <Stack align='flex-start' spacing='4'>
                 <Stack align='center' direction='row' width='100%'>
-                    <Box fontSize='32px' fontWeight='medium'>
+                    <Box fontSize='32px' isTruncated fontWeight='medium'>
                         {storyTitle}
                     </Box>
                     <Box flex='1' />
@@ -247,8 +247,8 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
                 position='absolute'
                 opacity={0.7}
                 top={fullScreen ? '20px' : '10px'}
-                left={fullScreen ? '50px' : '20px'}
-                right={fullScreen ? '50px' : '20px'}
+                left={fullScreen ? '20px' : '20px'}
+                right={fullScreen ? '20px' : '20px'}
                 direction='row'
                 align='center'
             >
