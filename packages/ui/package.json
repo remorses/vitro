@@ -46,5 +46,5 @@
         "test": "NODE_ENV=test mocha --colors --exit"
     },
     "types": "dist/index.d.ts",
-    "gitHead": "11c3d98a71c85fcad79bb3babf6ad9ecfb3133b4"
+    "gitHead": "925fd487e20adce1cd2d98b82c2599064a4c3e16"
 }

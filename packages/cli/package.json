@@ -21,7 +21,7 @@
         "test": "NODE_ENV=test mocha --colors --exit",
         "build": "echo 'building cli' && tsc && rm -rf ./template/ && cp -r ../template/ ./template/ && rm -rf ./template/pages/stories/* && yarn lock",
         "prepublish": "yarn build",
-        "lock": "cd template && rm -rf node_modules && npm i --ignore-scripts && rm -rf node_modules",
+        "lock": "cd template && rm -rf node_modules && rm -rf node_modules",
         "compile": "sucrase -q ./src -d ./dist --transforms typescript,imports",
         "play": "cross-env NODE_ENV=test node -r sucrase/register src/main.ts"
     },
@@ -49,5 +49,5 @@
         "sucrase": "^3.15.0",
         "typescript": "3.9.6"
     },
-    "gitHead": "11c3d98a71c85fcad79bb3babf6ad9ecfb3133b4"
+    "gitHead": "925fd487e20adce1cd2d98b82c2599064a4c3e16"
 }
