@@ -7,7 +7,7 @@
         "example": "yarn --cwd packages/example dev",
         "publ": "yarn build && yarn lerna publish -y patch",
         "build": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "lerna exec  --ignore example* --ignore website  'yarn tsc --incremental'",
+        "build:cjs": "lerna exec --ignore example* --ignore website --ignore template  'yarn tsc --incremental'",
         "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc -m ESNext --outDir esm --incremental"
     },
     "workspaces": {
