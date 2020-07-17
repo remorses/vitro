@@ -14,7 +14,7 @@ const command: CommandModule = {
     command: ['new'],
     describe: 'Creates a new storyboard',
     builder: (argv) => {
-        argv.option('no-install', {
+        argv.option('skip-install', {
             type: 'boolean',
             boolean: true,
             default: false,
@@ -28,7 +28,7 @@ const command: CommandModule = {
             filter: (src: string) => !src.includes('node_modules'),
         })
 
-        if (!argv.noInstall) {
+        if (!argv['skip-install']) {
             printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
             await runCommand({
                 command: 'npm ci --quiet --ignore-scripts',

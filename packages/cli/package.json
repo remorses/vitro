@@ -2,11 +2,13 @@
     "name": "@vitro/cli",
     "_": "[bump]",
     "version": "0.0.0",
-    "description": "Storyboards cli",
+    "description": "",
     "keywords": [],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "bin": "./dist/main.js",
+    "bin": {
+        "vitro": "./dist/main.js"
+    },
     "mocha": {
         "require": "sucrase/register",
         "spec": "tests/**.ts",

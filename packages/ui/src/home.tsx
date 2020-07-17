@@ -28,7 +28,7 @@ export function Home({ storiesMap, ...rest }) {
                     />
                 </Stack>
                 <Box lineHeight='1.5em' fontSize='2em' fontWeight='medium'>
-                    Storyboards helps you build react components in isolation
+                    Vitro helps you build react components in isolation
                 </Box>
                 <Box
                     lineHeight='1.5em'

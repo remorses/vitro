@@ -2,7 +2,7 @@
     "name": "@vitro/ui",
     "_": "[bump]",
     "version": "0.0.0",
-    "description": "Storyboards ui components",
+    "description": "Vitro ui components",
     "keywords": [],
     "main": "dist/index.js",
     "module": "esm/index.js",

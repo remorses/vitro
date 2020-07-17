@@ -18,7 +18,7 @@ export default function App(props) {
                 docsRootPath='pages/docs'
                 headerLogo={
                     <Box fontSize='1.4em' fontWeight='600'>
-                        Storyboards
+                        Vitro
                     </Box>
                 }
                 headerItems={[

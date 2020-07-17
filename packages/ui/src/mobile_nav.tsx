@@ -7,11 +7,11 @@ import {
     DrawerContent,
     Stack,
     useColorMode,
+    Box,
 } from '@chakra-ui/core'
 import React, { useEffect } from 'react'
 import { MdDehaze } from 'react-icons/md'
 import { useRouter } from 'next/router'
-import { Box } from 'layout-kit-react'
 import { StoriesNav } from './stories_nav'
 
 export const useRouteChanged = (callback) => {
