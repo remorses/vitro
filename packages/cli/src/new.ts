@@ -41,6 +41,9 @@ const command: CommandModule = {
             printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
             await runCommand({
                 command: 'npm i --no-audit --quiet --ignore-scripts --no-fund',
+                env: {
+                    npm_config_loglevel: 'silent',
+                },
                 cwd: path.resolve('.', NEXT_APP_PATH),
             })
         }
