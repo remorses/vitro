@@ -4,6 +4,7 @@ import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import fs from 'fs'
 import { TESTING, VERBOSE } from './constants'
+import { debug } from './support'
 
 const excludedDirs = ['.vitro']
 if (TESTING) {
@@ -114,8 +115,8 @@ function aliasOfPackages(packages) {
         {},
         ...packages.map((p) => {
             try {
-                const resolved = require.resolve(p)
-                console.error(`using local instance of '${p}' at '${resolved}'`)
+                const resolved = path.resolve(require.resolve(p), '..')
+                debug(`using local instance of '${p}' at '${resolved}'`)
                 return {
                     [p]: resolved,
                 }
