@@ -1,9 +1,9 @@
 {
     "name": "@vitro/ui",
     "description": "Vitro ui components",
+    "_": "[bump]",
     "version": "0.0.1-alpha.211+04fac0b",
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
-    "_": "[bump]",
     "dependencies": {
         "@chakra-ui/core": "latest",
         "@emotion/core": "latest",
@@ -46,5 +46,5 @@
         "test": "NODE_ENV=test mocha --colors --exit"
     },
     "types": "dist/index.d.ts",
-    "gitHead": "04fac0be6c84acf9a5576d8316e4cebc8fddc2e2"
+    "gitHead": "11c3d98a71c85fcad79bb3babf6ad9ecfb3133b4"
 }
