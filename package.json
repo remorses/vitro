@@ -5,7 +5,7 @@
         "cli": "cross-env NODE_ENV=test node -r sucrase/register packages/cli/src/main.ts",
         "start": "lerna exec --parallel --ignore example* --ignore website -- tsc -w",
         "example": "yarn --cwd packages/example dev",
-        "publ": "yarn lerna publish -c",
+        "publ": "yarn lerna publish -c from-package",
         "build": "yarn build:cjs && yarn build:esm",
         "mismatch": "syncpack fix-mismatches && syncpack format --indent '    '",
         "build:cjs": "lerna exec  --ignore example* --ignore website  'rm -rf dist || true && yarn tsc'",
