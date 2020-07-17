@@ -24,7 +24,7 @@ const command: CommandModule = {
     },
     handler: async (argv) => {
         debug('argv', argv)
-        debug('cwd', process.cwd)
+        debug('cwd', process.cwd())
         printGreen(`creating ${NEXT_APP_PATH}`, true)
         await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
             filter: (src: string) => !src.includes('node_modules'),
@@ -33,7 +33,7 @@ const command: CommandModule = {
         if (!argv['skip-install']) {
             printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
             await runCommand({
-                command: 'npm i --quiet --ignore-scripts',
+                command: 'npm i --quiet --ignore-scripts --no-fund',
                 cwd: path.resolve('.', NEXT_APP_PATH),
             })
         }
