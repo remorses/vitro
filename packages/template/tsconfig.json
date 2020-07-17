@@ -4,7 +4,9 @@
         "paths": {
             "@/*": ["./*"],
             "react": ["./node_modules/react/*"],
-            "react-dom": ["./node_modules/react-dom/*"]
+            "react-dom": ["./node_modules/react-dom/*"],
+            // "@emotion/core": ["./node_modules/@emotion/core/*"],
+            "next": ["./node_modules/next/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],

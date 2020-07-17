@@ -55,12 +55,12 @@ const Content = ({
             <Global
                 styles={css`
                     body {
-                        min-height: 100vh;
-                        min-width: 100vw;
+                        min-height: 100vh !important;
+                        min-width: 100vw !important;
                         background-color: ${{
                             light: '#EDF2F7',
                             dark: '#1A202C',
-                        }[colorMode]};
+                        }[colorMode]} !important;
                     }
                 `}
             />
