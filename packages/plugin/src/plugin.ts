@@ -70,7 +70,7 @@ export const withVitro = ({
                 ...aliasOfPackages([
                     'react',
                     'react-dom',
-                    '@emotion/core',
+                    // '@emotion/core',
                     // 'emotion-theming',
                     'next',
                     // '@vitro'
