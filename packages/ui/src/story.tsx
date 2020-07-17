@@ -89,20 +89,25 @@ export function StoryPage({
     return (
         <Stack spacing='10'>
             <Stack align='flex-start' spacing='4'>
-                <Stack height={TOP_TITLE_H} spacing='3' align='center' direction='row' width='100%'>
-                    <Box fontSize='32px' minWidth='0' width='auto' isTruncated fontWeight='medium'>
+                <Stack
+                    height={TOP_TITLE_H}
+                    spacing='3'
+                    align='center'
+                    direction='row'
+                    width='100%'
+                >
+                    <Box
+                        fontSize='32px'
+                        minWidth='0'
+                        width='auto'
+                        isTruncated
+                        fontWeight='medium'
+                    >
                         {storyTitle}
                     </Box>
                     <Box flex='1' />
-                    <IconButton
-                        // bg={{ light: 'white', dark: 'gray.700' }[colorMode]}
-                        // size='sm'
-                        // shadow='sm'
+                    <ToggleColorModeButton
                         mr={['0px', null, null, '-10px !important']}
-                        onClick={toggleColorMode}
-                        fontSize='1.2em'
-                        aria-label='color-mode-toggle'
-                        icon={colorMode === 'dark' ? 'moon' : 'sun'}
                     />
                     <MobileNav
                         display={['flex', null, null, 'none']}
@@ -446,5 +451,22 @@ export const Couple = ({ a, b, hide, ...rest }) => {
             <Box>{a}</Box>
             <Box>{b}</Box>
         </Stack>
+    )
+}
+
+export const ToggleColorModeButton = ({ ...rest }) => {
+    const { colorMode, toggleColorMode } = useColorMode()
+    return (
+        <IconButton
+            // bg={{ light: 'white', dark: 'gray.700' }[colorMode]}
+            // size='sm'
+            // shadow='sm'
+
+            onClick={toggleColorMode}
+            fontSize='1.2em'
+            aria-label='color-mode-toggle'
+            icon={colorMode === 'dark' ? 'moon' : 'sun'}
+            {...rest}
+        />
     )
 }

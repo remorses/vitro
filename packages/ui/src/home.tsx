@@ -1,10 +1,32 @@
 import React from 'react'
 import { Box, Stack } from '@chakra-ui/core'
+import { TOP_TITLE_H } from './support'
+import { ToggleColorModeButton } from './story'
+import { MobileNav } from './mobile_nav'
 
-export function Home(props) {
+export function Home({ storiesMap, ...rest }) {
     return (
-        <Stack px='10' align='center'>
-            <Stack spacing='10' maxW='500px' align='center' justify='center'>
+        <Stack align='stretch' flex='1' width='100%'>
+            <Stack
+                w='100%'
+                spacing='10'
+                align='center'
+                justify='center'
+            >
+                <Stack
+                    height={TOP_TITLE_H}
+                    spacing='3'
+                    align='center'
+                    direction='row'
+                    width='100%'
+                >
+                    <Box flex='1' />
+                    <ToggleColorModeButton />
+                    <MobileNav
+                        display={['flex', null, null, 'none']}
+                        storiesMap={storiesMap}
+                    />
+                </Stack>
                 <Box lineHeight='1.5em' fontSize='2em' fontWeight='medium'>
                     Storyboards helps you build react components in isolation
                 </Box>

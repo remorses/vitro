@@ -1,3 +1,6 @@
-import {Home} from '@vitro/ui/src'
+import { Home } from '@vitro/ui/src'
+import storiesMap from '@/storiesMap'
 
-export default Home
+export default function Page() {
+    return <Home storiesMap={storiesMap} />
+}
