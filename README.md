@@ -67,7 +67,7 @@
 -   [x] add emotion to aliases
 -   [x] add a button to make a block full screen
 -   [x] remove render counts and time on small blocks
--   [ ] how to easily deploy a storyboard to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
+-   [ ] how to easily deploy a vitro app to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
 -   [ ] how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the vitro new and start command
 
 ## Sustainability

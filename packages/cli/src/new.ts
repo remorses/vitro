@@ -12,7 +12,7 @@ import { CommandModule } from 'yargs'
 
 const command: CommandModule = {
     command: ['new'],
-    describe: 'Creates a new storyboard',
+    describe: 'Creates a new vitro app',
     builder: (argv) => {
         argv.option('skip-install', {
             type: 'boolean',
@@ -27,6 +27,8 @@ const command: CommandModule = {
         debug('cwd', process.cwd())
         printGreen(`creating ${NEXT_APP_PATH}`, true)
         await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
+            overwrite: true,
+            recursive: true,
             filter: (src: string) => !src.includes('node_modules'),
         })
 
@@ -45,7 +47,7 @@ const command: CommandModule = {
         //     printGreen(`adding ${NEXT_APP_PATH} to .gitignore`, true)
         //     await appendFile('.gitignore', '\n' + NEXT_APP_PATH)
         // }
-        printGreen('created storyboard successfully!', true)
+        printGreen('created vitro app successfully!', true)
     },
 } // as CommandModule
 
