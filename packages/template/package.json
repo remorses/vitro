@@ -1,23 +1,23 @@
 {
     "name": "template",
-    "private": true,
     "version": "0.0.0",
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start"
-    },
-    "license": "MIT",
     "dependencies": {
-        "next": "^9.4.4",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
+        "@vitro/plugin": "*",
         "@vitro/ui": "*",
-        "@vitro/plugin": "*"
+        "next": "^9.4.4",
+        "react": "*",
+        "react-dom": "*"
     },
     "devDependencies": {
         "@types/node": "^14.0.20",
         "@types/react": "^16.9.41",
         "typescript": "3.9.6"
+    },
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "build": "next build",
+        "dev": "next dev",
+        "start": "next start"
     }
 }

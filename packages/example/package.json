@@ -1,19 +1,12 @@
 {
     "name": "example",
-    "private": true,
     "version": "0.0.0",
-    "scripts": {
-        "dev": "cross-env TESTING=1 next dev",
-        "build": "yarn --cwd ../../ install && lerna bootstrap && yarn --cwd ../../ build && next build",
-        "start": "next start"
-    },
-    "license": "MIT",
     "dependencies": {
         "@vitro/plugin": "*",
-        "@vitro/ui": "0.0.0",
+        "@vitro/ui": "*",
         "next": "^9.4.4",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1"
+        "react": "*",
+        "react-dom": "*"
     },
     "devDependencies": {
         "@types/node": "^14.0.20",
@@ -21,5 +14,12 @@
         "compose-function": "^3.0.3",
         "next-transpile-modules": "^3.3.0",
         "typescript": "3.9.6"
+    },
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "build": "yarn --cwd ../../ install && lerna bootstrap && yarn --cwd ../../ build && next build",
+        "dev": "cross-env TESTING=1 next dev",
+        "start": "next start"
     }
 }

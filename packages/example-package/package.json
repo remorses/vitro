@@ -1,25 +1,25 @@
 {
-  "name": "example-package",
-  "private": true,
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
-  "license": "ISC",
-  "devDependencies": {
-    "@chakra-ui/core": "^0.8.0",
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27",
-    "@types/react": "^16.9.41",
-    "emotion-theming": "^10.0.27",
-    "react": "^16.13.1",
-    "typescript": "3.9.6"
-  },
-  "dependencies": {
-    "@chakra-ui/core": "^0.8.0"
-  }
+    "name": "example-package",
+    "description": "",
+    "version": "1.0.0",
+    "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
+    "dependencies": {
+        "@chakra-ui/core": "^0.8.0"
+    },
+    "devDependencies": {
+        "@chakra-ui/core": "^0.8.0",
+        "@emotion/core": "^10.0.28",
+        "@emotion/styled": "^10.0.27",
+        "@types/react": "^16.9.41",
+        "emotion-theming": "^10.0.27",
+        "react": "*",
+        "typescript": "3.9.6"
+    },
+    "keywords": [],
+    "license": "ISC",
+    "main": "index.js",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
 }
