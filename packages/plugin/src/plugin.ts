@@ -65,7 +65,7 @@ export const withVitro = ({
             // replace the stories react packages with local ones to not dedupe
             config.resolve.alias = {
                 ...config.resolve.alias,
-                '@vitro': path.resolve(__dirname, '../'),
+                // '@vitro': path.resolve(__dirname, '../'),
                 ...aliasOfPackages([
                     'react',
                     'react-dom',
