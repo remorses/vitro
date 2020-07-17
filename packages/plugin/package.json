@@ -6,7 +6,6 @@
     "keywords": [],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "bin": "./dist/main.js",
     "mocha": {
         "require": "sucrase/register",
         "spec": "tests/**.ts",

@@ -5,13 +5,12 @@
     "scripts": {
         "dev": "cross-env TESTING=1 next dev",
         "build": "yarn --cwd ../../ install && lerna bootstrap && yarn --cwd ../../ build && next build",
-        "lock": "rm -rf node_modules && npm i --ignore-scripts && rm -rf node_modules && yarn",
         "start": "next start"
     },
     "license": "MIT",
     "dependencies": {
         "@vitro/plugin": "*",
-        "@vitro/ui": "*",
+        "@vitro/ui": "0.0.0",
         "next": "^9.4.4",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"

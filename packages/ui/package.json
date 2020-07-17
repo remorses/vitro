@@ -1,29 +1,9 @@
 {
     "name": "@vitro/ui",
-    "_": "[bump]",
-    "version": "0.0.0",
     "description": "Vitro ui components",
-    "keywords": [],
-    "main": "dist/index.js",
-    "module": "esm/index.js",
-    "types": "dist/index.d.ts",
-    "bin": "./dist/main.js",
-    "mocha": {
-        "require": "sucrase/register",
-        "spec": "tests/**.ts",
-        "timeout": 9999999999
-    },
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "test": "NODE_ENV=test mocha --colors --exit"
-    },
+    "version": "0.0.0",
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
-    "repository": {
-        "url": "https://github.com/remorses/vitro"
-    },
-    "license": "ISC",
+    "_": "[bump]",
     "dependencies": {
         "@chakra-ui/core": "latest",
         "@emotion/core": "latest",
@@ -48,5 +28,22 @@
         "mocha": "^7.2.0",
         "sucrase": "^3.15.0",
         "typescript": "3.9.6"
-    }
+    },
+    "files": [
+        "dist"
+    ],
+    "keywords": [],
+    "license": "ISC",
+    "main": "dist/index.js",
+    "mocha": {
+        "require": "sucrase/register",
+        "spec": "tests/**.ts",
+        "timeout": 9999999999
+    },
+    "module": "esm/index.js",
+    "repository": "remorses/vitro",
+    "scripts": {
+        "test": "NODE_ENV=test mocha --colors --exit"
+    },
+    "types": "dist/index.d.ts"
 }

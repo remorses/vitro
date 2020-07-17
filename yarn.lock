@@ -3586,6 +3586,14 @@ chalk@^2.0.0, chalk@^2.3.1, chalk@^2.4.1, chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
+chalk@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-3.0.0.tgz#3f73c2bf526591f574cc492c51e2456349f844e4"
+  integrity sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
+
 chalk@latest:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
@@ -6603,6 +6611,14 @@ layout-kit-react@^0.1.8:
     "@types/react" "^16.9.35"
     "@types/styled-system" "^5.1.9"
     styled-system "^5.1.5"
+
+lerna-sync-version@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/lerna-sync-version/-/lerna-sync-version-0.0.3.tgz#c095db3f004bc3d45ee055ed815130da6a2a7545"
+  integrity sha512-YX7jZs7p6m8rE0VxymD/Quz5xZcu4CVx0kKVW8xVn2s+iwkOjxvLsUmGCE9XGIyQMLxCAtSNlOfd/kTZwA6Gbw==
+  dependencies:
+    chalk "^3.0.0"
+    find-up "^4.1.0"
 
 lerna@^3.22.1:
   version "3.22.1"
