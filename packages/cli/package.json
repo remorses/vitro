@@ -1,7 +1,7 @@
 {
     "name": "@vitro/cli",
     "_": "[bump]",
-    "version": "0.0.0",
+    "version": "0.0.1-alpha.211+04fac0b",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -33,9 +33,9 @@
     "dependencies": {
         "@types/fs-extra": "^9.0.1",
         "@types/yargs": "^15.0.5",
+        "chalk": "latest",
         "fs-extra": "^9.0.1",
         "tslib": "^2.0.0",
-        "chalk": "latest",
         "yargs": "^15.3.1"
     },
     "devDependencies": {
@@ -48,5 +48,6 @@
         "mocha": "^7.2.0",
         "sucrase": "^3.15.0",
         "typescript": "3.9.6"
-    }
+    },
+    "gitHead": "04fac0be6c84acf9a5576d8316e4cebc8fddc2e2"
 }

@@ -1,7 +1,7 @@
 {
     "name": "@vitro/plugin",
     "_": "[bump]",
-    "version": "0.0.0",
+    "version": "0.0.1-alpha.211+04fac0b",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -27,8 +27,8 @@
         "fs-extra": "^9.0.1",
         "inspect-loader": "^1.0.0",
         "lodash": "latest",
-        "smart-glob": "^0.0.9",
         "next-transpile-modules": "^3.3.0",
+        "smart-glob": "^0.0.9",
         "tslib": "^2.0.0"
     },
     "devDependencies": {
@@ -42,5 +42,6 @@
         "mocha": "^7.2.0",
         "sucrase": "^3.15.0",
         "typescript": "3.9.6"
-    }
+    },
+    "gitHead": "04fac0be6c84acf9a5576d8316e4cebc8fddc2e2"
 }
