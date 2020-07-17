@@ -2,7 +2,7 @@
     "name": "@vitro/ui",
     "description": "Vitro ui components",
     "_": "[bump]",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
     "dependencies": {
         "@chakra-ui/core": "latest",
@@ -24,9 +24,9 @@
         "cross-env": "^7.0.2",
         "dotenv": "^8.2.0",
         "mocha": "^7.2.0",
-        "sucrase": "^3.15.0",
         "react": "*",
         "react-dom": "*",
+        "sucrase": "^3.15.0",
         "typescript": "3.9.6"
     },
     "files": [
