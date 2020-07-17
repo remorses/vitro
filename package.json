@@ -5,10 +5,10 @@
         "cli": "cross-env NODE_ENV=test node -r sucrase/register packages/cli/src/main.ts",
         "start": "lerna exec --parallel --ignore example* --ignore website -- tsc -w",
         "example": "yarn --cwd packages/example dev",
-        "publ": "yarn build && yarn lerna publish patch",
+        "publ": "yarn build && yarn lerna publish -y patch",
         "build": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "lerna exec  --ignore example* --ignore website  'rm -rf dist || true && yarn tsc'",
-        "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc -m ESNext --outDir esm"
+        "build:cjs": "lerna exec  --ignore example* --ignore website  'yarn tsc --incremental'",
+        "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc -m ESNext --outDir esm --incremental"
     },
     "workspaces": {
         "packages": [
