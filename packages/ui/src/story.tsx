@@ -48,8 +48,8 @@ export function StoryPage({
     const ValidGlobalWrapper = useMemo(
         () =>
             !GlobalWrapper || !isValidElementType(GlobalWrapper)
-                ? GlobalWrapper
-                : DefaultWrapper,
+                ? DefaultWrapper
+                : GlobalWrapper,
         [GlobalWrapper],
     )
 
