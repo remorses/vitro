@@ -2,7 +2,9 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./*"]
+            "@/*": ["./*"],
+            "react": ["./node_modules/react/*"],
+            "react-dom": ["./node_modules/react-dom/*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],
