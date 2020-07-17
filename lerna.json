@@ -3,7 +3,7 @@
         "packages/*",
         "website"
     ],
-    "version": "0.0.17",
+    "version": "0.0.18",
     "npmClient": "yarn",
     "useWorkspaces": true,
     "registry": "https://registry.npmjs.org/",

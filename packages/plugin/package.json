@@ -1,7 +1,7 @@
 {
   "name": "@vitro/plugin",
   "_": "[bump]",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
