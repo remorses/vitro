@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "scripts": {
         "dev": "cross-env TESTING=1 next dev",
-        "build": "yarn --cwd ../../ install && lerna bootstrap && yarn --cwd ../ build && next build",
+        "build": "yarn --cwd ../../ install && lerna bootstrap && yarn --cwd ../../ build && next build",
         "lock": "rm -rf node_modules && npm i --ignore-scripts && rm -rf node_modules && yarn",
         "start": "next start"
     },
