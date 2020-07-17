@@ -19,13 +19,13 @@ const command: CommandModule = {
     },
     handler: async (argv) => {
         console.log('starting the server')
-        await start({ port: argv.port })
+        await start({ port: argv.port, verbose: Boolean(argv.verbose) })
     },
 } // as CommandModule
 
 export default command
 
-async function start({ port }) {
+async function start({ port, verbose }) {
     if (!existsSync(NEXT_APP_PATH)) {
         printRed(
             `There is no ${NEXT_APP_PATH} folder, you probably need to run '${CMD} new' first`,
@@ -35,6 +35,11 @@ async function start({ port }) {
     }
     return await runCommand({
         command: `yarn next dev -p ${port}`,
+        env: verbose
+            ? {
+                  VERBOSE: 'true',
+              }
+            : {},
         cwd: path.resolve('.', NEXT_APP_PATH),
     }).catch((e) => {
         throw new Error(`could not start ${CMD}`)

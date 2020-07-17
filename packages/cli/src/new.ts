@@ -29,7 +29,12 @@ const command: CommandModule = {
         await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
             overwrite: true,
             recursive: true,
-            filter: (src: string) => !src.includes('node_modules'),
+            filter: (src: string) => {
+                {
+                    debug(src)
+                    return !src.includes('node_modules')
+                }
+            },
         })
 
         if (!argv['skip-install']) {

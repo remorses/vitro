@@ -3,7 +3,7 @@ import { loader } from 'webpack'
 import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import fs from 'fs'
-import { TESTING } from './constants'
+import { TESTING, VERBOSE } from './constants'
 
 const excludedDirs = ['.vitro']
 if (TESTING) {
@@ -81,6 +81,9 @@ export const withVitro = ({
                     loader: 'inspect-loader',
                     options: {
                         callback(inspect) {
+                            if (!VERBOSE) {
+                                return
+                            }
                             // console.log(inspect.arguments)
                             const context: loader.LoaderContext =
                                 inspect.context
@@ -110,7 +113,7 @@ function aliasOfPackages(packages) {
     return Object.assign(
         {},
         ...packages.map((p) => {
-            const pkgPath = path.resolve(__dirname, '.', 'node_modules', p)
+            const pkgPath = path.resolve(__dirname, '..', 'node_modules', p)
             if (fs.existsSync(pkgPath)) {
                 return {
                     [p]: pkgPath,
