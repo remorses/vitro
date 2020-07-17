@@ -113,13 +113,9 @@ function aliasOfPackages(packages) {
     return Object.assign(
         {},
         ...packages.map((p) => {
-            const pkgPath = path.resolve(__dirname, '..', 'node_modules', p)
-            if (fs.existsSync(pkgPath)) {
-                return {
-                    [p]: pkgPath,
-                }
+            return {
+                [p]: require.resolve(p),
             }
-            return {}
         }),
     )
 }
