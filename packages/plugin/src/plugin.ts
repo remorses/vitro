@@ -115,7 +115,9 @@ function aliasOfPackages(packages) {
         {},
         ...packages.map((p) => {
             try {
-                const resolved = path.resolve(require.resolve(p), '..')
+                const resolved = path.dirname(
+                    require.resolve(path.join(p, 'package.json')),
+                )
                 debug(`using local instance of '${p}' at '${resolved}'`)
                 return {
                     [p]: resolved,
