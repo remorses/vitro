@@ -2,8 +2,8 @@
     "name": "example",
     "version": "0.0.2-alpha.0",
     "dependencies": {
-        "@vitro/plugin": "^0.0.2-alpha.0",
-        "@vitro/ui": "^0.0.2-alpha.0",
+        "@vitro/plugin": "*",
+        "@vitro/ui": "*",
         "next": "^9.4.4",
         "react": "*",
         "react-dom": "*"

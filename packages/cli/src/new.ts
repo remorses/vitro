@@ -31,7 +31,7 @@ const command: CommandModule = {
         if (!argv['skip-install']) {
             printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
             await runCommand({
-                command: 'npm ci --quiet --ignore-scripts',
+                command: 'npm i --quiet --ignore-scripts',
                 cwd: path.resolve('.', NEXT_APP_PATH),
             })
         }
