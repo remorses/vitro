@@ -98,11 +98,17 @@ const Content = ({
                 pt={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
                 pr={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
                 pb={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                align='stretch'
+                overflowY='scroll'
+                // safari fix
+                css={css`
+                    & > * {
+                        flex-shrink: 0;
+                    }
+                `}
                 // width='100%'
                 // overflowX='visible'
                 // zIndex={0}
-                align='stretch'
-                overflowY='scroll'
             >
                 {children}
             </Stack>

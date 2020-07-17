@@ -14,7 +14,7 @@ import startCase from 'lodash/startCase'
 import NextLink from 'next/link'
 import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
-import { getStories, version } from './support'
+import { getStories, version, TOP_TITLE_H } from './support'
 
 export const StoriesNav = ({
     storiesMap,
@@ -31,7 +31,12 @@ export const StoriesNav = ({
     const stories = useMemo(() => getStories(storiesMap), [])
     return (
         <Stack spacing='6' {...p}>
-            <Stack direction='row' spacing='2' align='baseline'>
+            <Stack
+                height={TOP_TITLE_H}
+                direction='row'
+                spacing='2'
+                align='baseline'
+            >
                 <Logo />
                 <Box flex='1' />
                 <Box fontSize='0.9em' fontWeight='500' opacity={0.6}>

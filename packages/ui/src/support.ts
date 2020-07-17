@@ -2,6 +2,8 @@ import startCase from 'lodash/startCase'
 
 export const version = require('../package.json').version
 
+export const TOP_TITLE_H = '60px'
+
 type GetStoriesReturnType = {
     filename: string
     title: string

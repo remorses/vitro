@@ -31,7 +31,7 @@ import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
 import { DebugCSS } from './debugCSS'
 import { DefaultWrapper } from './default_wrapper'
-import { formatPathToTitle } from './support'
+import { formatPathToTitle, TOP_TITLE_H } from './support'
 import { MobileNav } from './mobile_nav'
 
 jsx
@@ -89,8 +89,8 @@ export function StoryPage({
     return (
         <Stack spacing='10'>
             <Stack align='flex-start' spacing='4'>
-                <Stack spacing='3' align='center' direction='row' width='100%'>
-                    <Box fontSize='32px' isTruncated fontWeight='medium'>
+                <Stack height={TOP_TITLE_H} spacing='3' align='center' direction='row' width='100%'>
+                    <Box fontSize='32px' minWidth='0' width='auto' isTruncated fontWeight='medium'>
                         {storyTitle}
                     </Box>
                     <Box flex='1' />
