@@ -2,7 +2,7 @@
     "name": "@vitro/ui",
     "description": "Vitro ui components",
     "_": "[bump]",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
     "dependencies": {
         "@chakra-ui/core": "latest",
