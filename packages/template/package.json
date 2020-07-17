@@ -1,9 +1,9 @@
 {
     "name": "template",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "dependencies": {
-        "@vitro/plugin": "^0.0.12",
-        "@vitro/ui": "^0.0.12",
+        "@vitro/plugin": "^0.0.13",
+        "@vitro/ui": "^0.0.13",
         "next": "^9.4.4",
         "react": "*",
         "react-dom": "*"
