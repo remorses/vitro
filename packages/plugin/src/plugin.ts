@@ -113,8 +113,15 @@ function aliasOfPackages(packages) {
     return Object.assign(
         {},
         ...packages.map((p) => {
-            return {
-                [p]: require.resolve(p),
+            try {
+                const resolved = require.resolve(p)
+                console.error(`using local instance of '${p}' at '${resolved}'`)
+                return {
+                    [p]: resolved,
+                }
+            } catch (e) {
+                console.error(`ERROR: cannot resolve local instance of ${p}`)
+                return {}
             }
         }),
     )
