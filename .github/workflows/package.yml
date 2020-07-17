@@ -16,15 +16,15 @@ jobs:
           registry-url: https://registry.npmjs.org/
       # - run: yarn
       # - run: yarn build
-      - name: Bump version
-        if: github.ref == 'refs/heads/master'
-        uses: remorses/bump-version@js
-        with:
-          version_file: ./VERSION
-          prerelease_tag: alpha
-          ignore: dist, esm, .next
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Bump version
+      #   if: github.ref == 'refs/heads/master'
+      #   uses: remorses/bump-version@js
+      #   with:
+      #     version_file: ./VERSION
+      #     prerelease_tag: alpha
+      #     ignore: dist, esm, .next
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - run: yarn lerna publish -c patch
       #   env:
       #       NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
