@@ -4,6 +4,11 @@ import { spawn } from 'child_process'
 import fs from 'fs'
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+export const debug = (...args) => {
+    if (process.env.DEBUG) {
+        console.error(...args)
+    }
+}
 
 export function transformName(name: string) {
     return name.toLowerCase().replace('_', '-').replace(' ', '-')

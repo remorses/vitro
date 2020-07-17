@@ -1,4 +1,4 @@
-import { runCommand, printGreen } from './support'
+import { runCommand, printGreen, debug } from './support'
 import path from 'path'
 import {
     TEMPLATE_PATH,
@@ -23,6 +23,8 @@ const command: CommandModule = {
         return argv
     },
     handler: async (argv) => {
+        debug('argv', argv)
+        debug('cwd', process.cwd)
         printGreen(`creating ${NEXT_APP_PATH}`, true)
         await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
             filter: (src: string) => !src.includes('node_modules'),
