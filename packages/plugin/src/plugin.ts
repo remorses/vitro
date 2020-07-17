@@ -110,7 +110,7 @@ export const withVitro = ({
     })
 }
 
-function aliasOfPackages(packages) {
+function aliasOfPackages(packages: string[]) {
     return Object.assign(
         {},
         ...packages.map((p) => {

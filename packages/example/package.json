@@ -5,8 +5,8 @@
         "@vitro/plugin": "^0.0.14",
         "@vitro/ui": "^0.0.14",
         "next": "^9.4.4",
-        "react": "*",
-        "react-dom": "*"
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1"
     },
     "devDependencies": {
         "@types/node": "^14.0.20",
