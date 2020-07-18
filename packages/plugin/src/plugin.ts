@@ -74,7 +74,7 @@ export const withVitro = ({
                         'react',
                         'react-dom',
                         'next',
-                        '@emotion/core',
+                        '@emotion/core', // TODO how to support multiple versions of emotion?
                         // 'emotion-theming',
                         // '@vitro'
                     ],
