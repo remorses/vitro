@@ -66,10 +66,11 @@ const Content = ({
             />
             <Box
                 overflowY='auto'
-                width={['270px']}
+                // width={['270px']}
+                width='350px'
                 position='fixed'
                 // pr={PAGE_PADDING}
-                left={PAGE_PADDING}
+                px={PAGE_PADDING}
                 top='0'
                 pt={PAGE_PADDING}
                 bottom='0'
