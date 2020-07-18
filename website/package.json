@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.28",
