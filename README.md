@@ -49,7 +49,8 @@ Currently SSR is disabled because
 
 ## Things to do
 
--   [ ] The error boundary, profiler should be inside the iframe
+-   [ ] The error boundary and profiler should be inside the iframe
+-   [ ] The css debug style should be injected as an iframe style (this way it does not rerender the react component)
 -   [ ] The iframe body should be height 100%
 -   [ ] next run on top directory, this way urls are clickable in vscode
 -   [ ] how to easily deploy a vitro app to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
