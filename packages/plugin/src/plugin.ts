@@ -4,7 +4,8 @@ import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import fs from 'fs'
 import { TESTING, VERBOSE } from './constants'
-import { debug } from './support'
+import { debug, resolveOuterFirst } from './support'
+import { attempt, isError } from 'lodash'
 
 const excludedDirs = ['.vitro']
 if (TESTING) {
@@ -67,14 +68,17 @@ export const withVitro = ({
             config.resolve.alias = {
                 ...config.resolve.alias,
                 // '@vitro': path.resolve(__dirname, '../'),
-                ...aliasOfPackages([
-                    'react',
-                    'react-dom',
-                    '@emotion/core',
-                    'next',
-                    // 'emotion-theming',
-                    // '@vitro'
-                ]),
+                ...aliasOfPackages({
+                    __dirname,
+                    packages: [
+                        'react',
+                        'react-dom',
+                        'next',
+                        // '@emotion/core',
+                        // 'emotion-theming',
+                        // '@vitro'
+                    ],
+                }),
             }
             config.module.rules.push({
                 test: /\.tsx?$/,
@@ -110,14 +114,15 @@ export const withVitro = ({
     })
 }
 
-function aliasOfPackages(packages: string[]) {
+function aliasOfPackages(args: { packages: string[]; __dirname }) {
     return Object.assign(
         {},
-        ...packages.map((p) => {
+        ...args.packages.map((p) => {
             try {
-                const resolved = path.dirname(
-                    require.resolve(path.join(p, 'package.json')),
-                )
+                const resolved = resolveOuterFirst({
+                    package: p,
+                    __dirname: args.__dirname,
+                })
                 debug(`using local instance of '${p}' at '${resolved}'`)
                 return {
                     [p]: resolved,

@@ -4,6 +4,7 @@
     "scripts": {
         "cli": "cross-env NODE_ENV=test node -r sucrase/register packages/cli/src/main.ts",
         "start": "lerna exec --parallel --ignore example* --ignore website -- tsc -w",
+        "test": "lerna exec --ignore example* --ignore website -- yarn test",
         "example": "yarn --cwd packages/example dev",
         "publ": "yarn build && yarn lerna publish -y patch",
         "build": "yarn build:cjs && yarn build:esm",
