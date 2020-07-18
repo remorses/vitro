@@ -68,6 +68,15 @@ const Content = ({
                 overflowY='auto'
                 // width={['270px']}
                 width='350px'
+                css={css`
+                    /* Hide scrollbar for Chrome, Safari and Opera */
+                    ::-webkit-scrollbar {
+                        display: none;
+                    }
+                    /* Hide scrollbar for IE, Edge and Firefox */
+                    -ms-overflow-style: none; /* IE and Edge */
+                    scrollbar-width: none; /* Firefox */
+                `}
                 position='fixed'
                 // pr={PAGE_PADDING}
                 px={PAGE_PADDING}
