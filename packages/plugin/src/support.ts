@@ -9,16 +9,16 @@ export const debug = (...args) => {
     }
 }
 
-export function resolveOuterFirst({ package: p, __dirname }) {
-    const outerSearchPath = path.resolve(__dirname, '../node_modules')
-    debug('outerSearchPath', outerSearchPath)
-    let result
-    result = attempt(() => {
-        resolve(p, { paths: [outerSearchPath] })
-    })
-    if (result && !isError(result)) {
-        return result
-    }
+export function resolvePackage({ package: p, __dirname }) {
+    // const outerSearchPath = path.resolve(__dirname, '../node_modules')
+    // // debug('outerSearchPath', outerSearchPath)
+    // let result
+    // result = attempt(() => {
+    //     resolve(p, { paths: [outerSearchPath] })
+    // })
+    // if (result && !isError(result)) {
+    //     return result
+    // }
     return resolve(p)
 }
 

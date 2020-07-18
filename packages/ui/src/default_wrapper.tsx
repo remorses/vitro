@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/core'
+import { Stack, CSSReset } from '@chakra-ui/core'
 import React from 'react'
 
 export const DefaultWrapper = ({ children }) => {
@@ -11,6 +11,7 @@ export const DefaultWrapper = ({ children }) => {
             height='100%'
             spacing='0'
         >
+            <CSSReset />
             {children}
         </Stack>
     )

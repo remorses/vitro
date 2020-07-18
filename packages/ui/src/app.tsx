@@ -7,12 +7,14 @@ import {
     ThemeProvider,
     useColorMode,
 } from '@chakra-ui/core'
-import { Global, jsx, css } from '@emotion/core'
+import { Global, jsx, css, CacheProvider } from '@emotion/core'
 import { Router } from 'next/router'
 import NProgress from 'nprogress'
-import React from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { globalStyles } from './css'
 import { StoriesNav } from './stories_nav'
+import weakMemoize from '@emotion/weak-memoize'
+import createCache from '@emotion/cache'
 
 jsx
 
@@ -42,6 +44,17 @@ export function VitroApp({ storiesMap, ...props }) {
     )
 }
 
+function useSSRSkip({} = {}) {
+    const [r, set] = useState(false)
+    useEffect(() => {
+        set(true)
+    }, [])
+    if (!r) {
+        return false
+    }
+    return r
+}
+
 const Content = ({
     storiesMap,
     children,
@@ -50,8 +63,25 @@ const Content = ({
     children
 }) => {
     const { colorMode } = useColorMode()
+    const loaded = useSSRSkip()
+    let newCache = useMemo(
+        () =>
+            createCache({
+                key: 'main-app',
+                // stylisPlugins: [stylisPluginExtraScope('.App')],
+            }),
+        [],
+    )
+    if (!loaded) {
+        return (
+            <Stack align='center' justify='center'>
+                <Box>Loading</Box>
+            </Stack>
+        )
+    }
+
     return (
-        <>
+        <CacheProvider value={newCache}>
             <Global
                 styles={css`
                     body {
@@ -122,6 +152,6 @@ const Content = ({
             >
                 {children}
             </Stack>
-        </>
+        </CacheProvider>
     )
 }

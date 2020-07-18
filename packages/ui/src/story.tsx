@@ -33,8 +33,23 @@ import { DebugCSS } from './debugCSS'
 import { DefaultWrapper } from './default_wrapper'
 import { formatPathToTitle, TOP_TITLE_H, usePromise } from './support'
 import { MobileNav } from './mobile_nav'
+import { FramedComponent } from './iframe'
+import createCache from '@emotion/cache'
+import { CacheProvider } from '@emotion/core'
+// import { FrameProvider } from './frame-provider'
+// import extraScopePlugin from 'stylis-plugin-extra-scope'
+import weakMemoize from '@emotion/weak-memoize'
 
 jsx
+
+let memoizedCreateCacheWithContainer = (container: any = undefined) => {
+    let newCache = createCache({
+        container,
+        key: 'dfgdsfg',
+        // stylisPlugins: [stylisPluginExtraScope('.App')],
+    })
+    return newCache
+}
 
 export function StoryPage({
     storiesMap,
@@ -170,6 +185,28 @@ export function StoryPage({
                         .filter((k) => k !== 'default')
                         .map((k) => {
                             const Component = storyExports[k]
+                            const C = FramedComponent(({ iframe }) => {
+                                return (
+                                    <CacheProvider
+                                        value={memoizedCreateCacheWithContainer(
+                                            iframe.contentDocument.head,
+                                        )}
+                                    >
+                                        <ValidGlobalWrapper
+                                            dark={colorMode == 'dark'}
+                                        >
+                                            <StoryWrapper
+                                                dark={colorMode == 'dark'}
+                                            >
+                                                <Component
+                                                    dark={colorMode == 'dark'}
+                                                />
+                                            </StoryWrapper>
+                                        </ValidGlobalWrapper>
+                                    </CacheProvider>
+                                )
+                            })
+
                             const id = `${absolutePath}/${k}`
                             return (
                                 <StoryBlock
@@ -189,17 +226,7 @@ export function StoryPage({
                                         justify='center'
                                         as={cssDebugEnabled ? DebugCSS : 'div'}
                                     >
-                                        <ValidGlobalWrapper
-                                            dark={colorMode == 'dark'}
-                                        >
-                                            <StoryWrapper
-                                                dark={colorMode == 'dark'}
-                                            >
-                                                <Component
-                                                    dark={colorMode == 'dark'}
-                                                />
-                                            </StoryWrapper>
-                                        </ValidGlobalWrapper>
+                                        <C />
                                     </Stack>
                                 </StoryBlock>
                             )

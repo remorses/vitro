@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { ThemeProvider, Box } from '@chakra-ui/core'
+import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core'
 
-export default function Wrapper({ children, ...rest }) {
+export default function Wrapper({ children, dark, ...rest }) {
     return (
-        <ThemeProvider {...rest}>
-            {/* <Box>fuck</Box> */}
-            {children}
-        </ThemeProvider>
+        <ColorModeProvider value={dark ? 'dark' : 'light'}>
+            <ThemeProvider {...rest}>
+                <CSSReset />
+                {/* <Box>fuck</Box> */}
+                {children}
+            </ThemeProvider>
+        </ColorModeProvider>
     )
 }

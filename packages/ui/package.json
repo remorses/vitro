@@ -9,12 +9,14 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@types/lodash": "^4.14.157",
+    "create-emotion": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "lodash": "^4.17.19",
     "next": "^9.4.4",
     "nprogress": "^0.2.0",
     "react-icons": "latest",
     "react-is": "^16.13.1",
+    "stylis-plugin-extra-scope": "^0.2.1",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

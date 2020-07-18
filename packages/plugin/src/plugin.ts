@@ -4,7 +4,7 @@ import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import fs from 'fs'
 import { TESTING, VERBOSE } from './constants'
-import { debug, resolveOuterFirst } from './support'
+import { debug, resolvePackage } from './support'
 import { attempt, isError } from 'lodash'
 
 const excludedDirs = ['.vitro']
@@ -74,7 +74,7 @@ export const withVitro = ({
                         'react',
                         'react-dom',
                         'next',
-                        // '@emotion/core',
+                        '@emotion/core',
                         // 'emotion-theming',
                         // '@vitro'
                     ],
@@ -119,7 +119,7 @@ function aliasOfPackages(args: { packages: string[]; __dirname }) {
         {},
         ...args.packages.map((p) => {
             try {
-                const resolved = resolveOuterFirst({
+                const resolved = resolvePackage({
                     package: p,
                     __dirname: args.__dirname,
                 })

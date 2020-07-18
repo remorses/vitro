@@ -4,6 +4,8 @@
   "dependencies": {
     "@vitro/plugin": "^0.0.20",
     "@vitro/ui": "^0.0.20",
+    "react": "latest",
+    "react-dom": "latest",
     "next": "^9.4.4"
   },
   "devDependencies": {

@@ -4111,6 +4111,16 @@ create-ecdh@^4.0.0:
     bn.js "^4.1.0"
     elliptic "^6.0.0"
 
+create-emotion@^10.0.27:
+  version "10.0.27"
+  resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-10.0.27.tgz#cb4fa2db750f6ca6f9a001a33fbf1f6c46789503"
+  integrity sha512-fIK73w82HPPn/RsAij7+Zt8eCE8SptcJ3WoRMfxMtjteYxud8GDTKKld7MYwAX2TVhrw29uR1N/bVGxeStHILg==
+  dependencies:
+    "@emotion/cache" "^10.0.27"
+    "@emotion/serialize" "^0.11.15"
+    "@emotion/sheet" "0.9.4"
+    "@emotion/utils" "0.11.3"
+
 create-hash@^1.1.0, create-hash@^1.1.2, create-hash@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/create-hash/-/create-hash-1.2.0.tgz#889078af11a63756bcfb59bd221996be3a9ef196"
@@ -8812,7 +8822,7 @@ react-clientside-effect@^1.2.2:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-react-dom@^16.13.1:
+react-dom@^16.13.1, react-dom@latest:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
   integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
@@ -8888,7 +8898,7 @@ react-storage-hooks@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-storage-hooks/-/react-storage-hooks-4.0.1.tgz#e30ed5cda48c77c431ecc02ec3824bd615f5b7fb"
   integrity sha512-fetDkT5RDHGruc2NrdD1iqqoLuXgbx6AUpQSQLLkrCiJf8i97EtwJNXNTy3+GRfsATLG8TZgNc9lGRZOaU5yQA==
 
-react@^16.13.1:
+react@^16.13.1, react@latest:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
@@ -10142,6 +10152,11 @@ stylehacks@^4.0.0:
     browserslist "^4.0.0"
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
+
+stylis-plugin-extra-scope@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/stylis-plugin-extra-scope/-/stylis-plugin-extra-scope-0.2.1.tgz#9f6abfd49c587c29bbf47a16070c425da5d57417"
+  integrity sha512-sQ0PoUCp87EfQwH2sNnfXeUtHdz66Q6bxAgK+73EvNvyNlc+9JkTED6LZOZOaYKhPkHu4nw1ls4wD71VTWUQ2Q==
 
 stylis-rule-sheet@0.0.10:
   version "0.0.10"
