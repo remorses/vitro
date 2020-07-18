@@ -29,7 +29,7 @@ export function FramedComponent(C) {
         updateIFrameContents = function () {
             const found = ReactDOM.findDOMNode(this) as any
             // console.log('head', found)
-            if (!found.contentDocument.head) {
+            if (!found?.contentDocument?.head) {
                 return
             }
             ReactDOM.render(<C iframe={found} />, this.el)
