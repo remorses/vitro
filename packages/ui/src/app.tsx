@@ -65,7 +65,7 @@ const Content = ({
                 `}
             />
             <Box
-                // overflowY='auto'
+                overflowY='auto'
                 width={['270px']}
                 position='fixed'
                 // pr={PAGE_PADDING}

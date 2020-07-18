@@ -29,6 +29,11 @@
     "sucrase": "^3.15.0",
     "typescript": "3.9.6"
   },
+  "peerDependencies": {
+    "react": "*",
+    "next": "*",
+    "react-dom": "*"
+  },
   "files": [
     "dist"
   ],

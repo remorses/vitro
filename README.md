@@ -26,6 +26,13 @@
 -   Links
 -   Props
 
+## How to resolve dependencies
+
+-   if using yarn workspaces use the yarn command to install the vitro dependencies and set the react, react dom semvers as loose as possible to use the hoisted react
+-   the same should apply for npm v7 workspaces
+-   if using a single npm top level package, don't install the react dep, instead use the one in the current devDependencies
+-   using multiple npm packages folders with different react versions is not supported
+
 ## Things to do
 
 -   [ ] next run on top directory, this way urls are clickable in vscode

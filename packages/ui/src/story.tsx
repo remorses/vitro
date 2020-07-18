@@ -31,7 +31,7 @@ import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
 import { DebugCSS } from './debugCSS'
 import { DefaultWrapper } from './default_wrapper'
-import { formatPathToTitle, TOP_TITLE_H } from './support'
+import { formatPathToTitle, TOP_TITLE_H, usePromise } from './support'
 import { MobileNav } from './mobile_nav'
 
 jsx
@@ -40,11 +40,11 @@ export function StoryPage({
     storiesMap,
     GlobalWrapper,
     absolutePath,
-    storyExports,
+    storyExports: storyExportsPromise,
 }) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
-
+    const [storyExports] = usePromise(storyExportsPromise)
     const ValidGlobalWrapper = useMemo(
         () =>
             !GlobalWrapper || !isValidElementType(GlobalWrapper)
@@ -165,44 +165,45 @@ export function StoryPage({
                 spacingX='12'
                 spacingY='16'
             >
-                {Object.keys(storyExports)
-                    .filter((k) => k !== 'default')
-                    .map((k) => {
-                        const Component = storyExports[k]
-                        const id = `${absolutePath}/${k}`
-                        return (
-                            <StoryBlock
-                                columns={columns}
-                                title={k}
-                                blockWidth='100%'
-                                key={id}
-                                id={id}
-                            >
-                                <Stack
-                                    flex='1'
-                                    w='100%'
-                                    h='100%'
-                                    minH='100%'
-                                    spacing='0'
-                                    align='center'
-                                    justify='center'
-                                    as={cssDebugEnabled ? DebugCSS : 'div'}
+                {storyExports &&
+                    Object.keys(storyExports)
+                        .filter((k) => k !== 'default')
+                        .map((k) => {
+                            const Component = storyExports[k]
+                            const id = `${absolutePath}/${k}`
+                            return (
+                                <StoryBlock
+                                    columns={columns}
+                                    title={k}
+                                    blockWidth='100%'
+                                    key={id}
+                                    id={id}
                                 >
-                                    <ValidGlobalWrapper
-                                        dark={colorMode == 'dark'}
+                                    <Stack
+                                        flex='1'
+                                        w='100%'
+                                        h='100%'
+                                        minH='100%'
+                                        spacing='0'
+                                        align='center'
+                                        justify='center'
+                                        as={cssDebugEnabled ? DebugCSS : 'div'}
                                     >
-                                        <StoryWrapper
+                                        <ValidGlobalWrapper
                                             dark={colorMode == 'dark'}
                                         >
-                                            <Component
+                                            <StoryWrapper
                                                 dark={colorMode == 'dark'}
-                                            />
-                                        </StoryWrapper>
-                                    </ValidGlobalWrapper>
-                                </Stack>
-                            </StoryBlock>
-                        )
-                    })}
+                                            >
+                                                <Component
+                                                    dark={colorMode == 'dark'}
+                                                />
+                                            </StoryWrapper>
+                                        </ValidGlobalWrapper>
+                                    </Stack>
+                                </StoryBlock>
+                            )
+                        })}
             </SimpleGrid>
         </Stack>
     )
