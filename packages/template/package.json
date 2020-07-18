@@ -1,12 +1,12 @@
 {
   "name": "template",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "dependencies": {
-    "@vitro/plugin": "^0.0.20",
-    "@vitro/ui": "^0.0.20",
+    "@vitro/plugin": "^0.0.21",
+    "@vitro/ui": "^0.0.21",
+    "next": "^9.4.4",
     "react": "latest",
-    "react-dom": "latest",
-    "next": "^9.4.4"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "^14.0.20",

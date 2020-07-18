@@ -1,7 +1,7 @@
 {
   "name": "@vitro/cli",
   "_": "[bump]",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
