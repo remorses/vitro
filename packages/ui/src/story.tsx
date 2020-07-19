@@ -259,8 +259,9 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             h: '100vh',
             p: '50px',
             pt: '80px',
-            bg: bg,
+            bg,
             position: 'fixed',
+            overflow: 'auto',
             top: '0',
             left: '0',
             right: '0',
@@ -289,7 +290,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             flexShrink={0}
             flexGrow={0}
             // minW='100px'
-            overflow='hidden'
+            // overflowX='hidden'
             flexBasis={blockWidth}
             minH='340px'
             position='relative'
@@ -362,10 +363,9 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             <Stack
                 // shadow='sm'
                 flex='1'
-                overflow='hidden'
                 borderRadius='10px'
                 bg={bg}
-                minH='100%'
+                // minH='100%'
                 spacing='0'
                 align='center'
                 justify='center'
