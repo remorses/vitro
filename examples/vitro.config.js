@@ -4,5 +4,5 @@ console.log('NODE_ENV', NODE_ENV)
 module.exports = {
     // basePath: NODE_ENV == 'production' ? '/.vitro' : '/',
     stories: ['./**/*.vitro.jsx', './**/*.vitro.tsx'],
-    ignore: ['.vitro'],
+    ignore: ['renderer'],
 }

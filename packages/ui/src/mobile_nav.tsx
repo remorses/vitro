@@ -47,6 +47,7 @@ export const MobileNav = ({ storiesMap, ...rest }) => {
                 {...rest}
             />
             <Drawer
+                initialFocusRef={null}
                 size='xs'
                 isOpen={isOpen}
                 placement='left'

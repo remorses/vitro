@@ -53,6 +53,7 @@ export const StoriesNav = ({
                     children={<Icon name='search' color='gray.400' />}
                 />
                 <Input
+                    autoFocus={false}
                     onChange={(e) => throttledSetFilter(e?.target?.value)}
                     variant='filled'
                     bg={{ light: 'white', dark: 'gray.700' }[colorMode]}
