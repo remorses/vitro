@@ -289,10 +289,10 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             spacing='3'
             flexShrink={0}
             flexGrow={0}
+            minHeight='340px'
             // minW='100px'
             // overflowX='hidden'
             flexBasis={blockWidth}
-            minH='340px'
             position='relative'
             {...rest}
             {...(fullScreen ? fullScreenStyles : {})}
@@ -360,24 +360,34 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
                     aria-label='full-screen'
                 />
             </Stack>
-            <Stack
-                // shadow='sm'
+            <Box
+                // spacing='0'
+                flexShrink={0}
                 flex='1'
-                borderRadius='10px'
-                bg={bg}
-                // minH='100%'
-                spacing='0'
-                align='center'
-                justify='center'
-                // p='6'
-                // css={cssDebugEnabled ? debugCSS : css``}
+                minH='340px'
+                minHeight='340px'
             >
-                <ErrorBoundary>
-                    <Profiler id={id} onRender={profile}>
-                        {children}
-                    </Profiler>
-                </ErrorBoundary>
-            </Stack>
+                <Stack
+                    minH='340px'
+                    flex='1'
+                    // shadow='sm'
+                    borderRadius='10px'
+                    overflow='hidden'
+                    bg={bg}
+                    // minH='100%'
+                    spacing='0'
+                    align='center'
+                    justify='center'
+                    // p='6'
+                    // css={cssDebugEnabled ? debugCSS : css``}
+                >
+                    <ErrorBoundary>
+                        <Profiler id={id} onRender={profile}>
+                            {children}
+                        </Profiler>
+                    </ErrorBoundary>
+                </Stack>
+            </Box>
         </Stack>
     )
 }
