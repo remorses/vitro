@@ -1,4 +1,13 @@
-# Vitro
+<div align='center'>
+    <br/>
+    <br/>
+    <img src='https://repository-images.githubusercontent.com/277593641/defb3700-c9c4-11ea-81e7-e0118949a8b5' width='320px'>
+    <br/>
+    <br/>
+    <h4>Build and showcase your react components in isolation</h4>
+    <br/>
+    <br/>
+</div>
 
 **this project is under heavy development**
 
