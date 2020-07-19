@@ -4,7 +4,7 @@
     <img src='https://repository-images.githubusercontent.com/277593641/defb3700-c9c4-11ea-81e7-e0118949a8b5' width='320px'>
     <br/>
     <h3>Build and showcase your react components in isolation</h3>
-    <i>project under heavy development</i>
+    <p>project under heavy development</p>
     <br/>
     <br/>
 </div>
