@@ -1,8 +1,5 @@
 {
-    "packages": [
-        "packages/*",
-        "website"
-    ],
+    "packages": ["packages/*", "examples/*", "website"],
     "version": "0.0.21",
     "npmClient": "yarn",
     "useWorkspaces": true,
@@ -10,10 +7,7 @@
     "command": {
         "publish": {
             "message": "publish",
-            "ignoreChanges": [
-                "**/stories/**",
-                "**/tests/**"
-            ]
+            "ignoreChanges": ["**/stories/**", "**/tests/**"]
         }
     }
 }
