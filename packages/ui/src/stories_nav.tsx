@@ -99,19 +99,21 @@ export const StoriesNav = ({
 
 export const Logo = ({ ...rest }) => {
     return (
-        <Stack
-            direction='row'
-            align='baseline'
-            fontSize='24px'
-            fontFamily='ITF Devangari' // TODO make the logo font outlines
-            fontWeight='bold'
-            letterSpacing='0.04em'
-            spacing='2'
-            {...rest}
-        >
-            <Box as={Beaker} size='1.5em' />
-            <Box as={VitroText} h='1.5em' />
-        </Stack>
+        <a href='https://github.com/remorses/vitro' target='_blank'>
+            <Stack
+                direction='row'
+                align='baseline'
+                fontSize='24px'
+                fontFamily='ITF Devangari' // TODO make the logo font outlines
+                fontWeight='bold'
+                letterSpacing='0.04em'
+                spacing='2'
+                {...rest}
+            >
+                <Box as={Beaker} size='1.5em' />
+                <Box as={VitroText} h='1.5em' />
+            </Stack>
+        </a>
     )
 }
 
