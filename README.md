@@ -5,10 +5,9 @@
     <br/>
     <h3>Build and showcase your react components in isolation</h3>
     <br/>
+    <h4>project under heavy development</h4>
     <br/>
 </div>
-
-**this project is under heavy development**
 
 ## Differences with story book
 
