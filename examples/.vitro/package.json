@@ -18,7 +18,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "build": "yarn --cwd ../../ install && yarn lerna bootstrap && yarn --cwd ../../ build && yarn next build",
+        "build": "yarn --cwd ../../ install && yarn --cwd ../../ lerna bootstrap && yarn --cwd ../../ build && yarn next build",
         "dev": "cross-env TESTING=1 next dev",
         "start": "next start"
     }
