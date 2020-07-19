@@ -33,13 +33,6 @@
 -   Links
 -   Props
 
-## How to resolve dependencies
-
--   if using yarn workspaces use the yarn command to install the vitro dependencies and set the react, react dom semvers as loose as possible to use the hoisted react
--   the same should apply for npm v7 workspaces
--   if using a single npm top level package, don't install the react dep, instead use the one in the current devDependencies
--   using multiple npm packages folders with different react versions is not supported
-
 ## How to enable SSR
 
 Currently SSR is disabled because
@@ -50,10 +43,11 @@ Currently SSR is disabled because
 
 ## Things to do
 
+-   [ ] use chokidar to watch for story changes and regenerate the stories paths
 -   [ ] make an example with an iframe in wrapper with emotion
 -   [ ] next run on top directory, this way urls are clickable in vscode
 -   [ ] how to easily deploy a vitro app to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
--   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on storybook start, the same for babel
+-   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on vitro start, the same for babel
 -   [ ] when generating the .vitro add a version file with the current version
 -   [ ] remove the new command, the default command checks if a vitro.config.js exists, if not asks if user wants to create .vitro and config (or errors if not tty), this way the default command always works and is idempotent
 -   [ ] the start command keeps the `.vitro` updated running the new command when it sees that its version is greater than the generated one
