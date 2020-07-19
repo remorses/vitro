@@ -42,11 +42,6 @@ Currently SSR is disabled because
 -   a lot of people probably don't support ssr rendering because of use of window (when ssr will be possible, it will be disabled by default)
 -   not that much useful (first render performance is not that important for a project like this)
 
-## Limitations
-
--   you cannot depend on `@emotion/core` major version different than the one from the .vitro node_modules (to make CacheProvider work) (maybe the emotion major version will be configurable)
--   the same for react, react-dom
-
 ## Things to do
 
 -   [ ] The error boundary and profiler should be inside the iframe
