@@ -107,7 +107,7 @@ export function StoryPage({
                 <Stack
                     height={TOP_TITLE_H}
                     spacing='3'
-                    align='center'
+                    align='flex-end'
                     direction='row'
                     width='100%'
                 >
