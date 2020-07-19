@@ -11,7 +11,7 @@ export const DefaultWrapper = ({ children }) => {
             height='100%'
             spacing='0'
         >
-            <CSSReset />
+            {/* <CSSReset /> */}
             {children}
         </Stack>
     )
