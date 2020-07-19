@@ -1,10 +1,10 @@
 import React from 'react'
-import * as exported from '@/../example/pages/stories/styled-components/src/example-styled-components.vitro'
+import * as exported from '@/../example-package/src/example_component.vitro'
 import { default as GlobalWrapper } from '@/../@vitro/ui/src/default_wrapper'
 import storiesMap from '@/storiesMap'
 import { StoryPage } from '@vitro/ui/src'
 
-const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/example/pages/stories/styled-components/src/example-styled-components.vitro.jsx'
+const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/example-package/src/example_component.vitro.tsx'
 
 export default function Page() {
     return (
