@@ -50,21 +50,19 @@ Currently SSR is disabled because
 
 ## Things to do
 
--   [ ] The error boundary and profiler should be inside the iframe
--   [ ] The css debug style should be injected as an iframe style (this way it does not rerender the react component)
--   [ ] The iframe body should be height 100%
+-   [ ] make an example with an iframe in wrapper with emotion
 -   [ ] next run on top directory, this way urls are clickable in vscode
 -   [ ] how to easily deploy a vitro app to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
--   [ ] how to pass a custom tsconfig, babel? maybe add a babelPath and tsconfigPath and copy these on the vitro new and start command
+-   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on storybook start, the same for babel
 -   [ ] when generating the .vitro add a version file with the current version
--   [ ] remove the new command, the default command checks if a vitro.config.js exists, if not asks if user wants to create .vitro and config (or errors if not tty)
+-   [ ] remove the new command, the default command checks if a vitro.config.js exists, if not asks if user wants to create .vitro and config (or errors if not tty), this way the default command always works and is idempotent
 -   [ ] the start command keeps the `.vitro` updated running the new command when it sees that its version is greater than the generated one
 -   [ ] exit from full screen with esc key
 -   [ ] rename stories, storyExports to files, fileExports
--   [ ] add a globalCSS options to pass an array of css files to include in global scope, this way people can use tailwind for example
--   [ ] add the next css plugin to let users import css files that are not css modules
+-   [ ] add a globalCSS options to pass an array of css files to paste in the \_app.jsx file, this way people can use tailwind for example
+-   [ ] add the next css plugin to let users import css files that are not css modules, yes but this plugin is bugged
 -   [ ] use more complex @/ because user could be using it already
--   [ ] store columns count in localstorage so columns count remains between page changes
+-   [ ] store columns count in local storage so columns count remains between page changes
 -   [ ] reset render count to zero when rendering above profiler
 -   [ ] add max zIndex to story toolbar (no this way is difficult to cover them with overlay in full screen)
 -   [ ] investigate if the render count is accurate given that the profiler is parent of Component
