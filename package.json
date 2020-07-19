@@ -3,12 +3,12 @@
     "private": true,
     "scripts": {
         "cli": "cross-env NODE_ENV=test node -r sucrase/register packages/cli/src/main.ts",
-        "start": "lerna exec --parallel --ignore example* --ignore website -- tsc -w",
+        "start": "lerna exec --parallel --scope @vitro/* -- tsc -w",
         "test": "lerna exec --ignore example* --ignore website -- yarn test",
         "example": "VERBOSE=1 yarn --cwd examples/.vitro dev",
         "publ": "yarn build && yarn lerna publish -y patch",
         "build": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "lerna exec --ignore example* --ignore website --ignore template  'yarn tsc --incremental'",
+        "build:cjs": "lerna exec --scope @vitro/* 'yarn tsc --incremental'",
         "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc -m ESNext --outDir esm --incremental"
     },
     "workspaces": {

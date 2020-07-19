@@ -185,27 +185,27 @@ export function StoryPage({
                         .filter((k) => k !== 'default')
                         .map((k) => {
                             const Component = storyExports[k]
-                            const C = FramedComponent(({ iframe }) => {
-                                return (
-                                    <CacheProvider
-                                        value={memoizedCreateCacheWithContainer(
-                                            iframe.contentDocument.head,
-                                        )}
-                                    >
-                                        <ValidGlobalWrapper
-                                            dark={colorMode == 'dark'}
-                                        >
-                                            <StoryWrapper
-                                                dark={colorMode == 'dark'}
-                                            >
-                                                <Component
-                                                    dark={colorMode == 'dark'}
-                                                />
-                                            </StoryWrapper>
-                                        </ValidGlobalWrapper>
-                                    </CacheProvider>
-                                )
-                            })
+                            // const C = FramedComponent(({ iframe }) => {
+                            //     return (
+                            //         <CacheProvider
+                            //             value={memoizedCreateCacheWithContainer(
+                            //                 iframe.contentDocument.head,
+                            //             )}
+                            //         >
+                            //             <ValidGlobalWrapper
+                            //                 dark={colorMode == 'dark'}
+                            //             >
+                            //                 <StoryWrapper
+                            //                     dark={colorMode == 'dark'}
+                            //                 >
+                            //                     <Component
+                            //                         dark={colorMode == 'dark'}
+                            //                     />
+                            //                 </StoryWrapper>
+                            //             </ValidGlobalWrapper>
+                            //         </CacheProvider>
+                            //     )
+                            // })
 
                             const id = `${absolutePath}/${k}`
                             return (
@@ -226,7 +226,17 @@ export function StoryPage({
                                         justify='center'
                                         as={cssDebugEnabled ? DebugCSS : 'div'}
                                     >
-                                        <C />
+                                        <ValidGlobalWrapper
+                                            dark={colorMode == 'dark'}
+                                        >
+                                            <StoryWrapper
+                                                dark={colorMode == 'dark'}
+                                            >
+                                                <Component
+                                                    dark={colorMode == 'dark'}
+                                                />
+                                            </StoryWrapper>
+                                        </ValidGlobalWrapper>
                                     </Stack>
                                 </StoryBlock>
                             )
