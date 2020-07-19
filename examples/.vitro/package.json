@@ -2,8 +2,8 @@
     "name": "example",
     "version": "0.0.21",
     "dependencies": {
-        "@vitro/plugin": "^0.0.21",
-        "@vitro/ui": "^0.0.21",
+        "@vitro/plugin": "*",
+        "@vitro/ui": "*",
         "next": "^9.4.4",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"
@@ -18,7 +18,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "build": "yarn --cwd ../../ install && yarn --cwd ../../ lerna bootstrap && yarn --cwd ../../ build && yarn next build",
+        "build": "rm -rf node_modules && yarn --cwd ../../ install && yarn --cwd ../../ lerna bootstrap && yarn --cwd ../../ build && yarn next build",
         "dev": "cross-env TESTING=1 next dev",
         "start": "next start"
     }
