@@ -38,7 +38,6 @@
 Currently SSR is disabled because
 
 -   nextjs webpack resolve aliases are not picked up during first ssr render (only on refresh of a page that is not /index)
--   emotion CacheProvider does not work (styles are not inserted in the iframe head)
 -   a lot of people probably don't support ssr rendering because of use of window (when ssr will be possible, it will be disabled by default)
 -   not that much useful (first render performance is not that important for a project like this)
 
