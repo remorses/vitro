@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/fs-extra": "^9.0.1",
+    "@zeit/next-css": "^1.0.1",
     "fs-extra": "^9.0.1",
     "inspect-loader": "^1.0.0",
     "lodash": "^4.17.19",

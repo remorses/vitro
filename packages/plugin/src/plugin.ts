@@ -2,6 +2,7 @@ import { generateStories, generateStoriesMap } from './stories'
 import { loader } from 'webpack'
 import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
+import withCSS from '@zeit/next-css'
 import fs from 'fs'
 import { TESTING, VERBOSE } from './constants'
 import { debug, resolvePackage } from './support'
@@ -49,69 +50,74 @@ export const withVitro = ({
         ...transpileModules,
     ])
 
-    return transpile({
-        ...nextConfig,
-        webpack: (config, options) => {
-            const { webpack } = options
-            // console.log({ dir, recursive, match })
-            config.plugins.push(
-                new webpack.DefinePlugin({
-                    WRAPPER_COMPONENT_PATH: JSON.stringify(
-                        wrapper
-                            ? path.join(path.resolve(__dirname, '../'), wrapper)
-                            : '',
-                    ),
-                    BASE_PATH: JSON.stringify(basePath || '/'),
-                }),
-            )
-            // replace the stories react packages with local ones to not dedupe
-            config.resolve.alias = {
-                ...config.resolve.alias,
-                // '@vitro': path.resolve(__dirname, '../'),
-                ...aliasOfPackages({
-                    __dirname,
-                    packages: [
-                        'react',
-                        'react-dom',
-                        'next',
-                        '@emotion/core', // TODO how to support multiple versions of emotion?
-                        // 'emotion-theming',
-                        // '@vitro'
-                    ],
-                }),
-            }
-            config.module.rules.push({
-                test: /\.tsx?$/,
-                loader: {
-                    loader: 'inspect-loader',
-                    options: {
-                        callback(inspect) {
-                            if (!VERBOSE) {
-                                return
-                            }
-                            // console.log(inspect.arguments)
-                            const context: loader.LoaderContext =
-                                inspect.context
-                            console.log(
-                                'compiling',
-                                path.relative(
-                                    path.resolve('..'),
-                                    context.resourcePath,
-                                ),
-                            )
-                            // console.log(inspect.options)
+    return withCSS(
+        transpile({
+            ...nextConfig,
+            webpack: (config, options) => {
+                const { webpack } = options
+                // console.log({ dir, recursive, match })
+                config.plugins.push(
+                    new webpack.DefinePlugin({
+                        WRAPPER_COMPONENT_PATH: JSON.stringify(
+                            wrapper
+                                ? path.join(
+                                      path.resolve(__dirname, '../'),
+                                      wrapper,
+                                  )
+                                : '',
+                        ),
+                        BASE_PATH: JSON.stringify(basePath || '/'),
+                    }),
+                )
+                // replace the stories react packages with local ones to not dedupe
+                config.resolve.alias = {
+                    ...config.resolve.alias,
+                    // '@vitro': path.resolve(__dirname, '../'),
+                    ...aliasOfPackages({
+                        __dirname,
+                        packages: [
+                            'react',
+                            'react-dom',
+                            'next',
+                            '@emotion/core', // TODO how to support multiple versions of emotion?
+                            // 'emotion-theming',
+                            // '@vitro'
+                        ],
+                    }),
+                }
+                config.module.rules.push({
+                    test: /\.tsx?$/,
+                    loader: {
+                        loader: 'inspect-loader',
+                        options: {
+                            callback(inspect) {
+                                if (!VERBOSE) {
+                                    return
+                                }
+                                // console.log(inspect.arguments)
+                                const context: loader.LoaderContext =
+                                    inspect.context
+                                console.log(
+                                    'compiling',
+                                    path.relative(
+                                        path.resolve('..'),
+                                        context.resourcePath,
+                                    ),
+                                )
+                                // console.log(inspect.options)
+                            },
                         },
                     },
-                },
-            })
-            if (typeof nextConfig.webpack === 'function') {
-                return nextConfig.webpack(config, options)
-            }
+                })
+                if (typeof nextConfig.webpack === 'function') {
+                    return nextConfig.webpack(config, options)
+                }
 
-            return config
-        },
-        ...(basePath ? { experimental: { basePath } } : {}),
-    })
+                return config
+            },
+            ...(basePath ? { experimental: { basePath } } : {}),
+        }),
+    )
 }
 
 function aliasOfPackages(args: { packages: string[]; __dirname }) {
