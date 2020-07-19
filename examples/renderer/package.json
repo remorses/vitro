@@ -1,5 +1,5 @@
 {
-    "name": "example",
+    "name": "renderer",
     "version": "0.0.21",
     "dependencies": {
         "@vitro/plugin": "*",
@@ -18,7 +18,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "build": "rm -rf node_modules && yarn --cwd ../../ install && yarn --cwd ../../ lerna bootstrap && yarn --cwd ../../ build && yarn next build",
+        "build": "yarn --cwd ../../ install && yarn --cwd ../../ lerna bootstrap && yarn --cwd ../../ build && yarn next build",
         "dev": "cross-env TESTING=1 next dev",
         "start": "next start"
     }

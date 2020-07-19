@@ -1,7 +1,0 @@
-{
-    "version": 2,
-    "builds": [
-        { "src": "examples/.vitro/next.config.js", "use": "@now/next" }
-    ],
-    "rewrites": [{ "source": "/(.*)", "destination": "/examples/.vitro/$1" }]
-}

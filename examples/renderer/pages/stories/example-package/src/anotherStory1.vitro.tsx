@@ -1,10 +1,10 @@
 import React from 'react'
-import * as exported from '@/../example-package-scope/example-sub-package-1/src/index.vitro'
-import { default as GlobalWrapper } from '@/../@vitro/ui/dist/default_wrapper'
+import * as exported from '@/../example-package/src/anotherStory1.vitro'
+import { default as GlobalWrapper } from '@vitro/ui/dist/default_wrapper'
 import storiesMap from '@/storiesMap'
 import { StoryPage } from '@vitro/ui'
 
-const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/example-package-scope/example-sub-package-1/src/index.vitro.tsx'
+const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/example-package/src/anotherStory1.vitro.tsx'
 
 export default function Page() {
     return (
