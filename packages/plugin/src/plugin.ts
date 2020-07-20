@@ -26,6 +26,7 @@ export const withVitro = ({
         basePath = ''
     }
 
+    // TODO generation should happen synchronously, waiting for https://github.com/vercel/next.js/issues/15307
     const generate = once(async () => {
         const storiesMap = await generateStoriesMap({
             globs: stories,
