@@ -81,7 +81,7 @@ export const withVitro = ({
                             'react',
                             'react-dom',
                             'next',
-                            '@emotion/core', // TODO sometimes emotion is picked from different places (in yarn workspaces for example) maybe i should vendor it
+                            // '@emotion/core', // TODO sometimes emotion is picked from different places (in yarn workspaces for example) maybe i should vendor it
                             // 'emotion-theming',
                             // '@vitro'
                         ],

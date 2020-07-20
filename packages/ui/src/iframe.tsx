@@ -1,13 +1,6 @@
-import React, { Component, useState } from 'react'
-import ReactDOM from 'react-dom'
 import createCache from '@emotion/cache'
-import { CacheProvider } from '@emotion/core'
-// import { FrameProvider } from './frame-provider'
-// import extraScopePlugin from 'stylis-plugin-extra-scope'
-import weakMemoize from '@emotion/weak-memoize'
-import { ScopeProvider } from './scope_provider'
-import stylisPluginExtraScope from 'stylis-plugin-extra-scope'
-import { Heading } from '@chakra-ui/core'
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 
 let memoizedCreateCacheWithContainer = (container: any = undefined) => {
     let newCache = createCache({
