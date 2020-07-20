@@ -82,7 +82,7 @@ export const withVitro = ({
                     ],
                 }),
             }
-            
+
             // prints some info about what is being compiled
             config.module.rules.push({
                 test: /\.tsx?$/,

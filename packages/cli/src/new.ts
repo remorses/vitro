@@ -7,8 +7,9 @@ import {
     NEXT_APP_PATH,
     TESTING,
 } from './contsants'
-import { copy, writeFile, exists, existsSync, appendFile } from 'fs-extra'
+import { copy, writeFile, exists, existsSync, appendFile, writeFileSync } from 'fs-extra'
 import { CommandModule } from 'yargs'
+const { version } = require('../package.json')
 
 const command: CommandModule = {
     command: ['new'],
@@ -36,6 +37,7 @@ const command: CommandModule = {
                 }
             },
         })
+        writeFileSync(path.join(NEXT_APP_PATH, 'version.js'), `module.exports = '${version}'`)
 
         if (!argv['skip-install']) {
             printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
