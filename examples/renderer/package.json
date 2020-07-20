@@ -1,10 +1,10 @@
 {
     "name": "renderer",
-    "version": "0.0.23",
+    "version": "0.0.24",
     "private": true,
     "dependencies": {
-        "@vitro/plugin": "^0.0.23",
-        "@vitro/ui": "^0.0.23",
+        "@vitro/plugin": "^0.0.24",
+        "@vitro/ui": "^0.0.24",
         "next": "^9.4.4",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"
