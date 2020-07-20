@@ -1,8 +1,8 @@
 import React from 'react'
 import * as exported from '@/../tailwind/src/example-tailwind.vitro'
-import { default as GlobalWrapper } from '@/../@vitro/ui/src/default_wrapper'
+import { default as GlobalWrapper } from '@/../@vitro/ui/dist/default_wrapper'
 import storiesMap from '@/storiesMap'
-import { StoryPage } from '@vitro/ui/src'
+import { StoryPage } from '@vitro/ui'
 
 const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/tailwind/src/example-tailwind.vitro.jsx'
 

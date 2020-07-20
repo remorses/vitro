@@ -52,6 +52,7 @@ export const withVitro = ({
     ])
 
     return withCSS(
+        // TODO remove the css plugin, instead add a globalCSS field in config
         transpile({
             ...nextConfig,
             webpack: (config, options) => {
