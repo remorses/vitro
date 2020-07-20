@@ -50,7 +50,7 @@ Currently SSR is disabled because
 -   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
 -   [ ] use chokidar to watch for story changes and regenerate the stories paths
 -   [ ] make an example with an iframe in wrapper with emotion
--   [ ] next run on top directory, this way urls are clickable in vscode
+-   [x] next run on top directory, this way urls are clickable in vscode
 -   [ ] how to easily deploy a vitro app to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
 -   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on vitro start, the same for babel
 -   [ ] when generating the .vitro add a version file with the current version
@@ -58,8 +58,8 @@ Currently SSR is disabled because
 -   [ ] the start command keeps the `.vitro` updated running the new command when it sees that its version is greater than the generated one
 -   [ ] exit from full screen with esc key
 -   [ ] rename stories, storyExports to files, fileExports
--   [ ] add a globalCSS options to pass an array of css files to paste in the \_app.jsx file, this way people can use tailwind for example
--   [ ] add the next css plugin to let users import css files that are not css modules, yes but this plugin is bugged
+-   [x] add a globalCSS options to pass an array of css files to paste in the \_app.jsx file, this way people can use tailwind for example
+-   [x] add the next css plugin to let users import css files that are not css modules, yes but this plugin is bugged
 -   [ ] use more complex @/ because user could be using it already
 -   [ ] store columns count in local storage so columns count remains between page changes
 -   [ ] reset render count to zero when rendering above profiler

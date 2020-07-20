@@ -34,13 +34,13 @@ async function start({ port, verbose }) {
         return process.exit(1)
     }
     return await runCommand({
-        command: `yarn next dev -p ${port}`,
+        command: `yarn next dev -p ${port} ${path.resolve('.', NEXT_APP_PATH)}`,
         env: verbose
             ? {
                   VERBOSE: 'true',
               }
             : {},
-        cwd: path.resolve('.', NEXT_APP_PATH),
+        // cwd: path.resolve('.', NEXT_APP_PATH),
     }).catch((e) => {
         throw new Error(`could not start ${CMD}`)
     })
