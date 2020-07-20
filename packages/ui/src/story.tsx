@@ -12,9 +12,8 @@ import {
     Stack,
     StackProps,
     useColorMode,
-    css,
 } from '@chakra-ui/core'
-import { jsx } from '@emotion/core'
+import { jsx, css } from '@emotion/core'
 import startCase from 'lodash/startCase'
 import React, {
     Profiler,
@@ -103,7 +102,15 @@ export function StoryPage({
     // }
     return (
         <Stack spacing='10'>
-            <Stack align='flex-start' spacing='4'>
+            <Stack
+                css={css`
+                    & > * {
+                        flex-shrink: 0;
+                    }
+                `}
+                align='flex-start'
+                spacing='4'
+            >
                 <Stack
                     height={TOP_TITLE_H}
                     spacing='3'
@@ -292,6 +299,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             minHeight='340px'
             // minW='100px'
             // overflowX='hidden'
+
             flexBasis={blockWidth}
             position='relative'
             {...rest}
