@@ -1,12 +1,10 @@
-import { generateStories, generateStoriesMap } from './stories'
-import { loader } from 'webpack'
+import fs from 'fs'
 import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
-import withCSS from '@zeit/next-css'
-import fs from 'fs'
+import { loader } from 'webpack'
 import { TESTING, VERBOSE } from './constants'
+import { generateStories, generateStoriesMap } from './stories'
 import { debug, resolvePackage } from './support'
-import { attempt, isError } from 'lodash'
 
 const excludedDirs = ['.vitro']
 if (TESTING) {
@@ -18,6 +16,7 @@ export const withVitro = ({
     wrapper,
     basePath = '',
     transpileModules = [],
+    globalCSS = [],
     __dirname,
     ignore = ['node_modules'],
 }) => (nextConfig = {} as any) => {
@@ -51,75 +50,91 @@ export const withVitro = ({
         ...transpileModules,
     ])
 
-    return withCSS(
-        // TODO remove the css plugin, instead add a globalCSS field in config
-        transpile({
-            ...nextConfig,
-            webpack: (config, options) => {
-                const { webpack } = options
-                // console.log({ dir, recursive, match })
-                config.plugins.push(
-                    new webpack.DefinePlugin({
-                        WRAPPER_COMPONENT_PATH: JSON.stringify(
-                            wrapper
-                                ? path.join(
-                                      path.resolve(__dirname, '../'),
-                                      wrapper,
-                                  )
-                                : '',
-                        ),
-                        BASE_PATH: JSON.stringify(basePath || '/'),
-                    }),
-                )
-                // replace the stories react packages with local ones to not dedupe
-                config.resolve.alias = {
-                    ...config.resolve.alias,
-                    // '@vitro': path.resolve(__dirname, '../'),
-                    ...aliasOfPackages({
-                        __dirname,
-                        packages: [
-                            'react',
-                            'react-dom',
-                            'next',
-                            // '@emotion/core', // TODO sometimes emotion is picked from different places (in yarn workspaces for example) maybe i should vendor it
-                            // 'emotion-theming',
-                            // '@vitro'
-                        ],
-                    }),
-                }
-                config.module.rules.push({
-                    test: /\.tsx?$/,
-                    loader: {
-                        loader: 'inspect-loader',
-                        options: {
-                            callback(inspect) {
-                                if (!VERBOSE) {
-                                    return
-                                }
-                                // console.log(inspect.arguments)
-                                const context: loader.LoaderContext =
-                                    inspect.context
-                                console.log(
-                                    'compiling',
-                                    path.relative(
-                                        path.resolve('..'),
-                                        context.resourcePath,
-                                    ),
-                                )
-                                // console.log(inspect.options)
-                            },
+    return transpile({
+        ...nextConfig,
+        webpack: (config, options) => {
+            const { webpack } = options
+            // console.log({ dir, recursive, match })
+            config.plugins.push(
+                new webpack.DefinePlugin({
+                    GLOBAL_CSS_CODE: makeCssImportCodeSnippet(globalCSS),
+                    WRAPPER_COMPONENT_PATH: JSON.stringify(
+                        wrapper
+                            ? path.join(path.resolve(__dirname, '../'), wrapper)
+                            : '',
+                    ),
+                    BASE_PATH: JSON.stringify(basePath || '/'),
+                }),
+            )
+            // replace the stories react packages with local ones to not dedupe
+            config.resolve.alias = {
+                ...config.resolve.alias,
+                // '@vitro': path.resolve(__dirname, '../'),
+                ...aliasOfPackages({
+                    __dirname,
+                    packages: [
+                        'react',
+                        'react-dom',
+                        'next',
+                        // '@emotion/core', // TODO sometimes emotion is picked from different places (in yarn workspaces for example) maybe i should vendor it
+                        // 'emotion-theming',
+                        // '@vitro'
+                    ],
+                }),
+            }
+            
+            // prints some info about what is being compiled
+            config.module.rules.push({
+                test: /\.tsx?$/,
+                loader: {
+                    loader: 'inspect-loader',
+                    options: {
+                        callback(inspect) {
+                            if (!VERBOSE) {
+                                return
+                            }
+                            // console.log(inspect.arguments)
+                            const context: loader.LoaderContext =
+                                inspect.context
+                            console.log(
+                                'compiling',
+                                path.relative(
+                                    path.resolve('..'),
+                                    context.resourcePath,
+                                ),
+                            )
+                            // console.log(inspect.options)
                         },
                     },
-                })
-                if (typeof nextConfig.webpack === 'function') {
-                    return nextConfig.webpack(config, options)
-                }
+                },
+            })
 
-                return config
-            },
-            ...(basePath ? { experimental: { basePath } } : {}),
-        }),
-    )
+            // add css imports to _app.tsx
+            config.module.rules.push({
+                // You can use `regexp`
+                // test: /example\.js/$
+                test: /_app\.tsx$/,
+                use: [
+                    {
+                        loader: 'imports-loader',
+                        options: {
+                            imports: globalCSS.map((moduleName) => ({
+                                syntax: 'side-effects',
+                                moduleName,
+                            })),
+                        },
+                    },
+                ],
+            })
+
+            if (typeof nextConfig.webpack === 'function') {
+                return nextConfig.webpack(config, options)
+            }
+
+            return config
+        },
+        ...(basePath ? { experimental: { basePath } } : {}),
+    })
 }
 
 function aliasOfPackages(args: { packages: string[]; __dirname }) {
@@ -152,4 +167,12 @@ function once(fn) {
         }
         return result
     }
+}
+
+function makeCssImportCodeSnippet(imports: string[]) {
+    let code = ''
+    imports.forEach((p) => {
+        code += `import '${p}'\n`
+    })
+    return code
 }
