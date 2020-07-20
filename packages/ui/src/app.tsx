@@ -16,11 +16,12 @@ import { StoriesNav } from './stories_nav'
 import stylisPluginExtraScope from 'stylis-plugin-extra-scope'
 import weakMemoize from '@emotion/weak-memoize'
 import createCache from '@emotion/cache'
+import { SplashScreen } from './splash_screen'
 
 jsx
 
 Router.events.on('routeChangeStart', (url) => {
-    console.log(`Loading: ${url}`)
+    // console.log(`Loading: ${url}`)
     NProgress.start()
 })
 Router.events.on('routeChangeComplete', () => NProgress.done())
@@ -63,7 +64,6 @@ const Content = ({
     storiesMap: Record<string, string>
     children
 }) => {
-    const { colorMode } = useColorMode()
     const loaded = useSSRSkip()
     let newCache = useMemo(
         () =>
@@ -75,26 +75,16 @@ const Content = ({
     )
     if (!loaded) {
         return (
-            <Stack align='center' justify='center'>
-                <Box>Loading</Box>
-            </Stack>
+            <>
+                <BgStyles />
+                <SplashScreen />
+            </>
         )
     }
 
     return (
         <>
-            <Global
-                styles={css`
-                    body {
-                        min-height: 100vh !important;
-                        min-width: 100vw !important;
-                        background-color: ${{
-                            light: '#EDF2F7',
-                            dark: '#1A202C',
-                        }[colorMode]} !important;
-                    }
-                `}
-            />
+            <BgStyles />
             <CacheProvider value={newCache}>
                 <Box
                     className='vitro'
@@ -149,5 +139,23 @@ const Content = ({
                 </Stack>
             </CacheProvider>
         </>
+    )
+}
+
+const BgStyles = () => {
+    const { colorMode } = useColorMode()
+    return (
+        <Global
+            styles={css`
+                body {
+                    min-height: 100vh !important;
+                    min-width: 100vw !important;
+                    background-color: ${{
+                        light: '#EDF2F7',
+                        dark: '#1A202C',
+                    }[colorMode]} !important;
+                }
+            `}
+        />
     )
 }

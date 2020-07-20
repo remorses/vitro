@@ -38,7 +38,7 @@ export const StoriesNav = ({
                 align='flex-end'
                 pb='10px' // TODO this can be removed when story title does not have wrong line height
             >
-                <Logo />
+                <Logo fontSize='24px' />
                 <Box flex='1' />
                 <Box fontSize='0.9em' fontWeight='500' opacity={0.6}>
                     v{version}
@@ -103,7 +103,6 @@ export const Logo = ({ ...rest }) => {
             <Stack
                 direction='row'
                 align='baseline'
-                fontSize='24px'
                 fontFamily='ITF Devangari' // TODO make the logo font outlines
                 fontWeight='bold'
                 letterSpacing='0.04em'

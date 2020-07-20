@@ -43,8 +43,10 @@ Currently SSR is disabled because
 
 ## Things to do
 
+-   [ ] if a file name is index get the containing folder name, also you can pass a function getName that given a file path gets the title out
 -   [ ] add a deploy with vercel button,
 -   [ ] make the index page with an how it works and what vitro does, inciting to subscribe to the managed platform for additional features
+-   [x] make a cute splash screen
 -   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
 -   [ ] use chokidar to watch for story changes and regenerate the stories paths
 -   [ ] make an example with an iframe in wrapper with emotion
