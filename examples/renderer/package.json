@@ -1,6 +1,7 @@
 {
     "name": "renderer",
     "version": "0.0.22",
+    "private": true,
     "dependencies": {
         "@vitro/plugin": "^0.0.22",
         "@vitro/ui": "^0.0.22",
@@ -16,7 +17,6 @@
         "typescript": "3.9.6"
     },
     "license": "MIT",
-    "private": true,
     "scripts": {
         "build": "yarn --cwd ../../ install && yarn --cwd ../../ lerna bootstrap && yarn --cwd ../../ build && yarn next build",
         "dev": "cross-env TESTING=1 next dev",

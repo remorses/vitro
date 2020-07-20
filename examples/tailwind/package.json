@@ -1,16 +1,18 @@
 {
-  "name": "tailwind",
-  "version": "0.0.22",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
-  "license": "ISC",
-  "dependencies": {
-    "@types/react": "^16.9.43",
-    "tailwindcss": "^1.5.1"
-  }
+    "name": "tailwind",
+    "version": "0.0.22",
+    "description": "",
+    "private": true,
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
+    "license": "ISC",
+    "dependencies": {
+        "@types/react": "^16.9.43",
+        "tailwindcss": "^1.5.1"
+    },
+    "gitHead": "06897d5226a0e7d931fb528caf11d00408f31982"
 }
