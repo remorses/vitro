@@ -13,6 +13,7 @@ import NProgress from 'nprogress'
 import React, { useState, useEffect, useMemo } from 'react'
 import { globalStyles } from './css'
 import { StoriesNav } from './stories_nav'
+import stylisPluginExtraScope from 'stylis-plugin-extra-scope'
 import weakMemoize from '@emotion/weak-memoize'
 import createCache from '@emotion/cache'
 
@@ -67,8 +68,8 @@ const Content = ({
     let newCache = useMemo(
         () =>
             createCache({
-                key: 'main-app',
-                // stylisPlugins: [stylisPluginExtraScope('.App')],
+                key: 'vitro',
+                stylisPlugins: [stylisPluginExtraScope('#__next')], // TODO maybe don't use __next and instead use body
             }),
         [],
     )
@@ -81,7 +82,7 @@ const Content = ({
     }
 
     return (
-        <CacheProvider value={newCache}>
+        <>
             <Global
                 styles={css`
                     body {
@@ -94,64 +95,67 @@ const Content = ({
                     }
                 `}
             />
-            <Box
-                overflowY='auto'
-                // width={['270px']}
-                width='350px'
-                css={css`
-                    /* Hide scrollbar for Chrome, Safari and Opera */
-                    ::-webkit-scrollbar {
-                        display: none;
-                    }
-                    /* Hide scrollbar for IE, Edge and Firefox */
-                    -ms-overflow-style: none; /* IE and Edge */
-                    scrollbar-width: none; /* Firefox */
-                `}
-                position='fixed'
-                // pr={PAGE_PADDING}
-                px={PAGE_PADDING}
-                top='0'
-                pt={PAGE_PADDING}
-                bottom='0'
-                // overflowX='hidden'
-            >
-                <StoriesNav
+            <CacheProvider value={newCache}>
+                <Box
+                    className='vitro'
+                    overflowY='auto'
+                    // width={['270px']}
+                    width='350px'
+                    css={css`
+                        /* Hide scrollbar for Chrome, Safari and Opera */
+                        ::-webkit-scrollbar {
+                            display: none;
+                        }
+                        /* Hide scrollbar for IE, Edge and Firefox */
+                        -ms-overflow-style: none; /* IE and Edge */
+                        scrollbar-width: none; /* Firefox */
+                    `}
+                    position='fixed'
+                    // pr={PAGE_PADDING}
+                    px={PAGE_PADDING}
+                    top='0'
+                    pt={PAGE_PADDING}
+                    bottom='0'
+                    // overflowX='hidden'
+                >
+                    <StoriesNav
+                        className='vitro smoothscroll'
+                        storiesMap={storiesMap}
+                        width='100%'
+                        fontWeight='500'
+                        display={['none', null, null, 'flex']}
+                    />
+                    <Box h={PAGE_PADDING} />
+                </Box>
+                <Stack
                     className='vitro smoothscroll'
-                    storiesMap={storiesMap}
-                    width='100%'
-                    fontWeight='500'
-                    display={['none', null, null, 'flex']}
-                />
-                <Box h={PAGE_PADDING} />
-            </Box>
-            <Stack
-                className='vitro smoothscroll'
-                position='absolute'
-                height='content'
-                right='0'
-                top='0'
-                bottom='0'
-                left={[SM_PAGE_PADDING, null, null, '350px']}
-                as='main'
-                borderLeftWidth={['0', null, null, '2px']}
-                pl={['0', null, null, PAGE_PADDING]}
-                pt={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
-                pr={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
-                pb={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
-                align='stretch'
-                overflowY='scroll'
-                // safari fix
-                css={css`
-                    & > * {
-                        flex-shrink: 0;
-                    }
-                `}
-                // width='100%'
-                // overflowX='visible'
-                // zIndex={0}
-            >
-                {children}
-            </Stack>
-        </CacheProvider>
+                    position='absolute'
+                    height='content'
+                    right='0'
+                    top='0'
+                    bottom='0'
+                    left={[SM_PAGE_PADDING, null, null, '350px']}
+                    as='main'
+                    borderLeftWidth={['0', null, null, '2px']}
+                    pl={['0', null, null, PAGE_PADDING]}
+                    pt={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                    pr={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                    pb={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                    align='stretch'
+                    overflowY='scroll'
+                    // safari fix
+                    css={css`
+                        & > * {
+                            flex-shrink: 0;
+                        }
+                    `}
+                    // width='100%'
+                    // overflowX='visible'
+                    // zIndex={0}
+                >
+                    {children}
+                </Stack>
+            </CacheProvider>
+        </>
     )
 }
