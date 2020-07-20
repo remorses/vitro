@@ -94,5 +94,17 @@ export const globalStyles = css`
     .vitro.smoothscroll {
         -webkit-overflow-scrolling: touch;
     }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .vitro::-webkit-scrollbar {
+        width: 0px; /* Remove scrollbar space */
+        background: transparent; /* Optional: just make scrollbar invisible */
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .vitro {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
     ${nprogressStyles}
 `
