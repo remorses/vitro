@@ -102,15 +102,7 @@ export function StoryPage({
     // }
     return (
         <Stack spacing='10'>
-            <Stack
-                css={css`
-                    & > * {
-                        flex-shrink: 0;
-                    }
-                `}
-                align='flex-start'
-                spacing='4'
-            >
+            <Stack flexShrink={0} align='flex-start' spacing='4'>
                 <Stack
                     height={TOP_TITLE_H}
                     spacing='3'
@@ -151,8 +143,8 @@ export function StoryPage({
                     </Link>
                 )}
             </Stack>
-            <Box h='4' />
-            <Stack direction='row'>
+            <Box flexShrink={0} h='4' />
+            <Stack flexShrink={0} direction='row'>
                 <Button
                     onClick={() => setCssDebug((x) => !x)}
                     opacity={0.8}
@@ -180,6 +172,7 @@ export function StoryPage({
                 </Select>
             </Stack>
             <SimpleGrid
+                flexShrink={0}
                 // direction='row'
                 columns={columns}
                 flexWrap='wrap'
@@ -217,6 +210,7 @@ export function StoryPage({
                             const id = `${absolutePath}/${k}`
                             return (
                                 <StoryBlock
+                                    flexShrink={0}
                                     columns={columns}
                                     title={k}
                                     blockWidth='100%'
@@ -497,7 +491,7 @@ class ErrorBoundary extends React.Component {
 export const Couple = ({ a, b, hide, ...rest }) => {
     return (
         <Stack
-            display={hide ? 'none' : ['none', null, 'flex']}
+            // display={hide ? 'none' : ['none', null, 'flex']}
             isTruncated
             direction='row'
             align='center'
