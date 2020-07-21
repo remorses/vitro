@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Stack, Image } from '@chakra-ui/core'
+import { Box, Stack, Image, Flex } from '@chakra-ui/core'
 import { TOP_TITLE_H } from './support'
 import { ToggleColorModeButton } from './story'
 import { MobileNav } from './mobile_nav'
@@ -40,35 +40,59 @@ export function Home({ storiesMap, ...rest }) {
                     components
                 </Box>
                 <Box h='10' />
-                <Stack
+                <Flex
                     as={Faded}
                     width='100%'
                     maxWidth='800px'
-                    spacing='10'
+                    // spacing='10'
                     fontWeight='600'
                     letterSpacing='0.06em'
                     fontSize='1.4em'
-                    direction='row'
                     justify='space-between'
                     align='center'
+                    flexWrap='wrap'
                 >
-                    <Stack align='center' spacing='6'>
-                        <Box w='120px' as={AnalyzeStep} />
+                    <Stack
+                        w={['100%', null, 'auto']}
+                        mx='14'
+                        my='12'
+                        align='center'
+                        spacing='6'
+                    >
+                        <Box h='80px' as={IsolateStep} />
                         <Box>ISOLATE</Box>
                     </Stack>
-                    <Stack align='center' spacing='6'>
-                        <Box w='120px' as={ShowcaseStep} />
+                    <Stack
+                        my='12'
+                        w={['100%', null, 'auto']}
+                        mx='14'
+                        align='center'
+                        spacing='6'
+                    >
+                        <Box h='80px' as={ShowcaseStep} />
                         <Box>SHOWCASE</Box>
                     </Stack>
-                    <Stack align='center' spacing='6'>
-                        <Box w='120px' as={AnalyzeStep} />
+                    <Stack
+                        my='12'
+                        w={['100%', null, 'auto']}
+                        mx='14'
+                        align='center'
+                        spacing='6'
+                    >
+                        <Box h='80px' as={AnalyzeStep} />
                         <Box>ANALYZE</Box>
                     </Stack>
-                    <Stack align='center' spacing='6'>
-                        <Box w='120px' as={DeployStep} />
+                    <Stack
+                        my='12'
+                        w={['100%', null, 'auto']}
+                        mx='14'
+                        align='center'
+                        spacing='6'
+                    >
+                        <Box h='80px' as={DeployStep} />
                         <Box>DEPLOY</Box>
                     </Stack>
-                </Stack>
+                </Flex>
                 {/* <Image w='300px' src={path.join(BASE_PATH, 'share-reuse.png')} /> */}
             </Stack>
         </Stack>
