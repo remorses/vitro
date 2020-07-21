@@ -319,37 +319,35 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
                     {title}
                 </Box>
                 <Box flex='1' />
-                {process.env.NODE_ENV !== 'production' && (
-                    <Couple
-                        borderRadius='md'
-                        hide={columns > 2}
-                        bg={bg}
-                        p='4px'
-                        a={<Box as={FiZap} size='1em' />}
-                        b={
-                            <AutoUpdateBox
-                                fontWeight='500'
-                                contentRef={actualDurationRef}
-                            />
-                        }
-                    />
-                )}
-                {process.env.NODE_ENV !== 'production' && (
-                    <Couple
-                        borderRadius='md'
-                        hide={columns > 2}
-                        bg={bg}
-                        p='4px'
-                        a={<Box as={FiHash} size='1em' />}
-                        b={
-                            <AutoUpdateBox
-                                fontWeight='500'
-                                map={(x) => x + ' renders'}
-                                contentRef={renderCount}
-                            />
-                        }
-                    />
-                )}
+                <Couple
+                    borderRadius='md'
+                    hide={columns > 2}
+                    bg={bg}
+                    p='4px'
+                    a={<Box as={FiZap} size='1em' />}
+                    b={
+                        <AutoUpdateBox
+                            fontWeight='500'
+                            contentRef={actualDurationRef}
+                        />
+                    }
+                />
+                )
+                <Couple
+                    borderRadius='md'
+                    hide={columns > 2}
+                    bg={bg}
+                    p='4px'
+                    a={<Box as={FiHash} size='1em' />}
+                    b={
+                        <AutoUpdateBox
+                            fontWeight='500'
+                            map={(x) => x + ' renders'}
+                            contentRef={renderCount}
+                        />
+                    }
+                />
+                )
                 <IconButton
                     borderRadius='md'
                     bg={bg}
