@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="189" height="131" viewBox="0 0 189 131">
+	<defs>
+		<linearGradient id="analyze_step-a" x1="50%" x2="50%" y1="0%" y2="100%">
+			<stop offset="0%" stop-color="#B0B0B0" />
+			<stop offset="100%" stop-color="#FEFEFE" stop-opacity="0" />
+		</linearGradient>
+	</defs>
+	<g fill="none" fill-rule="evenodd" transform="translate(5)">
+		<rect width="126" height="9" x="116.304" y="59.679" fill="#B5B5B5" transform="rotate(90 179.304 64.18)" />
+		<rect width="126" height="9" x="98.304" y="59.679" fill="#B5B5B5" transform="rotate(90 161.304 64.18)" />
+		<rect width="126" height="9" x="80.304" y="59.679" fill="#B5B5B5" transform="rotate(90 143.304 64.18)" />
+		<rect width="126" height="113" x="8" y="7" fill="url(#analyze_step-a)" transform="rotate(90 71 63.5)" />
+		<g stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="9" transform="translate(0 47)">
+			<circle cx="35" cy="35" r="35" />
+			<line x1="79" x2="60" y1="79" y2="60" />
+		</g>
+	</g>
+</svg>
