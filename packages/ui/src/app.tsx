@@ -69,7 +69,7 @@ const Content = ({
         () =>
             createCache({
                 key: 'vitro',
-                stylisPlugins: [stylisPluginExtraScope('#__next')], // TODO maybe don't use __next and instead use body
+                stylisPlugins: [stylisPluginExtraScope('body')], // TODO maybe don't use __next and instead use body
             }),
         [],
     )
@@ -109,7 +109,7 @@ const Content = ({
                     />
                     <Box h={PAGE_PADDING} />
                 </Box>
-                <Stack
+                <Box
                     className='vitro smoothscroll'
                     position='absolute'
                     height='content'
@@ -123,7 +123,7 @@ const Content = ({
                     pt={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
                     pr={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
                     pb={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
-                    align='stretch'
+                    // align='stretch'
                     overflowY='scroll'
                     // safari fix
                     css={css`
@@ -136,7 +136,7 @@ const Content = ({
                     // zIndex={0}
                 >
                     {children}
-                </Stack>
+                </Box>
             </CacheProvider>
         </>
     )

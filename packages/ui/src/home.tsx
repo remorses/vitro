@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Stack } from '@chakra-ui/core'
+import { Box, Stack, Image } from '@chakra-ui/core'
 import { TOP_TITLE_H } from './support'
 import { ToggleColorModeButton } from './story'
 import { MobileNav } from './mobile_nav'
@@ -7,12 +7,7 @@ import { MobileNav } from './mobile_nav'
 export function Home({ storiesMap, ...rest }) {
     return (
         <Stack align='stretch' flex='1' width='100%'>
-            <Stack
-                w='100%'
-                spacing='10'
-                align='center'
-                justify='center'
-            >
+            <Stack w='100%' spacing='10' align='center' justify='center'>
                 <Stack
                     height={TOP_TITLE_H}
                     spacing='3'
@@ -27,6 +22,7 @@ export function Home({ storiesMap, ...rest }) {
                         storiesMap={storiesMap}
                     />
                 </Stack>
+
                 <Box lineHeight='1.5em' fontSize='2em' fontWeight='medium'>
                     Vitro helps you build react components in isolation
                 </Box>
