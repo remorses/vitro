@@ -2,7 +2,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./*"]
+            "@vitro-root/*": ["./*"]
         },
         "target": "es5",
         "lib": ["dom", "dom.iterable", "esnext"],

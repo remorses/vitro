@@ -37,10 +37,10 @@ export async function generateExperiments(p: {
         files.map(async (p) => {
             const target = path.join(targetDir, p)
             const code = generateExperimentPage({
-                importPath: removeExtension('@/../' + path.normalize(p)),
+                importPath: removeExtension('@vitro-root/../' + path.normalize(p)),
                 absolutePath: path.resolve('..', p),
                 wrapperComponentPath: removeExtension(
-                    '@/../' + path.normalize(wrapperComponentPath),
+                    '@vitro-root/../' + path.normalize(wrapperComponentPath),
                 ),
             }).trim()
             const existing = await readFile(target)
@@ -60,7 +60,7 @@ function generateExperimentPage({ importPath, absolutePath, wrapperComponentPath
 import React from 'react'
 import * as exported from '${importPath}'
 import { default as GlobalWrapper } from '${wrapperComponentPath}'
-import experimentsMap from '@/experimentsMap'
+import experimentsMap from '@vitro-root/experimentsMap'
 import { ExperimentPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
 const absolutePath = '${absolutePath}'
