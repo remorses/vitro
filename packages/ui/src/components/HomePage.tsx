@@ -60,7 +60,7 @@ export function HomePage({ experimentsMap, ...rest }) {
                         spacing='6'
                     >
                         <Box h='80px' as={IsolateStep} />
-                        <Box>ISOLATE</Box>
+                        <Box>EXPERIMENT</Box>
                     </Stack>
                     <Stack
                         my='12'
@@ -90,7 +90,7 @@ export function HomePage({ experimentsMap, ...rest }) {
                         spacing='6'
                     >
                         <Box h='80px' as={DeployStep} />
-                        <Box>DEPLOY</Box>
+                        <Box>COLLABORATE</Box>
                     </Stack>
                 </Flex>
                 {/* <Image w='300px' src={path.join(BASE_PATH, 'share-reuse.png')} /> */}
