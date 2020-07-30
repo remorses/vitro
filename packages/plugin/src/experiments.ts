@@ -78,7 +78,7 @@ export default function Page() {
 `
 }
 
-export async function generateexperimentsMap({ cwd = '.', globs, ignore }) {
+export async function generateExperimentsMap({ cwd = '.', globs, ignore }) {
     const options: GlobOptions = {
         ignore,
         cwd,

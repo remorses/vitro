@@ -3,50 +3,38 @@ import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import { loader } from 'webpack'
 import { TESTING, VERBOSE } from './constants'
-import { generateExperiments, generateexperimentsMap } from './experiments'
-import { debug, resolvePackage } from './support'
+import { generateExperiments, generateExperimentsMap } from './experiments'
+import { debug, resolve } from './support'
+import { generate } from './generate'
 
-const excludedDirs = ['.vitro']
-if (TESTING) {
-    excludedDirs.push('template')
+export interface PluginArgs {
+    experiments: string[]
+    wrapper?: string
+    basePath?: string
+    transpileModules?: string[]
+    globalCSS?: string[]
+    cwd: string
+    ignore?: string[]
 }
 
-export const withVitro = ({
-    experiments,
-    wrapper,
-    basePath = '',
-    transpileModules = [],
-    globalCSS = [],
-    __dirname,
-    ignore = ['node_modules'],
-}) => (nextConfig = {} as any) => {
+export const withVitro = (args: PluginArgs) => (nextConfig = {} as any) => {
+    let {
+        experiments,
+        wrapper,
+        basePath = '',
+        transpileModules = [],
+        globalCSS = [],
+        cwd,
+    } = args
     experiments = experiments.map(path.normalize)
     if (basePath && basePath.trim() === '/') {
         basePath = ''
     }
 
-    // TODO generation should happen synchronously, waiting for https://github.com/vercel/next.js/issues/15307
-    const generate = once(async () => {
-        const experimentsMap = await generateexperimentsMap({
-            globs: experiments,
-            cwd: path.resolve(path.join(__dirname, '..')),
-            ignore: [...ignore, ...excludedDirs],
-        })
-
-        fs.writeFileSync(path.join(__dirname, 'experimentsMap.js'), experimentsMap)
-
-        await generateExperiments({
-            globs: experiments,
-            wrapperComponentPath: wrapper,
-            cwd: path.resolve(path.join(__dirname, '..')),
-            targetDir: path.resolve(path.join(__dirname, './pages/experiments')),
-            ignore,
-        })
-    })
-    generate()
+    generate(args)
 
     const transpile = transpilePlugin([
-        path.resolve(__dirname, '../'),
+        path.resolve(cwd, '../'),
         ...transpileModules,
     ])
 
@@ -60,7 +48,7 @@ export const withVitro = ({
                     GLOBAL_CSS_CODE: makeCssImportCodeSnippet(globalCSS),
                     WRAPPER_COMPONENT_PATH: JSON.stringify(
                         wrapper
-                            ? path.join(path.resolve(__dirname, '../'), wrapper)
+                            ? path.join(path.resolve(cwd, '../'), wrapper)
                             : '',
                     ),
                     BASE_PATH: JSON.stringify(basePath || '/'),
@@ -71,7 +59,7 @@ export const withVitro = ({
                 ...config.resolve.alias,
                 // '@vitro': path.resolve(__dirname, '../'),
                 ...aliasOfPackages({
-                    __dirname,
+                    cwd,
                     packages: [
                         'react',
                         'react-dom',
@@ -137,15 +125,12 @@ export const withVitro = ({
     })
 }
 
-function aliasOfPackages(args: { packages: string[]; __dirname }) {
+function aliasOfPackages(args: { packages: string[]; cwd }) {
     return Object.assign(
         {},
         ...args.packages.map((p) => {
             try {
-                const resolved = resolvePackage({
-                    package: p,
-                    __dirname: args.__dirname,
-                })
+                const resolved = resolve(p)
                 debug(`using local instance of '${p}' at '${resolved}'`)
                 return {
                     [p]: resolved,

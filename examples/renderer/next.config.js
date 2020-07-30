@@ -1,7 +1,7 @@
 const { withVitro } = require('@vitro/plugin')
 
 const plugin = withVitro({
-    __dirname,
+    cwd: __dirname,
     transpileModules: ['@vitro'],
     ...require('../vitro.config'),
 })
