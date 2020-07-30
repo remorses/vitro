@@ -1,0 +1,42 @@
+# Dark Mode
+
+When you click the dark mode toggle at the top right of a vitro app all the experiments on the page gets re-rendered with an additional prop `dark` set to true
+
+When the dark mode is enabled all your experiments components and wrappers will receive a prop `dark` set to true
+
+This way you can handle the color mode state yourself, adding a react context in the wrapper for example
+
+```tsx
+import { ColorModeProvider } from '@chakra-ui/system'
+
+export default {
+    title: 'Example',
+    wrapper: ({ dark, children }) => (
+        <ColorModeProvider value={dark ? 'dark' : 'light'}>
+            <ThemeProvider>{children}</ThemeProvider>
+        </ColorModeProvider>
+    ),
+}
+
+export const MyExperiment = ({ dark }) => (
+    <div>dark mode is {dark ? 'enabled' : 'disabled'}</div>
+)
+```
+
+You can use a global wrapper to add dark mode state to all your experiments
+
+> remember to pass the name of the file that exports the wrapper in the config `wrapper` option
+
+```tsx
+import { ColorModeProvider } from '@chakra-ui/system/src'
+
+import React from 'react'
+
+export const Wrapper = ({ dark, children }) => (
+    <ColorModeProvider value={dark ? 'dark' : 'light'}>
+        <ThemeProvider>{children}</ThemeProvider>
+    </ColorModeProvider>
+)
+
+export default Wrapper
+```
