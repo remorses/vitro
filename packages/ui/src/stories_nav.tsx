@@ -36,7 +36,7 @@ export const StoriesNav = ({
                 direction='row'
                 spacing='2'
                 align='flex-end'
-                pb='10px' // TODO this can be removed when story title does not have wrong line height
+                pb='10px' // TODO can be removed when story title does not have wrong line height
             >
                 <Logo fontSize='24px' />
                 <Box flex='1' />

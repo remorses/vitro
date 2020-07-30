@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 let memoizedCreateCacheWithContainer = (container: any = undefined) => {
     let newCache = createCache({
         container,
-        key: 'dfgdsfg', // TODO maybe emotion key should change?
+        key: 'dfgdsfg',
         // stylisPlugins: [stylisPluginExtraScope('.App')],
     })
     return newCache
@@ -34,7 +34,7 @@ export function FramedComponent(C) {
                     // TODO insert global stories css here
                     style={{
                         width: '100%',
-                        minHeight: '100%', // TODO add body stylings
+                        minHeight: '100%',
                     }}
                     ref={(r) => (this.iframe = r)}
                     {...this.props.frameProps}
