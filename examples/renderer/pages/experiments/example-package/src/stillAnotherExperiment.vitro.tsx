@@ -1,8 +1,8 @@
 import React from 'react'
 import * as exported from '@/../example-package/src/stillAnotherExperiment.vitro'
-import { default as GlobalWrapper } from '@/../@vitro/ui/dist/components/DefaultWrapper'
+import { default as GlobalWrapper } from '@/../@vitro/ui/src/components/DefaultWrapper'
 import experimentsMap from '@/experimentsMap'
-import { ExperimentPage } from '@vitro/ui'
+import { ExperimentPage } from '@vitro/ui/src'
 
 const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/example-package/src/stillAnotherExperiment.vitro.tsx'
 
