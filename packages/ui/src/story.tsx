@@ -50,7 +50,7 @@ let memoizedCreateCacheWithContainer = (container: any = undefined) => {
     return newCache
 }
 
-export function StoryPage({
+export function ExperimentPage({
     experimentsMap,
     GlobalWrapper,
     absolutePath,

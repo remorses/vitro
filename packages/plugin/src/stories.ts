@@ -36,7 +36,7 @@ export async function generateStories(p: {
         // TODO batched promise.all
         files.map(async (p) => {
             const target = path.join(targetDir, p)
-            const code = generateStoryPage({
+            const code = generateExperimentPage({
                 importPath: removeExtension('@/../' + path.normalize(p)),
                 absolutePath: path.resolve('..', p),
                 wrapperComponentPath: removeExtension(
@@ -55,19 +55,19 @@ export async function generateStories(p: {
     )
 }
 
-function generateStoryPage({ importPath, absolutePath, wrapperComponentPath }) {
+function generateExperimentPage({ importPath, absolutePath, wrapperComponentPath }) {
     return `
 import React from 'react'
 import * as exported from '${importPath}'
 import { default as GlobalWrapper } from '${wrapperComponentPath}'
 import experimentsMap from '@/experimentsMap'
-import { StoryPage } from '@vitro/ui${TESTING ? '/src' : ''}'
+import { ExperimentPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
 const absolutePath = '${absolutePath}'
 
 export default function Page() {
     return (
-        <StoryPage
+        <ExperimentPage
             experimentsMap={experimentsMap}
             GlobalWrapper={GlobalWrapper}
             absolutePath={absolutePath}

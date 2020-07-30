@@ -12,7 +12,6 @@
         "publish": {
             "message": "publish",
             "ignoreChanges": [
-                "**/stories/**",
                 "**/tests/**"
             ]
         }
