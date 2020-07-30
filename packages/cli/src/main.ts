@@ -2,6 +2,7 @@
 import yargs from 'yargs'
 import startCommand from './start'
 import newCommand from './new'
+import buildCommand from './build'
 import { withErrorHandling } from './support'
 
 yargs
@@ -24,5 +25,6 @@ yargs
     // ])
     .command(withErrorHandling(startCommand))
     .command(withErrorHandling(newCommand))
+    .command(withErrorHandling(buildCommand))
     // .demandCommand()
     .help('h').argv

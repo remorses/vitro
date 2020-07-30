@@ -1,8 +1,8 @@
 const { withVitro } = require('@vitro/plugin')
 
 const plugin = withVitro({
-    cwd: __dirname,
     ...require('../vitro.config'),
+    cwd: __dirname,
 })
 
 module.exports = plugin({

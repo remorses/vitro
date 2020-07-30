@@ -18,6 +18,7 @@
     },
     "license": "MIT",
     "scripts": {
+        "gen": "NODE_ENV=test node -r sucrase/register ../../packages/cli/src/main.ts build --cwd ../",
         "build": "yarn --cwd ../../ install && yarn --cwd ../../ lerna bootstrap && yarn --cwd ../../ build && yarn next build",
         "dev": "cross-env TESTING=1 next dev",
         "start": "next start"
