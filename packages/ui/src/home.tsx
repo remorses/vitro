@@ -8,7 +8,7 @@ import assign from 'lodash/assign'
 
 assign(Faded, { defaultProps: { cascade: true } })
 
-export function Home({ storiesMap, ...rest }) {
+export function Home({ experimentsMap, ...rest }) {
     return (
         <Stack align='stretch' flex='1' width='100%'>
             <Stack w='100%' spacing='10' align='center' justify='center'>
@@ -23,7 +23,7 @@ export function Home({ storiesMap, ...rest }) {
                     <ToggleColorModeButton />
                     <MobileNav
                         display={['flex', null, null, 'none']}
-                        storiesMap={storiesMap}
+                        experimentsMap={experimentsMap}
                     />
                 </Stack>
 

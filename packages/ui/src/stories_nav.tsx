@@ -17,10 +17,10 @@ import { AiFillCaretRight } from 'react-icons/ai'
 import { getStories, version, TOP_TITLE_H } from './support'
 
 export const StoriesNav = ({
-    storiesMap,
+    experimentsMap,
     ...p
 }: Omit<InputGroupProps, 'children'> & {
-    storiesMap: Record<string, string>
+    experimentsMap: Record<string, string>
 }) => {
     let [filter, setFilter] = useState('')
     filter = filter.toLowerCase()
@@ -28,7 +28,7 @@ export const StoriesNav = ({
         setFilter,
     ])
     const { colorMode } = useColorMode()
-    const experiments = useMemo(() => getStories(storiesMap), [])
+    const experiments = useMemo(() => getStories(experimentsMap), [])
     return (
         <Stack spacing='6' {...p}>
             <Stack

@@ -12,10 +12,10 @@ type GetStoriesReturnType = {
     // getExports: () => Record<string, any>
 }[]
 
-export const getStories = (storiesMap): GetStoriesReturnType => {
-    return Object.keys(storiesMap).map((filename) => {
+export const getStories = (experimentsMap): GetStoriesReturnType => {
+    return Object.keys(experimentsMap).map((filename) => {
         return {
-            absolutePath: storiesMap[filename],
+            absolutePath: experimentsMap[filename],
             filename,
             title: formatPathToTitle(filename),
         }

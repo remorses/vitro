@@ -3,7 +3,7 @@ import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import { loader } from 'webpack'
 import { TESTING, VERBOSE } from './constants'
-import { generateStories, generateStoriesMap } from './stories'
+import { generateStories, generateexperimentsMap } from './stories'
 import { debug, resolvePackage } from './support'
 
 const excludedDirs = ['.vitro']
@@ -27,13 +27,13 @@ export const withVitro = ({
 
     // TODO generation should happen synchronously, waiting for https://github.com/vercel/next.js/issues/15307
     const generate = once(async () => {
-        const storiesMap = await generateStoriesMap({
+        const experimentsMap = await generateexperimentsMap({
             globs: experiments,
             cwd: path.resolve(path.join(__dirname, '..')),
             ignore: [...ignore, ...excludedDirs],
         })
 
-        fs.writeFileSync(path.join(__dirname, 'storiesMap.js'), storiesMap)
+        fs.writeFileSync(path.join(__dirname, 'experimentsMap.js'), experimentsMap)
 
         await generateStories({
             globs: experiments,

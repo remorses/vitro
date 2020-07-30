@@ -60,7 +60,7 @@ function generateStoryPage({ importPath, absolutePath, wrapperComponentPath }) {
 import React from 'react'
 import * as exported from '${importPath}'
 import { default as GlobalWrapper } from '${wrapperComponentPath}'
-import storiesMap from '@/storiesMap'
+import experimentsMap from '@/experimentsMap'
 import { StoryPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
 const absolutePath = '${absolutePath}'
@@ -68,7 +68,7 @@ const absolutePath = '${absolutePath}'
 export default function Page() {
     return (
         <StoryPage
-            storiesMap={storiesMap}
+            experimentsMap={experimentsMap}
             GlobalWrapper={GlobalWrapper}
             absolutePath={absolutePath}
             storyExports={exported}
@@ -78,7 +78,7 @@ export default function Page() {
 `
 }
 
-export async function generateStoriesMap({ cwd = '.', globs, ignore }) {
+export async function generateexperimentsMap({ cwd = '.', globs, ignore }) {
     const options: GlobOptions = {
         ignore,
         cwd,
@@ -88,10 +88,10 @@ export async function generateStoriesMap({ cwd = '.', globs, ignore }) {
         globs.map((s) => memoizedGlob(s, options)),
     )
     const files: string[] = uniq(flatten(results))
-    return printStoriesMap({ files })
+    return printexperimentsMap({ files })
 }
 
-function printStoriesMap(p: { files: string[] }) {
+function printexperimentsMap(p: { files: string[] }) {
     let result = 'module.exports = {\n'
     p.files.forEach((f) => {
         // const importPath = p.base + path.join(f)

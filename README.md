@@ -43,7 +43,7 @@ Currently SSR is disabled because
 
 ## Things to do
 
--   [ ] rename stories to experiments (or studies or cases)
+-   [x] rename stories to experiments (or studies or cases)
 -   [ ] if a file name is index get the containing folder name, also you can pass a function getName that given a file path gets the title out
 -   [ ] add a deploy with vercel button,
 -   [ ] make the index page with an how it works and what vitro does, inciting to subscribe to the managed platform for additional features

@@ -51,7 +51,7 @@ let memoizedCreateCacheWithContainer = (container: any = undefined) => {
 }
 
 export function StoryPage({
-    storiesMap,
+    experimentsMap,
     GlobalWrapper,
     absolutePath,
     storyExports: storyExportsPromise,
@@ -125,7 +125,7 @@ export function StoryPage({
                     />
                     <MobileNav
                         display={['flex', null, null, 'none']}
-                        storiesMap={storiesMap}
+                        experimentsMap={experimentsMap}
                     />
                 </Stack>
                 {/* <Box fontSize='18px' opacity={0.6}>

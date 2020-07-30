@@ -1,6 +1,6 @@
 import { VitroApp } from '@vitro/ui'
-import storiesMap from '@/storiesMap'
+import experimentsMap from '@/experimentsMap'
 
 export default function App(props) {
-    return <VitroApp {...props} storiesMap={storiesMap} />
+    return <VitroApp {...props} experimentsMap={experimentsMap} />
 }

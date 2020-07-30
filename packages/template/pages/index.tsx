@@ -1,6 +1,6 @@
 import { Home } from '@vitro/ui'
-import storiesMap from '@/storiesMap'
+import experimentsMap from '@/experimentsMap'
 
 export default function Page() {
-    return <Home storiesMap={storiesMap} />
+    return <Home experimentsMap={experimentsMap} />
 }

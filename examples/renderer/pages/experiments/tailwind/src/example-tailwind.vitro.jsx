@@ -1,7 +1,7 @@
 import React from 'react'
 import * as exported from '@/../tailwind/src/example-tailwind.vitro'
 import { default as GlobalWrapper } from '@/../@vitro/ui/src/default_wrapper'
-import storiesMap from '@/storiesMap'
+import experimentsMap from '@/experimentsMap'
 import { StoryPage } from '@vitro/ui/src'
 
 const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/tailwind/src/example-tailwind.vitro.jsx'
@@ -9,7 +9,7 @@ const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/tailwi
 export default function Page() {
     return (
         <StoryPage
-            storiesMap={storiesMap}
+            experimentsMap={experimentsMap}
             GlobalWrapper={GlobalWrapper}
             absolutePath={absolutePath}
             storyExports={exported}

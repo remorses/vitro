@@ -30,7 +30,7 @@ Router.events.on('routeChangeError', () => NProgress.done())
 const PAGE_PADDING = '40px'
 const SM_PAGE_PADDING = '20px'
 
-export function VitroApp({ storiesMap, ...props }) {
+export function VitroApp({ experimentsMap, ...props }) {
     const { Component, pageProps } = props
     return (
         <ColorModeProvider value='light'>
@@ -38,7 +38,7 @@ export function VitroApp({ storiesMap, ...props }) {
             <ThemeProvider>
                 <CSSReset />
                 <Global styles={[globalStyles]} />
-                <Content storiesMap={storiesMap}>
+                <Content experimentsMap={experimentsMap}>
                     <Component {...pageProps} />
                 </Content>
             </ThemeProvider>
@@ -58,10 +58,10 @@ function useSSRSkip({} = {}) {
 }
 
 const Content = ({
-    storiesMap,
+    experimentsMap,
     children,
 }: {
-    storiesMap: Record<string, string>
+    experimentsMap: Record<string, string>
     children
 }) => {
     const loaded = useSSRSkip()
@@ -102,7 +102,7 @@ const Content = ({
                 >
                     <StoriesNav
                         className='vitro smoothscroll'
-                        storiesMap={storiesMap}
+                        experimentsMap={experimentsMap}
                         width='100%'
                         fontWeight='500'
                         display={['none', null, null, 'flex']}
