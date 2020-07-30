@@ -12,7 +12,7 @@ import { Router } from 'next/router'
 import NProgress from 'nprogress'
 import React, { useState, useEffect, useMemo } from 'react'
 import { globalStyles } from './css'
-import { StoriesNav } from './stories_nav'
+import { ExperimentsNav } from './nav'
 import stylisPluginExtraScope from 'stylis-plugin-extra-scope'
 import weakMemoize from '@emotion/weak-memoize'
 import createCache from '@emotion/cache'
@@ -100,7 +100,7 @@ const Content = ({
                     bottom='0'
                     // overflowX='hidden'
                 >
-                    <StoriesNav
+                    <ExperimentsNav
                         className='vitro smoothscroll'
                         experimentsMap={experimentsMap}
                         width='100%'

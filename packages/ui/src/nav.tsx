@@ -16,7 +16,7 @@ import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
 import { getStories, version, TOP_TITLE_H } from './support'
 
-export const StoriesNav = ({
+export const ExperimentsNav = ({
     experimentsMap,
     ...p
 }: Omit<InputGroupProps, 'children'> & {

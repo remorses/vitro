@@ -12,7 +12,7 @@ import {
 import React, { useEffect } from 'react'
 import { MdDehaze } from 'react-icons/md'
 import { useRouter } from 'next/router'
-import { StoriesNav } from './stories_nav'
+import { ExperimentsNav } from './nav'
 
 export const useRouteChanged = (callback) => {
     const router = useRouter()
@@ -65,7 +65,7 @@ export const MobileNav = ({ experimentsMap, ...rest }) => {
                     overflowY='auto'
                 >
                     <DrawerBody p={0}>
-                        <StoriesNav p='4' experimentsMap={experimentsMap} />
+                        <ExperimentsNav p='4' experimentsMap={experimentsMap} />
                         <Box h='100px' />
                     </DrawerBody>
                 </DrawerContent>

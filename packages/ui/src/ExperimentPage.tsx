@@ -11,10 +11,9 @@ import {
     SimpleGrid,
     Stack,
     StackProps,
-    useColorMode,
+    useColorMode
 } from '@chakra-ui/core'
-import { jsx, css } from '@emotion/core'
-import startCase from 'lodash/startCase'
+import { jsx } from '@emotion/core'
 import React, {
     Profiler,
     ProfilerOnRenderCallback,
@@ -22,7 +21,7 @@ import React, {
     useEffect,
     useMemo,
     useRef,
-    useState,
+    useState
 } from 'react'
 import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
@@ -30,25 +29,10 @@ import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
 import { DebugCSS } from './debugCSS'
 import { DefaultWrapper } from './default_wrapper'
-import { formatPathToTitle, TOP_TITLE_H, usePromise } from './support'
 import { MobileNav } from './mobile_nav'
-import { FramedComponent } from './iframe'
-import createCache from '@emotion/cache'
-import { CacheProvider } from '@emotion/core'
-// import { FrameProvider } from './frame-provider'
-// import extraScopePlugin from 'stylis-plugin-extra-scope'
-import weakMemoize from '@emotion/weak-memoize'
+import { formatPathToTitle, TOP_TITLE_H, usePromise } from './support'
 
 jsx
-
-let memoizedCreateCacheWithContainer = (container: any = undefined) => {
-    let newCache = createCache({
-        container,
-        key: 'dfgdsfg',
-        // stylisPlugins: [stylisPluginExtraScope('.App')],
-    })
-    return newCache
-}
 
 export function ExperimentPage({
     experimentsMap,
