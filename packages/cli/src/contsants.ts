@@ -12,7 +12,7 @@ export const TEMPLATE_PATH = TESTING
 
 export const DEFAULT_CONFIG = `
 module.exports = {
-    stories: ['./**',],
+    experiments: ['./**',],
 }
 `
 

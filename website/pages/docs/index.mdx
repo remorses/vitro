@@ -22,13 +22,13 @@ vitro new
 
 The command above creates a `vitro.config.js` config file and a `.vitro` directory
 
-You can customize the config changing the stories location and an optional wrapper path that points to a file that has a react component as default export
+You can customize the config changing the experiments files location and an optional wrapper path that points to a file that has a react component as default export
 
 ```js
 // vitro.config.js
 
 module.exports = {
-    stories: ['./example-package/.story.tsx'], // glob to your stories
+    experiments: ['./example-package/.story.tsx'], // glob to your experiments
     wrapper: './example-package/src/Wrapper.tsx', // file that has a react component as default export
 }
 ```
@@ -41,4 +41,4 @@ Now you can start the server with
 vitro start -p 7007
 ```
 
-This will start a web server on [localhost:7007](http://localhost:7007) with your stories
+This will start a web server on [localhost:7007](http://localhost:7007) with your experiments

@@ -31,7 +31,6 @@ export function FramedComponent(C) {
         render = function () {
             return (
                 <iframe
-                    // TODO insert global stories css here
                     style={{
                         width: '100%',
                         minHeight: '100%',

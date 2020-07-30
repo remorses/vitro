@@ -12,7 +12,7 @@ if (TESTING) {
 }
 
 export const withVitro = ({
-    stories,
+    experiments,
     wrapper,
     basePath = '',
     transpileModules = [],
@@ -20,7 +20,7 @@ export const withVitro = ({
     __dirname,
     ignore = ['node_modules'],
 }) => (nextConfig = {} as any) => {
-    stories = stories.map(path.normalize)
+    experiments = experiments.map(path.normalize)
     if (basePath && basePath.trim() === '/') {
         basePath = ''
     }
@@ -28,7 +28,7 @@ export const withVitro = ({
     // TODO generation should happen synchronously, waiting for https://github.com/vercel/next.js/issues/15307
     const generate = once(async () => {
         const storiesMap = await generateStoriesMap({
-            globs: stories,
+            globs: experiments,
             cwd: path.resolve(path.join(__dirname, '..')),
             ignore: [...ignore, ...excludedDirs],
         })
@@ -36,10 +36,10 @@ export const withVitro = ({
         fs.writeFileSync(path.join(__dirname, 'storiesMap.js'), storiesMap)
 
         await generateStories({
-            globs: stories,
+            globs: experiments,
             wrapperComponentPath: wrapper,
             cwd: path.resolve(path.join(__dirname, '..')),
-            targetDir: path.resolve(path.join(__dirname, './pages/stories')),
+            targetDir: path.resolve(path.join(__dirname, './pages/experiments')),
             ignore,
         })
     })
@@ -66,7 +66,7 @@ export const withVitro = ({
                     BASE_PATH: JSON.stringify(basePath || '/'),
                 }),
             )
-            // replace the stories react packages with local ones to not dedupe
+            // replace the experiments react packages with local ones to not dedupe
             config.resolve.alias = {
                 ...config.resolve.alias,
                 // '@vitro': path.resolve(__dirname, '../'),

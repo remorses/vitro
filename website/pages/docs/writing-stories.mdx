@@ -1,9 +1,9 @@
-# Writing Stories
+# Writing experiments
 
 A story is simply a file that exports some components
 
 ```jsx
-// example.stories.jsx
+// example.experiments.jsx
 
 import React from 'react'
 import { Component } from './'
@@ -26,7 +26,7 @@ you can declare an object as default export to add story information like
 -   title
 
 ```jsx
-// example.stories.jsx
+// example.experiments.jsx
 import { Button } from './'
 
 export default {
@@ -45,7 +45,7 @@ You can pass a wrapper key to the default export to add a component to be used a
 This is useful to add necessary react providers like a `ThemeProvider` or redux `Provider`
 
 ```jsx
-// example.stories.jsx
+// example.experiments.jsx
 import { Button } from './'
 
 export default {
@@ -65,9 +65,9 @@ export const SimpleButton = () => {
 }
 ```
 
-## Adding a global wrapper to all stories
+## Adding a global wrapper to all experiments
 
-If you want to add a wrapper to all stories you can pass a path to the wrapper field in `vitro.config.js`
+If you want to add a wrapper to all experiments you can pass a path to the wrapper field in `vitro.config.js`
 
 The path must have a default export with the wrapper component
 
@@ -77,7 +77,7 @@ The file will be transpiled so you can use typescript and ESNext features
 // vitro.config.js
 
 module.exports = {
-    stories: ['./example-package/.story.tsx'], // glob to your stories
+    experiments: ['./example-package/.story.tsx'], // glob to your experiments
     wrapper: './example-package/src/Wrapper.tsx', // file that has a react component as default export
 }
 ```

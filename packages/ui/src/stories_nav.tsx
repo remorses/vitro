@@ -28,7 +28,7 @@ export const StoriesNav = ({
         setFilter,
     ])
     const { colorMode } = useColorMode()
-    const stories = useMemo(() => getStories(storiesMap), [])
+    const experiments = useMemo(() => getStories(storiesMap), [])
     return (
         <Stack spacing='6' {...p}>
             <Stack
@@ -61,7 +61,7 @@ export const StoriesNav = ({
                 />
             </InputGroup>
             <Stack spacing='4'>
-                {stories.map(({ title, filename }) => {
+                {experiments.map(({ title, filename }) => {
                     if (
                         filter &&
                         !title.toLowerCase().includes(filter) &&
@@ -73,8 +73,8 @@ export const StoriesNav = ({
                         <Box key={filename}>
                             <NextLink
                                 passHref
-                                href={`/stories/${filename}`}
-                                // href={`/stories/[...story]`}
+                                href={`/experiments/${filename}`}
+                                // href={`/experiments/[...story]`}
                             >
                                 <Stack
                                     cursor='pointer'
