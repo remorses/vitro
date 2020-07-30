@@ -1,2 +1,2 @@
-export * from './stories'
+export * from './experiments'
 export * from './plugin'

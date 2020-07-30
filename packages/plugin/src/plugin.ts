@@ -3,7 +3,7 @@ import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import { loader } from 'webpack'
 import { TESTING, VERBOSE } from './constants'
-import { generateStories, generateexperimentsMap } from './stories'
+import { generateExperiments, generateexperimentsMap } from './experiments'
 import { debug, resolvePackage } from './support'
 
 const excludedDirs = ['.vitro']
@@ -35,7 +35,7 @@ export const withVitro = ({
 
         fs.writeFileSync(path.join(__dirname, 'experimentsMap.js'), experimentsMap)
 
-        await generateStories({
+        await generateExperiments({
             globs: experiments,
             wrapperComponentPath: wrapper,
             cwd: path.resolve(path.join(__dirname, '..')),

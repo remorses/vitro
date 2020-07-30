@@ -9,7 +9,7 @@
         "publ": "yarn build && yarn lerna publish -y patch",
         "build": "yarn build:cjs && yarn build:esm",
         "build:cjs": "lerna exec --scope @vitro/* 'yarn tsc --incremental'",
-        "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc -m ESNext --outDir esm --incremental"
+        "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn tsc  -m ESNext --outDir esm --incremental"
     },
     "workspaces": {
         "packages": [

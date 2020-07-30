@@ -61,10 +61,9 @@ export function ExperimentPage({
     }, [GlobalWrapper])
 
     const vscodeUrl = `vscode://file${absolutePath}`
-    // console.log(storyObject)
     // exported.then(z => console.log(Object.keys(z)))
     // console.log({ fileExports })
-    const StoryWrapper = useMemo(
+    const ExperimentWrapper = useMemo(
         () => fileExports?.default?.wrapper || DefaultWrapper,
         [fileExports],
     )
@@ -214,13 +213,13 @@ export function ExperimentPage({
                                         <ValidGlobalWrapper
                                             dark={colorMode == 'dark'}
                                         >
-                                            <StoryWrapper
+                                            <ExperimentWrapper
                                                 dark={colorMode == 'dark'}
                                             >
                                                 <Component
                                                     dark={colorMode == 'dark'}
                                                 />
-                                            </StoryWrapper>
+                                            </ExperimentWrapper>
                                         </ValidGlobalWrapper>
                                     </Stack>
                                 </StoryBlock>

@@ -6,7 +6,7 @@ import path, { ParsedPath } from 'path'
 import { memoizedGlob, GlobOptions } from 'smart-glob'
 import { TESTING } from './constants'
 
-export async function generateStories(p: {
+export async function generateExperiments(p: {
     globs: string[]
     targetDir: string
     wrapperComponentPath: string
