@@ -2,13 +2,13 @@ import React from 'react'
 import { Box, Stack, Image, Flex } from '@chakra-ui/core'
 import { TOP_TITLE_H } from './support'
 import { ToggleColorModeButton } from './ExperimentPage'
-import { MobileNav } from './mobile_nav'
+import { MobileNav } from './MobileNav'
 import { Faded } from 'baby-i-am-faded'
 import assign from 'lodash/assign'
 
 assign(Faded, { defaultProps: { cascade: true } })
 
-export function Home({ experimentsMap, ...rest }) {
+export function HomePage({ experimentsMap, ...rest }) {
     return (
         <Stack align='stretch' flex='1' width='100%'>
             <Stack w='100%' spacing='10' align='center' justify='center'>

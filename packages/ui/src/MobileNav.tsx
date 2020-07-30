@@ -12,7 +12,7 @@ import {
 import React, { useEffect } from 'react'
 import { MdDehaze } from 'react-icons/md'
 import { useRouter } from 'next/router'
-import { ExperimentsNav } from './nav'
+import { ExperimentsNav } from './ExperimentsNav'
 
 export const useRouteChanged = (callback) => {
     const router = useRouter()

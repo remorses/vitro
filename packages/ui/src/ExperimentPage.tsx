@@ -29,7 +29,7 @@ import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
 import { DebugCSS } from './debugCSS'
 import { DefaultWrapper } from './default_wrapper'
-import { MobileNav } from './mobile_nav'
+import { MobileNav } from './MobileNav'
 import { formatPathToTitle, TOP_TITLE_H, usePromise } from './support'
 
 jsx

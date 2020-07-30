@@ -1,7 +1,7 @@
 import { Stack, Box, Spinner } from '@chakra-ui/core'
 import React from 'react'
 import { Faded } from 'baby-i-am-faded'
-import { Logo } from './nav'
+import { Logo } from './ExperimentsNav'
 
 export const SplashScreen = ({}) => {
     return (
