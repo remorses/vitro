@@ -20,7 +20,7 @@ export async function generateStories(p: {
         cwd = '.',
         wrapperComponentPath = `@vitro/ui/${
             TESTING ? 'src' : 'dist'
-        }/default_wrapper`,
+        }/components/DefaultWrapper`,
     } = p
     const options: GlobOptions = {
         ignore,

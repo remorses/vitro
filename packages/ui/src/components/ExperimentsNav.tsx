@@ -14,7 +14,7 @@ import startCase from 'lodash/startCase'
 import NextLink from 'next/link'
 import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
-import { getStories, version, TOP_TITLE_H } from './support'
+import { getExperimentsPaths, version, TOP_TITLE_H } from '../support'
 
 export const ExperimentsNav = ({
     experimentsMap,
@@ -28,7 +28,7 @@ export const ExperimentsNav = ({
         setFilter,
     ])
     const { colorMode } = useColorMode()
-    const experiments = useMemo(() => getStories(experimentsMap), [])
+    const experiments = useMemo(() => getExperimentsPaths(experimentsMap), [])
     return (
         <Stack spacing='6' {...p}>
             <Stack

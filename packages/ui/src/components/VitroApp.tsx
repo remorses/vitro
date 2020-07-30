@@ -11,12 +11,12 @@ import { Global, jsx, css, CacheProvider } from '@emotion/core'
 import { Router } from 'next/router'
 import NProgress from 'nprogress'
 import React, { useState, useEffect, useMemo } from 'react'
-import { globalStyles } from './css'
+import { globalStyles } from '../css'
 import { ExperimentsNav } from './ExperimentsNav'
 import stylisPluginExtraScope from 'stylis-plugin-extra-scope'
 import weakMemoize from '@emotion/weak-memoize'
 import createCache from '@emotion/cache'
-import { SplashScreen } from './splash_screen'
+import { SplashScreen } from './SplashScreen'
 
 jsx
 

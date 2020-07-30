@@ -5,14 +5,14 @@ export const version = require('../package.json').version
 
 export const TOP_TITLE_H = '60px'
 
-type GetStoriesReturnType = {
+type GetExperimentsReturnType = {
     filename: string
     title: string
     absolutePath: string
     // getExports: () => Record<string, any>
 }[]
 
-export const getStories = (experimentsMap): GetStoriesReturnType => {
+export const getExperimentsPaths = (experimentsMap): GetExperimentsReturnType => {
     return Object.keys(experimentsMap).map((filename) => {
         return {
             absolutePath: experimentsMap[filename],

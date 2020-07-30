@@ -27,10 +27,10 @@ import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
-import { DebugCSS } from './debugCSS'
-import { DefaultWrapper } from './default_wrapper'
+import { DebugCSS } from '../debugCSS'
+import { DefaultWrapper } from './DefaultWrapper'
 import { MobileNav } from './MobileNav'
-import { formatPathToTitle, TOP_TITLE_H, usePromise } from './support'
+import { formatPathToTitle, TOP_TITLE_H, usePromise } from '../support'
 
 jsx
 

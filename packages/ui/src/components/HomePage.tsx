@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Stack, Image, Flex } from '@chakra-ui/core'
-import { TOP_TITLE_H } from './support'
+import { TOP_TITLE_H } from '../support'
 import { ToggleColorModeButton } from './ExperimentPage'
 import { MobileNav } from './MobileNav'
 import { Faded } from 'baby-i-am-faded'
