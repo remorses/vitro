@@ -54,11 +54,11 @@ export function ExperimentPage({
     experimentsMap,
     GlobalWrapper,
     absolutePath,
-    storyExports: storyExportsPromise,
+    fileExports: fileExportsPromise,
 }) {
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
-    const [storyExports] = usePromise(storyExportsPromise)
+    const [fileExports] = usePromise(fileExportsPromise)
     const ValidGlobalWrapper = useMemo(
         () =>
             !GlobalWrapper || !isValidElementType(GlobalWrapper)
@@ -79,14 +79,14 @@ export function ExperimentPage({
     const vscodeUrl = `vscode://file${absolutePath}`
     // console.log(storyObject)
     // exported.then(z => console.log(Object.keys(z)))
-    // console.log({ storyExports })
+    // console.log({ fileExports })
     const StoryWrapper = useMemo(
-        () => storyExports?.default?.wrapper || DefaultWrapper,
-        [storyExports],
+        () => fileExports?.default?.wrapper || DefaultWrapper,
+        [fileExports],
     )
 
-    const storyTitle =
-        storyExports?.default?.title ||
+    const experimentTitle =
+        fileExports?.default?.title ||
         formatPathToTitle(absolutePath) ||
         'Untitled'
 
@@ -117,7 +117,7 @@ export function ExperimentPage({
                         isTruncated
                         fontWeight='medium'
                     >
-                        {storyTitle}
+                        {experimentTitle}
                     </Box>
                     <Box flex='1' />
                     <ToggleColorModeButton
@@ -180,11 +180,11 @@ export function ExperimentPage({
                 spacingX='12'
                 spacingY='16'
             >
-                {storyExports &&
-                    Object.keys(storyExports)
+                {fileExports &&
+                    Object.keys(fileExports)
                         .filter((k) => k !== 'default')
                         .map((k) => {
-                            const Component = storyExports[k]
+                            const Component = fileExports[k]
                             // const C = FramedComponent(({ iframe }) => {
                             //     return (
                             //         <CacheProvider

@@ -71,7 +71,7 @@ export default function Page() {
             experimentsMap={experimentsMap}
             GlobalWrapper={GlobalWrapper}
             absolutePath={absolutePath}
-            storyExports={exported}
+            fileExports={exported}
         />
     )
 }

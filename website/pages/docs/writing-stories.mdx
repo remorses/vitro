@@ -1,6 +1,8 @@
 # Writing experiments
 
-A story is simply a file that exports some components
+An experiment is what storybook calls a story: a file that exports some components
+
+The exported components will be displayed in a page where you can easily experiment with them in isolation
 
 ```jsx
 // example.experiments.jsx
@@ -21,7 +23,7 @@ Every exported component will be displayed as a block on the vitro ui
 
 ## Changing title
 
-you can declare an object as default export to add story information like
+you can declare an object as default export to add experiment information like
 
 -   title
 
@@ -77,7 +79,7 @@ The file will be transpiled so you can use typescript and ESNext features
 // vitro.config.js
 
 module.exports = {
-    experiments: ['./example-package/.story.tsx'], // glob to your experiments
+    experiments: ['./example-package/.experiment.tsx'], // glob to your experiments
     wrapper: './example-package/src/Wrapper.tsx', // file that has a react component as default export
 }
 ```
