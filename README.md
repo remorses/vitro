@@ -58,7 +58,7 @@ Currently SSR is disabled because
 -   [ ] remove the new command, the default command checks if a vitro.config.js exists, if not asks if user wants to create .vitro and config (or errors if not tty), this way the default command always works and is idempotent
 -   [x] the start command keeps the `.vitro` updated running the new command when it sees that its version is greater than the generated one
 -   [ ] exit from full screen with esc key
--   [ ] rename stories, fileExports to files, fileExports
+-   [x] rename stories, fileExports to files, fileExports
 -   [x] add a globalCSS options to pass an array of css files to paste in the \_app.jsx file, this way people can use tailwind for example
 -   [x] add the next css plugin to let users import css files that are not css modules, yes but this plugin is bugged
 -   [ ] use more complex @/ because user could be using it already
