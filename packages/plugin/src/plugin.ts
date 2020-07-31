@@ -22,6 +22,7 @@ export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
     // validate
     mapKeys(config, (v, k) => {
         if (
+            v &&
             ['experiments', 'globalCSS', 'transpileModules'].includes(k) &&
             !Array.isArray(v)
         ) {
