@@ -6,6 +6,7 @@ import { TESTING, VERBOSE } from './constants'
 import { generateExperiments, generateExperimentsMap } from './experiments'
 import { debug, resolve } from './support'
 import { generate } from './generate'
+import { mapKeys } from 'lodash'
 
 export interface PluginArgs {
     experiments: string[]
@@ -17,7 +18,16 @@ export interface PluginArgs {
     ignore?: string[]
 }
 
-export const withVitro = (args: PluginArgs) => (nextConfig = {} as any) => {
+export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
+    mapKeys(config, (v, k) => {
+        if (
+            ['experiments', 'globalCSS', 'transpileModules'].includes(k) &&
+            !Array.isArray(v)
+        ) {
+            throw new Error(`${k} should be an array, received '${v}'`)
+        }
+    })
+
     let {
         experiments = [],
         wrapper,
@@ -25,13 +35,14 @@ export const withVitro = (args: PluginArgs) => (nextConfig = {} as any) => {
         transpileModules = [],
         globalCSS = [],
         cwd,
-    } = args
+    } = config
+
     experiments = experiments.map(path.normalize)
     if (basePath && basePath.trim() === '/') {
         basePath = ''
     }
 
-    generate(args)
+    generate(config)
 
     const transpile = transpilePlugin([
         path.resolve(cwd, '../'),
@@ -143,17 +154,6 @@ function aliasOfPackages(args: { packages: string[]; cwd }) {
             }
         }),
     )
-}
-
-function once(fn) {
-    var result
-    return function () {
-        if (fn) {
-            result = fn.apply(this, arguments)
-            fn = null
-        }
-        return result
-    }
 }
 
 function makeCssImportCodeSnippet(imports: string[]) {
