@@ -98,22 +98,24 @@ export const withVitro = (args: PluginArgs) => (nextConfig = {} as any) => {
             })
 
             // add css imports to _app.tsx
-            config.module.rules.push({
-                // You can use `regexp`
-                // test: /example\.js/$
-                test: /_app\.tsx$/,
-                use: [
-                    {
-                        loader: 'imports-loader',
-                        options: {
-                            imports: globalCSS.map((moduleName) => ({
-                                syntax: 'side-effects',
-                                moduleName,
-                            })),
+            if (globalCSS.length) {
+                config.module.rules.push({
+                    // You can use `regexp`
+                    // test: /example\.js/$
+                    test: /_app\.tsx$/,
+                    use: [
+                        {
+                            loader: 'imports-loader',
+                            options: {
+                                imports: globalCSS.map((moduleName) => ({
+                                    syntax: 'side-effects',
+                                    moduleName,
+                                })),
+                            },
                         },
-                    },
-                ],
-            })
+                    ],
+                })
+            }
 
             if (typeof nextConfig.webpack === 'function') {
                 return nextConfig.webpack(config, options)
