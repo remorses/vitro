@@ -19,6 +19,7 @@ export interface PluginArgs {
 }
 
 export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
+    // validate
     mapKeys(config, (v, k) => {
         if (
             ['experiments', 'globalCSS', 'transpileModules'].includes(k) &&
