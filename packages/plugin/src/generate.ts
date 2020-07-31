@@ -10,7 +10,8 @@ if (TESTING) {
 }
 
 export const generate = async (args: PluginArgs) => {
-    const { experiments = [], ignore: userIgnore = [], wrapper, cwd } = args
+    let { experiments = [], ignore: userIgnore = [], wrapper, cwd } = args
+    experiments = experiments.map(path.normalize)
     const ignore = [...userIgnore, ...excludedDirs]
     const experimentsMap = await generateExperimentsMap({
         globs: experiments,
