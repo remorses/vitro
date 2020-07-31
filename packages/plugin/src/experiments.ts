@@ -37,7 +37,9 @@ export async function generateExperiments(p: {
         files.map(async (p) => {
             const target = path.join(targetDir, p)
             const code = generateExperimentPage({
-                importPath: removeExtension('@vitro-root/../' + path.normalize(p)),
+                importPath: removeExtension(
+                    '@vitro-root/../' + path.normalize(p),
+                ),
                 absolutePath: path.resolve('..', p),
                 wrapperComponentPath: removeExtension(
                     '@vitro-root/../' + path.normalize(wrapperComponentPath),
@@ -55,7 +57,11 @@ export async function generateExperiments(p: {
     )
 }
 
-function generateExperimentPage({ importPath, absolutePath, wrapperComponentPath }) {
+function generateExperimentPage({
+    importPath,
+    absolutePath,
+    wrapperComponentPath,
+}) {
     return `
 import React from 'react'
 import * as exported from '${importPath}'
@@ -88,10 +94,13 @@ export async function generateExperimentsMap({ cwd = '.', globs, ignore }) {
         globs.map((s) => memoizedGlob(s, options)),
     )
     const files: string[] = uniq(flatten(results))
-    return printexperimentsMap({ files })
+    if (!files?.length) {
+        console.log(`could not find any experiment file using globs ${globs}`)
+    }
+    return printExperimentsMap({ files })
 }
 
-function printexperimentsMap(p: { files: string[] }) {
+function printExperimentsMap(p: { files: string[] }) {
     let result = 'module.exports = {\n'
     p.files.forEach((f) => {
         // const importPath = p.base + path.join(f)
