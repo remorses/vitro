@@ -33,8 +33,9 @@ async function start({ port, verbose }) {
         )
         return process.exit(1)
     }
+    const NEXT_BIN = path.resolve(NEXT_APP_PATH, `node_modules/.bin/next`)
     return await runCommand({
-        command: `yarn next dev -p ${port} ${path.resolve('.', NEXT_APP_PATH)}`,
+        command: `${NEXT_BIN} dev -p ${port} ${path.resolve(NEXT_APP_PATH)}`,
         env: verbose
             ? {
                   VERBOSE: 'true',

@@ -28,7 +28,7 @@
     "imports-loader": "^1.1.0",
     "inspect-loader": "^1.0.0",
     "lodash": "^4.17.19",
-    "next-transpile-modules": "^3.3.0",
+    "next-transpile-modules": "^4.0.2",
     "smart-glob": "^0.0.9",
     "tslib": "^2.0.0"
   },

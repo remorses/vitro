@@ -111,7 +111,7 @@ export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
             })
 
             // add css imports to _app.tsx
-            if (globalCSS.length) {
+            if (globalCSS && globalCSS.length) {
                 config.module.rules.push({
                     // You can use `regexp`
                     // test: /example\.js/$

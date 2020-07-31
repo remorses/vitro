@@ -27,6 +27,7 @@ const command: CommandModule = {
         debug('argv', argv)
         debug('cwd', process.cwd())
         printGreen(`creating ${NEXT_APP_PATH}`, true)
+        // TODO remove node_modules and .next folders to prevent bugs
         await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
             overwrite: true,
             recursive: true,
