@@ -19,6 +19,10 @@ export interface PluginArgs {
 }
 
 export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
+    if (!config.experiments) {
+        throw new Error(`Config file has no 'experiments' field, add a field with an array of globs`)
+    }
+
     // validate
     mapKeys(config, (v, k) => {
         if (
