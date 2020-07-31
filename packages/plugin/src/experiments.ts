@@ -25,6 +25,7 @@ export async function generateExperiments(p: {
     const options: GlobOptions = {
         ignore,
         cwd,
+        gitignore: true,
         filesOnly: true,
     }
     const results: string[][] = await Promise.all(
@@ -88,6 +89,7 @@ export async function generateExperimentsMap({ cwd = '.', globs, ignore }) {
     const options: GlobOptions = {
         ignore,
         cwd,
+        gitignore: true,
         filesOnly: true,
     }
     const results: string[][] = await Promise.all(
