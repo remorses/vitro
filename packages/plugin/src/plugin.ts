@@ -19,7 +19,7 @@ export interface PluginArgs {
 
 export const withVitro = (args: PluginArgs) => (nextConfig = {} as any) => {
     let {
-        experiments,
+        experiments = [],
         wrapper,
         basePath = '',
         transpileModules = [],

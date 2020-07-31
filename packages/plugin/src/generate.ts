@@ -10,7 +10,7 @@ if (TESTING) {
 }
 
 export const generate = async (args: PluginArgs) => {
-    const { experiments, ignore, wrapper, cwd } = args
+    const { experiments = [], ignore = [], wrapper, cwd } = args
     const experimentsMap = await generateExperimentsMap({
         globs: experiments,
         cwd: path.resolve(path.join(cwd, '..')),
