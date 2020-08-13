@@ -6,9 +6,10 @@
         "@chakra-ui/core": "^0.8.0",
         "@emotion/core": "^10.0.28",
         "@emotion/styled": "^10.0.27",
-        "dokz": "latest",
+        "dokz": "^1.0.70",
         "landing-blocks": "^1.0.52",
-        "next": "^9.4.4",
+        "next": "^9.5.2",
+        "next-transpile-modules": "^4.1.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"
     },
@@ -16,6 +17,7 @@
         "@types/node": "^14.0.20",
         "@types/react": "^16.9.41",
         "compose-function": "^3.0.3",
+        "next-react-svg": "^1.1.2",
         "typescript": "3.9.6"
     },
     "scripts": {

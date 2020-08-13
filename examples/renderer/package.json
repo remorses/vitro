@@ -5,7 +5,7 @@
     "dependencies": {
         "@vitro/plugin": "^0.0.30",
         "@vitro/ui": "^0.0.30",
-        "next": "^9.4.4",
+        "next": "^9.5.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"
     },
