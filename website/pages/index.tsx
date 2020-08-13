@@ -96,7 +96,7 @@ const Page = () => (
             // image={<Image h='200px' w='300px' src='/robot.svg' />}
             image={
                 <PatternBackground
-                    // pattern='diagonalLinesSm'
+                    pattern='dotsXl'
                     color='gray.300'
                     scatter={-10}
                 >
