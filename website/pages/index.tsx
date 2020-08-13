@@ -65,7 +65,7 @@ const Page = () => (
         minH='100%'
         h='100%'
         black='#333'
-        primary='#FDE3FC'
+        primary='#4C00EB'
         color='#444'
     >
         <MyNavbar />
