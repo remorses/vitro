@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { Box, Image } from '@chakra-ui/core'
 import { css, jsx } from '@emotion/core'
-import { Keyframes, Frame } from 'react-keyframes'
 import { Faded } from 'baby-i-am-faded'
 import {
     Button,
@@ -217,7 +216,7 @@ export function MyNavbar({ ...rest }) {
 }
 
 const HeadingVerbAnimation = (props) => {
-    const texts = ['Build', 'Test', 'Showcase', 'Prototype']
+    const texts = ['Build', 'Test', 'Showcase', 'Prototype', 'Experiment']
     const [i, setI] = useState(0)
     useEffect(() => {
         const id = setInterval(() => {
