@@ -1,63 +1,32 @@
 /** @jsx jsx */
 import { Box, Image } from '@chakra-ui/core'
 import { css, jsx } from '@emotion/core'
+import { Keyframes, Frame } from 'react-keyframes'
 import { Faded } from 'baby-i-am-faded'
 import {
-    Banner,
     Button,
-    CodeSnippet,
     Divider,
     Feature,
+    Footer,
     Heading,
     Hero,
-    PageContainer,
-    PatternBackground,
-    Section,
-    SectionTitle,
-    TestimonialsLogos,
-    Stack,
     LandingProvider,
     Link,
     NavBar,
-    Footer,
+    PatternBackground,
+    TestimonialsLogos,
 } from 'landing-blocks/src'
-import React, { Fragment } from 'react'
 import {
     FaAngular as AngularIcon,
-    FaArrowRight as ArrowRight,
     FaNode as NodeIcon,
     FaReact as ReactIcon,
 } from 'react-icons/fa'
-import Logo from '../public/vitro_text_and_beaker.svg'
+import { GITHUB_LINK } from '../constants'
 import GradientBgImg from '../public/gradient-bg.svg'
 import PlayButton from '../public/play-button.svg'
-import { GITHUB_LINK } from '../constants'
+import Logo from '../public/vitro_text_and_beaker.svg'
+import { useEffect, useState } from 'react'
 jsx
-
-const jsQueryCode = `
-import { createClient, everything } from '@genql/my-lib'
-
-await createClient().query({
-    User: {
-        name: true,
-        surname: true,
-        address: {
-            ...everything,
-        }
-    }
-})`
-
-const gqlQueryCode = `
-query {
-    User {
-        name
-        surname
-        address {
-            city
-            state
-        }
-    }
-}`
 
 const Page = () => (
     <LandingProvider
@@ -82,7 +51,7 @@ const Page = () => (
             bullet='Introducing Vitro 1.0'
             heading={
                 <Heading maxW='600px' fontSize='60px'>
-                    Build components <br />
+                    <HeadingVerbAnimation /> components <br />
                     in isolation
                 </Heading>
             }
@@ -244,6 +213,33 @@ export function MyNavbar({ ...rest }) {
             navs={navs}
             {...rest}
         />
+    )
+}
+
+const HeadingVerbAnimation = (props) => {
+    const texts = ['Build', 'Test', 'Showcase', 'Prototype']
+    const [i, setI] = useState(0)
+    useEffect(() => {
+        const id = setInterval(() => {
+            setI((i) => (i + 1 >= texts.length ? 0 : i + 1))
+        }, 1000)
+        return () => {
+            clearInterval(id)
+        }
+    })
+    return (
+        <Box
+            transition='min-width 100ms'
+            display='inline-block'
+            // minWidth={texts[i].length * 0.9 + 'ch'}
+            {...props}
+        >
+            <Faded duration={500} key={i}>
+                <Box d='inline' minWidth='0px' bg='rgba(255,223,155,0.5)'>
+                    {texts[i]}
+                </Box>
+            </Faded>
+        </Box>
     )
 }
 

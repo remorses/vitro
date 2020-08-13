@@ -11,7 +11,8 @@
         "next": "^9.5.2",
         "next-transpile-modules": "^4.1.0",
         "react": "^16.13.1",
-        "react-dom": "^16.13.1"
+        "react-dom": "^16.13.1",
+        "react-keyframes": "^1.0.0-canary.3"
     },
     "devDependencies": {
         "@types/node": "^14.0.20",
