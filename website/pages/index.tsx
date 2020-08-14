@@ -50,7 +50,7 @@ const Page = () => (
             as={GradientBgImg}
         />
         <Hero
-            bullet='Introducing Vitro 1.0'
+            // bullet='Introducing Vitro 1.0'
             heading={
                 <Heading fontSize='3.2rem'>
                     <HeadingVerbAnimation /> <br />
