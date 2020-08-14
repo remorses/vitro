@@ -53,8 +53,8 @@ const Page = () => (
             bullet='Introducing Vitro 1.0'
             heading={
                 <Heading fontSize='3.2rem'>
-                    <HeadingVerbAnimation /> components <br />
-                    in isolation
+                    <HeadingVerbAnimation /> <br />
+                    components in isolation
                 </Heading>
             }
             subheading={
