@@ -120,20 +120,16 @@ const Page = () => (
             />
             {/* <Box h='20px' /> */}
 
-            <PatternBackground
-                pattern='diagonalLinesSm'
-                color='gray.200'
-                scatter={0}
-                alignSelf='center'
-            >
+            <Box px={{ sm: '20px', bg: '0px' }} alignSelf='center'>
                 <Image
+                    minWidth='0px'
                     src='/vitro-site-mockup.jpg'
-                    width='800px'
+                    // width='800px'
                     borderRadius='md'
                     shadow='sm'
                     // opacity={0.9}
                 />
-            </PatternBackground>
+            </Box>
         </Stack>
 
         <Feature
