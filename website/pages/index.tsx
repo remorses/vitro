@@ -59,9 +59,9 @@ const Page = () => (
             }
             subheading={
                 <Box lineHeight='1.6em'>
-                    Vitro creates a catalog of your react components where
+                    Vitro helps you develop React UI components in isolation
                     <br />
-                    you can test, experiment and showcase them
+                    staying organized and productive
                 </Box>
             }
             cta={<Button>See a demo</Button>}
@@ -273,7 +273,7 @@ export const Features = ({ ...rest }) => {
                 // spacing='10'
                 fontWeight='600'
                 letterSpacing='0.06em'
-                fontSize='1.4em'
+                fontSize='1.3em'
                 justify='space-between'
                 align='center'
                 flexWrap='wrap'
@@ -290,9 +290,9 @@ export const Features = ({ ...rest }) => {
                         mx={'10'}
                         my='12'
                         align='center'
-                        spacing='6'
+                        spacing='10'
                     >
-                        <Box h='80px' as={x.icon} />
+                        <Box h='70px' as={x.icon} />
                         <Box>{x.heading.toUpperCase()}</Box>
                     </Stack>
                 ))}
