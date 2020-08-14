@@ -30,6 +30,7 @@ import { GITHUB_LINK } from '../constants'
 import GradientBgImg from '../public/gradient-bg.svg'
 import PlayButton from '../public/play-button.svg'
 import Logo from '../public/vitro_text_and_beaker.svg'
+import BeakerImg from '../public/vitro_beaker_logo.svg'
 import { useEffect, useState } from 'react'
 jsx
 
@@ -77,10 +78,19 @@ const Page = () => (
             image={
                 <PatternBackground
                     pattern='dotsXl'
-                    color='gray.300'
+                    color='gray.200'
                     scatter={-10}
                 >
                     <Box cursor='pointer' width='160px' as={PlayButton} />
+                    <Box
+                        color='gray.400'
+                        position='absolute'
+                        bottom='-10px'
+                        fontSize='1em'
+                        transform='rotate(5deg)'
+                    >
+                        WATCH A DEMO VIDEO
+                    </Box>
                 </PatternBackground>
             }
             // cta={<Button>Try Genql in 5 minutes</Button>}
