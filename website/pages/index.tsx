@@ -50,7 +50,7 @@ const Page = () => (
     >
         <MyNavbar />
         <Box
-            opacity={0.8}
+            opacity={0.7}
             mt='0px !important'
             position='absolute'
             width='100%'
@@ -87,7 +87,7 @@ const Page = () => (
                         position='absolute'
                         bottom='-10px'
                         fontSize='1em'
-                        transform='rotate(5deg)'
+                        // transform='rotate(5deg)'
                     >
                         WATCH A DEMO VIDEO
                     </Box>
