@@ -12,7 +12,7 @@ import { CommandModule } from 'yargs'
 const { version } = require('../package.json')
 
 const command: CommandModule = {
-    command: ['new'],
+    command: ['init'],
     describe: 'Creates a new vitro app',
     builder: (argv) => {
         argv.option('skip-install', {
