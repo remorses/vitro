@@ -17,9 +17,11 @@ export default function App(props) {
             <DokzProvider
                 docsRootPath='pages/docs'
                 headerLogo={
-                    <Box fontSize='1.4em' fontWeight='600'>
-                        Vitro
-                    </Box>
+                    <a href='/'>
+                        <Box fontSize='1.4em' fontWeight='600'>
+                            Vitro
+                        </Box>
+                    </a>
                 }
                 headerItems={[
                     <GithubLink
