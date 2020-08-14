@@ -40,62 +40,45 @@ export function HomePage({ experimentsMap, ...rest }) {
                     components
                 </Box>
                 <Box h='10' />
-                <Flex
-                    as={Faded}
-                    width='100%'
-                    maxWidth='800px'
-                    // spacing='10'
-                    fontWeight='600'
-                    letterSpacing='0.06em'
-                    fontSize='1.4em'
-                    justify='space-between'
-                    align='center'
-                    flexWrap='wrap'
-                >
-                    <Stack
-                        w={['100%', null, 'auto']}
-                        mx='14'
-                        my='12'
-                        align='center'
-                        spacing='6'
-                    >
-                        <Box h='80px' as={IsolateStep} />
-                        <Box>EXPERIMENT</Box>
-                    </Stack>
-                    <Stack
-                        my='12'
-                        w={['100%', null, 'auto']}
-                        mx='14'
-                        align='center'
-                        spacing='6'
-                    >
-                        <Box h='80px' as={ShowcaseStep} />
-                        <Box>SHOWCASE</Box>
-                    </Stack>
-                    <Stack
-                        my='12'
-                        w={['100%', null, 'auto']}
-                        mx='14'
-                        align='center'
-                        spacing='6'
-                    >
-                        <Box h='80px' as={AnalyzeStep} />
-                        <Box>ANALYZE</Box>
-                    </Stack>
-                    <Stack
-                        my='12'
-                        w={['100%', null, 'auto']}
-                        mx='14'
-                        align='center'
-                        spacing='6'
-                    >
-                        <Box h='80px' as={DeployStep} />
-                        <Box>COLLABORATE</Box>
-                    </Stack>
-                </Flex>
+                <Features />
                 {/* <Image w='300px' src={path.join(BASE_PATH, 'share-reuse.png')} /> */}
             </Stack>
         </Stack>
+    )
+}
+
+export const Features = () => {
+    return (
+        <Flex
+            as={Faded}
+            width='100%'
+            maxWidth='800px'
+            // spacing='10'
+            fontWeight='600'
+            letterSpacing='0.06em'
+            fontSize='1.4em'
+            justify='space-between'
+            align='center'
+            flexWrap='wrap'
+        >
+            {[
+                { heading: 'SHOWCASE', icon: ShowcaseStep },
+                { heading: 'ANALYZE', icon: AnalyzeStep },
+                { heading: 'ISOLATE', icon: IsolateStep },
+                { heading: 'COLLABORATE', icon: DeployStep },
+            ].map((x) => (
+                <Stack
+                    w={['100%', null, 'auto']}
+                    mx='14'
+                    my='12'
+                    align='center'
+                    spacing='6'
+                >
+                    <Box h='80px' as={x.icon} />
+                    <Box>{x.heading.toUpperCase()}</Box>
+                </Stack>
+            ))}
+        </Flex>
     )
 }
 
