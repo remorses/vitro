@@ -69,19 +69,19 @@ const Page = () => (
             image={
                 <PatternBackground
                     pattern='dotsXl'
-                    color='gray.200'
+                    color='gray.400'
                     scatter={-10}
                 >
                     <Box cursor='pointer' width='160px' as={PlayButton} />
-                    <Box
+                    {/* <Box
                         color='gray.400'
                         position='absolute'
-                        bottom='-10px'
+                        top='-80px'
                         fontSize='1em'
                         // transform='rotate(5deg)'
                     >
                         WATCH A DEMO VIDEO
-                    </Box>
+                    </Box> */}
                 </PatternBackground>
             }
             // cta={<Button>Try Genql in 5 minutes</Button>}
@@ -119,14 +119,21 @@ const Page = () => (
                 subheading='Most productive way to experiment, showcase your components'
             />
             {/* <Box h='20px' /> */}
-            <Image
+
+            <PatternBackground
+                pattern='diagonalLinesSm'
+                color='gray.200'
+                scatter={0}
                 alignSelf='center'
-                src='/vitro-site-mockup.jpg'
-                width='800px'
-                borderRadius='md'
-                shadow='sm'
-                opacity={0.9}
-            />
+            >
+                <Image
+                    src='/vitro-site-mockup.jpg'
+                    width='800px'
+                    borderRadius='md'
+                    shadow='sm'
+                    // opacity={0.9}
+                />
+            </PatternBackground>
         </Stack>
 
         <Feature
