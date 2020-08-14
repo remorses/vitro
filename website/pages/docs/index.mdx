@@ -26,7 +26,6 @@ You can customize the config changing the experiments files location and an opti
 
 ```js
 // vitro.config.js
-
 module.exports = {
     experiments: ['./example-package/.story.tsx'], // glob to your experiments
     wrapper: './example-package/src/Wrapper.tsx', // file that has a react component as default export
@@ -38,7 +37,7 @@ module.exports = {
 Now you can start the server with
 
 ```sh
-vitro start -p 7007
+vitro -p 7007
 ```
 
 This will start a web server on [localhost:7007](http://localhost:7007) with your experiments
