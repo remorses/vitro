@@ -1,6 +1,7 @@
 import { DokzProvider, GithubLink, ColorModeSwitch } from 'dokz/dist'
 import React, { Fragment } from 'react'
 import Head from 'next/head'
+import Logo from '../public/vitro_text_and_beaker.svg'
 import { Box } from '@chakra-ui/core'
 
 export default function App(props) {
@@ -18,9 +19,10 @@ export default function App(props) {
                 docsRootPath='pages/docs'
                 headerLogo={
                     <a href='/'>
-                        <Box fontSize='1.4em' fontWeight='600'>
+                        <Box as={Logo} width='120px' opacity={0.8} />
+                        {/* <Box fontSize='1.4em' fontWeight='600'>
                             Vitro
-                        </Box>
+                        </Box> */}
                     </a>
                 }
                 headerItems={[
