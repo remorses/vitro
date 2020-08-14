@@ -134,10 +134,11 @@ const Page = () => (
             subheading='Vitro supports fast refresh, changes to code are instantly picked up by the UI.'
             image={
                 <Image
-                    src='/vitro-block.jpg'
+                    src='/build-addons.png'
                     borderRadius='md'
                     shadow='xl'
-                    height='500px'
+                    height='340px'
+                    alignSelf='start'
                 />
             }
         />
@@ -145,20 +146,13 @@ const Page = () => (
             heading='Incremental builds for instant start up time'
             subheading={`The start up time is less than 2 seconds, you can start prototyping your react components without waiting all your code base to compile`}
             image={
-                <Box overflow='hidden' mr='-60%' mb='-50%' zIndex={-2}>
-                    <video
-                        loop
-                        autoPlay
-                        muted
-                        // @ts-ignore
-                        css={css`
-                            min-width: 800px;
-                            mix-blend-mode: lighten;
-                        `}
-                        // borderRadius='10px'
-                        src='/validation.mp4'
-                    />
-                </Box>
+                <Image
+                    src='/share-document.png'
+                    borderRadius='md'
+                    shadow='xl'
+                    alignSelf='flex-end'
+                    height='400px'
+                />
             }
         />
 
