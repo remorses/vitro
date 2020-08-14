@@ -321,7 +321,7 @@ const AnalyzeStep = (p) => {
                     y1='0%'
                     y2='100%'
                 >
-                    <stop offset='0%' stopColor='#B0B0B0' />
+                    <stop offset='0%' stopColor='#e3f0ff' />
                     <stop offset='100%' stopColor='#FEFEFE' stopOpacity={0} />
                 </linearGradient>
             </defs>
@@ -331,7 +331,7 @@ const AnalyzeStep = (p) => {
                     height={9}
                     x='116.304'
                     y='59.679'
-                    fill='#B5B5B5'
+                    fill='#e3f0ff'
                     transform='rotate(90 179.304 64.18)'
                 />
                 <rect
@@ -339,7 +339,7 @@ const AnalyzeStep = (p) => {
                     height={9}
                     x='98.304'
                     y='59.679'
-                    fill='#B5B5B5'
+                    fill='#e3f0ff'
                     transform='rotate(90 161.304 64.18)'
                 />
                 <rect
@@ -347,7 +347,7 @@ const AnalyzeStep = (p) => {
                     height={9}
                     x='80.304'
                     y='59.679'
-                    fill='#B5B5B5'
+                    fill='#e3f0ff'
                     transform='rotate(90 143.304 64.18)'
                 />
                 <rect
@@ -384,13 +384,13 @@ const IsolateStep = (p) => {
                     y1='0%'
                     y2='100%'
                 >
-                    <stop offset='0%' stopColor='#B0B0B0' />
+                    <stop offset='0%' stopColor='#e3f0ff' />
                     <stop offset='100%' stopColor='#FEFEFE' stopOpacity={0} />
                 </linearGradient>
             </defs>
             <g fill='none' fillRule='evenodd' transform='translate(4)'>
-                <rect width={82} height={9} x='44.679' fill='#B5B5B5' />
-                <rect width={82} height={9} x='44.679' y={18} fill='#B5B5B5' />
+                <rect width={82} height={9} x='44.679' fill='#e3f0ff' />
+                <rect width={82} height={9} x='44.679' y={18} fill='#e3f0ff' />
                 <rect
                     width={126}
                     height={84}
@@ -423,7 +423,7 @@ const ShowcaseStep = (p) => {
                     y1='0%'
                     y2='100%'
                 >
-                    <stop offset='0%' stopColor='#B0B0B0' />
+                    <stop offset='0%' stopColor='#e3f0ff' />
                     <stop offset='100%' stopColor='#FEFEFE' stopOpacity={0} />
                 </linearGradient>
             </defs>
@@ -435,9 +435,9 @@ const ShowcaseStep = (p) => {
                     y={56}
                     fill='url(#showcase_step-a)'
                 />
-                <rect width={91} height={9} x={94} fill='#B5B5B5' />
-                <rect width={91} height={9} x={94} y={18} fill='#B5B5B5' />
-                <rect width={91} height={9} x={94} y={36} fill='#B5B5B5' />
+                <rect width={91} height={9} x={94} fill='#e3f0ff' />
+                <rect width={91} height={9} x={94} y={18} fill='#e3f0ff' />
+                <rect width={91} height={9} x={94} y={36} fill='#e3f0ff' />
                 <path
                     fill='currentColor'
                     fillRule='nonzero'
@@ -459,13 +459,13 @@ const DeployStep = (p) => {
                     y1='0%'
                     y2='100%'
                 >
-                    <stop offset='0%' stopColor='#B0B0B0' />
+                    <stop offset='0%' stopColor='#e3f0ff' />
                     <stop offset='100%' stopColor='#FEFEFE' stopOpacity={0} />
                 </linearGradient>
             </defs>
             <g fill='none' fillRule='evenodd' transform='translate(4)'>
-                <rect width={93} height={9} x='115.679' fill='#B5B5B5' />
-                <rect width={93} height={9} x='115.679' y={18} fill='#B5B5B5' />
+                <rect width={93} height={9} x='115.679' fill='#e3f0ff' />
+                <rect width={93} height={9} x='115.679' y={18} fill='#e3f0ff' />
                 <rect
                     width={126}
                     height={89}

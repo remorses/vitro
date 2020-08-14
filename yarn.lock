@@ -6670,10 +6670,10 @@ kind-of@^6.0.0, kind-of@^6.0.2, kind-of@^6.0.3:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-landing-blocks@^1.0.55:
-  version "1.0.55"
-  resolved "https://registry.yarnpkg.com/landing-blocks/-/landing-blocks-1.0.55.tgz#764d7a0d08c34d57e29962f0c2be63d9d240e91f"
-  integrity sha512-zDV2dU+71YpeEEIjNOxQjKKUZc4yRIEQ0CLFIHrhdC5zNxSoSRLe2PnKUKscCfeQPu9XdNT7iz6qiW9VWDlFvg==
+landing-blocks@^1.0.57:
+  version "1.0.57"
+  resolved "https://registry.yarnpkg.com/landing-blocks/-/landing-blocks-1.0.57.tgz#fbbb4e50282b5c8159f6ece0c4f15398b1baa2ab"
+  integrity sha512-Fs/PxUddeRqmHQsuvosbjW31aSKsNxkCq4nAB34MGOTbkCnmlBbFoe9oo/O6OfTfNNASIcWbSnVIg/QjPTN/Qg==
   dependencies:
     "@emotion/styled" "^10.0.27"
     baby-i-am-faded "^0.0.12"
