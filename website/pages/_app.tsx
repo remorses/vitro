@@ -29,9 +29,12 @@ export default function App(props) {
                     <ColorModeSwitch key='1' />,
                 ]}
                 sidebarOrdering={{
-                    'index.mdx': true,
-                    Documents_Group: {
-                        'another.mdx': true,
+                    docs: {
+                        'index.mdx': true,
+                        'config.mdx': true,
+                        'writing-experiments': true,
+                        'dark-mode': true,
+                        deploy: true,
                     },
                 }}
             >
