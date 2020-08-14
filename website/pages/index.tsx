@@ -120,16 +120,15 @@ const Page = () => (
             />
             {/* <Box h='20px' /> */}
 
-            <Box px={{ sm: '20px', bg: '0px' }} alignSelf='center'>
-                <Image
-                    minWidth='0px'
-                    src='/vitro-site-mockup.jpg'
-                    // width='800px'
-                    borderRadius='md'
-                    shadow='sm'
-                    // opacity={0.9}
-                />
-            </Box>
+            <Image
+                minWidth='0px'
+                src='/vitro-site-mockup.jpg'
+                width={['95%', null, null, '800px']}
+                borderRadius='md'
+                shadow='sm'
+                alignSelf='center'
+                // opacity={0.9}
+            />
         </Stack>
 
         <Feature
