@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { Box, Image, Flex } from '@chakra-ui/core'
-import { css, jsx } from '@emotion/core'
+import { Box, Flex, Image } from '@chakra-ui/core'
+import { jsx } from '@emotion/core'
 import { Faded } from 'baby-i-am-faded'
 import {
     Button,
@@ -12,26 +12,17 @@ import {
     LandingProvider,
     Link,
     NavBar,
+    PageContainer,
     PatternBackground,
-    TestimonialsLogos,
-    FeaturesList,
     SectionTitle,
     Stack,
-    PageContainer,
 } from 'landing-blocks/src'
-import {
-    FaAngular as AngularIcon,
-    FaNode as NodeIcon,
-    FaReact as ReactIcon,
-} from 'react-icons/fa'
-import { FiGlobe, FiGrid, FiImage, FiLayers } from 'react-icons/fi'
-
+import { useEffect, useState } from 'react'
 import { GITHUB_LINK } from '../constants'
 import GradientBgImg from '../public/gradient-bg.svg'
 import PlayButton from '../public/play-button.svg'
 import Logo from '../public/vitro_text_and_beaker.svg'
-import BeakerImg from '../public/vitro_beaker_logo.svg'
-import { useEffect, useState } from 'react'
+
 jsx
 
 const Page = () => (

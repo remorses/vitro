@@ -19,7 +19,7 @@ export default function App(props) {
                 docsRootPath='pages/docs'
                 headerLogo={
                     <a href='/'>
-                        <Box as={Logo} width='120px' opacity={0.8} />
+                        <Box as={Logo} width='120px' />
                         {/* <Box fontSize='1.4em' fontWeight='600'>
                             Vitro
                         </Box> */}
