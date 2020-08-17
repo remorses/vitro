@@ -16,14 +16,24 @@ import {
     PatternBackground,
     SectionTitle,
     Stack,
+    CodeSnippet,
 } from 'landing-blocks/src'
+import codeTheme from 'prism-react-renderer/themes/vsDark'
+
 import { useEffect, useState } from 'react'
 import { GITHUB_LINK } from '../constants'
 import GradientBgImg from '../public/gradient-bg.svg'
 import PlayButton from '../public/play-button.svg'
+
 import Logo from '../public/vitro_text_and_beaker.svg'
 
 jsx
+
+const heroCode = `
+npm i -g @vitro/cli
+vitro init
+vitro
+`
 
 const Page = () => (
     <LandingProvider
@@ -68,20 +78,21 @@ const Page = () => (
             // image={<Image h='200px' w='300px' src='/robot.svg' />}
             image={
                 <PatternBackground
-                    pattern='dotsXl'
+                    pattern='diagonalLinesSm'
                     color='gray.400'
-                    scatter={-10}
+                    scatter={-20}
                 >
-                    <Box cursor='pointer' width='160px' as={PlayButton} />
-                    {/* <Box
-                        color='gray.400'
-                        position='absolute'
-                        top='-80px'
-                        fontSize='1em'
-                        // transform='rotate(5deg)'
-                    >
-                        WATCH A DEMO VIDEO
-                    </Box> */}
+                    {/* <Box cursor='pointer' width='160px' as={PlayButton} /> */}
+                    <CodeSnippet
+                        fontSize='1.2em'
+                        minH='0'
+                        language='bash'
+                        dark
+                        px='20'
+                        pl='10'
+                        code={heroCode.trim()}
+                        theme={codeTheme}
+                    />
                 </PatternBackground>
             }
             // cta={<Button>Try Genql in 5 minutes</Button>}
