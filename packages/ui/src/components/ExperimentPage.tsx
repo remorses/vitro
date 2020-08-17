@@ -13,7 +13,7 @@ import {
     StackProps,
     useColorMode,
 } from '@chakra-ui/core'
-import { jsx } from '@emotion/core'
+import { jsx, css } from '@emotion/core'
 import React, {
     Profiler,
     ProfilerOnRenderCallback,
@@ -32,6 +32,8 @@ import { DebugCSS } from '../debugCSS'
 import { DefaultWrapper } from './DefaultWrapper'
 import { MobileNav } from './MobileNav'
 import { formatPathToTitle, TOP_TITLE_H, usePromise } from '../support'
+import styled from '@emotion/styled'
+import { MdxStyler } from './MarkdownStyler'
 
 jsx
 
@@ -185,7 +187,11 @@ export function ExperimentPage({
                             const Component = fileExports[k]
 
                             if (k.startsWith(mdxComponentPrefix)) {
-                                return <Component />
+                                return (
+                                    <MdxStyler>
+                                        <Component />
+                                    </MdxStyler>
+                                )
                             }
 
                             const id = `${absolutePath}/${k}`
