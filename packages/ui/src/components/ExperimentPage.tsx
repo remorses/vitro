@@ -30,7 +30,7 @@ import { isValidElementType } from 'react-is'
 import { DebugCSS } from '../debugCSS'
 import { DefaultWrapper } from './DefaultWrapper'
 import { MobileNav } from './MobileNav'
-import { formatPathToTitle, TOP_TITLE_H, usePromise, usePolledPromise } from '../support'
+import { formatPathToTitle, TOP_TITLE_H, usePromise } from '../support'
 
 jsx
 
@@ -194,6 +194,8 @@ export function ExperimentPage({
                             const id = `${absolutePath}/${k}`
                             return (
                                 <StoryBlock
+                                    maxW='100%'
+                                    overflowX='auto' // TODO overflow x scroll not working
                                     flexShrink={0}
                                     columns={columns}
                                     title={k}
@@ -202,7 +204,7 @@ export function ExperimentPage({
                                     id={id}
                                 >
                                     <Stack
-                                        flex='1'
+                                        // flex='1'
                                         w='100%'
                                         h='100%'
                                         minH='100%'
@@ -243,6 +245,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
     const fullScreenStyles: StackProps = useMemo(
         () => ({
             w: '100vw',
+            maxW: '100vw',
             h: '100vh',
             p: '50px',
             pt: '80px',
@@ -279,7 +282,6 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             minHeight='340px'
             // minW='100px'
             // overflowX='hidden'
-
             flexBasis={blockWidth}
             position='relative'
             {...rest}
