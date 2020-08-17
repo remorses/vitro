@@ -18,8 +18,8 @@
             "website"
         ],
         "nohoist": [
-            "**/next",
-            "**/dokz"
+            
+            
         ]
     },
     "devDependencies": {

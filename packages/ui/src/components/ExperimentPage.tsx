@@ -43,6 +43,7 @@ export function ExperimentPage({
     const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
+    // TODO during development poll for changes, setInterval updates the exports code and changes the state if the exports code changed
     const [fileExports] = usePromise(fileExportsPromise)
     const ValidGlobalWrapper = useMemo(
         () =>
@@ -66,7 +67,7 @@ export function ExperimentPage({
     // console.log({ fileExports })
     const ExperimentWrapper = useMemo(
         () => fileExports?.default?.wrapper || DefaultWrapper,
-        [fileExports],
+        [fileExports, colorMode],
     )
 
     const experimentTitle =

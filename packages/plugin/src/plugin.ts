@@ -6,7 +6,8 @@ import { TESTING, VERBOSE } from './constants'
 import { generateExperiments, generateExperimentsMap } from './experiments'
 import { debug, resolve } from './support'
 import { generate } from './generate'
-import { mapKeys } from 'lodash'
+import chokidar from 'chokidar'
+import { mapKeys, throttle } from 'lodash'
 
 export interface PluginArgs {
     experiments: string[]
@@ -18,13 +19,17 @@ export interface PluginArgs {
     ignore?: string[]
 }
 
-export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
-    if (!config.experiments) {
-        throw new Error(`Config file has no 'experiments' field, add a field with an array of globs`)
+export const withVitro = (vitroConfig: PluginArgs) => (
+    nextConfig = {} as any,
+) => {
+    if (!vitroConfig.experiments) {
+        throw new Error(
+            `Config file has no 'experiments' field, add a field with an array of globs`,
+        )
     }
 
     // validate
-    mapKeys(config, (v, k) => {
+    mapKeys(vitroConfig, (v, k) => {
         if (
             v &&
             ['experiments', 'globalCSS', 'transpileModules'].includes(k) &&
@@ -41,14 +46,12 @@ export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
         transpileModules = [],
         globalCSS = [],
         cwd,
-    } = config
+    } = vitroConfig
 
     experiments = experiments.map(path.normalize)
     if (basePath && basePath.trim() === '/') {
         basePath = ''
     }
-
-    generate(config)
 
     const transpile = transpilePlugin([
         path.resolve(cwd, '../'),
@@ -59,6 +62,26 @@ export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
         ...nextConfig,
         webpack: (config, options) => {
             const { webpack } = options
+
+            watchChanges({
+                cb: () => {
+                    if (options.isServer) {
+                        return
+                    }
+                    console.log('generating experiments files')
+                    generate(vitroConfig)
+                },
+                ignored: [
+                    'pages/experiments',
+                    '.next/',
+                    'node_modules',
+                    '.git/',
+                ],
+                globs: [
+                    ...experiments.map((p) => path.join('../', p)),
+                    ...(wrapper ? [wrapper] : []),
+                ],
+            })
             // console.log({ dir, recursive, match })
             config.plugins.push(
                 new webpack.DefinePlugin({
@@ -142,6 +165,21 @@ export const withVitro = (config: PluginArgs) => (nextConfig = {} as any) => {
         },
         ...(basePath ? { experimental: { basePath } } : {}),
     })
+}
+
+function watchChanges({ ignored, globs, cb }) {
+    const onChange = throttle(cb, 500)
+    onChange()
+    const watcher = chokidar.watch(globs, {
+        ignored: (path) => {
+            return ignored.some((s) => path.includes(s))
+        },
+        ignoreInitial: true,
+        persistent: true,
+    })
+
+    // Add event listeners.
+    watcher.on('add', onChange).on('change', onChange).on('unlink', onChange)
 }
 
 function aliasOfPackages(args: { packages: string[]; cwd }) {

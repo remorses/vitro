@@ -1,5 +1,6 @@
 module.exports = {
     'styled-components/src/big-height.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/big-height.vitro.jsx',
+    'styled-components/src/big-width.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/big-width.vitro.jsx',
     'styled-components/src/example-styled-components.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/example-styled-components.vitro.jsx',
     'tailwind/src/example-tailwind.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/tailwind/src/example-tailwind.vitro.jsx',
     'example-package/src/anAwesomeExperiment.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/example-package/src/anAwesomeExperiment.vitro.tsx',
