@@ -2,6 +2,7 @@
     "compilerOptions": {
         "moduleResolution": "Node",
         "esModuleInterop": true,
+        "declaration": true,
         "outDir": "dist",
         "allowJs": true,
         "sourceMap": true,

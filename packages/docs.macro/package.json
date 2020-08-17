@@ -1,5 +1,5 @@
 {
-  "name": "@vitro/mdx.macro",
+  "name": "@vitro/docs.macro",
   "_": "[bump]",
   "version": "0.0.33",
   "description": "",
@@ -26,10 +26,11 @@
     "@babel/parser": "^7.11.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/plugin-syntax-jsx": "^7.10.4",
-    "@mdx-js/mdx": "^1.6.16",
     "babel-plugin-macros": "^2.8.0",
     "dedent": "^0.7.0",
     "lodash": "^4.17.19",
+    "markdown-it": "^11.0.0",
+    "markdown-it-jsx": "^1.1.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

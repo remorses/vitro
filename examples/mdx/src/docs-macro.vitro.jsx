@@ -1,9 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-/** @jsx mdx */
-import { mdx } from '@mdx-js/react'
-mdx
-import { inline } from '@vitro/mdx.macro'
+import { docs } from '@vitro/docs.macro'
 
 const Button = styled.button`
     /* Adapt the colors based on primary prop */
@@ -17,8 +14,7 @@ const Button = styled.button`
     border-radius: 3px;
 `
 
-
-inline`
+docs`
 # Some documentation injected with markdown
 
 Officia ea deserunt culpa aliqua labore amet commodo ut esse ullamco nostrud.
@@ -27,10 +23,9 @@ Exercitation fugiat laborum commodo quis do. Deserunt cillum aliquip Lorem offic
 
 `
 
-
 export const ExampleButton = () => <Button>text</Button>
 
-inline`
+docs`
 # Some documentation injected with markdown
 
 Officia ea deserunt culpa aliqua labore amet commodo ut esse ullamco nostrud.
