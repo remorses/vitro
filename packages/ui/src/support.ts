@@ -12,7 +12,9 @@ type GetExperimentsReturnType = {
     // getExports: () => Record<string, any>
 }[]
 
-export const getExperimentsPaths = (experimentsMap): GetExperimentsReturnType => {
+export const getExperimentsPaths = (
+    experimentsMap,
+): GetExperimentsReturnType => {
     return Object.keys(experimentsMap).map((filename) => {
         return {
             absolutePath: experimentsMap[filename],
@@ -40,9 +42,26 @@ export function usePromise(p) {
         } else {
             set(p)
         }
-    }, [])
+    }, [p])
     return [v]
 }
+
+// export function usePolledPromise(fn, time = 1000) {
+//     const [v, set] = useState(undefined)
+//     useEffect(() => {
+//         let id = setInterval(() => {
+//             fn().then((x) => {
+//                 if (x !== v) {
+//                     set(x)
+//                 }
+//             })
+//         }, time)
+//         return () => {
+//             clearInterval(id)
+//         }
+//     }, [])
+//     return [v]
+// }
 
 function isPromise(p) {
     return p && typeof p.then === 'function'

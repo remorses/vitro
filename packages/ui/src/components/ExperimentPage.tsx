@@ -30,7 +30,7 @@ import { isValidElementType } from 'react-is'
 import { DebugCSS } from '../debugCSS'
 import { DefaultWrapper } from './DefaultWrapper'
 import { MobileNav } from './MobileNav'
-import { formatPathToTitle, TOP_TITLE_H, usePromise } from '../support'
+import { formatPathToTitle, TOP_TITLE_H, usePromise, usePolledPromise } from '../support'
 
 jsx
 
@@ -38,13 +38,13 @@ export function ExperimentPage({
     experimentsMap,
     GlobalWrapper,
     absolutePath,
-    fileExports: fileExportsPromise,
+    fileExports: fileExportsImporter,
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
     // TODO during development poll for changes, setInterval updates the exports code and changes the state if the exports code changed
-    const [fileExports] = usePromise(fileExportsPromise)
+    const [fileExports] = usePromise(fileExportsImporter)
     const ValidGlobalWrapper = useMemo(
         () =>
             !GlobalWrapper || !isValidElementType(GlobalWrapper)

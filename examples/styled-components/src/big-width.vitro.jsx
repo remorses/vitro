@@ -23,7 +23,7 @@ export const WrappedTitle = () => (
 
 
 
-export const WrappedTitle2 = () => (
+export const WrappedTitle3 = () => (
     <Wrapper>
         <Title>Hello World!</Title>
     </Wrapper>
