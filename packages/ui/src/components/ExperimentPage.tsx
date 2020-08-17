@@ -170,6 +170,7 @@ export function ExperimentPage({
                 // direction='row'
                 columns={columns}
                 flexWrap='wrap'
+                overflow='visible' // TODO simple grid has overflow hidden
                 // justify='space-between'
                 spacingX='12'
                 spacingY='16'
@@ -292,6 +293,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             minHeight='340px'
             // minW='100px'
             // overflowX='hidden'
+            overflow='visible'
             flexBasis={blockWidth}
             position='relative'
             {...rest}
@@ -299,6 +301,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
         >
             <Box
                 // spacing='0'
+                
                 flexShrink={0}
                 flex='1'
                 minH='340px'
@@ -309,11 +312,12 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
                     minH='340px'
                     shadow='sm'
                     // shadow='0 0 40px rgba(0,0,0,0.1), 0 -10px 40px rgba(0,0,0,0.1)'
-                    borderWidth='1px'
+                    // borderWidth='1px'
                     flex='1'
                     // shadow='sm'
                     borderRadius='10px'
                     overflow='hidden'
+                    overflowX='auto'
                     bg={bg}
                     // minH='100%'
                     spacing='0'

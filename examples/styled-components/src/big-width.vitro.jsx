@@ -10,8 +10,8 @@ const Title = styled.h1`
 // Create a Wrapper component that'll render a <section> tag with some styles
 const Wrapper = styled.section`
     padding: 4em;
-    min-height: 100px;
-    width: 2000px;
+    min-height: 300px;
+    min-width: 2000px;
     background: lightskyblue;
 `
 
