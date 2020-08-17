@@ -23,6 +23,7 @@ import React, {
     useRef,
     useState,
 } from 'react'
+import assign from 'lodash/assign'
 import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
@@ -44,7 +45,13 @@ export function ExperimentPage({
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
     // TODO during development poll for changes, setInterval updates the exports code and changes the state if the exports code changed
-    const [fileExports] = usePromise(fileExportsImporter)
+    let [fileExports] = usePromise(fileExportsImporter)
+    fileExports = assign(
+        {},
+        Object.keys(fileExports)
+            .filter((k) => isValidElementType(fileExports[k]))
+            .map((k) => ({ [k]: fileExports[k] })),
+    )
     const ValidGlobalWrapper = useMemo(
         () =>
             !GlobalWrapper || !isValidElementType(GlobalWrapper)

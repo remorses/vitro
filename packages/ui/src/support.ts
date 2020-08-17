@@ -35,7 +35,7 @@ export function formatPathToTitle(path: string) {
 }
 
 export function usePromise(p) {
-    const [v, set] = useState(!isPromise(p) ? p : undefined)
+    const [v, set] = useState(!isPromise(p) ? p : {})
     useEffect(() => {
         if (isPromise(p)) {
             p.then(set)
