@@ -69,7 +69,7 @@ export const withVitro = (vitroConfig: PluginArgs) => (
                         return
                     }
                     console.log('generating experiments files')
-                    generate(vitroConfig)
+                    generate(vitroConfig).catch(console.error)
                 },
                 ignored: [
                     'pages/experiments',

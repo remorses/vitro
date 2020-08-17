@@ -1,9 +1,11 @@
 import fs from 'fs'
+import { remove } from 'fs-extra'
 import path from 'path'
 import { TESTING } from './constants'
 import { generateExperiments, printExperimentsMap } from './experiments'
 import { PluginArgs } from './plugin'
 import { glob } from 'smart-glob'
+
 import { uniq, flatten } from 'lodash'
 
 const excludedDirs = ['.vitro']
@@ -35,9 +37,12 @@ export const generate = async (args: PluginArgs) => {
         }),
     )
 
+    const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
+    await remove(targetDir)
     await generateExperiments({
         files,
         wrapperComponentPath: wrapper,
-        targetDir: path.resolve(path.join(cwd, './pages/experiments')),
+        targetDir,
     })
 }
+

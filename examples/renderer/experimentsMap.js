@@ -1,4 +1,5 @@
 module.exports = {
+    'mdx/src/macro.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/mdx/src/macro.vitro.jsx',
     'styled-components/src/big-height.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/big-height.vitro.jsx',
     'styled-components/src/big-width.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/big-width.vitro.jsx',
     'styled-components/src/example-styled-components.vitro': '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/example-styled-components.vitro.jsx',

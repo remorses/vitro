@@ -1,10 +1,10 @@
 import React from 'react'
-import * as exported from '@vitro-root/../styled-components/src/lol xxx.vitro'
+import * as exported from '@vitro-root/../mdx/src/macro.vitro'
 import { default as GlobalWrapper } from '@vitro-root/../@vitro/ui/src/components/DefaultWrapper'
 import experimentsMap from '@vitro-root/experimentsMap'
 import { ExperimentPage } from '@vitro/ui/src'
 
-const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/lol xxx.vitro.jsx'
+const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/mdx/src/macro.vitro.jsx'
 
 export default function Page() {
     return (

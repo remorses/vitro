@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "outDir": "dist",
+        "allowJs": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "jsx": "react"
+    },
+    "exclude": ["template", "tests", "dist", "esm"]
+}

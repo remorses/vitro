@@ -55,6 +55,7 @@ export function ExperimentPage({
             ),
         [fileExportsObject],
     )
+    // TODO if the name is frm the mdx macro then display it outside a block, just for documentation and presentation
     const ValidGlobalWrapper = useMemo(
         () =>
             !GlobalWrapper || !isValidElementType(GlobalWrapper)
