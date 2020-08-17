@@ -279,6 +279,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             spacing='3'
             flexShrink={0}
             flexGrow={0}
+            shadow='sm'
             minHeight='340px'
             // minW='100px'
             // overflowX='hidden'
