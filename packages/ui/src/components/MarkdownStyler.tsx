@@ -26,7 +26,7 @@ export const MdxStyler = styled.div`
     & h4 .octicon-link,
     & h5 .octicon-link,
     & h6 .octicon-link {
-        color: #1b1f23;
+        /* color: #1b1f23; */
         vertical-align: middle;
         visibility: hidden;
     }
@@ -65,7 +65,6 @@ export const MdxStyler = styled.div`
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
         line-height: 1.5;
-        color: #24292e;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
             Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
         font-size: 16px;
