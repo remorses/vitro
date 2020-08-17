@@ -6,6 +6,7 @@
         "@chakra-ui/core": "^0.8.0",
         "@emotion/core": "^10.0.28",
         "@emotion/styled": "^10.0.27",
+        "@octokit/webhooks": "^7.11.0",
         "dokz": "^1.0.70",
         "landing-blocks": "^1.0.57",
         "next": "^9.5.2",
