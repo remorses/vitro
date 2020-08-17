@@ -35,6 +35,8 @@ import { formatPathToTitle, TOP_TITLE_H, usePromise } from '../support'
 
 jsx
 
+const mdxComponentPrefix = '_VitroMdx'
+
 export function ExperimentPage({
     experimentsMap,
     GlobalWrapper,
@@ -181,27 +183,10 @@ export function ExperimentPage({
                         .filter((k) => k !== 'default')
                         .map((k) => {
                             const Component = fileExports[k]
-                            // const C = FramedComponent(({ iframe }) => {
-                            //     return (
-                            //         <CacheProvider
-                            //             value={memoizedCreateCacheWithContainer(
-                            //                 iframe.contentDocument.head,
-                            //             )}
-                            //         >
-                            //             <ValidGlobalWrapper
-                            //                 dark={colorMode == 'dark'}
-                            //             >
-                            //                 <StoryWrapper
-                            //                     dark={colorMode == 'dark'}
-                            //                 >
-                            //                     <Component
-                            //                         dark={colorMode == 'dark'}
-                            //                     />
-                            //                 </StoryWrapper>
-                            //             </ValidGlobalWrapper>
-                            //         </CacheProvider>
-                            //     )
-                            // })
+
+                            if (k.startsWith(mdxComponentPrefix)) {
+                                return <Component />
+                            }
 
                             const id = `${absolutePath}/${k}`
                             return (
@@ -302,7 +287,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
         >
             <Box
                 // spacing='0'
-                
+
                 flexShrink={0}
                 flex='1'
                 minH='340px'

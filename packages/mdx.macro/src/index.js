@@ -10,7 +10,7 @@ const dedent = require('dedent')
 
 // declare const inline: any
 
-const mdxComponentPrefix = 'VitroMdx'
+export const mdxComponentPrefix = '_VitroMdx'
 
 function inlineMDX({ references, babel, state }) {
     const { types: t } = babel
