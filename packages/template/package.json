@@ -1,6 +1,6 @@
 {
     "name": "template",
-    "version": "0.0.32",
+    "version": "0.0.33",
     "private": true,
     "scripts": {
         "build": "vitro build --cwd ../ && next build",
@@ -8,9 +8,9 @@
         "start": "next start"
     },
     "dependencies": {
-        "@vitro/cli": "^0.0.32",
-        "@vitro/plugin": "^0.0.32",
-        "@vitro/ui": "^0.0.32",
+        "@vitro/cli": "^0.0.33",
+        "@vitro/plugin": "^0.0.33",
+        "@vitro/ui": "^0.0.33",
         "next": "^9.5.2",
         "react": "latest",
         "react-dom": "latest"
