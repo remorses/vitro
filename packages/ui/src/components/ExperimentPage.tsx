@@ -11,7 +11,7 @@ import {
     SimpleGrid,
     Stack,
     StackProps,
-    useColorMode
+    useColorMode,
 } from '@chakra-ui/core'
 import { jsx } from '@emotion/core'
 import React, {
@@ -21,7 +21,7 @@ import React, {
     useEffect,
     useMemo,
     useRef,
-    useState
+    useState,
 } from 'react'
 import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
@@ -40,6 +40,7 @@ export function ExperimentPage({
     absolutePath,
     fileExports: fileExportsPromise,
 }) {
+    const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
     const [fileExports] = usePromise(fileExportsPromise)
@@ -48,7 +49,7 @@ export function ExperimentPage({
             !GlobalWrapper || !isValidElementType(GlobalWrapper)
                 ? DefaultWrapper
                 : GlobalWrapper,
-        [GlobalWrapper],
+        [GlobalWrapper, colorMode],
     )
 
     useEffect(() => {
@@ -73,7 +74,6 @@ export function ExperimentPage({
         formatPathToTitle(absolutePath) ||
         'Untitled'
 
-    const { colorMode, toggleColorMode } = useColorMode()
     const bg = useMemo(
         () => ({ light: 'white', dark: 'gray.700' }[colorMode]),
         [colorMode],
@@ -211,9 +211,11 @@ export function ExperimentPage({
                                         as={cssDebugEnabled ? DebugCSS : 'div'}
                                     >
                                         <ValidGlobalWrapper
+                                            key={colorMode} // TODO remounting on color mode change or the providers get fucked up
                                             dark={colorMode == 'dark'}
                                         >
                                             <ExperimentWrapper
+                                                key={colorMode}
                                                 dark={colorMode == 'dark'}
                                             >
                                                 <Component
