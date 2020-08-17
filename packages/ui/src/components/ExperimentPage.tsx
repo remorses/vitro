@@ -39,18 +39,21 @@ export function ExperimentPage({
     experimentsMap,
     GlobalWrapper,
     absolutePath,
-    fileExports: fileExportsImporter,
+    fileExports: fileExportsObject,
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
-    // TODO during development poll for changes, setInterval updates the exports code and changes the state if the exports code changed
-    let [fileExports] = usePromise(fileExportsImporter)
-    fileExports = assign(
-        {},
-        Object.keys(fileExports)
-            .filter((k) => isValidElementType(fileExports[k]))
-            .map((k) => ({ [k]: fileExports[k] })),
+    // let [fileExports] = usePromise(fileExportsImporter)
+    const fileExports = useMemo(
+        () =>
+            assign(
+                {},
+                ...Object.keys(fileExportsObject)
+                    .filter((k) => isValidElementType(fileExportsObject[k]))
+                    .map((k) => ({ [k]: fileExportsObject[k] })),
+            ),
+        [fileExportsObject],
     )
     const ValidGlobalWrapper = useMemo(
         () =>
@@ -286,7 +289,6 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             spacing='3'
             flexShrink={0}
             flexGrow={0}
-            shadow='sm'
             minHeight='340px'
             // minW='100px'
             // overflowX='hidden'
@@ -295,7 +297,41 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
             {...rest}
             {...(fullScreen ? fullScreenStyles : {})}
         >
+            <Box
+                // spacing='0'
+                flexShrink={0}
+                flex='1'
+                minH='340px'
+                minHeight='340px'
+            >
+                {/* Block */}
+                <Stack
+                    minH='340px'
+                    shadow='sm'
+                    // shadow='0 0 40px rgba(0,0,0,0.1), 0 -10px 40px rgba(0,0,0,0.1)'
+                    borderWidth='1px'
+                    flex='1'
+                    // shadow='sm'
+                    borderRadius='10px'
+                    overflow='hidden'
+                    bg={bg}
+                    // minH='100%'
+                    spacing='0'
+                    align='center'
+                    justify='center'
+                    // p='6'
+                    // css={cssDebugEnabled ? debugCSS : css``}
+                >
+                    <ErrorBoundary>
+                        <Profiler id={id} onRender={profile}>
+                            {children}
+                        </Profiler>
+                    </ErrorBoundary>
+                </Stack>
+            </Box>
+            {/* ToolBar */}
             <Stack
+                zIndex={700}
                 spacing='8'
                 position='absolute'
                 opacity={0.7}
@@ -356,34 +392,6 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
                     aria-label='full-screen'
                 />
             </Stack>
-            <Box
-                // spacing='0'
-                flexShrink={0}
-                flex='1'
-                minH='340px'
-                minHeight='340px'
-            >
-                <Stack
-                    minH='340px'
-                    flex='1'
-                    // shadow='sm'
-                    borderRadius='10px'
-                    overflow='hidden'
-                    bg={bg}
-                    // minH='100%'
-                    spacing='0'
-                    align='center'
-                    justify='center'
-                    // p='6'
-                    // css={cssDebugEnabled ? debugCSS : css``}
-                >
-                    <ErrorBoundary>
-                        <Profiler id={id} onRender={profile}>
-                            {children}
-                        </Profiler>
-                    </ErrorBoundary>
-                </Stack>
-            </Box>
         </Stack>
     )
 }
