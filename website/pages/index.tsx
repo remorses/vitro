@@ -121,7 +121,7 @@ const Page = () => (
                 width='100%'
                 bottom='0px'
                 zIndex={-1}
-                transform='scaleY(-1)'
+                transform='scaleY(-1) scaleX(-1)'
                 as={GradientBgImg}
             />
 
