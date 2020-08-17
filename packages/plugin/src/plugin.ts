@@ -3,7 +3,7 @@ import transpilePlugin from 'next-transpile-modules'
 import path from 'path'
 import { loader } from 'webpack'
 import { TESTING, VERBOSE } from './constants'
-import { generateExperiments, generateExperimentsMap } from './experiments'
+
 import { debug, resolve } from './support'
 import { generate } from './generate'
 import chokidar from 'chokidar'

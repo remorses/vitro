@@ -28,7 +28,9 @@ export const ExperimentsNav = ({
         setFilter,
     ])
     const { colorMode } = useColorMode()
-    const experiments = useMemo(() => getExperimentsPaths(experimentsMap), [])
+    const experiments = useMemo(() => getExperimentsPaths(experimentsMap), [
+        experimentsMap,
+    ])
     return (
         <Stack spacing='6' {...p}>
             <Stack

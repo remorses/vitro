@@ -7,31 +7,17 @@ import { memoizedGlob, GlobOptions } from 'smart-glob'
 import { TESTING } from './constants'
 
 export async function generateExperiments(p: {
-    globs: string[]
+    files: string[]
     targetDir: string
     wrapperComponentPath: string
-    ignore?: string[]
-    cwd?: string
 }) {
     const {
-        globs,
+        files,
         targetDir,
-        ignore,
-        cwd = '.',
         wrapperComponentPath = `@vitro/ui/${
             TESTING ? 'src' : 'dist'
         }/components/DefaultWrapper`,
     } = p
-    const options: GlobOptions = {
-        ignore,
-        cwd,
-        gitignore: true,
-        filesOnly: true,
-    }
-    const results: string[][] = await Promise.all(
-        globs.map((s) => memoizedGlob(s, options)),
-    )
-    const files: string[] = uniq(flatten(results))
 
     await Promise.all(
         // TODO batched promise.all
@@ -85,24 +71,7 @@ export default function Page() {
 `
 }
 
-export async function generateExperimentsMap({ cwd = '.', globs, ignore }) {
-    const options: GlobOptions = {
-        ignore,
-        cwd,
-        gitignore: true,
-        filesOnly: true,
-    }
-    const results: string[][] = await Promise.all(
-        globs.map((s) => memoizedGlob(s, options)),
-    )
-    const files: string[] = uniq(flatten(results))
-    if (!files?.length) {
-        console.log(`could not find any experiment file using globs ${globs}`)
-    }
-    return printExperimentsMap({ files })
-}
-
-function printExperimentsMap(p: { files: string[] }) {
+export function printExperimentsMap(p: { files: string[] }) {
     let result = 'module.exports = {\n'
     p.files.forEach((f) => {
         // const importPath = p.base + path.join(f)

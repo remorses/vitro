@@ -1,8 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 import { TESTING } from './constants'
-import { generateExperiments, generateExperimentsMap } from './experiments'
+import { generateExperiments, printExperimentsMap } from './experiments'
 import { PluginArgs } from './plugin'
+import { glob } from 'smart-glob'
+import { uniq, flatten } from 'lodash'
 
 const excludedDirs = ['.vitro']
 if (TESTING) {
@@ -13,19 +15,29 @@ export const generate = async (args: PluginArgs) => {
     let { experiments = [], ignore: userIgnore = [], wrapper, cwd } = args
     experiments = experiments.map(path.normalize)
     const ignore = [...userIgnore, ...excludedDirs]
-    const experimentsMap = await generateExperimentsMap({
-        globs: experiments,
-        cwd: path.resolve(path.join(cwd, '..')),
-        ignore,
-    })
 
-    fs.writeFileSync(path.join(cwd, 'experimentsMap.js'), experimentsMap)
+    const results = await Promise.all(
+        experiments.map((s) =>
+            glob(s, {
+                ignore,
+                cwd: path.resolve(path.join(cwd, '..')),
+                gitignore: true,
+                filesOnly: true,
+            }),
+        ),
+    )
+    const files: string[] = uniq(flatten(results))
+
+    await fs.promises.writeFile(
+        path.join(cwd, 'experimentsMap.js'),
+        await printExperimentsMap({
+            files,
+        }),
+    )
 
     await generateExperiments({
-        globs: experiments,
+        files,
         wrapperComponentPath: wrapper,
-        cwd: path.resolve(path.join(cwd, '..')),
         targetDir: path.resolve(path.join(cwd, './pages/experiments')),
-        ignore,
     })
 }
