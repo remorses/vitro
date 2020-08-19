@@ -1,6 +1,6 @@
 import { runCommand, printGreen, printRed, fatal } from './support'
 import path from 'path'
-import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './contsants'
+import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
 import { CommandModule } from 'yargs'
 import { initHandler } from './init'
 import { existsSync } from 'fs-extra'

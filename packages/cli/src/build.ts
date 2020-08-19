@@ -8,7 +8,7 @@ import {
     CONFIG_PATH,
     NEXT_APP_PATH,
     TESTING,
-} from './contsants'
+} from './constants'
 import {
     copy,
     writeFile,
