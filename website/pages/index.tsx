@@ -43,7 +43,7 @@ vitro
 const Page = () => (
     <LandingProvider
         position='relative'
-        minH='100%'
+        // minH='100%'
         h='100%'
         black='#333'
         primary='#4C00EB'
@@ -67,7 +67,7 @@ const Page = () => (
         <Hero
             // bullet='Introducing Vitro 1.0'
             heading={
-                <Heading fontSize='3.2rem'>
+                <Heading >
                     <HeadingVerbAnimation /> <br />
                     components in isolation
                 </Heading>
@@ -89,7 +89,7 @@ const Page = () => (
                 >
                     {/* <Box cursor='pointer' width='160px' as={PlayButton} /> */}
                     <CodeSnippet
-                        fontSize='1.2em'
+                        fontSize='1.1em'
                         minH='0'
                         language='bash'
                         dark
