@@ -6,6 +6,7 @@ import {
     CONFIG_PATH,
     NEXT_APP_PATH,
     TESTING,
+    VERSION_FILE_PATH,
 } from './contsants'
 import {
     copy,
@@ -35,41 +36,47 @@ const command: CommandModule = {
     handler: async (argv) => {
         debug('argv', argv)
         debug('cwd', process.cwd())
-        printGreen(`creating ${NEXT_APP_PATH}`, true)
-        await remove(NEXT_APP_PATH)
-        await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
-            overwrite: true,
-            recursive: true,
-            filter: (src: string) => {
-                {
-                    debug(src)
-                    return !src.includes('node_modules')
-                }
-            },
+        await initHandler({
+            skipInstall: Boolean(argv['skip-install']),
         })
-        writeFileSync(
-            path.join(NEXT_APP_PATH, 'version.js'),
-            `module.exports = '${version}'`,
-        )
-
-        if (!argv['skip-install']) {
-            printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
-            await runCommand({
-                command: 'npm i --no-audit --quiet --ignore-scripts --no-fund',
-                env: {
-                    npm_config_loglevel: 'silent',
-                },
-                cwd: path.resolve('.', NEXT_APP_PATH),
-            })
-        }
-        if (!existsSync(CONFIG_PATH)) {
-            printGreen(`creating default ${CONFIG_PATH}`, true)
-            await writeFile(CONFIG_PATH, DEFAULT_CONFIG)
-        }
-        addVitroToGitignore()
-        printGreen('created vitro app successfully!', true)
     },
 } // as CommandModule
+
+export async function initHandler({ skipInstall = false } = {}) {
+    printGreen(`creating ${NEXT_APP_PATH}`, true)
+    await remove(NEXT_APP_PATH)
+    await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
+        overwrite: true,
+        recursive: true,
+        filter: (src: string) => {
+            {
+                debug(src)
+                return !src.includes('node_modules')
+            }
+        },
+    })
+    writeFileSync(
+        path.join(NEXT_APP_PATH, VERSION_FILE_PATH),
+        `module.exports = '${version}'`,
+    )
+
+    if (!skipInstall) {
+        printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
+        await runCommand({
+            command: 'npm i --no-audit --quiet --ignore-scripts --no-fund',
+            env: {
+                npm_config_loglevel: 'silent',
+            },
+            cwd: path.resolve('.', NEXT_APP_PATH),
+        })
+    }
+    if (!existsSync(CONFIG_PATH)) {
+        printGreen(`creating default ${CONFIG_PATH}`, true)
+        await writeFile(CONFIG_PATH, DEFAULT_CONFIG)
+    }
+    await addVitroToGitignore()
+    printGreen('created vitro app successfully!', true)
+}
 
 async function addVitroToGitignore() {
     if (existsSync('.gitignore')) {

@@ -61,6 +61,12 @@ export const printRed = (x = '', pad = false) => {
         console.log()
     }
 }
+export const fatal = (x = '') => {
+    console.log()
+    console.log(chalk.red(x))
+    console.log()
+    process.exit(1)
+}
 
 export function runCommand({ command, env = {}, silent = false, cwd = '.' }) {
     return new Promise((res, rej) => {

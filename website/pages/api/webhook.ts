@@ -12,7 +12,7 @@ webhooks.on('push', (ev) => {
     repository.html_url
     pusher.name
     pusher.email
-    // TODO check if a vitro.config.js exists, if yes then create a new vercel deployment, after deploy, after deploy run the screenshotter and update database with screenshots locations ...
+    // TODO check if a vitro.config.js exists, if yes then create a new vercel deployment, after deploy run the screen shotter and update database with screenshots locations, dashboard will show the screenshots diffs and easily navigate between stories ...
 })
 
 const handler: NextApiHandler = async (req, res) => {

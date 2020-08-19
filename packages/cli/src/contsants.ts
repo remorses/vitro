@@ -5,6 +5,7 @@ export const TESTING = process.env.NODE_ENV == 'test'
 export const NEXT_APP_PATH = TESTING ? 'renderer' : '.vitro'
 
 export const CONFIG_PATH = 'vitro.config.js'
+export const VERSION_FILE_PATH = 'version.js'
 
 export const TEMPLATE_PATH = TESTING
     ? path.resolve(__dirname, '../../template')
