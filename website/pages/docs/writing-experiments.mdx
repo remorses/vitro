@@ -67,6 +67,24 @@ export const SimpleButton = () => {
 }
 ```
 
+## Adding documentation
+
+You can add inline documentation to your components via the `docs` macro
+
+```jsx
+import { docs } from '@vitro/docs.macro'
+
+docs`
+## Here are some components
+
+In duis incididunt culpa anim sit veniam ullamco duis deserunt.
+`
+
+export const SimpleButton = () => {
+    return <button>Click me</button>
+}
+```
+
 ## Adding a global wrapper to all experiments
 
 If you want to add a wrapper to all experiments you can pass a path to the wrapper field in `vitro.config.js`
