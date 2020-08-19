@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from 'yargs'
-import startCommand from './start'
-import newCommand from './new'
+import devCommand from './dev'
+import initCommand from './init'
 import buildCommand from './build'
 import { withErrorHandling } from './support'
 
@@ -23,8 +23,8 @@ yargs
     //         winston.configure({ ...winstonConf, silent: true, level: 'error' })
     //     },
     // ])
-    .command(withErrorHandling(startCommand))
-    .command(withErrorHandling(newCommand))
+    .command(withErrorHandling(devCommand))
+    .command(withErrorHandling(initCommand))
     .command(withErrorHandling(buildCommand))
     // .demandCommand()
     .help('h').argv
