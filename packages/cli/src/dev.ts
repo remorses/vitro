@@ -30,7 +30,7 @@ const command: CommandModule = {
             // if no vitro app is present, run init
             if (!existsSync(NEXT_APP_PATH)) {
                 printGreen(
-                    `no ${NEXT_APP_PATH} found, running init command first`,
+                    `no ./${NEXT_APP_PATH} found, running init command first`,
                     true,
                 )
                 // this way you can run vitro even if .vitro is inside .gitignore
@@ -79,15 +79,6 @@ function getVitroAppVersion() {
 export default command
 
 async function start({ port, verbose }) {
-    if (!existsSync(NEXT_APP_PATH)) {
-        // TODO if no app is present but there is a config, copy the app and run npm install
-        // this way you can run vitro even if .vitro is inside .gitignore
-        printRed(
-            `There is no ${NEXT_APP_PATH} folder, you probably need to run '${CMD} init' first`,
-            true,
-        )
-        return process.exit(1)
-    }
     const NEXT_BIN = path.resolve(NEXT_APP_PATH, `node_modules/.bin/next`)
     return await runCommand({
         command: `${NEXT_BIN} dev -p ${port} ${path.resolve(NEXT_APP_PATH)}`,
