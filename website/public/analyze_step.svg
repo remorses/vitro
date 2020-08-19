@@ -1,18 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="189" height="131" viewBox="0 0 189 131">
-	<defs>
-		<linearGradient id="analyze_step-a" x1="50%" x2="50%" y1="0%" y2="100%">
-			<stop offset="0%" stop-color="#B0B0B0" />
-			<stop offset="100%" stop-color="#FEFEFE" stop-opacity="0" />
-		</linearGradient>
-	</defs>
-	<g fill="none" fill-rule="evenodd" transform="translate(5)">
-		<rect width="126" height="9" x="116.304" y="59.679" fill="#B5B5B5" transform="rotate(90 179.304 64.18)" />
-		<rect width="126" height="9" x="98.304" y="59.679" fill="#B5B5B5" transform="rotate(90 161.304 64.18)" />
-		<rect width="126" height="9" x="80.304" y="59.679" fill="#B5B5B5" transform="rotate(90 143.304 64.18)" />
-		<rect width="126" height="113" x="8" y="7" fill="url(#analyze_step-a)" transform="rotate(90 71 63.5)" />
-		<g stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="9" transform="translate(0 47)">
-			<circle cx="35" cy="35" r="35" />
-			<line x1="79" x2="60" y1="79" y2="60" />
-		</g>
-	</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 137"><defs><linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#B9D4F3"/><stop offset="100%" stop-color="#FEFEFE" stop-opacity="0"/></linearGradient></defs><g fill="none" fill-rule="evenodd"><path fill="#B9D4F3" d="M196 1v133h-9V1zM178 1v133h-9V1zM160 1v133h-9V1z"/><path fill="url(#a)" transform="rotate(90 83 67)" d="M16 10h133v113H16z"/><path fill="currentColor" fill-rule="nonzero" stroke="currentColor" d="M6.05 43h90.9c2.789 0 5.05 2.313 5.05 5.167v82.666c0 2.854-2.261 5.167-5.05 5.167H6.05C3.261 136 1 133.687 1 130.833V48.167C1 45.313 3.261 43 6.05 43zm.317 6v81h90.266V49H6.367zM26.25 94.667h6.83v20.666h-6.83V94.667zm20.2-31h6.83v51.666h-6.83V63.667zm20.2 15.5h6.83v36.166h-6.83V79.167z"/></g></svg>

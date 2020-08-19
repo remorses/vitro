@@ -1,16 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 2069 896">
-  <defs>
-    <linearGradient id="gradient-bg-a" x1="-3.555%" x2="113.386%" y1="47.884%" y2="44.716%">
-      <stop offset="0%" stop-color="#FFBAF7" stop-opacity=".438"/>
-      <stop offset="100%" stop-color="#8E74FF" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="gradient-bg-b" x1="40.946%" x2="40.946%" y1="-23.071%" y2="104.634%">
-      <stop offset="0%" stop-color="#0086ED"/>
-      <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <g fill="none" fill-rule="evenodd" transform="translate(-1 -153)">
-    <path fill="url(#gradient-bg-a)" d="M1242,5.68434189e-14 C1203.13503,83.269079 1170.30729,180.235466 1143.51677,290.899162 C1103.33098,456.894706 948.817801,485.482953 838.271463,460.540529 C727.725125,435.598106 452.160086,474.046481 361.324,550.574759 C270.487913,627.103036 132.960585,829.943124 0,899.843147 L0,5.68434189e-14 L1242,5.68434189e-14 Z"/>
-    <path fill="url(#gradient-bg-b)" d="M2070,0 C1849.05806,126.097209 1691.51702,236.44604 1597.37687,331.046492 C1351.4753,578.15041 1362.03696,885.035599 1100.66486,918.588689 C974.897641,934.733789 959.761695,800.993875 805.068174,766.996087 C701.93916,744.330896 437.857265,838.269252 12.8224895,1048.81116 L2070,1048.81116 L2070,0 Z"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2069 896"><defs><linearGradient id="a" x1="-3.555%" x2="113.386%" y1="47.884%" y2="44.716%"><stop offset="0%" stop-color="#FF87CA"/><stop offset="100%" stop-color="#8E74FF" stop-opacity="0"/></linearGradient><linearGradient id="b" x1="40.946%" x2="40.946%" y1="-23.071%" y2="104.634%"><stop offset="0%" stop-color="#0086ED"/><stop offset="100%" stop-color="#FFF" stop-opacity="0"/></linearGradient></defs><g fill="none" fill-rule="evenodd"><path fill="url(#a)" d="M1242 0c-38.865 83.27-71.693 180.235-98.483 290.9-40.186 165.995-194.7 194.583-305.246 169.64-110.546-24.942-386.11 13.506-476.947 90.035C270.488 627.103 132.961 829.943 0 899.843V0h1242z" transform="translate(-1 -153)"/><path fill="url(#b)" d="M2070 0c-220.942 126.097-378.483 236.446-472.623 331.046-245.902 247.104-235.34 553.99-496.712 587.543-125.767 16.145-140.903-117.595-295.597-151.593-103.129-22.665-367.21 71.273-792.246 281.815H2070V0z" transform="translate(-1 -153)"/></g></svg>
