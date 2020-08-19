@@ -7,7 +7,16 @@ import {
     NEXT_APP_PATH,
     TESTING,
 } from './contsants'
-import { copy, writeFile, exists, existsSync, appendFile, writeFileSync } from 'fs-extra'
+import {
+    copy,
+    writeFile,
+    exists,
+    existsSync,
+    appendFile,
+    writeFileSync,
+    readFileSync,
+    remove,
+} from 'fs-extra'
 import { CommandModule } from 'yargs'
 const { version } = require('../package.json')
 
@@ -27,7 +36,7 @@ const command: CommandModule = {
         debug('argv', argv)
         debug('cwd', process.cwd())
         printGreen(`creating ${NEXT_APP_PATH}`, true)
-        // TODO remove node_modules and .next folders to prevent bugs
+        await remove(NEXT_APP_PATH)
         await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
             overwrite: true,
             recursive: true,
@@ -38,7 +47,10 @@ const command: CommandModule = {
                 }
             },
         })
-        writeFileSync(path.join(NEXT_APP_PATH, 'version.js'), `module.exports = '${version}'`)
+        writeFileSync(
+            path.join(NEXT_APP_PATH, 'version.js'),
+            `module.exports = '${version}'`,
+        )
 
         if (!argv['skip-install']) {
             printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
@@ -54,12 +66,20 @@ const command: CommandModule = {
             printGreen(`creating default ${CONFIG_PATH}`, true)
             await writeFile(CONFIG_PATH, DEFAULT_CONFIG)
         }
-        // if (existsSync('.gitignore')) {
-        //     printGreen(`adding ${NEXT_APP_PATH} to .gitignore`, true)
-        //     await appendFile('.gitignore', '\n' + NEXT_APP_PATH)
-        // }
+        addVitroToGitignore()
         printGreen('created vitro app successfully!', true)
     },
 } // as CommandModule
+
+async function addVitroToGitignore() {
+    if (existsSync('.gitignore')) {
+        printGreen(`adding ${NEXT_APP_PATH} to .gitignore`, true)
+        if (!readFileSync('.gitignore').toString().includes(NEXT_APP_PATH)) {
+            await appendFile('.gitignore', '\n' + NEXT_APP_PATH + '\n')
+        }
+    } else {
+        await writeFileSync('.gitignore', '\n' + NEXT_APP_PATH + '\n')
+    }
+}
 
 export default command
