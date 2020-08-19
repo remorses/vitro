@@ -170,6 +170,9 @@ export const withVitro = (vitroConfig: PluginArgs) => (
 function watchChanges({ ignored, globs, cb }) {
     const onChange = throttle(cb, 500)
     onChange()
+    if (process.env.NODE_ENV === 'production') {
+        return
+    }
     const watcher = chokidar.watch(globs, {
         ignored: (path) => {
             return ignored.some((s) => path.includes(s))
