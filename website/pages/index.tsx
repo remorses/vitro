@@ -44,7 +44,7 @@ const Page = () => (
     <LandingProvider
         position='relative'
         // minH='100%'
-        h='100%'
+        minH='100%'
         black='#333'
         primary='#4C00EB'
         color='#444'
@@ -59,7 +59,8 @@ const Page = () => (
             opacity={0.7}
             mt='0px !important'
             position='absolute'
-            width='100%'
+            // width='100vw'
+            alignSelf='center'
             top='0px'
             zIndex={-1}
             as={GradientBgImg}
