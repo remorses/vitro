@@ -69,8 +69,9 @@ const Page = () => (
             // bullet='Introducing Vitro 1.0'
             heading={
                 <Heading >
+                    Best way to <br />
                     <HeadingVerbAnimation /> <br />
-                    components in isolation
+                    React components
                 </Heading>
             }
             subheading={
@@ -272,7 +273,7 @@ const HeadingVerbAnimation = (props) => {
         >
             <Faded duration={500} key={i}>
                 <Box d='inline' minWidth='0px' bg='rgba(255,223,155,0.5)'>
-                    {texts[i]}
+                    {texts[i].toLowerCase()}
                 </Box>
             </Faded>
         </Box>
