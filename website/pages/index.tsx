@@ -68,7 +68,7 @@ const Page = () => (
         <Hero
             // bullet='Introducing Vitro 1.0'
             heading={
-                <Heading >
+                <Heading>
                     Best way to <br />
                     <HeadingVerbAnimation /> <br />
                     React components
@@ -78,7 +78,7 @@ const Page = () => (
                 <Box lineHeight='1.6em'>
                     Vitro helps you develop React UI components in isolation
                     <br />
-                    staying organized and productive
+                    while staying organized and productive
                 </Box>
             }
             cta={<Button>See a demo</Button>}
@@ -105,7 +105,7 @@ const Page = () => (
             // cta={<Button>Try Genql in 5 minutes</Button>}
             // fingerprint='Already using Genql? Sign in'
         />
-        <Divider heading='trusted by the best' />
+        <Divider heading='one tool to rule them all' />
         <Features alignSelf='center' />
         {/* <TestimonialsLogos
             animate
@@ -300,7 +300,7 @@ export const Features = ({ ...rest }) => {
                 {...rest}
             >
                 {[
-                    { heading: 'EXPERIMENT', icon: ExperimentStep },
+                    { heading: 'DEVELOP', icon: ExperimentStep },
                     { heading: 'SHOWCASE', icon: ShowcaseStep },
                     { heading: 'ANALYZE', icon: AnalyzeStep },
                     { heading: 'DOCUMENT', icon: DocsStep },
