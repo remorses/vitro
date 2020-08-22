@@ -70,7 +70,7 @@ const command: CommandModule = {
 
 function getVitroAppVersion() {
     try {
-        require(path.resolve(NEXT_APP_PATH, VERSION_FILE_PATH))
+        return require(path.resolve(NEXT_APP_PATH, VERSION_FILE_PATH))
     } catch {
         fatal(`cannot find vitro app version file`)
     }
