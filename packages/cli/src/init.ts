@@ -51,7 +51,8 @@ export async function initHandler({ skipInstall = false } = {}) {
         filter: (src: string) => {
             {
                 debug(src)
-                return !src.includes('node_modules')
+                return true
+                // return !src.includes('node_modules')
             }
         },
     })
