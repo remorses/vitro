@@ -34,6 +34,7 @@
   },
   "peerDependencies": {
     "react": "*",
+    "next": "*",
     "react-dom": "*"
   },
   "files": [
