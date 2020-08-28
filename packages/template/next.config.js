@@ -6,5 +6,6 @@ const plugin = withVitro({
 })
 
 module.exports = plugin({
+    ...require('../vitro.config').nextjsConfig,
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
 })

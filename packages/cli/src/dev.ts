@@ -53,6 +53,7 @@ const command: CommandModule = {
             }
             // if no node_modules folder is present inside the app, rerun init
             if (
+                packageManager == 'npm' && // TODO remove node_modules check after npm has workspaces
                 !existsSync(
                     path.resolve(NEXT_APP_PATH, 'node_modules', 'react'),
                 )
@@ -67,7 +68,11 @@ const command: CommandModule = {
             }
 
             console.log('starting the server')
-            await start({ port: argv.port, verbose: Boolean(argv.verbose) })
+            await start({
+                port: argv.port,
+                verbose: Boolean(argv.verbose),
+                packageManager,
+            })
         } catch (e) {
             printRed(`could not start the dev server, ${e}`, true)
             fatal(`try rerunning the 'vitro init' command`)
@@ -93,16 +98,23 @@ function getVitroConfig(): VitroConfig {
 
 export default command
 
-async function start({ port, verbose }) {
-    const NEXT_BIN = path.resolve(NEXT_APP_PATH, `node_modules/.bin/next`)
+async function start({ port, verbose, packageManager }) {
+    const NPM_NEXT_BIN = path.join(NEXT_APP_PATH, `node_modules/.bin/next`)
+    const command =
+        packageManager === 'npm'
+            ? `${NPM_NEXT_BIN} dev -p ${port}`
+            : `yarn next dev -p ${port}`
     return await runCommand({
-        command: `${NEXT_BIN} dev -p ${port} ${path.resolve(NEXT_APP_PATH)}`,
-        env: verbose
-            ? {
-                  VERBOSE: 'true',
-              }
-            : {},
-        // cwd: path.resolve('.', NEXT_APP_PATH),
+        command,
+        env: {
+            ...process.env,
+            ...(verbose
+                ? {
+                      VERBOSE: 'true',
+                  }
+                : {}),
+        },
+        cwd: path.resolve('.', NEXT_APP_PATH),
     }).catch((e) => {
         throw new Error(`could not start ${CMD}`)
     })
