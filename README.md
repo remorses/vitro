@@ -43,6 +43,10 @@ Currently SSR is disabled because
 
 ## Things to do
 
+-   [ ] add support for yarn v2 using a custom init flag (adding a `packageManager` in config, changes how the install process is done)
+-   [ ] investigate support for importing `@storybook` stuff for better migration process
+-   [ ] add support for slashes in titles, adding a tree view on the side bar
+-   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
 -   [x] rename stories to experiments (or studies or cases)
 -   [x] add a build command that runs the files generation and next build, add this command to the vitro app build script to make vercel work out of the box
 -   [ ] if a file name is index get the containing folder name, also you can pass a function getName that given a file path gets the title out
