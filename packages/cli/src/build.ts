@@ -4,7 +4,6 @@ import os from 'os'
 import { generate,  } from '@vitro/plugin'
 import {
     TEMPLATE_PATH,
-    DEFAULT_CONFIG,
     CONFIG_PATH,
     NEXT_APP_PATH,
     TESTING,

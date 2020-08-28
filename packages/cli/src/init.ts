@@ -1,5 +1,6 @@
 import { runCommand, printGreen, debug } from './support'
 import path from 'path'
+import prompts from 'prompts'
 import {
     TEMPLATE_PATH,
     getDefaultConfig,
@@ -37,10 +38,26 @@ const command: CommandModule = {
     handler: async (argv) => {
         debug('argv', argv)
         debug('cwd', process.cwd())
-        // TODO ask what package manager user wants to use
+        const packageManagerChoice = await prompts({
+            type: 'select',
+            name: 'value',
+            message: 'What package manager do you use?',
+            choices: [
+                {
+                    title: 'Npm',
+                    value: 'npm',
+                },
+                {
+                    title: 'Yarn',
+                    value: 'yarn',
+                },
+            ],
+            initial: 0,
+        })
         // tell user to add the .vitro folder inside the workspace packages if using workspaces
         await initHandler({
             skipInstall: Boolean(argv['skip-install']),
+            packageManager: packageManagerChoice.value,
         })
     },
 } // as CommandModule
