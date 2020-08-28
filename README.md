@@ -44,6 +44,7 @@ Currently SSR is disabled because
 ## Things to do
 
 -   [ ] add support for yarn v2 using a custom init flag (adding a `packageManager` in config, changes how the install process is done)
+-   [ ] wait for https://github.com/vercel/next.js/issues/15950
 -   [ ] investigate support for importing `@storybook` stuff for better migration process
 -   [ ] add support for slashes in titles, adding a tree view on the side bar
 -   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
