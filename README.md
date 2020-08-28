@@ -9,7 +9,6 @@
     <br/>
 </div>
 
-
 ## Differences with storybook
 
 -   No addons, if you want more features open a pull request here, we want a cohesive and coherent code base
