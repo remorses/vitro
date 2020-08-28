@@ -55,6 +55,10 @@ const command: CommandModule = {
             initial: 0,
         })
         // tell user to add the .vitro folder inside the workspace packages if using workspaces
+        printGreen(
+            'if you use workspaces remember to add .vitro to your packages',
+            true,
+        )
         await initHandler({
             skipInstall: Boolean(argv['skip-install']),
             packageManager: packageManagerChoice.value,
