@@ -12,9 +12,10 @@ export const TEMPLATE_PATH = TESTING
     : path.resolve(__dirname, '../template')
 
 // TODO add more options commented out and the docs link for the configuration object
-export const DEFAULT_CONFIG = `
+export const getDefaultConfig = ({packageManager}) => `
 // read more at https://vitro.now.sh/docs/config
 module.exports = {
+    packageManager: '${packageManager}', // npm or yarn
     experiments: ['./**/*.vitro.jsx'], // globs to search for experiment files
     globalCSS: [], // path to css files to use to for all experiments
     ignore: [], // add directories to ignore when searching for experiment files

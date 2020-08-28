@@ -2,7 +2,7 @@ import { runCommand, printGreen, debug } from './support'
 import path from 'path'
 import {
     TEMPLATE_PATH,
-    DEFAULT_CONFIG,
+    getDefaultConfig,
     CONFIG_PATH,
     NEXT_APP_PATH,
     TESTING,
@@ -82,7 +82,7 @@ export async function initHandler({
     }
     if (!existsSync(CONFIG_PATH)) {
         printGreen(`creating default ${CONFIG_PATH}`, true)
-        await writeFile(CONFIG_PATH, DEFAULT_CONFIG)
+        await writeFile(CONFIG_PATH, getDefaultConfig({ packageManager }))
     }
     await addVitroToGitignore()
     printGreen('created vitro app successfully!', true)
