@@ -1,7 +1,7 @@
 import { runCommand, printGreen, debug, printRed } from './support'
 import path from 'path'
 import os from 'os'
-import { generate } from '@vitro/plugin'
+import { generate,  } from '@vitro/plugin'
 import {
     TEMPLATE_PATH,
     DEFAULT_CONFIG,

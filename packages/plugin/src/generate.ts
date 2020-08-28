@@ -3,7 +3,7 @@ import { remove } from 'fs-extra'
 import path from 'path'
 import { TESTING } from './constants'
 import { generateExperiments, printExperimentsMap } from './experiments'
-import { PluginArgs } from './plugin'
+import { VitroConfig } from './plugin'
 import { glob } from 'smart-glob'
 
 import { uniq, flatten } from 'lodash'
@@ -13,7 +13,7 @@ if (TESTING) {
     excludedDirs.push('template')
 }
 
-export const generate = async (args: PluginArgs) => {
+export const generate = async (args: VitroConfig) => {
     let { experiments = [], ignore: userIgnore = [], wrapper, cwd } = args
     experiments = experiments.map(path.normalize)
     const ignore = [...userIgnore, ...excludedDirs]

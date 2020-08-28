@@ -3,9 +3,10 @@
         "moduleResolution": "Node",
         "esModuleInterop": true,
         "outDir": "dist",
+        "declaration": true,
         "sourceMap": true,
         "skipLibCheck": true,
         "jsx": "react"
     },
-    "exclude": ["template", "tests"]
+    "exclude": ["template", "tests", "dist", "esm"]
 }

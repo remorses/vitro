@@ -4,6 +4,7 @@ import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
 import { CommandModule } from 'yargs'
 import { initHandler } from './init'
 import { existsSync } from 'fs-extra'
+import { VitroConfig } from '@vitro/plugin'
 const { version: cliVersion } = require('../package.json')
 
 const command: CommandModule = {
@@ -27,6 +28,8 @@ const command: CommandModule = {
                     `There is no ./${CONFIG_PATH} file, you probably need to run '${CMD} init' first or change cwd`,
                 )
             }
+            const vitroConfig = getVitroConfig()
+            const packageManager = vitroConfig.packageManager || 'npm'
             // if no vitro app is present, run init
             if (!existsSync(NEXT_APP_PATH)) {
                 printGreen(
@@ -44,7 +47,9 @@ const command: CommandModule = {
                     true,
                 )
                 // this way you can run vitro even if .vitro is inside .gitignore
-                await initHandler()
+                await initHandler({
+                    packageManager,
+                })
             }
             // if no node_modules folder is present inside the app, rerun init
             if (
@@ -56,7 +61,9 @@ const command: CommandModule = {
                     `${NEXT_APP_PATH}/node_modules is empty, rerunning init`,
                     true,
                 )
-                await initHandler()
+                await initHandler({
+                    packageManager,
+                })
             }
 
             console.log('starting the server')
@@ -73,6 +80,14 @@ function getVitroAppVersion() {
         return require(path.resolve(NEXT_APP_PATH, VERSION_FILE_PATH))
     } catch {
         fatal(`cannot find vitro app version file`)
+    }
+}
+
+function getVitroConfig(): VitroConfig {
+    try {
+        return require(path.resolve(CONFIG_PATH))
+    } catch {
+        fatal(`cannot require vitro config`)
     }
 }
 

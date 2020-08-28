@@ -9,8 +9,11 @@ import { generate } from './generate'
 import chokidar from 'chokidar'
 import { mapKeys, throttle } from 'lodash'
 
-export interface PluginArgs {
+export type PackageManager = 'yarn' | 'npm'
+
+export interface VitroConfig {
     experiments: string[]
+    packageManager: PackageManager
     wrapper?: string
     basePath?: string
     transpileModules?: string[]
@@ -19,7 +22,7 @@ export interface PluginArgs {
     ignore?: string[]
 }
 
-export const withVitro = (vitroConfig: PluginArgs) => (
+export const withVitro = (vitroConfig: VitroConfig) => (
     nextConfig = {} as any,
 ) => {
     if (!vitroConfig.experiments) {

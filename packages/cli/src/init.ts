@@ -19,6 +19,7 @@ import {
     remove,
 } from 'fs-extra'
 import { CommandModule } from 'yargs'
+import { PackageManager } from '@vitro/plugin'
 const { version } = require('../package.json')
 
 const command: CommandModule = {
@@ -36,13 +37,18 @@ const command: CommandModule = {
     handler: async (argv) => {
         debug('argv', argv)
         debug('cwd', process.cwd())
+        // TODO ask what package manager user wants to use
+        // tell user to add the .vitro folder inside the workspace packages if using workspaces
         await initHandler({
             skipInstall: Boolean(argv['skip-install']),
         })
     },
 } // as CommandModule
 
-export async function initHandler({ skipInstall = false } = {}) {
+export async function initHandler({
+    skipInstall = false,
+    packageManager = 'npm',
+}: { skipInstall?: boolean; packageManager?: PackageManager } = {}) {
     printGreen(`creating ${NEXT_APP_PATH}`, true)
     await remove(NEXT_APP_PATH)
     await copy(TEMPLATE_PATH, NEXT_APP_PATH, {
@@ -62,9 +68,12 @@ export async function initHandler({ skipInstall = false } = {}) {
     )
 
     if (!skipInstall) {
-        printGreen(`installing dependencies inside ${NEXT_APP_PATH}`, true)
+        printGreen(
+            `installing dependencies inside ${NEXT_APP_PATH} with ${packageManager}`,
+            true,
+        )
         await runCommand({
-            command: 'npm i --no-audit --quiet --ignore-scripts --no-fund',
+            command: getInstallCommand(packageManager),
             env: {
                 npm_config_loglevel: 'silent',
             },
@@ -87,6 +96,14 @@ async function addVitroToGitignore() {
         }
     } else {
         await writeFileSync('.gitignore', '\n' + NEXT_APP_PATH + '\n')
+    }
+}
+
+function getInstallCommand(packageManager: PackageManager) {
+    if (packageManager === 'npm') {
+        return 'npm i --no-audit --quiet --ignore-scripts --no-fund'
+    } else if (packageManager === 'yarn') {
+        return 'yarn install'
     }
 }
 
