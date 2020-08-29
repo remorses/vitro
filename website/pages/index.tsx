@@ -21,7 +21,7 @@ import {
 import codeTheme from 'prism-react-renderer/themes/vsDark'
 
 import { useEffect, useState } from 'react'
-import { GITHUB_LINK } from '../constants'
+import { GITHUB_LINK, VITRO_DEMO_URL } from '../constants'
 import GradientBgImg from '../public/gradient-bg.svg'
 import PlayButton from '../public/play-button.svg'
 
@@ -81,7 +81,11 @@ const Page = () => (
                     while staying organized and productive
                 </Box>
             }
-            cta={<Button>See a demo</Button>}
+            cta={
+                <a target='_blank' href={VITRO_DEMO_URL}>
+                    <Button>See a demo</Button>
+                </a>
+            }
             // image={<Image h='200px' w='300px' src='/robot.svg' />}
             image={
                 <PatternBackground
