@@ -75,17 +75,29 @@ function pathToURL(path: string) {
     return '/experiments/' + (path || '')
 }
 
+const DUMMY_NAMES = ['index', 'experiment', 'story']
+
 export function removeSingleChildFolders(tree) {
     tree = tree || {}
     if (!tree?.children || !tree?.children?.length) {
         return tree
     }
     if (tree?.children?.length === 1) {
-        return removeSingleChildFolders({
-            ...tree,
-            url: tree.url || tree.children[0]?.url,
-            children: tree.children[0]?.children || [],
-        })
+        if (tree?.children[0].children?.length) {
+            return removeSingleChildFolders({
+                ...tree,
+                children: tree.children[0]?.children || [],
+            })
+        } else if (
+            DUMMY_NAMES.includes(tree.children[0]?.title?.toLowerCase?.())
+        ) {
+            // leaf with a dummy name
+            return removeSingleChildFolders({
+                ...tree,
+                url: tree.url || tree.children[0]?.url,
+                children: [],
+            })
+        }
     }
     const children = tree.children.map((x) => {
         return removeSingleChildFolders(x)

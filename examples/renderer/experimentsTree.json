@@ -2,10 +2,18 @@
     "children": [
         {
             "name": "markdown",
-            "url": "/experiments/markdown/src/docs-macro.vitro",
+            "url": "",
             "path": "markdown",
             "title": "Markdown",
-            "children": []
+            "children": [
+                {
+                    "name": "docs-macro.vitro.jsx",
+                    "url": "/experiments/markdown/src/docs-macro.vitro",
+                    "path": "markdown/src/docs-macro.vitro.jsx",
+                    "title": "Docs Macro",
+                    "children": []
+                }
+            ]
         },
         {
             "name": "styled-components",
@@ -38,10 +46,18 @@
         },
         {
             "name": "tailwind",
-            "url": "/experiments/tailwind/src/example-tailwind.vitro",
+            "url": "",
             "path": "tailwind",
             "title": "Tailwind",
-            "children": []
+            "children": [
+                {
+                    "name": "example-tailwind.vitro.jsx",
+                    "url": "/experiments/tailwind/src/example-tailwind.vitro",
+                    "path": "tailwind/src/example-tailwind.vitro.jsx",
+                    "title": "Example Tailwind",
+                    "children": []
+                }
+            ]
         },
         {
             "name": "example-package",
