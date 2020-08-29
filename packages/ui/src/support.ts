@@ -5,25 +5,6 @@ export const version = require('../package.json').version
 
 export const TOP_TITLE_H = '60px'
 
-type GetExperimentsReturnType = {
-    filename: string
-    title: string
-    absolutePath: string
-    // getExports: () => Record<string, any>
-}[]
-
-export const getExperimentsPaths = (
-    experimentsMap,
-): GetExperimentsReturnType => {
-    return Object.keys(experimentsMap).map((filename) => {
-        return {
-            absolutePath: experimentsMap[filename],
-            filename,
-            title: formatPathToTitle(filename),
-        }
-    })
-}
-
 export function formatPathToTitle(path: string) {
     const endPath = path
         .split('/')
@@ -67,7 +48,6 @@ function isPromise(p) {
     return p && typeof p.then === 'function'
 }
 
-
 /////////// tree utils ///////////////////
 
 export interface ExperimentsTree {
@@ -102,7 +82,11 @@ export function findTreeInPath(
 export function findSubtreeInPathByUrl(
     tree: ExperimentsTree,
     url,
-): { current?: ExperimentsTree; previous?: ExperimentsTree; next?: ExperimentsTree } {
+): {
+    current?: ExperimentsTree
+    previous?: ExperimentsTree
+    next?: ExperimentsTree
+} {
     if (!tree?.children?.length) {
         return null
     }

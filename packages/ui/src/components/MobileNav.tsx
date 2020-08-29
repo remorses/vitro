@@ -31,7 +31,7 @@ export const useRouteChanged = (callback) => {
     }, [router && router.events, callback])
 }
 
-export const MobileNav = ({ experimentsMap, experimentsTree, ...rest }) => {
+export const MobileNav = ({ experimentsTree, ...rest }) => {
     const { isOpen, onToggle, onClose } = useDisclosure()
     useRouteChanged(onClose)
     const { colorMode } = useColorMode()
@@ -67,7 +67,6 @@ export const MobileNav = ({ experimentsMap, experimentsTree, ...rest }) => {
                     <DrawerBody p={0}>
                         <ExperimentsNav
                             p='4'
-                            experimentsMap={experimentsMap}
                             experimentsTree={experimentsTree}
                         />
                         <Box h='100px' />

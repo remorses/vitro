@@ -53,7 +53,6 @@ function generateExperimentPage({
 import React from 'react'
 import * as exported from '${importPath}'
 import { default as GlobalWrapper } from '${wrapperComponentPath}'
-import experimentsMap from '@vitro-root/experimentsMap'
 import experimentsTree from '@vitro-root/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
@@ -62,7 +61,6 @@ const absolutePath = '${absolutePath}'
 export default function Page() {
     return (
         <ExperimentPage
-            experimentsMap={experimentsMap}
             experimentsTree={experimentsTree}
             GlobalWrapper={GlobalWrapper}
             absolutePath={absolutePath}
@@ -71,18 +69,6 @@ export default function Page() {
     )
 }
 `
-}
-
-export function printExperimentsMap(p: { files: string[] }) {
-    let result = 'module.exports = {\n'
-    p.files.forEach((f) => {
-        // const importPath = p.base + path.join(f)
-        result += '    '
-        result += `'${removeExtension(f)}': '${path.resolve('..', f)}',`
-        result += '\n'
-    })
-    result += '}'
-    return result
 }
 
 function removeExtension(f: string) {

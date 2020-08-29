@@ -1,13 +1,13 @@
 import fs from 'fs'
 import { remove } from 'fs-extra'
+import { flatten, uniq } from 'lodash'
 import path from 'path'
-import { TESTING } from './constants'
-import { generateExperiments, printExperimentsMap } from './experiments'
-import { VitroConfig } from './plugin'
 import { glob } from 'smart-glob'
+import { TESTING } from './constants'
+import { generateExperiments } from './experiments'
+import { VitroConfig } from './plugin'
+import { makeExperimentsTree } from './tree'
 
-import { uniq, flatten } from 'lodash'
-import { arrangeIntoTree, makeExperimentsTree } from './tree'
 
 const excludedDirs = ['.vitro']
 if (TESTING) {
@@ -30,13 +30,6 @@ export const generate = async (args: VitroConfig) => {
         ),
     )
     const files: string[] = uniq(flatten(results))
-
-    await fs.promises.writeFile(
-        path.join(cwd, 'experimentsMap.js'),
-        await printExperimentsMap({
-            files,
-        }),
-    )
 
     await fs.promises.writeFile(
         path.join(cwd, 'experimentsTree.json'),

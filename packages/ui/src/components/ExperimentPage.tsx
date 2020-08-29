@@ -40,7 +40,6 @@ jsx
 const mdxComponentPrefix = '_VitroMdx'
 
 export function ExperimentPage({
-    experimentsMap,
     experimentsTree,
     GlobalWrapper,
     absolutePath,
@@ -125,7 +124,6 @@ export function ExperimentPage({
                     />
                     <MobileNav
                         display={['flex', null, null, 'none']}
-                        experimentsMap={experimentsMap}
                         experimentsTree={experimentsTree}
                     />
                 </Stack>
