@@ -47,19 +47,18 @@ Currently SSR is disabled because
 -   [x] add support for yarn v2 using a custom init flag (adding a `packageManager` in config, changes how the install process is done)
 -   [ ] wait for https://github.com/vercel/next.js/issues/15950 and 9.5.3
 -   [ ] investigate support for importing `@storybook` stuff for better migration process
--   [ ] add support for slashes in titles, adding a tree view on the side bar
 -   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
 -   [x] rename stories to experiments (or studies or cases)
 -   [x] add a build command that runs the files generation and next build, add this command to the vitro app build script to make vercel work out of the box
--   [ ] if a file name is index get the containing folder name, also you can pass a function getName that given a file path gets the title out
+-   [x] if a file name is index get the containing folder name, also you can pass a function getName that given a file path gets the title out
 -   [ ] add a deploy with vercel button,
 -   [x] make the index page with an how it works and what vitro does, inciting to subscribe to the managed platform for additional features
 -   [x] make a cute splash screen
 -   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
--   [ ] use chokidar to watch for story changes and regenerate the stories paths
+-   [x] use chokidar to watch for story changes and regenerate the stories paths
 -   [ ] make an example with an iframe in wrapper with emotion
 -   [x] next run on top directory, this way urls are clickable in vscode
--   [ ] how to easily deploy a vitro app to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
+-   [x] how to easily deploy a vitro app to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
 -   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on vitro start, the same for babel
 -   [x] when generating the .vitro add a version file with the current version
 -   [ ] remove the new command, the default command checks if a vitro.config.js exists, if not asks if user wants to create .vitro and config (or errors if not tty), this way the default command always works and is idempotent
