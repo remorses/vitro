@@ -198,7 +198,7 @@ function CollapsableTreeNode({ title, path, depth, subTree }) {
                 />
                 {title}
             </Box>
-            <Collapse isOpen={isOpen} pl={depth * 20 + 'px'}>
+            <Collapse isOpen={isOpen} pl='20px'>
                 {subTree}
             </Collapse>
         </Stack>
