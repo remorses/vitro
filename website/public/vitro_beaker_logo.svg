@@ -1,9 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="73" height="74" viewBox="0 0 73 74">
-  <g fill="none" fill-rule="evenodd" transform="translate(3 2)">
-    <path stroke="#000" stroke-width="6" d="M7.10699457,2.96165066 L7.10699457,63.5079402 C7.10699457,66.269364 9.34557082,68.5079402 12.1069946,68.5079402 L54.7969833,68.5079402 C57.5584071,68.5079402 59.7969833,66.269364 59.7969833,63.5079402 L59.7969833,2.96165066 L59.7969833,2.96165066"/>
-    <path fill="#000" d="M58.5,31.5 L58.5,67.5 L8.5,67.5 L8.5,31.5 L58.5,31.5 Z M39,45.5 C35.9624339,45.5 33.5,47.9624339 33.5,51 C33.5,54.0375661 35.9624339,56.5 39,56.5 C42.0375661,56.5 44.5,54.0375661 44.5,51 C44.5,47.9624339 42.0375661,45.5 39,45.5 Z M25,47.5 C23.0670034,47.5 21.5,49.0670034 21.5,51 C21.5,52.9329966 23.0670034,54.5 25,54.5 C26.9329966,54.5 28.5,52.9329966 28.5,51 C28.5,49.0670034 26.9329966,47.5 25,47.5 Z"/>
-    <line x1="67" y1="1" y2="1" stroke="#000" stroke-linecap="round" stroke-width="6"/>
-    <line x1="28" x2="19" y1="11" y2="11" stroke="#000" stroke-linecap="round" stroke-width="5"/>
-    <line x1="28" x2="19" y1="21" y2="21" stroke="#000" stroke-linecap="round" stroke-width="5"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73 74"><g fill="none" fill-rule="evenodd"><path stroke="currentColor" stroke-width="6" d="M10.107 4.962v60.546a5 5 0 005 5h42.69a5 5 0 005-5V4.962h0"/><path fill="currentColor" d="M61.5 33.5v36h-50v-36h50zM42 47.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm-14 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/><path stroke="currentColor" stroke-linecap="round" stroke-width="6" d="M70 3H3"/><path stroke="currentColor" stroke-linecap="round" stroke-width="5" d="M31 13h-9M31 23h-9"/></g></svg>

@@ -1,15 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="196" height="135" viewBox="0 0 196 135">
-  <defs>
-    <linearGradient id="analyze_step-a" x1="50%" x2="50%" y1="0%" y2="100%">
-      <stop offset="0%" stop-color="#B9D4F3"/>
-      <stop offset="100%" stop-color="#FEFEFE" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <g fill="none" fill-rule="evenodd" transform="translate(1)">
-    <polygon fill="#B9D4F3" points="124 63 257 63 257 72 124 72" transform="rotate(90 190.5 67.5)"/>
-    <polygon fill="#B9D4F3" points="106 63 239 63 239 72 106 72" transform="rotate(90 172.5 67.5)"/>
-    <polygon fill="#B9D4F3" points="88 63 221 63 221 72 88 72" transform="rotate(90 154.5 67.5)"/>
-    <polygon fill="url(#analyze_step-a)" points="16 10 149 10 149 123 16 123" transform="rotate(90 82.5 66.5)"/>
-    <path fill="#000" fill-rule="nonzero" stroke="#000" d="M5.05,0 L95.95,0 C98.739038,0 101,2.31319546 101,5.16666667 L101,87.8333333 C101,90.6868045 98.739038,93 95.95,93 L5.05,93 C2.26096201,93 0,90.6868045 0,87.8333333 L0,5.16666667 C0,2.31319546 2.26096201,0 5.05,0 Z M5.36714976,6 L5.36714976,87 L95.6328502,87 L95.6328502,6 L5.36714976,6 Z M25.25,51.6666667 L32.0809179,51.6666667 L32.0809179,72.3333333 L25.25,72.3333333 L25.25,51.6666667 Z M45.45,20.6666667 L52.2809179,20.6666667 L52.2809179,72.3333333 L45.45,72.3333333 L45.45,20.6666667 Z M65.65,36.1666667 L72.4809179,36.1666667 L72.4809179,72.3333333 L65.65,72.3333333 L65.65,36.1666667 Z" transform="translate(0 41)"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 135"><defs><linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#B9D4F3"/><stop offset="100%" stop-color="#FEFEFE" stop-opacity="0"/></linearGradient></defs><g fill="none" fill-rule="evenodd"><path fill="#B9D4F3" d="M196 1v133h-9V1zM178 1v133h-9V1zM160 1v133h-9V1z"/><path fill="url(#a)" transform="rotate(90 83 67)" d="M16 10h133v113H16z"/><path fill="currentColor" fill-rule="nonzero" stroke="currentColor" d="M6.05 41h90.9c2.789 0 5.05 2.313 5.05 5.167v82.666c0 2.854-2.261 5.167-5.05 5.167H6.05C3.261 134 1 131.687 1 128.833V46.167C1 43.313 3.261 41 6.05 41zm.317 6v81h90.266V47H6.367zM26.25 92.667h6.83v20.666h-6.83V92.667zm20.2-31h6.83v51.666h-6.83V61.667zm20.2 15.5h6.83v36.166h-6.83V77.167z"/></g></svg>

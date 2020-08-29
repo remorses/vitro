@@ -1,14 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="155" height="134" viewBox="0 0 155 134">
-  <defs>
-    <linearGradient id="experiment_step-a" x1="50%" x2="50%" y1="0%" y2="100%">
-      <stop offset="0%" stop-color="#B9D4F3"/>
-      <stop offset="100%" stop-color="#FEFEFE" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
-  <g fill="none" fill-rule="evenodd" transform="translate(4)">
-    <polygon fill="#B9D4F3" points="80 63 213 63 213 72 80 72" transform="rotate(90 146.5 67.5)"/>
-    <polygon fill="#B9D4F3" points="62 63 195 63 195 72 62 72" transform="rotate(90 128.5 67.5)"/>
-    <polygon fill="url(#experiment_step-a)" points="-10 10 123 10 123 123 -10 123" transform="rotate(90 56.5 66.5)"/>
-    <path stroke="#000" stroke-width="8" d="M24.85,1.86554648 L24.85,19.4605241 C24.85,25.0612667 23.4245299,30.5698616 20.7078183,35.4675952 L2.71635146,67.9029157 C0.934791867,71.1147414 -4.49793599e-16,74.7271565 0,78.4 C-7.86210216e-15,81.4927946 2.5072054,84 5.6,84 L65.4,84 C68.4927946,84 71,81.4927946 71,78.4 C71,74.7271565 70.0652081,71.1147414 68.2836485,67.9029157 L50.2921817,35.4675952 C47.5754701,30.5698616 46.15,25.0612667 46.15,19.4605241 L46.15,1.86554648 L46.15,1.86554648 M56.801065,46.6655467 C31.951065,35.4655465 35.501065,61.5988807 14.201065,50.39888 M14.2,1.86666667 L56.8,1.86666667" transform="translate(0 44)"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 155 134"><defs><linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#B9D4F3"/><stop offset="100%" stop-color="#FEFEFE" stop-opacity="0"/></linearGradient></defs><g fill="none" fill-rule="evenodd"><path fill="#B9D4F3" d="M155 1v133h-9V1zM137 1v133h-9V1z"/><path fill="url(#a)" transform="rotate(90 58.5 68.5)" d="M-10 10h133v113H-10z"/><path stroke="currentColor" stroke-width="8" d="M28.85 45.866V63.46a33 33 0 01-4.142 16.007L6.716 111.903A21.64 21.64 0 004 122.4a5.6 5.6 0 005.6 5.6h59.8a5.6 5.6 0 005.6-5.6 21.64 21.64 0 00-2.716-10.497L54.292 79.468A33 33 0 0150.15 63.46V45.866h0m10.651 44.8c-24.85-11.2-21.3 14.933-42.6 3.733M18.2 45.867h42.6"/></g></svg>
