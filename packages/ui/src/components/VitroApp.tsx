@@ -17,6 +17,7 @@ import stylisPluginExtraScope from 'stylis-plugin-extra-scope'
 import weakMemoize from '@emotion/weak-memoize'
 import createCache from '@emotion/cache'
 import { SplashScreen } from './SplashScreen'
+import { ExperimentsTree } from '../support'
 
 jsx
 
@@ -30,7 +31,7 @@ Router.events.on('routeChangeError', () => NProgress.done())
 const PAGE_PADDING = '40px'
 const SM_PAGE_PADDING = '20px'
 
-export function VitroApp({ experimentsMap, ...props }) {
+export function VitroApp({ experimentsMap, experimentsTree, ...props }) {
     const { Component, pageProps } = props
     return (
         <ColorModeProvider value='light'>
@@ -38,7 +39,10 @@ export function VitroApp({ experimentsMap, ...props }) {
             <ThemeProvider>
                 <CSSReset />
                 <Global styles={[globalStyles]} />
-                <Content experimentsMap={experimentsMap}>
+                <Content
+                    experimentsMap={experimentsMap}
+                    experimentsTree={experimentsTree}
+                >
                     <Component {...pageProps} />
                 </Content>
             </ThemeProvider>
@@ -57,11 +61,14 @@ function useSSRSkip({} = {}) {
     return r
 }
 
+
 const Content = ({
     experimentsMap,
+    experimentsTree,
     children,
 }: {
     experimentsMap: Record<string, string>
+    experimentsTree: ExperimentsTree
     children
 }) => {
     const loaded = useSSRSkip()
@@ -103,6 +110,7 @@ const Content = ({
                     <ExperimentsNav
                         className='vitro smoothscroll'
                         experimentsMap={experimentsMap}
+                        experimentsTree={experimentsTree}
                         width='100%'
                         fontWeight='500'
                         display={['none', null, null, 'flex']}

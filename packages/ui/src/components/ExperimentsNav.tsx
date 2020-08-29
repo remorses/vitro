@@ -15,12 +15,16 @@ import NextLink from 'next/link'
 import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
 import { getExperimentsPaths, version, TOP_TITLE_H } from '../support'
+import { ExperimentsTree } from '../support'
+import { NavTree } from './NavTree'
 
 export const ExperimentsNav = ({
     experimentsMap,
+    experimentsTree,
     ...p
 }: Omit<InputGroupProps, 'children'> & {
     experimentsMap: Record<string, string>
+    experimentsTree: ExperimentsTree
 }) => {
     let [filter, setFilter] = useState('')
     filter = filter.toLowerCase()
@@ -62,39 +66,46 @@ export const ExperimentsNav = ({
                     borderRadius='md'
                 />
             </InputGroup>
-            <Stack spacing='4'>
-                {experiments.map(({ title, filename }) => {
-                    if (
-                        filter &&
-                        !title.toLowerCase().includes(filter) &&
-                        !filename.toLowerCase().includes(filter)
-                    ) {
-                        return null
-                    }
-                    return (
-                        <Box key={filename}>
-                            <NextLink
-                                passHref
-                                href={`/experiments/${filename}`}
-                                // href={`/experiments/[...story]`}
+            {/* <NavList experiments={experiments} filter={filter} /> */}
+            <NavTree tree={experimentsTree} />
+        </Stack>
+    )
+}
+
+const NavList = ({ experiments, filter }) => {
+    return (
+        <Stack spacing='4'>
+            {experiments.map(({ title, filename }) => {
+                if (
+                    filter &&
+                    !title.toLowerCase().includes(filter) &&
+                    !filename.toLowerCase().includes(filter)
+                ) {
+                    return null
+                }
+                return (
+                    <Box key={filename}>
+                        <NextLink
+                            passHref
+                            href={`/experiments/${filename}`}
+                            // href={`/experiments/[...story]`}
+                        >
+                            <Stack
+                                cursor='pointer'
+                                align='center'
+                                direction='row'
                             >
-                                <Stack
-                                    cursor='pointer'
-                                    align='center'
-                                    direction='row'
-                                >
-                                    <Box
-                                        as={AiFillCaretRight}
-                                        opacity={0.6}
-                                        size='0.9em'
-                                    />
-                                    <Box as='a'>{title}</Box>
-                                </Stack>
-                            </NextLink>
-                        </Box>
-                    )
-                })}
-            </Stack>
+                                <Box
+                                    as={AiFillCaretRight}
+                                    opacity={0.6}
+                                    size='0.9em'
+                                />
+                                <Box as='a'>{title}</Box>
+                            </Stack>
+                        </NextLink>
+                    </Box>
+                )
+            })}
         </Stack>
     )
 }

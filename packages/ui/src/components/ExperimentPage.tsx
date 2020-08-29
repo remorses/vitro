@@ -41,6 +41,7 @@ const mdxComponentPrefix = '_VitroMdx'
 
 export function ExperimentPage({
     experimentsMap,
+    experimentsTree,
     GlobalWrapper,
     absolutePath,
     fileExports: fileExportsObject,
@@ -125,6 +126,7 @@ export function ExperimentPage({
                     <MobileNav
                         display={['flex', null, null, 'none']}
                         experimentsMap={experimentsMap}
+                        experimentsTree={experimentsTree}
                     />
                 </Stack>
                 {/* <Box fontSize='18px' opacity={0.6}>

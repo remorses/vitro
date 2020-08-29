@@ -54,6 +54,7 @@ import React from 'react'
 import * as exported from '${importPath}'
 import { default as GlobalWrapper } from '${wrapperComponentPath}'
 import experimentsMap from '@vitro-root/experimentsMap'
+import experimentsTree from '@vitro-root/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
 const absolutePath = '${absolutePath}'
@@ -62,6 +63,7 @@ export default function Page() {
     return (
         <ExperimentPage
             experimentsMap={experimentsMap}
+            experimentsTree={experimentsTree}
             GlobalWrapper={GlobalWrapper}
             absolutePath={absolutePath}
             fileExports={exported}

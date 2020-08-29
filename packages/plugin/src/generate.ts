@@ -7,6 +7,7 @@ import { VitroConfig } from './plugin'
 import { glob } from 'smart-glob'
 
 import { uniq, flatten } from 'lodash'
+import { arrangeIntoTree } from './tree'
 
 const excludedDirs = ['.vitro']
 if (TESTING) {
@@ -37,6 +38,19 @@ export const generate = async (args: VitroConfig) => {
         }),
     )
 
+    await fs.promises.writeFile(
+        path.join(cwd, 'experimentsTree.json'),
+        JSON.stringify(
+            {
+                children: arrangeIntoTree(
+                    files.map((f) => f.split('/')).filter(Boolean),
+                ),
+            },
+            null,
+            4,
+        ),
+    )
+
     const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
     await remove(targetDir)
     await generateExperiments({
@@ -45,4 +59,3 @@ export const generate = async (args: VitroConfig) => {
         targetDir,
     })
 }
-

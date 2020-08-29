@@ -12,19 +12,19 @@ import orderBy from 'lodash/orderBy'
 import React, { useEffect } from 'react'
 import { ComponentLink } from './NavLink'
 import { useStorageState } from 'react-storage-hooks'
-import { formatTitle, findTreeInPath, DirectoryTree } from '../support'
+import { findTreeInPath, ExperimentsTree } from '../support'
 
 export type SidebarOrdering = { [k: string]: SidebarOrdering } | boolean
 
 const FILES_EXTENSION_REGEX = /\.(tsx?|jsx?)/
 
 export type SideNavProps = {
-    tree?: DirectoryTree
+    tree?: ExperimentsTree
     contentHeight?: string
 } & BoxProps
 
-export const NavTree = ({ tree, ...rest }: SideNavProps) => {
-    // console.log({ tree })
+export const NavTree = ({ tree = { children: [] }, ...rest }: SideNavProps) => {
+    console.log({ tree })
     const { sidebarOrdering = undefined, docsRootPath = 'pages' } = {}
     tree = applySidebarOrdering({ tree, order: sidebarOrdering })
     // console.log(tree)
@@ -36,15 +36,15 @@ export const NavTree = ({ tree, ...rest }: SideNavProps) => {
     }
 
     return (
-        <Box
+        <Stack
             // borderRightWidth='1px'
             // minWidth='240px'
-            overflowY='auto'
+            // overflowY='hidden'
             as='nav'
             aria-label='Main navigation'
-            py='6'
-            px='4'
-            pr='6'
+            // py='6'
+            // px='4'
+            // pr='6'
             {...rest}
         >
             <Box>
@@ -58,7 +58,7 @@ export const NavTree = ({ tree, ...rest }: SideNavProps) => {
                     />
                 ))}
             </Box>
-        </Box>
+        </Stack>
     )
 }
 
@@ -73,9 +73,9 @@ export function applySidebarOrdering({
     order,
     tree,
 }: {
-    tree: DirectoryTree
+    tree: ExperimentsTree
     order: SidebarOrdering
-}): DirectoryTree {
+}): ExperimentsTree {
     order = order || {}
     if (!tree.children) {
         return tree
@@ -122,16 +122,15 @@ export function applySidebarOrdering({
 const NavTreeComponent = ({
     name = '',
     children,
-    depth = 0,
+    depth = 1,
     hideDivider = false,
     url = '',
     title = '',
     path,
     ...rest
-}: DirectoryTree & { depth?: number; hideDivider?: boolean }) => {
-    const w = 10
+}: ExperimentsTree & { depth?: number; hideDivider?: boolean }) => {
     const isFolder = !url
-    const formattedTitle = title || formatTitle(name || '')
+    const formattedTitle = title || name
     const subTree =
         children &&
         children.map((x) => {
@@ -143,7 +142,7 @@ const NavTreeComponent = ({
                 />
             )
         })
-    if (isFolder && depth > 0) {
+    if (isFolder) {
         return (
             <CollapsableTreeNode
                 path={path}
@@ -153,31 +152,12 @@ const NavTreeComponent = ({
             />
         )
     }
-    if (isFolder) {
-        return (
-            <Stack spacing='0px'>
-                <Box my='0.2em'>
-                    {!hideDivider && <Divider />}
-                    <Box
-                        py='0.2em'
-                        pt='1.4em'
-                        my='0.2em'
-                        fontSize='1.1em'
-                        fontWeight='semibold'
-                    >
-                        {formattedTitle}
-                    </Box>
-                </Box>
-                {subTree}
-            </Stack>
-        )
-    }
     return (
         <Stack spacing='0px'>
             <ComponentLink
                 opacity={0.8}
-                py='0.2em'
-                my='0.2em'
+                // py='0.2em'
+                my='0.1em'
                 href={url}
                 isTruncated
             >

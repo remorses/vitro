@@ -67,34 +67,22 @@ function isPromise(p) {
     return p && typeof p.then === 'function'
 }
 
-export function formatTitle(name: string) {
-    return capitalizeFirstLetter(
-        name
-            .replace(/_/g, ' ')
-            .replace(/-/g, ' ')
-            .replace(/\.mdx?/, ''),
-    )
-}
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-}
 
 /////////// tree utils ///////////////////
 
-export interface DirectoryTree {
+export interface ExperimentsTree {
     path?: string
-    name: string
-    children?: DirectoryTree[]
+    name?: string
+    children?: ExperimentsTree[]
     url?: string
     title?: string
-    meta?: Record<string, any>
+    // meta?: Record<string, any>
 }
 
 export function findTreeInPath(
-    tree: DirectoryTree,
+    tree: ExperimentsTree,
     path,
-): DirectoryTree | null {
+): ExperimentsTree | null {
     // remove leading and trailing slashes
     path = path.replace(/^\/|\/$/g, '')
     if (!tree?.children?.length) {
@@ -112,9 +100,9 @@ export function findTreeInPath(
 }
 
 export function findSubtreeInPathByUrl(
-    tree: DirectoryTree,
+    tree: ExperimentsTree,
     url,
-): { current?: DirectoryTree; previous?: DirectoryTree; next?: DirectoryTree } {
+): { current?: ExperimentsTree; previous?: ExperimentsTree; next?: ExperimentsTree } {
     if (!tree?.children?.length) {
         return null
     }

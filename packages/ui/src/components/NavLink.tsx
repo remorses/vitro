@@ -41,11 +41,11 @@ export const SideNavLink = forwardRef(
             <PseudoBox
                 ref={ref}
                 as='a'
-                mx={-2}
+                // mx={-2}
                 display='flex'
                 cursor='pointer'
                 alignItems='center'
-                px='2'
+                // px='2'
                 py='1'
                 transition='all 0.2s'
                 // fontWeight='medium'
