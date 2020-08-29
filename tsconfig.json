@@ -2,6 +2,15 @@
     "references": [
         {
             "path": "packages/docs.macro"
+        },
+        {
+            "path": "packages/cli"
+        },
+        {
+            "path": "packages/ui"
+        },
+        {
+            "path": "packages/plugin"
         }
     ],
     "include": []
