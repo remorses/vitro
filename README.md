@@ -9,7 +9,6 @@
     <br/>
 </div>
 
-
 ## Differences with storybook
 
 -   No addons, if you want more features open a pull request here, we want a cohesive and coherent code base
@@ -44,6 +43,7 @@ Currently SSR is disabled because
 
 ## Things to do
 
+-   [ ] make vitro callable from nested directories, searching for a top level vitro.config.js file, filtering out globs outside of cwd
 -   [x] add support for yarn v2 using a custom init flag (adding a `packageManager` in config, changes how the install process is done)
 -   [ ] wait for https://github.com/vercel/next.js/issues/15950 and 9.5.3
 -   [ ] investigate support for importing `@storybook` stuff for better migration process
