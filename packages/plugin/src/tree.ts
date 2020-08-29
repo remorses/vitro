@@ -3,7 +3,6 @@ import { startCase } from 'lodash'
 export function makeExperimentsTree(files: string[]) {
     const filesParts = files.map((f) => f.split('/')).filter(Boolean)
     const children = arrangeIntoTree(filesParts)
-    // TODO remove stories named
     return removeSingleChildFolders({
         children,
     })
