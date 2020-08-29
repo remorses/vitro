@@ -1,6 +1,6 @@
 {
     "name": "markdown",
-    "version": "0.0.38",
+    "version": "0.0.39",
     "description": "",
     "private": true,
     "main": "index.js",
