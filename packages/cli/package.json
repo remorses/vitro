@@ -1,7 +1,7 @@
 {
   "name": "@vitro/cli",
   "_": "[bump]",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@types/fs-extra": "^9.0.1",
     "@types/yargs": "^15.0.5",
-    "@vitro/plugin": "^0.0.40",
+    "@vitro/plugin": "^0.0.41",
     "chalk": "latest",
     "fs-extra": "^9.0.1",
     "prompts": "^2.3.2",

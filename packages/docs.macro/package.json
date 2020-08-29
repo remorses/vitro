@@ -1,7 +1,7 @@
 {
   "name": "@vitro/docs.macro",
   "_": "[bump]",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
