@@ -1,20 +1,11 @@
 import { startCase } from 'lodash'
 
-export function formatPathToTitle(path: string) {
-    const endPath = path
-        .split('/')
-        .map((x) => x.trim())
-        .filter(Boolean)
-        .reverse()[0]
-    const withoutExt = endPath.split('.')[0]
-    return startCase(withoutExt)
-}
-
-function pathToURL(path: string) {
-    // console.log(path)
-    path = path.replace(/\.\w+$/, '').replace(/\bindex$/, '')
-
-    return '/experiments/' + (path || '')
+export function makeExperimentsTree(files: string[]) {
+    const filesParts = files.map((f) => f.split('/')).filter(Boolean)
+    const children = arrangeIntoTree(filesParts)
+    return removeSingleChildFolders({
+        children,
+    })
 }
 
 export function arrangeIntoTree(paths: string[][]) {
@@ -64,4 +55,38 @@ export function arrangeIntoTree(paths: string[][]) {
             return false
         }
     }
+}
+
+function formatPathToTitle(path: string) {
+    const endPath = path
+        .split('/')
+        .map((x) => x.trim())
+        .filter(Boolean)
+        .reverse()[0]
+    const withoutExt = endPath.split('.')[0]
+    return startCase(withoutExt)
+}
+
+function pathToURL(path: string) {
+    // console.log(path)
+    path = path.replace(/\.\w+$/, '').replace(/\bindex$/, '')
+
+    return '/experiments/' + (path || '')
+}
+
+export function removeSingleChildFolders(tree) {
+    tree = tree || {}
+    if (!tree?.children) {
+        return tree
+    }
+    const children = tree.children.map((x) => {
+        if (x?.children?.length === 1 && x?.children[0]?.children?.length) {
+            return removeSingleChildFolders({
+                ...x,
+                children: x.children[0].children,
+            })
+        }
+        return removeSingleChildFolders(x)
+    })
+    return { ...tree, children }
 }
