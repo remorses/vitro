@@ -83,6 +83,7 @@ export function removeSingleChildFolders(tree) {
     if (tree?.children?.length === 1) {
         return removeSingleChildFolders({
             ...tree,
+            url: tree.url || tree.children[0]?.url,
             children: tree.children[0]?.children || [],
         })
     }

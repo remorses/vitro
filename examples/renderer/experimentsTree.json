@@ -2,18 +2,10 @@
     "children": [
         {
             "name": "markdown",
-            "url": "",
+            "url": "/experiments/markdown/src/docs-macro.vitro",
             "path": "markdown",
             "title": "Markdown",
-            "children": [
-                {
-                    "name": "docs-macro.vitro.jsx",
-                    "url": "/experiments/markdown/src/docs-macro.vitro",
-                    "path": "markdown/src/docs-macro.vitro.jsx",
-                    "title": "Docs Macro",
-                    "children": []
-                }
-            ]
+            "children": []
         },
         {
             "name": "styled-components",
@@ -46,18 +38,10 @@
         },
         {
             "name": "tailwind",
-            "url": "",
+            "url": "/experiments/tailwind/src/example-tailwind.vitro",
             "path": "tailwind",
             "title": "Tailwind",
-            "children": [
-                {
-                    "name": "example-tailwind.vitro.jsx",
-                    "url": "/experiments/tailwind/src/example-tailwind.vitro",
-                    "path": "tailwind/src/example-tailwind.vitro.jsx",
-                    "title": "Example Tailwind",
-                    "children": []
-                }
-            ]
+            "children": []
         },
         {
             "name": "example-package",
@@ -138,33 +122,17 @@
             "children": [
                 {
                     "name": "example-sub-package-1",
-                    "url": "",
+                    "url": "/experiments/example-package-scope/example-sub-package-1/src/index.vitro",
                     "path": "example-package-scope/example-sub-package-1",
                     "title": "Example Sub Package 1",
-                    "children": [
-                        {
-                            "name": "index.vitro.tsx",
-                            "url": "/experiments/example-package-scope/example-sub-package-1/src/index.vitro",
-                            "path": "example-package-scope/example-sub-package-1/src/index.vitro.tsx",
-                            "title": "Index",
-                            "children": []
-                        }
-                    ]
+                    "children": []
                 },
                 {
                     "name": "example-sub-package-2",
-                    "url": "",
+                    "url": "/experiments/example-package-scope/example-sub-package-2/src/index.vitro",
                     "path": "example-package-scope/example-sub-package-2",
                     "title": "Example Sub Package 2",
-                    "children": [
-                        {
-                            "name": "index.vitro.tsx",
-                            "url": "/experiments/example-package-scope/example-sub-package-2/src/index.vitro",
-                            "path": "example-package-scope/example-sub-package-2/src/index.vitro.tsx",
-                            "title": "Index",
-                            "children": []
-                        }
-                    ]
+                    "children": []
                 }
             ]
         }
