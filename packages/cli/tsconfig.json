@@ -5,7 +5,16 @@
         "outDir": "dist",
         "sourceMap": true,
         "skipLibCheck": true,
-        "jsx": "react"
+        "jsx": "react",
+        "composite": true,
+        "rootDir": "src"
     },
-    "exclude": ["template", "tests"]
+
+    "exclude": ["template", "tests"],
+    "include": ["src"],
+    "references": [
+        {
+            "path": "../plugin"
+        }
+    ]
 }

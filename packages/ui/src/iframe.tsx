@@ -1,5 +1,5 @@
 import createCache from '@emotion/cache'
-import React, { Component } from 'react'
+import React, { Component, FC, ComponentClass } from 'react'
 import ReactDOM from 'react-dom'
 
 let memoizedCreateCacheWithContainer = (container: any = undefined) => {
@@ -11,7 +11,7 @@ let memoizedCreateCacheWithContainer = (container: any = undefined) => {
     return newCache
 }
 
-export function FramedComponent(C) {
+export function FramedComponent(C): ComponentClass {
     class Framed extends Component {
         // defaultProps = {
         //     frameProps: {

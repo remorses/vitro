@@ -2,6 +2,12 @@
     "name": "renderer",
     "version": "0.0.37",
     "private": true,
+    "scripts": {
+        "gen": "NODE_ENV=test node -r sucrase/register ../../packages/cli/src/main.ts build --cwd ../",
+        "build": "yarn next build",
+        "dev": "cross-env TESTING=1 next dev",
+        "start": "next start"
+    },
     "dependencies": {
         "@mdx-js/react": "^1.6.16",
         "@vitro/plugin": "^0.0.37",
@@ -19,11 +25,5 @@
         "next-transpile-modules": "^3.3.0",
         "typescript": "3.9.6"
     },
-    "license": "MIT",
-    "scripts": {
-        "gen": "NODE_ENV=test node -r sucrase/register ../../packages/cli/src/main.ts build --cwd ../",
-        "build": "yarn --cwd ../../ install && yarn --cwd ../../ lerna bootstrap && yarn --cwd ../../ build && yarn next build",
-        "dev": "cross-env TESTING=1 next dev",
-        "start": "next start"
-    }
+    "license": "MIT"
 }

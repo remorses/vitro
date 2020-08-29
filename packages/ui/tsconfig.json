@@ -5,7 +5,11 @@
         "outDir": "dist",
         "sourceMap": true,
         "skipLibCheck": true,
-        "jsx": "react"
+        "jsx": "react",
+        "composite": true,
+        "rootDir": "src"
     },
-    "exclude": ["template", "tests"]
+    "include": ["src"],
+    "exclude": ["template", "tests", "experiments"],
+    "references": []
 }

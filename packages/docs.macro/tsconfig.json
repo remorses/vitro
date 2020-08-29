@@ -7,7 +7,11 @@
         "allowJs": true,
         "sourceMap": true,
         "skipLibCheck": true,
-        "jsx": "react"
+        "jsx": "react",
+        "composite": true,
+        "rootDir": "src"
     },
-    "exclude": ["template", "tests", "dist", "esm"]
+
+    "exclude": ["template", "tests", "dist", "esm"],
+    "references": []
 }
