@@ -4,7 +4,7 @@
         "examples/*",
         "website"
     ],
-    "version": "0.0.37",
+    "version": "0.0.38",
     "npmClient": "yarn",
     "useWorkspaces": true,
     "registry": "https://registry.npmjs.org/",
