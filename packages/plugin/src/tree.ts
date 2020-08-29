@@ -3,6 +3,7 @@ import { startCase } from 'lodash'
 export function makeExperimentsTree(files: string[]) {
     const filesParts = files.map((f) => f.split('/')).filter(Boolean)
     const children = arrangeIntoTree(filesParts)
+    // TODO remove stories named
     return removeSingleChildFolders({
         children,
     })
@@ -76,16 +77,16 @@ function pathToURL(path: string) {
 
 export function removeSingleChildFolders(tree) {
     tree = tree || {}
-    if (!tree?.children) {
+    if (!tree?.children || !tree?.children?.length) {
         return tree
     }
+    if (tree?.children?.length === 1) {
+        return removeSingleChildFolders({
+            ...tree,
+            children: tree.children[0]?.children || [],
+        })
+    }
     const children = tree.children.map((x) => {
-        if (x?.children?.length === 1) {
-            return removeSingleChildFolders({
-                ...x,
-                children: x.children[0].children || [],
-            })
-        }
         return removeSingleChildFolders(x)
     })
     return { ...tree, children }
