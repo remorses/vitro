@@ -7,9 +7,7 @@
         "test": "lerna exec --ignore example* --ignore website -- yarn test",
         "examples": "VERBOSE=1 yarn --cwd examples/renderer dev",
         "publ": "yarn build && yarn lerna publish -y patch",
-        "build": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "lerna exec --scope @vitro/* 'yarn tsc -b'",
-        "build:esm": "lerna exec --parallel --scope '@vitro/ui' -- yarn build"
+        "build": "lerna exec --scope @vitro/* 'yarn build'"
     },
     "workspaces": {
         "packages": [
@@ -17,10 +15,7 @@
             "examples/*",
             "website"
         ],
-        "nohoist": [
-            
-            
-        ]
+        "nohoist": []
     },
     "devDependencies": {
         "lerna": "^3.22.1",

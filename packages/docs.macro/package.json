@@ -15,6 +15,7 @@
     "dist"
   ],
   "scripts": {
+    "build": "tsc -b",
     "test": "NODE_ENV=test mocha --colors --exit"
   },
   "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
