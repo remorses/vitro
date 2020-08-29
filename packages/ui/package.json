@@ -17,6 +17,7 @@
     "nprogress": "^0.2.0",
     "react-icons": "latest",
     "react-is": "^16.13.1",
+    "react-storage-hooks": "^4.0.1",
     "stylis-plugin-extra-scope": "^0.2.1",
     "tslib": "^2.0.0"
   },

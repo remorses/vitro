@@ -80,10 +80,10 @@ export function removeSingleChildFolders(tree) {
         return tree
     }
     const children = tree.children.map((x) => {
-        if (x?.children?.length === 1 && x?.children[0]?.children?.length) {
+        if (x?.children?.length === 1) {
             return removeSingleChildFolders({
                 ...x,
-                children: x.children[0].children,
+                children: x.children[0].children || [],
             })
         }
         return removeSingleChildFolders(x)
