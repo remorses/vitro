@@ -1,6 +1,6 @@
 {
     "name": "renderer",
-    "version": "0.0.39",
+    "version": "0.0.40",
     "private": true,
     "scripts": {
         "gen": "NODE_ENV=test node -r sucrase/register ../../packages/cli/src/main.ts build --cwd ../",
@@ -10,8 +10,8 @@
     },
     "dependencies": {
         "@mdx-js/react": "^1.6.16",
-        "@vitro/plugin": "^0.0.39",
-        "@vitro/ui": "^0.0.39",
+        "@vitro/plugin": "^0.0.40",
+        "@vitro/ui": "^0.0.40",
         "babel-plugin-macros": "^2.8.0",
         "inline-mdx.macro": "^1.0.0",
         "next": "^9.5.2",
