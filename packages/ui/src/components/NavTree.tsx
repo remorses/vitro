@@ -157,7 +157,7 @@ const NavTreeComponent = ({
         <Stack spacing='0px'>
             <ComponentLink
                 opacity={0.8}
-                // py='0.2em'
+                pl='0.4em'
                 my='0.1em'
                 href={url}
                 isTruncated
