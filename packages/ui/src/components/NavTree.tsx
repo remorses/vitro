@@ -24,8 +24,8 @@ export type SideNavProps = {
 } & BoxProps
 
 export const NavTree = ({ tree = { children: [] }, ...rest }: SideNavProps) => {
-    console.log({ tree })
     const { sidebarOrdering = undefined, docsRootPath = 'pages' } = {}
+
     tree = applySidebarOrdering({ tree, order: sidebarOrdering })
     // console.log(tree)
     tree = findTreeInPath(tree, docsRootPath) || tree
@@ -76,6 +76,7 @@ export function applySidebarOrdering({
     tree: ExperimentsTree
     order: SidebarOrdering
 }): ExperimentsTree {
+    // TODO order sidebar based on files metadata (last modified time)
     order = order || {}
     if (!tree.children) {
         return tree
