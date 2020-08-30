@@ -271,7 +271,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
     // console.log({ id })
     const profile: ProfilerOnRenderCallback = useCallback(
         (id, _, actualDuration) => {
-            console.log({ id, actualDuration })
+            // console.log({ id, actualDuration })
             renderCount.current++
             actualDurationRef.current = actualDuration.toFixed(2) + 'ms'
         },
