@@ -68,6 +68,7 @@ export const Features = () => {
                 { heading: 'COLLABORATE', icon: DeployStep },
             ].map((x) => (
                 <Stack
+                    key={x.heading}
                     w={['100%', null, 'auto']}
                     mx='14'
                     my='12'
