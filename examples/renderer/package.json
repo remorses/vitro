@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "gen": "NODE_ENV=test node -r sucrase/register ../../packages/cli/src/main.ts build --cwd ../",
-        "build": "yarn --cwd ../../ build && yarn gen && yarn next build",
+        "build": "yarn --cwd ../../ build && yarn gen && yarn next build --profile",
         "dev": "cross-env TESTING=1 next dev",
         "start": "next start"
     },
