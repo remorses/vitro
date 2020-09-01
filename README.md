@@ -11,13 +11,12 @@
 
 ## Differences with storybook
 
--   No addons, if you want more features open a pull request here, we want a cohesive and coherent code base
+-   No addons, if you want more features open a pull request here, we want a cohesive code base
 -   Many features inherited from next.js like
     -   Zero config typescript, babel, css support
     -   Incremental compilation
     -   React Fast refresh
     -   Awesome Nextjs plugins like `next-transpile-modules`, `next-images` and more
-    -   SSR
 
 ### Features missing from storybook (in progress)
 
