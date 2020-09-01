@@ -114,6 +114,13 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 }),
             }
 
+            // resolve loaders for yarn v2
+            config.resolveLoader.alias = {
+                'inspect-loader': require.resolve('inspect-loader'),
+                'imports-loader': require.resolve('imports-loader'),
+                ...config.resolveLoader.alias,
+            }
+
             // prints some info about what is being compiled
             config.module.rules.push({
                 test: /\.tsx?$/,
