@@ -1,7 +1,7 @@
 import React from 'react'
-import * as exported from '@vitro-root/../markdown/src/docs-macro.vitro'
-import { default as GlobalWrapper } from '@vitro-root/../@vitro/ui/src/components/DefaultWrapper'
-import experimentsTree from '@vitro-root/experimentsTree.json'
+import * as exported from '_vitro-root_/../markdown/src/docs-macro.vitro'
+import { default as GlobalWrapper } from '_vitro-root_/../@vitro/ui/src/components/DefaultWrapper'
+import experimentsTree from '_vitro-root_/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui/src'
 
 const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/markdown/src/docs-macro.vitro.jsx'

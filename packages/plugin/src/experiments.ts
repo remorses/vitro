@@ -25,11 +25,11 @@ export async function generateExperiments(p: {
             const target = path.join(targetDir, p)
             const code = generateExperimentPage({
                 importPath: removeExtension(
-                    '@vitro-root/../' + path.normalize(p),
+                    '_vitro-root_/../' + path.normalize(p),
                 ),
                 absolutePath: path.resolve('..', p),
                 wrapperComponentPath: removeExtension(
-                    '@vitro-root/../' + path.normalize(wrapperComponentPath),
+                    '_vitro-root_/../' + path.normalize(wrapperComponentPath),
                 ),
             }).trim()
             const existing = await readFile(target)
@@ -53,7 +53,7 @@ function generateExperimentPage({
 import React from 'react'
 import * as exported from '${importPath}'
 import { default as GlobalWrapper } from '${wrapperComponentPath}'
-import experimentsTree from '@vitro-root/experimentsTree.json'
+import experimentsTree from '_vitro-root_/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
 const absolutePath = '${absolutePath}'

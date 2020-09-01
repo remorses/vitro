@@ -2,7 +2,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@vitro-root/*": ["./*"],
+            "_vitro-root_/*": ["./*"],
             "react": ["./node_modules/react/*"],
             "react-dom": ["./node_modules/react-dom/*"],
             // "@emotion/core": ["./node_modules/@emotion/core/*"],

@@ -1,7 +1,7 @@
 import React from 'react'
-import * as exported from '@vitro-root/../tailwind/src/example-tailwind.vitro'
-import { default as GlobalWrapper } from '@vitro-root/../@vitro/ui/src/components/DefaultWrapper'
-import experimentsTree from '@vitro-root/experimentsTree.json'
+import * as exported from '_vitro-root_/../tailwind/src/example-tailwind.vitro'
+import { default as GlobalWrapper } from '_vitro-root_/../@vitro/ui/src/components/DefaultWrapper'
+import experimentsTree from '_vitro-root_/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui/src'
 
 const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/tailwind/src/example-tailwind.vitro.jsx'

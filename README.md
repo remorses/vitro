@@ -67,7 +67,7 @@ Currently SSR is disabled because
 -   [x] rename stories, fileExports to files, fileExports
 -   [x] add a globalCSS options to pass an array of css files to paste in the \_app.jsx file, this way people can use tailwind for example
 -   [x] add the next css plugin to let users import css files that are not css modules, yes but this plugin is bugged
--   [x] use more complex @vitro-root/ because user could be using it already
+-   [x] use more complex _vitro-root_/ because user could be using it already
 -   [ ] store columns count in local storage so columns count remains between page changes
 -   [ ] reset render count to zero when rendering above profiler
 -   [ ] add max zIndex to story toolbar (no this way is difficult to cover them with overlay in full screen)
