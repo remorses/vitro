@@ -43,11 +43,12 @@ Currently SSR is disabled because
 
 ## Things to do
 
+-   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
+-   [ ] wait for nextjs 9.5.3
 -   [ ] make vitro callable from nested directories, searching for a top level vitro.config.js file, filtering out globs outside of cwd
 -   [x] add support for yarn v2 using a custom init flag (adding a `packageManager` in config, changes how the install process is done)
--   [ ] wait for https://github.com/vercel/next.js/issues/15950 and 9.5.3
--   [ ] investigate support for importing `@storybook` stuff for better migration process
--   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
+-   [x] wait for https://github.com/vercel/next.js/issues/15950 and 9.5.3
+-   [x] investigate support for importing `@storybook` stuff for better migration process
 -   [x] rename stories to experiments (or studies or cases)
 -   [x] add a build command that runs the files generation and next build, add this command to the vitro app build script to make vercel work out of the box
 -   [x] if a file name is index get the containing folder name, also you can pass a function getName that given a file path gets the title out
