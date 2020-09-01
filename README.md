@@ -44,7 +44,7 @@ Currently SSR is disabled because
 
 -   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
 -   [ ] wait for nextjs 9.5.3
--   [ ] make vitro callable from nested directories, searching for a top level vitro.config.js file, filtering out globs outside of cwd
+-   [ ] make vitro callable from sub directories, searching for a top level vitro.config.js file and setting the cwd to that level, filtering out globs outside of cwd (adding a param in the globber to ignore all folders not child of this path)
 -   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
 -   [ ] make an example with an iframe in wrapper with emotion
 -   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on vitro start, the same for babel
