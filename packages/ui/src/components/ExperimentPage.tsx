@@ -186,6 +186,10 @@ export function ExperimentPage({
                         .map((k) => {
                             const Component = fileExports[k]
 
+                            if (!isValidElementType(Component)) {
+                                return null
+                            }
+
                             if (k.startsWith(mdxComponentPrefix)) {
                                 return (
                                     <MdxStyler>
