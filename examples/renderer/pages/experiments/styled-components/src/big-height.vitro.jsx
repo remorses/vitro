@@ -1,6 +1,6 @@
 import React from 'react'
 import * as exported from '_vitro-root_/../styled-components/src/big-height.vitro'
-import { default as GlobalWrapper } from '_vitro-root_/../@vitro/ui/src/components/DefaultWrapper'
+import { default as GlobalWrapper } from '@vitro/ui/src/components/DefaultWrapper'
 import experimentsTree from '_vitro-root_/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui/src'
 
