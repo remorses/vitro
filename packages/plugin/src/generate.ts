@@ -37,7 +37,7 @@ export const generate = async (args: VitroConfig) => {
     )
 
     const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
-    await remove(targetDir)
+    // await remove(targetDir)
     await generateExperiments({
         files,
         wrapperComponentPath: wrapper,
