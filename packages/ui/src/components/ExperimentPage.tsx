@@ -185,6 +185,7 @@ export function ExperimentPage({
                         .filter((k) => k !== 'default')
                         .map((k) => {
                             const Component = fileExports[k]
+                            console.log({Component})
 
                             if (!isValidElementType(Component)) {
                                 return null
