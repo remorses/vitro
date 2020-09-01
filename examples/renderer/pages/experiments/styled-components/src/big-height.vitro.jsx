@@ -4,7 +4,7 @@ import { default as GlobalWrapper } from '@vitro/ui/src/components/DefaultWrappe
 import experimentsTree from '_vitro-root_/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui/src'
 
-const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/big-height.vitro.jsx'
+const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/renderer/pages/experiments/styled-components/src/big-height.vitro.jsx'
 
 export default function Page() {
     return (

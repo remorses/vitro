@@ -8,7 +8,9 @@ import {
     readFile,
     remove,
     unlink,
+    readdir,
 } from 'fs-extra'
+import { files as readFiles } from 'node-dir'
 import path, { ParsedPath } from 'path'
 import { memoizedGlob, GlobOptions } from 'smart-glob'
 import { TESTING } from './constants'
@@ -30,18 +32,19 @@ export async function generateExperiments(p: {
         )
     }
 
-    await Promise.all(
+    const generatedFiles = await Promise.all(
         // TODO batched promise.all
         files.map(async (p) => {
-            const target = path.join(targetDir, p)
+            const absolutePath = path.join(targetDir, p)
+            // console.log({ target: absolutePath })
             const code = generateExperimentPage({
                 importPath: removeExtension(
                     '_vitro-root_/../' + path.normalize(p),
                 ),
-                absolutePath: path.resolve('..', p),
+                absolutePath,
                 wrapperComponentPath,
             }).trim()
-            const existing = await readFile(target)
+            const existing = await readFile(absolutePath)
                 .catch(() => '')
                 .toString()
                 .trim()
@@ -49,22 +52,25 @@ export async function generateExperiments(p: {
                 return
             }
             // TODO remove files that have not been generated but still exists in the experiments directory
-            await Promise.all(
-                getConflictingFiles(target).map((x) => unlink(x).catch()),
-            )
-            return await outputFile(target, code + '\n')
+            // await Promise.all(
+            //     getConflictingFiles(target).map((x) => unlink(x).catch()),
+            // )
+            await outputFile(absolutePath, code + '\n')
+            return absolutePath
         }),
     )
-}
-
-function getConflictingFiles(target: string) {
-    const conflictingFileExt = path.extname(target) === '.tsx' ? '.jsx' : '.tsx'
-    const fileToRemove = path.join(
-        path.parse(target).dir,
-        path.parse(target).name + conflictingFileExt,
-    )
-    // console.log(target, fileToRemove)
-    return [fileToRemove]
+    // removed unused files
+    readFiles(targetDir, (err, files) => {
+        if (err) {
+            return
+        }
+        files.forEach((file) => {
+            if (!generatedFiles.includes(file)) {
+                console.log('removing unused file', file)
+                unlink(file)
+            }
+        })
+    })
 }
 
 function generateExperimentPage({
