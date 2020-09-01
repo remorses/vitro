@@ -48,7 +48,7 @@ export async function generateExperiments(p: {
             if (existing === code) {
                 return
             }
-            // TODO remove other files with same name but different extension
+            // TODO remove files that have not been generated but still exists in the experiments directory
             await Promise.all(
                 getConflictingFiles(target).map((x) => unlink(x).catch()),
             )
