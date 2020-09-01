@@ -11,7 +11,6 @@
         "@vitro/cli": "^0.0.42",
         "@vitro/plugin": "^0.0.42",
         "@vitro/ui": "^0.0.42",
-        "inspect-loader": "^1.0.0",
         "next": "^9.5.3-canary.25",
         "react": "latest",
         "react-dom": "latest"
