@@ -11,14 +11,18 @@ export async function generateExperiments(p: {
     targetDir: string
     wrapperComponentPath: string
 }) {
-    const {
-        files,
-        targetDir,
+    let { files, targetDir, wrapperComponentPath } = p
+
+    if (!wrapperComponentPath) {
         wrapperComponentPath = `@vitro/ui/${
             TESTING ? 'src' : 'dist'
-        }/components/DefaultWrapper`,
-    } = p
-
+        }/components/DefaultWrapper`
+    } else {
+        wrapperComponentPath = removeExtension(
+            '_vitro-root_/../' + path.normalize(wrapperComponentPath),
+        )
+    }
+    
     await Promise.all(
         // TODO batched promise.all
         files.map(async (p) => {
@@ -28,9 +32,7 @@ export async function generateExperiments(p: {
                     '_vitro-root_/../' + path.normalize(p),
                 ),
                 absolutePath: path.resolve('..', p),
-                wrapperComponentPath: removeExtension(
-                    '_vitro-root_/../' + path.normalize(wrapperComponentPath),
-                ),
+                wrapperComponentPath,
             }).trim()
             const existing = await readFile(target)
                 .catch(() => '')
