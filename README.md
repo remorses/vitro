@@ -53,27 +53,25 @@ Currently SSR is disabled because
 -   [x] add a build command that runs the files generation and next build, add this command to the vitro app build script to make vercel work out of the box
 -   [x] if a file name is index get the containing folder name, also you can pass a function getName that given a file path gets the title out
 -   [ ] add a deploy with vercel button,
+-   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
+-   [ ] make an example with an iframe in wrapper with emotion
+-   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on vitro start, the same for babel
+-   [ ] exit from full screen with esc key
+-   [ ] reset render count to zero when rendering above profiler
+-   [ ] add max zIndex to story toolbar (no this way is difficult to cover them with overlay in full screen)
+-   [ ] investigate if the render count is accurate given that the profiler is parent of Component
 -   [x] make the index page with an how it works and what vitro does, inciting to subscribe to the managed platform for additional features
 -   [x] make a cute splash screen
--   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
 -   [x] use chokidar to watch for story changes and regenerate the stories paths
--   [ ] make an example with an iframe in wrapper with emotion
 -   [x] next run on top directory, this way urls are clickable in vscode
 -   [x] how to easily deploy a vitro app to a subpath together with other nextjs apps? maybe wait for https://github.com/vercel/vercel/issues/3547
--   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on vitro start, the same for babel
 -   [x] when generating the .vitro add a version file with the current version
 -   [ ] remove the new command, the default command checks if a vitro.config.js exists, if not asks if user wants to create .vitro and config (or errors if not tty), this way the default command always works and is idempotent
 -   [x] the start command keeps the `.vitro` updated running the new command when it sees that its version is greater than the generated one
--   [ ] exit from full screen with esc key
 -   [x] rename stories, fileExports to files, fileExports
 -   [x] add a globalCSS options to pass an array of css files to paste in the \_app.jsx file, this way people can use tailwind for example
 -   [x] add the next css plugin to let users import css files that are not css modules, yes but this plugin is bugged
 -   [x] use more complex _vitro-root_/ because user could be using it already
--   [ ] store columns count in local storage so columns count remains between page changes
--   [ ] reset render count to zero when rendering above profiler
--   [ ] add max zIndex to story toolbar (no this way is difficult to cover them with overlay in full screen)
--   [ ] investigate if the render count is accurate given that the profiler is parent of Component
--   [ ] fix the path functions that rely on unix paths, check if runs on windows
 -   [x] sidebar in safari has zindex too high
 -   [x] render components inside iframe when specified, to not let css files modify the UI (or maybe render my UI inside iframes)
 -   [x] dark mode
