@@ -10,6 +10,6 @@ export const debug = (...args) => {
 }
 
 export function resolve(p, opts?: { paths?: string[] }) {
-    return path.dirname(require.resolve(path.join(p, 'package.json'), opts))
+    return path.dirname(require.resolve(path.join(p, 'package.json').toString(), opts))
 }
 

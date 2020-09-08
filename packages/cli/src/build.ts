@@ -34,13 +34,13 @@ const command: CommandModule = {
         // debug('argv', argv)
         // debug('cwd', process.cwd())
         const startingPath = argv['cwd'] as string
-        const configPath: string = path.resolve(startingPath, CONFIG_PATH)
+        const configPath: string = path.resolve(startingPath, CONFIG_PATH).toString()
         if (!existsSync(configPath)) {
             printRed(`There is no '${CONFIG_PATH}' file at ${configPath}`, true)
             return process.exit(1)
         }
         const config = require(configPath)
-        const cwd = path.resolve(startingPath, NEXT_APP_PATH)
+        const cwd = path.resolve(startingPath, NEXT_APP_PATH).toString()
         await generate({
             ...config,
             cwd,

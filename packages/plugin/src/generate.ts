@@ -23,7 +23,7 @@ export const generate = async (args: VitroConfig) => {
         experiments.map((s) =>
             glob(s, {
                 ignore,
-                cwd: path.resolve(path.join(cwd, '..')),
+                cwd: path.resolve(path.join(cwd, '..')).toString(),
                 gitignore: true,
                 filesOnly: true,
             }),
@@ -36,7 +36,7 @@ export const generate = async (args: VitroConfig) => {
         JSON.stringify(makeExperimentsTree(files), null, 4),
     )
 
-    const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
+    const targetDir = path.resolve(path.join(cwd, './pages/experiments')).toString()
     // await remove(targetDir)
     await generateExperiments({
         files,

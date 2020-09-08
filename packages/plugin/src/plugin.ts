@@ -57,7 +57,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
     }
 
     const transpile = transpilePlugin([
-        path.resolve(cwd, '../'),
+        path.resolve(cwd, '../').toString(),
         ...transpileModules,
     ])
 
@@ -92,7 +92,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                     GLOBAL_CSS_CODE: makeCssImportCodeSnippet(globalCSS),
                     WRAPPER_COMPONENT_PATH: JSON.stringify(
                         wrapper
-                            ? path.join(path.resolve(cwd, '../'), wrapper)
+                            ? path.join(path.resolve(cwd, '../').toString(), wrapper)
                             : '',
                     ),
                     BASE_PATH: JSON.stringify(basePath || '/'),
