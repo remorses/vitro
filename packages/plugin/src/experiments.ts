@@ -60,6 +60,7 @@ export async function generateExperiments(p: {
             return absolutePath
         }),
     )
+    return
     // removed unused files
     readFiles(targetDir, (err, files) => {
         if (err) {
