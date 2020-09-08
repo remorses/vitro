@@ -67,12 +67,13 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             const { webpack } = options
 
             watchChanges({
-                cb: () => {
+                cb: async () => {
                     if (options.isServer) {
                         return
                     }
                     console.log('generating experiments files')
-                    generate(vitroConfig).catch(console.error)
+                    await generate(vitroConfig).catch(console.error)
+                    console.log('generated experiments files')
                 },
                 ignored: [
                     'pages/experiments',

@@ -25,7 +25,8 @@ export function arrangeIntoTree(paths: string[][]) {
             } else {
                 const reconstructedPath = path.slice(0, j + 1).join('/')
                 // remove url for non leafs
-                const url = path[j + 1] ? '' : pathToURL(reconstructedPath)
+                const isDir = path[j + 1]
+                const url = isDir ? '' : pathToURL(reconstructedPath)
                 var newPart = {
                     name: part,
                     url,
