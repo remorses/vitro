@@ -21,7 +21,6 @@ export async function generateExperiments(p: {
     wrapperComponentPath: string
 }) {
     let { files, targetDir, wrapperComponentPath } = p
-    targetDir = targetDir.toString()
 
     if (!wrapperComponentPath) {
         wrapperComponentPath = `@vitro/ui/${

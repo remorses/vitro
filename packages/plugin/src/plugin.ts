@@ -67,7 +67,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             const { webpack } = options
 
             watchChanges({
-                cb: async () => {
+                cb: async (p) => {
                     if (options.isServer) {
                         return
                     }

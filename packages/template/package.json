@@ -11,7 +11,7 @@
         "@vitro/cli": "^0.0.47",
         "@vitro/plugin": "^0.0.47",
         "@vitro/ui": "^0.0.47",
-        "next": "^9.5.2",
+        "next": "^9.5.3",
         "react": "latest",
         "react-dom": "latest"
     },

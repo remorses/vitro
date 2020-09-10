@@ -60,6 +60,28 @@
             ]
         },
         {
+            "name": "example-package-scope",
+            "url": "",
+            "path": "example-package-scope",
+            "title": "Example Package Scope",
+            "children": [
+                {
+                    "name": "example-sub-package-1",
+                    "url": "/experiments/example-package-scope/example-sub-package-1/src/index.vitro",
+                    "path": "example-package-scope/example-sub-package-1",
+                    "title": "Example Sub Package 1",
+                    "children": []
+                },
+                {
+                    "name": "example-sub-package-2",
+                    "url": "/experiments/example-package-scope/example-sub-package-2/src/index.vitro",
+                    "path": "example-package-scope/example-sub-package-2",
+                    "title": "Example Sub Package 2",
+                    "children": []
+                }
+            ]
+        },
+        {
             "name": "example-package",
             "url": "",
             "path": "example-package",
@@ -126,28 +148,6 @@
                     "url": "/experiments/example-package/src/stillAnotherExperiment.vitro",
                     "path": "example-package/src/stillAnotherExperiment.vitro.tsx",
                     "title": "Still Another Experiment",
-                    "children": []
-                }
-            ]
-        },
-        {
-            "name": "example-package-scope",
-            "url": "",
-            "path": "example-package-scope",
-            "title": "Example Package Scope",
-            "children": [
-                {
-                    "name": "example-sub-package-1",
-                    "url": "/experiments/example-package-scope/example-sub-package-1/src/index.vitro",
-                    "path": "example-package-scope/example-sub-package-1",
-                    "title": "Example Sub Package 1",
-                    "children": []
-                },
-                {
-                    "name": "example-sub-package-2",
-                    "url": "/experiments/example-package-scope/example-sub-package-2/src/index.vitro",
-                    "path": "example-package-scope/example-sub-package-2",
-                    "title": "Example Sub Package 2",
                     "children": []
                 }
             ]
