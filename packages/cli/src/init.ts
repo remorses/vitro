@@ -51,12 +51,16 @@ const command: CommandModule = {
                     title: 'Yarn',
                     value: 'yarn',
                 },
+                {
+                    title: 'Pnpm',
+                    value: 'pnpm',
+                },
             ],
             initial: 0,
         })
         // tell user to add the .vitro folder inside the workspace packages if using workspaces
         printGreen(
-            'if you use workspaces remember to add .vitro to your packages',
+            'if you use workspaces remember to add .vitro to your packages globs',
             true,
         )
         await initHandler({
@@ -120,11 +124,13 @@ async function addVitroToGitignore() {
     }
 }
 
-function getInstallCommand(packageManager: PackageManager) {
+function getInstallCommand(packageManager: PackageManager): string {
     if (packageManager === 'npm') {
         return 'npm i --no-audit --quiet --ignore-scripts --no-fund'
     } else if (packageManager === 'yarn') {
         return 'yarn install'
+    } else if (packageManager == 'pnpm') {
+        return 'pnpm i --ignore-scripts'
     }
 }
 

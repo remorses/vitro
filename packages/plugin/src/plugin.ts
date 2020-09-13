@@ -9,7 +9,7 @@ import { generate } from './generate'
 import chokidar from 'chokidar'
 import { mapKeys, throttle } from 'lodash'
 
-export type PackageManager = 'yarn' | 'npm'
+export type PackageManager = 'yarn' | 'npm' | 'pnpm'
 
 export interface VitroConfig {
     experiments: string[]
