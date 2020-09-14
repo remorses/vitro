@@ -33,7 +33,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@types/fs-extra": "^9.0.1",
     "@types/yargs": "^15.0.5",
     "@vitro/plugin": "^0.0.47",
     "chalk": "latest",
