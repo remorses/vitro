@@ -1,6 +1,6 @@
 import prettier from 'prettier'
 import { storyNameFromExport } from '@storybook/csf'
-import { sanitizeName, jscodeshiftToPrettierParser, warn } from './support'
+import { sanitizeName, jscodeshiftToPrettierParser, warn, prettify } from '../support'
 
 /**
  * Convert a legacy story API to component story format
@@ -23,7 +23,7 @@ import { sanitizeName, jscodeshiftToPrettierParser, warn } from './support'
  *
  * NOTES: only support chained storiesOf() calls
  */
-function transformer(file, api, options) {
+export function storiesofTransformer(file, api, options) {
     const j = api.jscodeshift
     const root = j(file.source)
 
@@ -334,22 +334,5 @@ function transformer(file, api, options) {
         return source
     }
 
-    const prettierConfig = prettier.resolveConfig.sync('.', {
-        editorconfig: true,
-    }) || {
-        printWidth: 100,
-        tabWidth: 2,
-        bracketSpacing: true,
-        trailingComma: 'es5',
-        singleQuote: true,
-    }
-
-    return prettier.format(source, {
-        ...prettierConfig,
-        parser: 'typescript',
-    })
+    return prettify(source)
 }
-
-export default transformer
-
-module.exports = transformer

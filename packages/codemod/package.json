@@ -31,13 +31,18 @@
         "@storybook/csf": "^0.0.2-alpha.0",
         "chalk": "latest",
         "fs-extra": "^9.0.1",
+        "globby": "^11.0.1",
         "jscodeshift": "^0.11.0",
+        "memoizee": "^0.4.14",
+        "prettier": "^2.1.1",
         "snap-shot-it": "^7.9.3",
         "tslib": "^2.0.0"
     },
     "devDependencies": {
         "@types/fs-extra": "^9.0.1",
+        "@types/globby": "^9.1.0",
         "@types/jscodeshift": "^0.7.1",
+        "@types/memoizee": "^0.4.4",
         "@types/mocha": "^7.0.2",
         "@types/node": "^14.0.20",
         "@types/prompts": "^2.0.8",

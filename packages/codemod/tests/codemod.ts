@@ -1,11 +1,11 @@
 import path from 'path'
 import fs from 'fs'
 import snapshot from 'snap-shot-it'
-import transform from '../src/transform'
-import { DEFAULT_JSC_OPTIONS } from '../src/'
+
+import { storiesofTransformer, DEFAULT_JSC_OPTIONS, runMigrateCodemod } from '../src/'
 import { applyTransform } from 'jscodeshift/dist/testUtils'
 
-it('codemod', () => {
+it('storiesofTransformer', () => {
     const source = `
     /* eslint-disable */
     import React from 'react';
@@ -27,9 +27,17 @@ it('codemod', () => {
     .add('Start Case', () => <Button label="Story 2" onClick={action('click')} />);
     `
     snapshot(
-        applyTransform(transform, DEFAULT_JSC_OPTIONS, {
+        applyTransform(storiesofTransformer, DEFAULT_JSC_OPTIONS, {
             source,
-            path: '',
         }),
     )
+})
+
+
+it('runMigrateCodemod', async () => {
+    const results = await runMigrateCodemod({
+        glob: 'tests/examples/**',
+        dryRun: true
+    })
+    snapshot(results[0])
 })

@@ -1,43 +1,28 @@
 /* eslint import/prefer-default-export: "off" */
 import fs from 'fs'
-import { promisify } from 'util'
-import globby from 'globby'
 import path from 'path'
-import { sync as spawnSync } from 'cross-spawn'
-import { Runner } from 'jscodeshift/dist/Runner'
+import globby from 'globby'
+import { applyTransform } from 'jscodeshift/dist/testUtils'
+import { promisify } from 'util'
+import { storiesofTransformer } from './transforms/storiesof'
 
-
-
-const TRANSFORM_DIR = `${__dirname}/transforms`
+export * from './transforms'
 
 export const DEFAULT_JSC_OPTIONS = {
     parser: 'tsx',
 }
 
-export function listCodemods() {
-    return fs
-        .readdirSync(TRANSFORM_DIR)
-        .filter((fname) => fname.endsWith('.js'))
-        .map((fname) => fname.slice(0, -3))
-}
-
 const renameAsync = promisify(fs.rename)
 
-async function renameFile(file, from, to, { logger }) {
+async function renameFile(file, from, to) {
     const newFile = file.replace(from, to)
-    logger.log(`Rename: ${file} ${newFile}`)
+    console.log(`Rename: ${file} ${newFile}`)
     return renameAsync(file, newFile)
 }
 
-export async function runCodemod(
-    codemod,
-    { glob, logger, dryRun, rename, parser },
+export async function runMigrateCodemod(
+    { glob, dryRun=false, rename = '' },
 ) {
-    const codemods = listCodemods()
-    if (!codemods.includes(codemod)) {
-        throw new Error(`Unknown codemod ${codemod}. Run --list for options.`)
-    }
-
     let renameParts = null
     if (rename) {
         renameParts = rename.split(':')
@@ -49,34 +34,33 @@ export async function runCodemod(
     }
 
     const files = await globby([glob, '!node_modules', '!dist'])
-    logger.log(`=> Applying ${codemod}: ${files.length} files`)
-    if (!dryRun) {
-        const parserArgs = parser ? ['--parser', parser] : []
-        spawnSync(
-            'npx',
-            [
-                'jscodeshift',
-                '-t',
-                `${TRANSFORM_DIR}/${codemod}.js`,
-                ...parserArgs,
-                ...files,
-            ],
-            {
-                stdio: 'inherit',
-            },
-        )
-        Runner.run(path.resolve(`${TRANSFORM_DIR}/${codemod}.js`), files, {
-            ...DEFAULT_JSC_OPTIONS,
-        })
-    }
+    console.log(`=> Applying to [${files.map(x => path.basename(x)).join(', ')}]`)
+
+        const results = []
+        for (let file of files) {
+            let source = (await fs.promises.readFile(file)).toString()
+            source = await applyTransform(
+                storiesofTransformer,
+                { ...DEFAULT_JSC_OPTIONS },
+                {
+                    source,
+                    path: file,
+                },
+            )
+            results.push(source)
+            if (!dryRun) {
+
+                await fs.promises.writeFile(file, source, {encoding: 'utf-8'})
+            }
+        }
+
 
     if (renameParts) {
         const [from, to] = renameParts
-        logger.log(`=> Renaming ${rename}: ${files.length} files`)
-        await Promise.all(
-            files.map((file) =>
-                renameFile(file, new RegExp(`${from}$`), to, { logger }),
-            ),
-        )
+        console.log(`=> Renaming ${rename}: ${files.length} files`)
+        if (!dryRun) {await Promise.all(
+            files.map((file) => renameFile(file, new RegExp(`${from}$`), to)),
+        )}
     }
+    return results
 }
