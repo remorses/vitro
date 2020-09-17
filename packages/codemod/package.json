@@ -28,6 +28,7 @@
     },
     "license": "ISC",
     "dependencies": {
+        "@mdx-js/mdx": "^1.6.18",
         "@storybook/csf": "^0.0.2-alpha.0",
         "chalk": "latest",
         "fs-extra": "^9.0.1",

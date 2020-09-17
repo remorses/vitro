@@ -1,9 +1,11 @@
 /* eslint import/prefer-default-export: "off" */
 import fs from 'fs'
+import path from 'path'
 import globby from 'globby'
 import { applyTransform } from 'jscodeshift/dist/testUtils'
 import { promisify } from 'util'
 import { storiesofTransformer } from './transforms/storiesof'
+import { mdxTransformer } from './transforms'
 
 export * from './transforms'
 
@@ -44,7 +46,9 @@ export async function runMigrateCodemod({
         // TODO remove all imports from storybook if unused
         console.info(`=> Applying to [${file}]`)
         source = await applyTransform(
-            storiesofTransformer,
+            /\.mdx?$/.test(path.extname(file))
+                ? mdxTransformer
+                : storiesofTransformer,
             { ...DEFAULT_JSC_OPTIONS },
             {
                 source,
