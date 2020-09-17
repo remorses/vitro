@@ -35,6 +35,7 @@
   "dependencies": {
     "@types/yargs": "^15.0.5",
     "@vitro/plugin": "^0.0.47",
+    "@vitro/codemod": "^0.0.47",
     "chalk": "latest",
     "fs-extra": "^9.0.1",
     "prompts": "^2.3.2",
