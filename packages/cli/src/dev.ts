@@ -38,7 +38,7 @@ const command: CommandModule = {
                 )
                 // this way you can run vitro even if .vitro is inside .gitignore
                 await initHandler({
-                    packageManager
+                    packageManager,
                 })
             }
             // if vitro version is different, run init
