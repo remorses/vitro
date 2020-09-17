@@ -40,8 +40,6 @@ export async function runMigrateCodemod({
     const results = []
     for (let file of files) {
         let source = (await fs.promises.readFile(file)).toString()
-
-        // TODO apply mdx to export if extension is mdx
         // TODO remove all variables that use storybook imports if unused
         // TODO remove all imports from storybook if unused
         console.info(`=> Applying to [${file}]`)
