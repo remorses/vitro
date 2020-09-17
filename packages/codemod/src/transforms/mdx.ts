@@ -1,7 +1,7 @@
 // import recast from 'recast';
 import mdx from '@mdx-js/mdx'
 import prettier from 'prettier'
-import { sanitizeName } from '../support'
+import { sanitizeName, prettify } from '../support'
 
 /**
  * Convert a component's MDX file into module story format
@@ -192,12 +192,5 @@ export function mdxTransformer(file, api) {
         quote: 'single',
         tabWidth: 2,
     })
-    return prettier.format(source, {
-        parser: 'babel',
-        printWidth: 100,
-        tabWidth: 2,
-        bracketSpacing: true,
-        trailingComma: 'es5',
-        singleQuote: true,
-    })
+    return prettify(source)
 }
