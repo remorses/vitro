@@ -34,7 +34,7 @@ export const withErrorHandling = makeMiddleware(async (argv, next) => {
         await next()
     } catch (e) {
         if (!process.env.DEBUG) {
-            printRed(e.message)
+            printRed(e)
         } else {
             console.error(e)
         }

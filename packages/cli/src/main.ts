@@ -3,6 +3,7 @@ import yargs from 'yargs'
 import devCommand from './dev'
 import initCommand from './init'
 import buildCommand from './build'
+import migrateCommand from './migrate'
 import { withErrorHandling } from './support'
 
 yargs
@@ -26,8 +27,9 @@ yargs
     .command(withErrorHandling(devCommand))
     .command(withErrorHandling(initCommand))
     .command(withErrorHandling(buildCommand))
+    .command(withErrorHandling(migrateCommand))
     // .demandCommand()
-    .help('h').argv
+    .help('h').help('help').argv
 
 
 
