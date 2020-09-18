@@ -20,6 +20,7 @@ export const generate = async (args: VitroConfig) => {
     experiments = experiments.map(path.normalize)
     const ignoreGlobs = [...userIgnore, ...excludedDirs]
 
+    debug(`starting globWithGit`)
     const results = await Promise.all(
         experiments.map((s) =>
             globWithGit(s, {
@@ -34,10 +35,12 @@ export const generate = async (args: VitroConfig) => {
     // console.log(results)
     const files: string[] = uniq(flatten(results)).filter(Boolean)
 
+    debug(`creating pages tree`)
     await fs.promises.writeFile(
         path.join(cwd, 'experimentsTree.json'),
         JSON.stringify(makeExperimentsTree(files), null, 4),
     )
+    debug(`created pages tree`)
 
     const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
 
