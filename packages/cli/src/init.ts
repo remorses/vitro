@@ -38,6 +38,10 @@ const command: CommandModule = {
     handler: async (argv) => {
         debug('argv', argv)
         debug('cwd', process.cwd())
+        printGreen(
+            'if you use workspaces remember to add .vitro to your packages globs first',
+            true,
+        )
         const packageManagerChoice = await prompts({
             type: 'select',
             name: 'value',
@@ -59,10 +63,7 @@ const command: CommandModule = {
             initial: 0,
         })
         // tell user to add the .vitro folder inside the workspace packages if using workspaces
-        printGreen(
-            'if you use workspaces remember to add .vitro to your packages globs',
-            true,
-        )
+
         await initHandler({
             skipInstall: Boolean(argv['skip-install']),
             packageManager: packageManagerChoice.value,
