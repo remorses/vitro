@@ -2,7 +2,7 @@
     "name": "example-package",
     "description": "",
     "private": true,
-    "version": "0.0.48",
+    "version": "0.0.49",
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
     "dependencies": {
         "@chakra-ui/core": "^0.8.0",
