@@ -51,10 +51,10 @@ export async function runMigrateCodemod({
             /\.mdx?$/.test(ext) ? mdxTransformer : storiesofTransformer,
             { ...DEFAULT_JSC_OPTIONS },
             {
-                ...DEFAULT_JSC_OPTIONS,
                 source,
                 path: file,
             },
+            DEFAULT_JSC_OPTIONS
         )
         results.push(source)
         if (!dryRun) {

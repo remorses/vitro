@@ -29,7 +29,7 @@ it('storiesofTransformer', () => {
     snapshot(
         applyTransform(storiesofTransformer, DEFAULT_JSC_OPTIONS, {
             source,
-        }),
+        }, DEFAULT_JSC_OPTIONS),
     )
 })
 

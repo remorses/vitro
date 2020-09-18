@@ -103,9 +103,9 @@ export default command
 async function start({ port, verbose, packageManager }) {
     const NPM_NEXT_BIN = path.join(NEXT_APP_PATH, `node_modules/.bin/next`)
     const command =
-        packageManager === 'npm'
-            ? `${NPM_NEXT_BIN} dev -p ${port}`
-            : `yarn next dev -p ${port}`
+        packageManager === 'yarn'
+            ? `yarn next dev -p ${port}`
+            : `${NPM_NEXT_BIN} dev -p ${port}`
     return await runCommand({
         command,
         env: {
