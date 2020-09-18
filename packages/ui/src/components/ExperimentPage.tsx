@@ -31,7 +31,7 @@ import { isValidElementType } from 'react-is'
 import { DebugCSS } from '../debugCSS'
 import { DefaultWrapper } from './DefaultWrapper'
 import { MobileNav } from './MobileNav'
-import { formatPathToTitle, TOP_TITLE_H, usePromise } from '../support'
+import { formatPathToTitle, TOP_TITLE_H, usePromise, debug } from '../support'
 import styled from '@emotion/styled'
 import { MdxStyler } from './MarkdownStyler'
 
@@ -59,7 +59,7 @@ export function ExperimentPage({
             ),
         [fileExportsObject],
     )
-    
+
     const ValidGlobalWrapper = useMemo(
         () =>
             !GlobalWrapper || !isValidElementType(GlobalWrapper)
@@ -99,6 +99,7 @@ export function ExperimentPage({
     //     // TODO return 404
     //     return null
     // }
+    debug({ ValidGlobalWrapper, ExperimentWrapper })
     return (
         <Stack spacing='10'>
             <Stack flexShrink={0} align='flex-start' spacing='4'>
@@ -185,7 +186,7 @@ export function ExperimentPage({
                         .filter((k) => k !== 'default')
                         .map((k) => {
                             const Component = fileExports[k]
-                            console.log({Component})
+                            console.log({ Component })
 
                             if (!isValidElementType(Component)) {
                                 return null

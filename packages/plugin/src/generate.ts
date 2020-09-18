@@ -7,6 +7,7 @@ import { TESTING } from './constants'
 import { generateExperiments } from './experiments'
 import { VitroConfig } from './plugin'
 import { makeExperimentsTree } from './tree'
+import { debug } from './support'
 
 const excludedDirs = ['**/.vitro/**', '**/pages/experiments']
 if (TESTING) {
@@ -29,6 +30,7 @@ export const generate = async (args: VitroConfig) => {
             }),
         ),
     )
+    debug(`finished globWithGit`)
     // console.log(results)
     const files: string[] = uniq(flatten(results)).filter(Boolean)
 

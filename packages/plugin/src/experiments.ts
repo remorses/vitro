@@ -1,19 +1,8 @@
-import flatten from 'lodash/flatten'
-
-import uniq from 'lodash/uniq'
-import {
-    outputFile,
-    existsSync,
-    exists,
-    readFile,
-    remove,
-    unlink,
-    readdir,
-} from 'fs-extra'
+import { outputFile, readFile, unlink } from 'fs-extra'
 import { files as readFiles } from 'node-dir'
 import path, { ParsedPath } from 'path'
-import { memoizedGlob, GlobOptions } from 'smart-glob'
 import { TESTING } from './constants'
+import { debug } from './support'
 
 export async function generateExperiments(p: {
     files: string[]
@@ -21,7 +10,7 @@ export async function generateExperiments(p: {
     wrapperComponentPath: string
 }) {
     let { files, targetDir, wrapperComponentPath } = p
-
+    debug(`generateExperiments generating pages`)
     if (!wrapperComponentPath) {
         wrapperComponentPath = `@vitro/ui/${
             TESTING ? 'src' : 'dist'
@@ -60,7 +49,7 @@ export async function generateExperiments(p: {
         }),
     )
     return
-    // removed unused files
+    // TODO removed unused pages
     readFiles(targetDir, (err, files) => {
         if (err) {
             return

@@ -32,7 +32,7 @@
     "lodash": "^4.17.19",
     "next-transpile-modules": "^4.0.2",
     "node-dir": "^0.1.17",
-    "smart-glob": "^0.0.15",
+    "smart-glob": "^0.0.16",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

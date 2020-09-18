@@ -5,6 +5,12 @@ export const version = require('../package.json').version
 
 export const TOP_TITLE_H = '60px'
 
+export const debug = x => {
+    if (process.env.DEBUG) {
+        console.log('[DEBUG]', x)
+    }
+}
+
 export function formatPathToTitle(path: string) {
     const endPath = path
         .split('/')

@@ -89,10 +89,14 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             // console.log({ dir, recursive, match })
             config.plugins.push(
                 new webpack.DefinePlugin({
+                    'process.env.DEBUG': JSON.stringify(process.env.DEBUG),
                     GLOBAL_CSS_CODE: makeCssImportCodeSnippet(globalCSS),
                     WRAPPER_COMPONENT_PATH: JSON.stringify(
                         wrapper
-                            ? path.join(path.resolve(cwd, '../').toString(), wrapper)
+                            ? path.join(
+                                  path.resolve(cwd, '../').toString(),
+                                  wrapper,
+                              )
                             : '',
                     ),
                     BASE_PATH: JSON.stringify(basePath || '/'),

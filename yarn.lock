@@ -11137,10 +11137,10 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
 
-smart-glob@^0.0.15:
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.15.tgz#112028667423d1ae312383775e0e8a9d56406374"
-  integrity sha512-GzD2ogWQO5ejHolEe6JW6PDVaarHtnlIOtowKOYr4s9m/fvWdJ6OSzZDLryt2w98h3fQFN34P6cR26vHB5gyLA==
+smart-glob@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.16.tgz#21374322d405d13445c8f5c00ae3273d3dd1d972"
+  integrity sha512-bSSID9nwm+NG94vC0B7FwWNE4cBI6ZcDeZmOo9l0ReerjVOoUMUAX9p0PM6w5Y8VW6BAc4Vsuzk9K03/U8eF/Q==
   dependencies:
     globalyzer "^0.1.4"
     globrex "^0.1.2"

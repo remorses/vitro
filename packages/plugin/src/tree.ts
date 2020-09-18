@@ -1,6 +1,8 @@
 import { startCase } from 'lodash'
+import { debug } from './support'
 
 export function makeExperimentsTree(files: string[]) {
+    debug('makeExperimentsTree')
     const filesParts = files.map((f) => f.split('/')).filter(Boolean)
     const children = arrangeIntoTree(filesParts)
     return removeSingleChildFolders({
