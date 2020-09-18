@@ -17,7 +17,7 @@ const renameAsync = promisify(fs.rename)
 
 async function renameFile(file, from, to) {
     const newFile = file.replace(from, to)
-    console.log(`Rename: ${file} ${newFile}`)
+    console.info(`Rename: ${file} ${newFile}`)
     return renameAsync(file, newFile)
 }
 

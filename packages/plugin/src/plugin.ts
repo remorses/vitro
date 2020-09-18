@@ -71,9 +71,9 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                     if (options.isServer) {
                         return
                     }
-                    console.log('generating experiments files')
+                    console.info('generating experiments files')
                     await generate(vitroConfig).catch(console.error)
-                    console.log('generated experiments files')
+                    console.info('generated experiments files')
                 },
                 ignored: [
                     'pages/experiments',
@@ -139,7 +139,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                             // console.log(inspect.arguments)
                             const context: loader.LoaderContext =
                                 inspect.context
-                            console.log(
+                            console.info(
                                 'compiling',
                                 path.relative(
                                     path.resolve('..'),

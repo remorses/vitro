@@ -69,7 +69,7 @@ const command: CommandModule = {
                 })
             }
 
-            console.log('starting the server')
+            console.info('starting the server')
             await start({
                 port: argv.port,
                 verbose: Boolean(argv.verbose),

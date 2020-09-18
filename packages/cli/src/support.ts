@@ -42,29 +42,29 @@ export const withErrorHandling = makeMiddleware(async (argv, next) => {
     }
 })
 
-export const print = console.log
+export const print = console.info
 export const printGreen = (x = '', pad = false) => {
     if (pad) {
-        console.log()
+        console.info()
     }
-    console.log(chalk.green(x))
+    console.info(chalk.green(x))
     if (pad) {
-        console.log()
+        console.info()
     }
 }
 export const printRed = (x = '', pad = false) => {
     if (pad) {
-        console.log()
+        console.info()
     }
-    console.log(chalk.red(x))
+    console.info(chalk.red(x))
     if (pad) {
-        console.log()
+        console.info()
     }
 }
 export const fatal = (x = '') => {
-    console.log()
-    console.log(chalk.red(x))
-    console.log()
+    console.info()
+    console.info(chalk.red(x))
+    console.info()
     process.exit(1)
 }
 
