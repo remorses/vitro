@@ -252,6 +252,7 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
         () => ({ light: 'white', dark: 'gray.700' }[colorMode]),
         [colorMode],
     )
+
     const fullScreenStyles: StackProps = useMemo(
         () => ({
             w: '100vw',
@@ -270,6 +271,12 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
         }),
         [bg],
     )
+
+    useEffect(() => {
+        if (!Profiler) {
+            console.warn('your current react version does not export `Profiler`, some features are disabled')
+        }
+    }, [])
 
     const actualDurationRef = useRef('0.00ms')
     const renderCount = useRef(0)
