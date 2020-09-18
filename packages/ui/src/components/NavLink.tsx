@@ -75,7 +75,7 @@ const NavLink = ({ children, ...props }: any) => {
     }
 
     return (
-        <NextLink passHref {...props}>
+        <NextLink prefetch={false} passHref {...props}>
             {typeof children === 'function' ? children(isActive) : children}
         </NextLink>
     )
