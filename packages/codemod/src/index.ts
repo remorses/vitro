@@ -42,11 +42,13 @@ export async function runMigrateCodemod({
         let source = (await fs.promises.readFile(file)).toString()
         // TODO remove all variables that use storybook imports if unused
         // TODO remove all imports from storybook if unused
+        if (file.endsWith('.d.ts')) {
+            continue
+        }
+        const ext = path.extname(file)
         console.info(`=> Applying to [${file}]`)
         source = await applyTransform(
-            /\.mdx?$/.test(path.extname(file))
-                ? mdxTransformer
-                : storiesofTransformer,
+            /\.mdx?$/.test(ext) ? mdxTransformer : storiesofTransformer,
             { ...DEFAULT_JSC_OPTIONS },
             {
                 source,
