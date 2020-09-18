@@ -48,6 +48,7 @@ export function ExperimentPage({
     const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
     const [columns, setColumnsCount] = useState(1)
+
     // let [fileExports] = usePromise(fileExportsImporter)
     const fileExports = useMemo(
         () =>
@@ -325,9 +326,13 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
                     // css={cssDebugEnabled ? debugCSS : css``}
                 >
                     <ErrorBoundary>
-                        <Profiler id={id} onRender={profile}>
-                            {children}
-                        </Profiler>
+                        {Profiler ? (
+                            <Profiler id={id} onRender={profile}>
+                                {children}
+                            </Profiler>
+                        ) : (
+                            children
+                        )}
                     </ErrorBoundary>
                 </Stack>
             </Box>
