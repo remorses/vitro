@@ -119,6 +119,7 @@ export function storiesofTransformer(file, api, options) {
         }
 
         // storiesOf(...)
+        // TODO remove stories.add() calls and `const stories = storiesOf()`
         base.find(j.CallExpression)
             .filter((call) => call.node.callee.name === 'storiesOf')
             .filter(
