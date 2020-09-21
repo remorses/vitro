@@ -193,11 +193,12 @@ export function storiesofTransformer(file, api, options) {
 
             const storyAnnotations = []
 
-            if (name) {
-                storyAnnotations.push(
-                    j.property('init', j.identifier('name'), j.literal(name)),
-                )
-            }
+            // dont add the name
+            // if (name) {
+            //     storyAnnotations.push(
+            //         j.property('init', j.identifier('name'), j.literal(name)),
+            //     )
+            // }
 
             if (add.node.arguments.length > 2) {
                 const originalStoryParams = add.node.arguments[2]
@@ -334,7 +335,7 @@ export function storiesofTransformer(file, api, options) {
     })
     if (initialStoriesOf.size() > 1) {
         warn(
-            `Found ${initialStoriesOf.size()} 'storiesOf' calls, PLEASE FIX BY HAND: '${
+            `[WARNING] Found ${initialStoriesOf.size()} 'storiesOf' calls, PLEASE FIX BY HAND: '${
                 file.path
             }'`,
         )
