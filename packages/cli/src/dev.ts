@@ -93,8 +93,8 @@ function getVitroAppVersion() {
 function getVitroConfig(): VitroConfig {
     try {
         return require(path.resolve(CONFIG_PATH))
-    } catch {
-        fatal(`cannot require vitro config`)
+    } catch (e) {
+        fatal(`cannot require vitro config,\n${e}`)
     }
 }
 
