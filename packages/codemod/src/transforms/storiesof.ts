@@ -111,6 +111,7 @@ export function storiesofTransformer(file, api, options) {
             )
         }
 
+        // TODO maybe rename excludeStories to something else
         if (originalExports.length > 0) {
             extraExports.push(
                 j.property(
