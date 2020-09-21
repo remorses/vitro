@@ -227,7 +227,7 @@ export function storiesofTransformer(file, api, options) {
             }
 
             if (storyAnnotations.length > 0) {
-                // TODO remove the .story static stuff
+                // TODO rename the .story static stuff
                 statements.push(
                     j.assignmentStatement(
                         '=',
