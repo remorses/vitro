@@ -1,7 +1,7 @@
 /* eslint import/prefer-default-export: "off" */
 import fs from 'fs'
 import path from 'path'
-import globby from 'globby'
+import { globWithGit } from 'smart-glob'
 import { applyTransform } from 'jscodeshift/dist/testUtils'
 import { promisify } from 'util'
 import { storiesofTransformer } from './transforms/storiesof'
@@ -35,7 +35,9 @@ export async function runMigrateCodemod({
         }
     })
 
-    const files = await globby([glob, '!node_modules', '!dist'])
+    const files = await globWithGit(glob, {
+        ignoreGlobs: ['**/node_modules/**', '**/dist/**'],
+    })
 
     const results = []
     for (let file of files) {
@@ -54,7 +56,7 @@ export async function runMigrateCodemod({
                 source,
                 path: file,
             },
-            DEFAULT_JSC_OPTIONS
+            DEFAULT_JSC_OPTIONS,
         )
         results.push(source)
         if (!dryRun) {
