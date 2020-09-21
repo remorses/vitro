@@ -4,7 +4,7 @@ import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
 import { CommandModule } from 'yargs'
 import { initHandler } from './init'
 import { existsSync } from 'fs-extra'
-import { VitroConfig } from '@vitro/plugin'
+import { VitroConfig, PackageManager } from '@vitro/plugin'
 const { version: cliVersion } = require('../package.json')
 
 const command: CommandModule = {
@@ -101,11 +101,7 @@ function getVitroConfig(): VitroConfig {
 export default command
 
 async function start({ port, verbose, packageManager }) {
-    const NPM_NEXT_BIN = path.join(NEXT_APP_PATH, `node_modules/.bin/next`)
-    const command =
-        packageManager === 'yarn'
-            ? `yarn next dev -p ${port}`
-            : `${NPM_NEXT_BIN} dev -p ${port}`
+    const command = getDevCommand(packageManager, port)
     return await runCommand({
         command,
         env: {
@@ -116,8 +112,22 @@ async function start({ port, verbose, packageManager }) {
                   }
                 : {}),
         },
+        silent: false,
         cwd: path.resolve('.', NEXT_APP_PATH),
     }).catch((e) => {
-        throw new Error(`could not start ${CMD}`)
+        throw new Error(`could not start ${CMD}: ${e}`)
     })
+}
+
+function getDevCommand(packageManager: PackageManager, port): string {
+    if (packageManager === 'yarn') {
+        return `yarn next dev -p ${port}`
+    }
+    if (packageManager === 'npm') {
+        const NPM_NEXT_BIN = path.join(NEXT_APP_PATH, `node_modules/.bin/next`)
+        return `${NPM_NEXT_BIN} dev -p ${port}`
+    }
+    if (packageManager === 'pnpm') {
+        return `pnpm dev -- -p ${port}`
+    }
 }

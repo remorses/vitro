@@ -93,6 +93,7 @@ export async function initHandler({
         `module.exports = '${version}'`,
     )
 
+    await addVitroToGitignore()
     if (!skipInstall) {
         printGreen(
             `installing dependencies inside ${NEXT_APP_PATH} with ${packageManager}`,
@@ -101,7 +102,7 @@ export async function initHandler({
         await runCommand({
             command: getInstallCommand(packageManager),
             env: {
-                npm_config_loglevel: 'silent',
+                // npm_config_loglevel: 'silent',
             },
             cwd: path.resolve('.', NEXT_APP_PATH),
         })
@@ -110,7 +111,7 @@ export async function initHandler({
         printGreen(`creating default ${CONFIG_PATH}`, true)
         await writeFile(CONFIG_PATH, getDefaultConfig({ packageManager }))
     }
-    await addVitroToGitignore()
+    
     printGreen('created vitro app successfully!', true)
 }
 

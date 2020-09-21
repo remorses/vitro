@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import path from 'path'
-import { spawn } from 'child_process'
+import { spawn, execSync } from 'child_process'
 import fs from 'fs'
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -68,7 +68,12 @@ export const fatal = (x = '') => {
     process.exit(1)
 }
 
-export function runCommand({ command, env = {}, silent = false, cwd = '.' }) {
+export async function runCommand({ command, env = {}, silent = false, cwd = '.' }) {
+    // return execSync(command, {
+    //     stdio: 'inherit',
+    //     env: { ...process.env, ...env },
+    //     cwd,
+    // })
     return new Promise((res, rej) => {
         const ps = spawn(command, {
             stdio: silent ? 'ignore' : 'inherit',
