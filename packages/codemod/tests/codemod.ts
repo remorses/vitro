@@ -33,6 +33,26 @@ it('storiesofTransformer', () => {
     snap(source, storiesofTransformer)
 })
 
+it('storiesofTransformer with stories.add', () => {
+    const source = `
+    import React from 'react';
+    import Button from './Button';
+
+    import { storiesOf, configure } from '@storybook/react';
+    import { action } from '@storybook/addon-actions';
+
+    const stories = storiesOf('Button', module)
+
+    stories
+        .add('story1', () => <Button label="Story 1" />);
+
+    stories
+        .add('story1', () => <Button label="Story 1" />)
+        .add('second story', () => <Button label="Story 2" onClick={action('click')} />)
+    `
+    snap(source, storiesofTransformer)
+})
+
 it('runMigrateCodemod', async () => {
     const results = await runMigrateCodemod({
         glob: 'tests/examples/**',
@@ -42,14 +62,18 @@ it('runMigrateCodemod', async () => {
 })
 
 function snap(source, transformer) {
-    snapshot(
-        applyTransform(
-            transformer,
-            DEFAULT_JSC_OPTIONS,
-            {
-                source,
-            },
-            DEFAULT_JSC_OPTIONS,
-        ),
+    const res = applyTransform(
+        transformer,
+        DEFAULT_JSC_OPTIONS,
+        {
+            source,
+        },
+        DEFAULT_JSC_OPTIONS,
     )
+    if (process.env.DEBUG) {
+        console.log()
+        console.log(res)
+        console.log()
+    }
+    snapshot(res)
 }

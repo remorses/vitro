@@ -1,14 +1,9 @@
-exports['storiesofTransformer 1'] = `
-/* eslint-disable */
+exports['storiesofTransformer with stories.add 1'] = `
 import React from 'react';
 import Button from './Button';
 
 import { configure } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
-export default {
-  title: 'Button',
-};
 
 export const Story1 = () => <Button label="Story 1" />;
 
@@ -16,53 +11,15 @@ Story1.story = {
   name: 'story1',
 };
 
+export const _Story1 = () => <Button label="Story 1" />;
+
+_Story1.story = {
+  name: 'story1',
+};
+
 export const SecondStory = () => <Button label="Story 2" onClick={action('click')} />;
 
 SecondStory.story = {
   name: 'second story',
-};
-
-export const ComplexStory = () => (
-  <div>
-    <Button label="The Button" onClick={action('onClick')} />
-    <br />
-  </div>
-);
-
-ComplexStory.story = {
-  name: 'complex story',
-};
-
-export const WPunctuation = () => <Button label="Story 2" onClick={action('click')} />;
-
-WPunctuation.story = {
-  name: 'w/punctuation',
-};
-
-export const StartCase = () => <Button label="Story 2" onClick={action('click')} />;
-`
-
-exports['runMigrateCodemod 1'] = `
-/* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
-import FlexCenter from './FlexCenter';
-import { specs, urls } from './LiveView.stories';
-import { ignoredRegions } from './IgnoredRegions.stories';
-
-export { specs, urls, ignoredRegions };
-
-export default {
-  title: 'FlexCenter',
-  excludeStories: ['specs', 'urls', 'ignoredRegions'],
-};
-
-export const _21 = () => (
-  <FlexCenter width={200} height={100} style={{ background: 'papayawhip' }}>
-    <div style={{ padding: 30, background: 'hotpink' }}>2:1</div>
-  </FlexCenter>
-);
-
-_21.story = {
-  name: '2:1',
 };
 `

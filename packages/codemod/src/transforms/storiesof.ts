@@ -1,6 +1,11 @@
 import prettier from 'prettier'
 import { storyNameFromExport } from '@storybook/csf'
-import { sanitizeName, jscodeshiftToPrettierParser, warn, prettify } from '../support'
+import {
+    sanitizeName,
+    jscodeshiftToPrettierParser,
+    warn,
+    prettify,
+} from '../support'
 
 /**
  * Convert a legacy story API to component story format
@@ -322,7 +327,7 @@ export function storiesofTransformer(file, api, options) {
             j(toRemove).remove()
         })
 
-    const source = root.toSource({
+    let source = root.toSource({
         trailingComma: true,
         quote: 'single',
         tabWidth: 2,
@@ -335,6 +340,8 @@ export function storiesofTransformer(file, api, options) {
         )
         return source
     }
+
+    source = source.replace(/const stories = storiesOf\(.*/, '')
 
     return prettify(source)
 }
