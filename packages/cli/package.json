@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "test": "NODE_ENV=test mocha --colors --exit",
-    "build": "echo 'building cli' && tsc -b && rm -rf ./template/ && cp -r ../template/ ./template/ && rm -rf ./template/pages/experiments/*",
+    "build": "echo 'building cli' && tsc -b && rm -rf ./template/ && cp -r ../template/ ./template/ && rm -rf ./template/pages/experiments/* && chmod +x dist/main.js",
     "prepublish": "yarn build",
     "lock": "cd template && rm -rf node_modules && rm -rf .next",
     "compile": "sucrase -q ./src -d ./dist --transforms typescript,imports",

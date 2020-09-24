@@ -146,7 +146,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
 
             // prints some info about what is being compiled
             config.module.rules.push({
-                test: /(\.tsx?|\.jsx?)$/,
+                test: /\.tsx?$/,
                 loader: {
                     loader: 'inspect-loader',
                     options: {
