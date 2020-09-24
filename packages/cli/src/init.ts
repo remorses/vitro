@@ -82,7 +82,7 @@ export async function initHandler({
         recursive: true,
         filter: (src: string) => {
             {
-                debug(src)
+                // debug(src)
                 return true
                 // return !src.includes('node_modules')
             }
