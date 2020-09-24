@@ -1,7 +1,7 @@
 {
   "name": "@vitro/plugin",
   "_": "[bump]",
-  "version": "0.0.66",
+  "version": "0.0.67",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
@@ -24,10 +24,10 @@
   },
   "license": "ISC",
   "dependencies": {
-    "css-loader": "0.28.9",
     "@types/fs-extra": "^9.0.1",
     "@zeit/next-css": "^1.0.1",
     "chokidar": "^3.4.2",
+    "css-loader": "0.28.9",
     "ejs": "^3.1.5",
     "fs-extra": "^9.0.1",
     "globrex": "^0.1.2",
