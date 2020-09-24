@@ -111,14 +111,14 @@ export async function initHandler({
         printGreen(`creating default ${CONFIG_PATH}`, true)
         await writeFile(CONFIG_PATH, getDefaultConfig({ packageManager }))
     }
-    
+
     printGreen('created vitro app successfully!', true)
 }
 
 async function addVitroToGitignore() {
     if (existsSync('.gitignore')) {
-        printGreen(`adding ${NEXT_APP_PATH} to .gitignore`, true)
         if (!readFileSync('.gitignore').toString().includes(NEXT_APP_PATH)) {
+            printGreen(`adding ${NEXT_APP_PATH} to .gitignore`, true)
             await appendFile('.gitignore', '\n' + NEXT_APP_PATH + '\n')
         }
     } else {
