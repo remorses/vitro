@@ -190,10 +190,6 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 })
             }
 
-            if (typeof nextConfig.webpack === 'function') {
-                return nextConfig.webpack(config, options)
-            }
-
             const transpilePlugin = transpilationPlugin({
                 doNotTranspile,
                 transpileModules: [
@@ -201,7 +197,14 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                     ...transpileModules,
                 ],
             })
-            return transpilePlugin(config, options)
+
+            config = transpilePlugin(config, options)
+
+            if (typeof nextConfig.webpack === 'function') {
+                return nextConfig.webpack(config, options)
+            }
+
+            return config
         },
         ...(basePath ? { experimental: { basePath } } : {}),
     }

@@ -89,7 +89,7 @@ export function transpilationPlugin({
             return includes.find((include) => include.test(req))
         }
         // bundle transpiled stuff on server on server
-        if (options.isServer && config.externals) {
+        if (config.externals) {
             config.externals = config.externals.map((external) => {
                 if (typeof external !== 'function') return external
 
