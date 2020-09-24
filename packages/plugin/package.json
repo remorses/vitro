@@ -26,6 +26,7 @@
   "dependencies": {
     "@types/fs-extra": "^9.0.1",
     "chokidar": "^3.4.2",
+    "ejs": "^3.1.5",
     "fs-extra": "^9.0.1",
     "imports-loader": "^1.1.0",
     "inspect-loader": "^1.0.0",
@@ -33,7 +34,8 @@
     "next-transpile-modules": "^4.0.2",
     "node-dir": "^0.1.17",
     "smart-glob": "^0.0.16",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "umi-webpack-profiling-analyzer": "^1.4.0"
   },
   "devDependencies": {
     "@types/chokidar": "^2.1.3",

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import transpilePlugin from 'next-transpile-modules'
+import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
 import path from 'path'
 import { loader } from 'webpack'
 import { TESTING, VERBOSE } from './constants'
@@ -102,6 +103,17 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                     BASE_PATH: JSON.stringify(basePath || '/'),
                 }),
             )
+            if (
+                !options.isServer &&
+                // process.env.NODE_ENV === 'production' &&
+                process.env.DEBUG
+            ) {
+                config.plugins.push(
+                    new ProfilingAnalyzer({
+                        analyzerMode: 'none',
+                    }),
+                )
+            }
             // replace the experiments react packages with local ones to not dedupe
             config.resolve.alias = {
                 ...config.resolve.alias,
