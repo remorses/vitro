@@ -1,4 +1,5 @@
 import fs from 'fs'
+import withCSS from '@zeit/next-css'
 import globrex from 'globrex'
 // import transpilePlugin from 'next-transpile-modules'
 import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
@@ -18,6 +19,7 @@ export interface VitroConfig {
     experiments: string[]
     packageManager: PackageManager
     wrapper?: string
+    importCSS?: boolean
     basePath?: string
     transpileModules?: string[]
     globalCSS?: string[]
@@ -49,7 +51,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
     let {
         experiments = [],
         wrapper,
-        basePath = '',
+        importCSS,
         transpileModules = [],
         doNotTranspile = [],
         globalCSS = [],
@@ -57,9 +59,6 @@ export const withVitro = (vitroConfig: VitroConfig) => (
     } = vitroConfig
 
     experiments = experiments.map(path.normalize)
-    if (basePath && basePath.trim() === '/') {
-        basePath = ''
-    }
 
     // console.log({transpileModules})
     // const transpile = transpilePlugin([
@@ -67,7 +66,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
     //     ...transpileModules,
     // ])
 
-    return {
+    const resultConfig = {
         ...nextConfig,
         webpack: (config, options) => {
             const { webpack } = options
@@ -106,7 +105,6 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                               )
                             : '',
                     ),
-                    BASE_PATH: JSON.stringify(basePath || '/'),
                 }),
             )
             if (
@@ -140,6 +138,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             // resolve loaders for yarn v2
             config.resolveLoader.alias = {
                 'inspect-loader': require.resolve('inspect-loader'),
+                'css-loader': require.resolve('css-loader'),
                 'imports-loader': require.resolve('imports-loader'),
                 ...config.resolveLoader.alias,
             }
@@ -204,8 +203,12 @@ export const withVitro = (vitroConfig: VitroConfig) => (
 
             return config
         },
-        ...(basePath ? { experimental: { basePath } } : {}),
     }
+
+    if (importCSS) {
+        return withCSS(resultConfig)
+    }
+    return resultConfig
 }
 
 function watchChanges({ ignored, globs, cb }) {

@@ -41,7 +41,7 @@ export function HomePage({ experimentsTree, ...rest }) {
                 </Box>
                 <Box h='10' />
                 <Features />
-                {/* <Image w='300px' src={path.join(BASE_PATH, 'share-reuse.png')} /> */}
+                
             </Stack>
         </Stack>
     )
