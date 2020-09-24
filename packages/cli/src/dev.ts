@@ -86,7 +86,8 @@ function getVitroAppVersion() {
     try {
         return require(path.resolve(NEXT_APP_PATH, VERSION_FILE_PATH))
     } catch {
-        fatal(`cannot find vitro app version file`)
+        return '0.0.0'
+        // fatal(`cannot find vitro app version file`)
     }
 }
 

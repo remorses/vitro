@@ -1,10 +1,10 @@
 import React from 'react'
-import * as exported from '_vitro-root_/../example-package/src/anAwesomeExperiment.vitro'
+import * as exported from '_vitro-root_/../renderer/pages/experiments/example-package/src/anotherExperiment copy.vitro'
 import { default as GlobalWrapper } from '@vitro/ui/dist/components/DefaultWrapper'
 import experimentsTree from '_vitro-root_/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui'
 
-const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/renderer/pages/experiments/example-package/src/anAwesomeExperiment.vitro.tsx'
+const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/renderer/pages/experiments/renderer/pages/experiments/example-package/src/anotherExperiment copy.vitro.tsx'
 
 export default function Page() {
     return (

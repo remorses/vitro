@@ -62,10 +62,13 @@ export function transpilationPlugin({
                 if (excludes.some((r) => r.test(p))) {
                     return true
                 }
-                if (includes.some((r) => r.test(p))) {
-                    return false
+                if (
+                    /node_modules/.test(p) &&
+                    !includes.some((r) => r.test(p))
+                ) {
+                    return true
                 }
-                return /node_modules/.test(p)
+                return false
                 // return original(p)
             }
         } else {
@@ -73,12 +76,15 @@ export function transpilationPlugin({
         }
 
         // delete loader.include
-        loader.include = includes
+        loader.include = [
+            ...loader.include,
+            ...generateIncludes(transpileModules),
+        ]
 
         const shouldBeInServerBundle = (ctx, req) => {
             req = req.startsWith('.') ? path.resolve(ctx, req) : req
             if (excludes.some((r) => r.test(req))) {
-                return true
+                return false
             }
             return includes.find((include) => include.test(req))
         }
