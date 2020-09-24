@@ -5,6 +5,9 @@ import { regexEqual } from './support'
 const PATH_DELIMITER = '[\\\\/]' // match 2 antislashes or one slash
 
 const generateIncludes = (modules) => {
+    if (!modules?.length) {
+        return []
+    }
     return [
         new RegExp(`(${modules.map(safePath).join('|')})$`),
         new RegExp(
@@ -16,6 +19,9 @@ const generateIncludes = (modules) => {
 }
 
 const generateExcludes = (modules) => {
+    if (!modules?.length) {
+        return []
+    }
     return [
         new RegExp(
             `node_modules${PATH_DELIMITER}(?!(${modules
@@ -78,6 +84,11 @@ export function transpilationPlugin({
         ]
 
         const shouldBeInServerBundle = (ctx, req) => {
+            return includes.find((include) =>
+                req.startsWith('.')
+                    ? include.test(path.resolve(ctx, req))
+                    : include.test(req),
+            )
             req = req.startsWith('.') ? path.resolve(ctx, req) : req
             // if (excludes.some((r) => r.test(req))) {
             //     return false
@@ -110,7 +121,6 @@ export function transpilationPlugin({
         config.resolve.symlinks = false
 
         // // Support CSS modules + global in node_modules
-        // // TODO ask Next.js maintainer to expose the css-loader via defaultLoaders
         // const nextCssLoaders = config.module.rules.find(
         //     (rule) => typeof rule.oneOf === 'object',
         // )
