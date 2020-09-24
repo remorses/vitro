@@ -188,11 +188,6 @@ export function transpilationPlugin({
         //         nextErrorCssGlobalLoader.exclude = includes
         //     }
         // }
-        console.log({
-            loader: config.module.rules.find((x) => {
-                return regexEqual(x.test, /\.(tsx|ts|js|mjs|jsx)$/)
-            }),
-        })
 
         return config
     }
