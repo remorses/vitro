@@ -56,5 +56,5 @@
     "build": "tsc -b && tsc -b tsconfig.esm.json"
   },
   "types": "dist/index.d.ts",
-  "gitHead": "1deb150ba9dede21272c643ac46039cb28ce5859"
+  "gitHead": "7c51b3a1031c97e97722c32c37aef8a254e7f5f7"
 }
