@@ -138,7 +138,9 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             // resolve loaders for yarn v2
             config.resolveLoader.alias = {
                 'inspect-loader': require.resolve('inspect-loader'),
-                'css-loader': require.resolve('css-loader'),
+                ...(importCSS && {
+                    'css-loader': require.resolve('css-loader'),
+                }),
                 'imports-loader': require.resolve('imports-loader'),
                 ...config.resolveLoader.alias,
             }
@@ -206,6 +208,11 @@ export const withVitro = (vitroConfig: VitroConfig) => (
     }
 
     if (importCSS) {
+        console.log(
+            `using css loader version ${
+                require('css-loader/package.json').version
+            }`,
+        )
         return withCSS(resultConfig)
     }
     return resultConfig
