@@ -5,5 +5,6 @@ module.exports = {
     // basePath: NODE_ENV == 'production' ? '/.vitro' : '/',
     experiments: ['./**/*.vitro.jsx', './**/*.vitro.tsx'],
     globalCSS: ['tailwindcss/dist/tailwind.css'],
+    transpileModules: ['@vitro'],
     ignore: ['renderer'],
 }

@@ -1,14 +1,16 @@
 import fs from 'fs'
-import transpilePlugin from 'next-transpile-modules'
+import globrex from 'globrex'
+// import transpilePlugin from 'next-transpile-modules'
 import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
 import path from 'path'
 import { loader } from 'webpack'
 import { TESTING, VERBOSE } from './constants'
 
-import { debug, resolve } from './support'
+import { debug, resolve, regexEqual } from './support'
 import { generate } from './generate'
 import chokidar from 'chokidar'
 import { mapKeys, throttle } from 'lodash'
+import { transpilationPlugin } from './transpilePlugin'
 
 export type PackageManager = 'yarn' | 'npm' | 'pnpm'
 
@@ -21,6 +23,7 @@ export interface VitroConfig {
     globalCSS?: string[]
     cwd: string
     ignore?: string[]
+    doNotTranspile?: string[]
 }
 
 export const withVitro = (vitroConfig: VitroConfig) => (
@@ -48,6 +51,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
         wrapper,
         basePath = '',
         transpileModules = [],
+        doNotTranspile = [],
         globalCSS = [],
         cwd,
     } = vitroConfig
@@ -57,12 +61,13 @@ export const withVitro = (vitroConfig: VitroConfig) => (
         basePath = ''
     }
 
-    const transpile = transpilePlugin([
-        path.resolve(cwd, '../').toString(),
-        ...transpileModules,
-    ])
+    // console.log({transpileModules})
+    // const transpile = transpilePlugin([
+    //     path.resolve(cwd, '../').toString(),
+    //     ...transpileModules,
+    // ])
 
-    return transpile({
+    return {
         ...nextConfig,
         webpack: (config, options) => {
             const { webpack } = options
@@ -87,6 +92,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                     ...(wrapper ? [wrapper] : []),
                 ],
             })
+
             // console.log({ dir, recursive, match })
             config.plugins.push(
                 new webpack.DefinePlugin({
@@ -188,10 +194,17 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 return nextConfig.webpack(config, options)
             }
 
-            return config
+            const transpilePlugin = transpilationPlugin({
+                doNotTranspile,
+                transpileModules: [
+                    path.resolve(cwd, '../').toString(),
+                    ...transpileModules,
+                ],
+            })
+            return transpilePlugin(config, options)
         },
         ...(basePath ? { experimental: { basePath } } : {}),
-    })
+    }
 }
 
 function watchChanges({ ignored, globs, cb }) {

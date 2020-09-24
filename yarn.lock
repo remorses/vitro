@@ -2968,6 +2968,11 @@
   dependencies:
     globby "*"
 
+"@types/globrex@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/globrex/-/globrex-0.1.0.tgz#baf4ac8e36947017612c01fde7c7b641dc0b6c89"
+  integrity sha512-aBkxDgp/UbnluE+CIT3V3PoNewwOlLCzXSF3ipD86Slv8xVjwxrDAfSGbsfGgMzPo/fEMPXc+gNUJbtiugwfoA==
+
 "@types/hast@^2.0.0":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@types/hast/-/hast-2.3.1.tgz#b16872f2a6144c7025f296fb9636a667ebb79cd9"
