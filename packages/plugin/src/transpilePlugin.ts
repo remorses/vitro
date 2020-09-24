@@ -28,6 +28,7 @@ const generateExcludes = (modules) => {
 const safePath = (module) => module.split(/[\\\/]/g).join(PATH_DELIMITER)
 
 export function transpilationPlugin({
+    rootPath,
     doNotTranspile = [],
     transpileModules = [],
 }) {
@@ -47,10 +48,7 @@ export function transpilationPlugin({
             return regexEqual(x.test, /\.(tsx|ts|js|mjs|jsx)$/)
         })
 
-        const includes = [
-            ...loader.include.filter((x) => x.test),
-            ...generateIncludes(transpileModules),
-        ]
+        const includes = generateIncludes(transpileModules)
         const excludes = [
             ...doNotTranspileRegexes,
             ...generateExcludes(transpileModules),
@@ -62,13 +60,10 @@ export function transpilationPlugin({
                 if (excludes.some((r) => r.test(p))) {
                     return true
                 }
-                if (
-                    /node_modules/.test(p) &&
-                    !includes.some((r) => r.test(p))
-                ) {
-                    return true
+                if (includes.some((r) => r.test(p))) {
+                    return false
                 }
-                return false
+                return /node_modules/.test(p)
                 // return original(p)
             }
         } else {
@@ -77,16 +72,20 @@ export function transpilationPlugin({
 
         // delete loader.include
         loader.include = [
+            rootPath,
             ...loader.include,
             ...generateIncludes(transpileModules),
         ]
 
         const shouldBeInServerBundle = (ctx, req) => {
             req = req.startsWith('.') ? path.resolve(ctx, req) : req
-            if (excludes.some((r) => r.test(req))) {
-                return false
+            // if (excludes.some((r) => r.test(req))) {
+            //     return false
+            // }
+            if (includes.find((include) => include.test(req))) {
+                return true
             }
-            return includes.find((include) => include.test(req))
+            return false
         }
         // bundle transpiled stuff on server on server
         if (config.externals) {

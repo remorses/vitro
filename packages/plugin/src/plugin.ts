@@ -191,11 +191,9 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             }
 
             const transpilePlugin = transpilationPlugin({
+                rootPath: path.resolve(cwd, '../').toString(),
                 doNotTranspile,
-                transpileModules: [
-                    path.resolve(cwd, '../').toString(),
-                    ...transpileModules,
-                ],
+                transpileModules,
             })
 
             config = transpilePlugin(config, options)
@@ -211,7 +209,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
 }
 
 function watchChanges({ ignored, globs, cb }) {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.DISABLE_WATCH || process.env.NODE_ENV === 'production') {
         return cb()
     }
     const onChange = throttle(cb, 500)
