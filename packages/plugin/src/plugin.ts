@@ -140,6 +140,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 'inspect-loader': require.resolve('inspect-loader'),
                 ...(importCSS && {
                     'css-loader': require.resolve('css-loader'),
+                    'style-loader': require.resolve('style-loader'),
                     'ignore-loader': require.resolve('ignore-loader'),
                 }),
                 'imports-loader': require.resolve('imports-loader'),
