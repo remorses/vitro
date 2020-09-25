@@ -1,4 +1,5 @@
 import React from 'react'
+import 'tailwindcss/dist/tailwind.css'
 
 export const CardExample = ({ dark }) => (
     <div className='md:flex'>

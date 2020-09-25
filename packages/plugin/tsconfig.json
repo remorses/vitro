@@ -6,6 +6,7 @@
         "declaration": true,
         "sourceMap": true,
         "skipLibCheck": true,
+        "downlevelIteration": true,
         "jsx": "react",
         "composite": true,
         "rootDir": "src"
