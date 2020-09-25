@@ -24,10 +24,10 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@pytal/next-css": "^1.0.1",
     "@types/fs-extra": "^9.0.1",
-    "@zeit/next-css": "^1.0.1",
     "chokidar": "^3.4.2",
-    "css-loader": "0.28.9",
+    "css-loader": "^3.6.0",
     "ejs": "^3.1.5",
     "fs-extra": "^9.0.1",
     "globrex": "^0.1.2",

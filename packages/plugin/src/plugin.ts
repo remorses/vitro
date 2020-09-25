@@ -1,5 +1,5 @@
 import fs from 'fs'
-import withCSS from '@zeit/next-css'
+import withCSS from '@pytal/next-css'
 import globrex from 'globrex'
 // import transpilePlugin from 'next-transpile-modules'
 import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
