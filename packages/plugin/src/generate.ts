@@ -9,10 +9,10 @@ import { VitroConfig } from './plugin'
 import { makeExperimentsTree } from './tree'
 import { debug } from './support'
 
-const excludedDirs = ['**/.vitro/**', '**/pages/experiments']
+const excludedDirs = ['**/.vitro/**', '**/pages/experiments/**']
 if (TESTING) {
-    excludedDirs.push('**/template')
-    excludedDirs.push('**/renderer/**')
+    // excludedDirs.push('**/template')
+    // excludedDirs.push('**/renderer/**')
 }
 
 export const generate = async (args: VitroConfig) => {
