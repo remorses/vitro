@@ -2,6 +2,8 @@ import fs from 'fs'
 import { withCSS } from './css'
 import globrex from 'globrex'
 // import transpilePlugin from 'next-transpile-modules'
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
+
 import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
 import path from 'path'
 import { loader } from 'webpack'
@@ -117,6 +119,11 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                         analyzerMode: 'none',
                     }),
                 )
+                config.plugins.push(
+                    new SpeedMeasurePlugin({
+                        // outputFormat: 'humanVerbose',
+                    }),
+                )
             }
             // replace the experiments react packages with local ones to not dedupe
             config.resolve.alias = {
@@ -147,31 +154,30 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 ...config.resolveLoader.alias,
             }
 
-            // prints some info about what is being compiled
-            config.module.rules.push({
-                test: /\.tsx?$/,
-                loader: {
-                    loader: 'inspect-loader',
-                    options: {
-                        callback(inspect) {
-                            if (!VERBOSE) {
-                                return
-                            }
-                            // console.log(inspect.arguments)
-                            const context: loader.LoaderContext =
-                                inspect.context
-                            console.info(
-                                'compiling',
-                                path.relative(
-                                    path.resolve('..'),
-                                    context.resourcePath,
-                                ),
-                            )
-                            // console.log(inspect.options)
+            if (VERBOSE) {
+                // prints some info about what is being compiled
+                config.module.rules.push({
+                    test: /\.tsx?$/,
+                    loader: {
+                        loader: 'inspect-loader',
+                        options: {
+                            callback(inspect) {
+                                // console.log(inspect.arguments)
+                                const context: loader.LoaderContext =
+                                    inspect.context
+                                console.info(
+                                    'compiling',
+                                    path.relative(
+                                        path.resolve('..'),
+                                        context.resourcePath,
+                                    ),
+                                )
+                                // console.log(inspect.options)
+                            },
                         },
                     },
-                },
-            })
+                })
+            }
 
             // add css imports to _app.tsx
             if (globalCSS && globalCSS.length) {

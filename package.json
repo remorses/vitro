@@ -5,8 +5,8 @@
         "cli": "cross-env NODE_ENV=test node -r sucrase/register packages/cli/src/main.ts",
         "start": "tsc -b -w",
         "test": "lerna run --scope @vitro/* --ignore website test",
-        "examples": "VERBOSE=1 yarn --cwd examples/renderer dev",
-        "examples:build": "VERBOSE=1 yarn --cwd examples/renderer build",
+        "examples": "yarn --cwd examples/renderer dev",
+        "examples:build": "yarn --cwd examples/renderer build",
         "publ": "yarn build && yarn lerna publish -y patch",
         "build": "lerna exec --scope @vitro/* 'yarn build'"
     },
