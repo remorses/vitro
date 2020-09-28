@@ -72,7 +72,7 @@ export async function runMigrateCodemod({
             if (!dryRun) {
                 await Promise.all(
                     files.map((file) =>
-                        renameFile(file, new RegExp(`${from}$`), to),
+                        renameFile(file, from, to),
                     ),
                 )
             }
