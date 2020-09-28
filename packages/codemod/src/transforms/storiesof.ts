@@ -361,7 +361,7 @@ export function storiesofTransformer(file, api, options) {
 function takeOnlyOneDefaultExport(j, statements) {
     let defaluts = 0
     return statements.filter((x) => {
-        if (x.type === 'ExportDefaultDeclaration') {
+        if (x?.type && x.type === 'ExportDefaultDeclaration') {
             if (defaluts > 0) {
                 return false
             }
