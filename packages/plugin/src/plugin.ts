@@ -2,9 +2,9 @@ import fs from 'fs'
 import { withCSS } from './css'
 import globrex from 'globrex'
 // import transpilePlugin from 'next-transpile-modules'
-import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
+// import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
+// import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
 
-import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
 import path from 'path'
 import { loader } from 'webpack'
 import { TESTING, VERBOSE } from './constants'
@@ -114,6 +114,8 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 // process.env.NODE_ENV === 'production' &&
                 process.env.DEBUG
             ) {
+                const ProfilingAnalyzer = require('umi-webpack-profiling-analyzer')
+                const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
                 config.plugins.push(
                     new ProfilingAnalyzer({
                         analyzerMode: 'none',
