@@ -56,3 +56,35 @@ export const _21 = () => (
   </FlexCenter>
 );
 `
+
+exports['storiesofTransformer already existing export default 1'] = `
+import React from 'react';
+import Button from './Button';
+
+import { configure } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+
+export default {
+  title: 'xxx',
+};
+
+export const Story1 = () => <Button label="Story 1" />;
+export const _Story1 = () => <Button label="Story 1" />;
+export const SecondStory = () => <Button label="Story 2" onClick={action('click')} />;
+`
+
+exports['storiesofTransformer with multiple storiesOf 1'] = `
+import React from 'react';
+    import Button from './Button';
+
+    import { configure } from '@storybook/react';
+    import { action } from '@storybook/addon-actions';
+
+    export default {
+      title: 'A',
+    };
+
+    export const Story1 = () => <Button label="Story 1" />;
+    export const _Story1 = () => <Button label="Story 1" />;
+    export const SecondStory = () => <Button label="Story 2" onClick={action('click')} />;
+`

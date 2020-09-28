@@ -59,7 +59,7 @@ export function storiesofTransformer(file, api, options) {
     function convertToModuleExports(path, originalExports) {
         const base = j(path)
 
-        const statements = []
+        let statements = []
         const extraExports = []
 
         // .addDecorator
@@ -126,6 +126,9 @@ export function storiesofTransformer(file, api, options) {
 
         // storiesOf(...)
         // TODO remove stories.add() calls and `const stories = storiesOf()`
+
+        const existingDefaultExports = root.find(j.ExportDefaultDeclaration)
+
         base.find(j.CallExpression)
             .filter((call) => call.node.callee.name === 'storiesOf')
             .filter(
@@ -134,7 +137,11 @@ export function storiesofTransformer(file, api, options) {
                     call.node.arguments[0].type === 'StringLiteral',
             )
             .forEach((storiesOf) => {
+                if (existingDefaultExports.length) {
+                    return
+                }
                 const title = storiesOf.node.arguments[0].value
+
                 statements.push(
                     j.exportDefaultDeclaration(
                         j.objectExpression([
@@ -148,6 +155,9 @@ export function storiesofTransformer(file, api, options) {
                     ),
                 )
             })
+
+        // only use one default export
+        statements = takeOnlyOneDefaultExport(j, statements)
 
         // .add(...)
         const adds = []
@@ -256,18 +266,18 @@ export function storiesofTransformer(file, api, options) {
         .find(j.CallExpression)
         .filter((call) => call.node.callee.name === 'storiesOf')
 
-    const defaultExports = root.find(j.ExportDefaultDeclaration)
+    // const defaultExports = root.find(j.ExportDefaultDeclaration)
     // If there's already a default export
-    if (defaultExports.size() > 0) {
-        if (initialStoriesOf.size() > 0) {
-            warn(
-                `Found ${initialStoriesOf.size()} 'storiesOf' calls but existing default export, SKIPPING: '${
-                    file.path
-                }'`,
-            )
-        }
-        return root.toSource()
-    }
+    // if (defaultExports.size() > 0) {
+    //     if (initialStoriesOf.size() > 0) {
+    //         warn(
+    //             `Found ${initialStoriesOf.size()} 'storiesOf' calls but existing default export, SKIPPING: '${
+    //                 file.path
+    //             }'`,
+    //         )
+    //     }
+    //     return root.toSource()
+    // }
 
     // Exclude all the original named exports
     const originalExports = []
@@ -346,4 +356,17 @@ export function storiesofTransformer(file, api, options) {
     source = source.replace(/const stories = storiesOf\(.*/, '')
 
     return prettify(source)
+}
+
+function takeOnlyOneDefaultExport(j, statements) {
+    let defaluts = 0
+    return statements.filter((x) => {
+        if (x.type === 'ExportDefaultDeclaration') {
+            if (defaluts > 0) {
+                return false
+            }
+            defaluts++
+        }
+        return true
+    })
 }
