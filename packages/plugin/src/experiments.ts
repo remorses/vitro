@@ -3,6 +3,7 @@ import { files as readFiles } from 'node-dir'
 import path, { ParsedPath } from 'path'
 import { TESTING } from './constants'
 import { debug } from './support'
+import { globWithGit } from 'smart-glob'
 
 export async function generateExperiments(p: {
     files: string[]
@@ -48,18 +49,15 @@ export async function generateExperiments(p: {
             return absolutePath
         }),
     )
-    return
     // TODO removed unused pages
-    readFiles(targetDir, (err, files) => {
-        if (err) {
-            return
+    const allFiles = await globWithGit(path.join(targetDir, '**'), {
+        absolute: true,
+    })
+    allFiles.forEach((file) => {
+        if (!generatedFiles.includes(file)) {
+            console.info('removing unused file', file)
+            unlink(file)
         }
-        files.forEach((file) => {
-            if (!generatedFiles.includes(file)) {
-                console.info('removing unused file', file)
-                unlink(file)
-            }
-        })
     })
 }
 

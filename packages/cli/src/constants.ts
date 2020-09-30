@@ -1,7 +1,7 @@
 import path from 'path'
 
 export const CMD = 'vitro'
-export const TESTING = process.env.NODE_ENV == 'test'
+export const TESTING = process.env.VITRO_TESTING
 export const NEXT_APP_PATH = TESTING ? 'renderer' : '.vitro'
 
 export const CONFIG_PATH = 'vitro.config.js'

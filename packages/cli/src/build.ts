@@ -1,13 +1,17 @@
-import { runCommand, printGreen, debug, printRed } from './support'
+import {
+    runCommand,
+    printGreen,
+    debug,
+    printRed,
+    findVitroJsConfigPath,
+    findVitroAppDir,
+    getVitroConfig,
+    fatal,
+} from './support'
 import path from 'path'
 import os from 'os'
-import { generate,  } from '@vitro/plugin'
-import {
-    TEMPLATE_PATH,
-    CONFIG_PATH,
-    NEXT_APP_PATH,
-    TESTING,
-} from './constants'
+import { generate } from '@vitro/plugin'
+import { TEMPLATE_PATH, CONFIG_PATH, NEXT_APP_PATH, TESTING } from './constants'
 import {
     copy,
     writeFile,
@@ -24,25 +28,22 @@ const command: CommandModule = {
     describe:
         'Generates the experiments pages and files map using `vitro.config.js` found in cwd',
     builder: (argv) => {
-        argv.option('cwd', {
-            type: 'string',
-            default: '',
-        })
+        // argv.option('cwd', {
+        //     type: 'string',
+        //     default: '',
+        // })
         return argv
     },
     handler: async (argv) => {
         // debug('argv', argv)
         // debug('cwd', process.cwd())
-        const startingPath = argv['cwd'] as string
-        const configPath: string = path.resolve(startingPath, CONFIG_PATH).toString()
+        const configPath: string = findVitroJsConfigPath()
         if (!existsSync(configPath)) {
-            printRed(`There is no '${CONFIG_PATH}' file at ${configPath}`, true)
-            return process.exit(1)
+            fatal(`There is no '${CONFIG_PATH}' file at ${configPath}`)
         }
-        const config = require(configPath)
-        const cwd = path.resolve(startingPath, NEXT_APP_PATH).toString()
+        const cwd = findVitroAppDir()
         await generate({
-            ...config,
+            ...getVitroConfig(),
             cwd,
         })
         // TODO maybe also run next build?

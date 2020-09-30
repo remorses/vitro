@@ -3,7 +3,7 @@
     "version": "0.0.74",
     "private": true,
     "scripts": {
-        "build": "vitro build --cwd ../ && next build --profile",
+        "build": "vitro build && next build --profile",
         "dev": "next dev",
         "start": "next start"
     },

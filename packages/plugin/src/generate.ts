@@ -10,10 +10,6 @@ import { makeExperimentsTree } from './tree'
 import { debug } from './support'
 
 const excludedDirs = ['**/.vitro/**', '**/pages/experiments/**']
-if (TESTING) {
-    // excludedDirs.push('**/template')
-    // excludedDirs.push('**/renderer/**')
-}
 
 export const generate = async (args: VitroConfig) => {
     let { experiments = [], ignore: userIgnore = [], wrapper, cwd } = args
@@ -26,7 +22,7 @@ export const generate = async (args: VitroConfig) => {
             globWithGit(s, {
                 ignoreGlobs,
                 // absolute: true,
-                cwd: path.resolve(path.join(cwd, '..')).toString(),
+                cwd: path.resolve(path.join(cwd, '..')),
                 // filesOnly: true,
             }),
         ),

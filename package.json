@@ -2,7 +2,7 @@
     "name": "vitro",
     "private": true,
     "scripts": {
-        "cli": "cross-env NODE_ENV=test node -r sucrase/register packages/cli/src/main.ts",
+        "cli": "cross-env VITRO_TESTING=1 node -r sucrase/register packages/cli/src/main.ts",
         "start": "tsc -b -w",
         "test": "lerna run --scope @vitro/* --ignore website test",
         "examples": "yarn --cwd examples/renderer dev",

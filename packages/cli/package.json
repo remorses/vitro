@@ -25,7 +25,7 @@
     "prepublish": "yarn build",
     "lock": "cd template && rm -rf node_modules && rm -rf .next",
     "compile": "sucrase -q ./src -d ./dist --transforms typescript,imports",
-    "play": "cross-env NODE_ENV=test node -r sucrase/register src/main.ts"
+    "play": "cross-env VITRO_TESTING=1 node -r sucrase/register src/main.ts"
   },
   "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
   "repository": {
@@ -37,6 +37,7 @@
     "@vitro/codemod": "^0.0.74",
     "@vitro/plugin": "^0.0.74",
     "chalk": "latest",
+    "find-up": "^5.0.0",
     "fs-extra": "^9.0.1",
     "prompts": "^2.3.2",
     "tslib": "^2.0.0",

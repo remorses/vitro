@@ -2,11 +2,48 @@ import chalk from 'chalk'
 import path from 'path'
 import { spawn, execSync } from 'child_process'
 import fs from 'fs'
+import findUp from 'find-up'
+import { CONFIG_PATH, NEXT_APP_PATH, VERSION_FILE_PATH } from './constants'
+import { VitroConfig } from '@vitro/plugin'
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 export const debug = (...args) => {
     if (process.env.DEBUG) {
         console.error(...args)
+    }
+}
+
+export function findVitroJsConfigPath() {
+    const p = findUp.sync(CONFIG_PATH)
+    if (!p) {
+        fatal(
+            `There is no ./${CONFIG_PATH} file, you probably need to run 'vitro init' first or change cwd`,
+        )
+    }
+    return path.resolve(p)
+}
+
+
+export function getVitroConfig(): VitroConfig {
+    try {
+        return require(findVitroJsConfigPath())
+    } catch (e) {
+        fatal(`cannot require vitro config,\n${e}`)
+    }
+}
+
+
+export function findVitroAppDir() {
+    const p = findVitroJsConfigPath()
+    return path.join(path.dirname(p), NEXT_APP_PATH)
+}
+
+export function getVitroAppVersion() {
+    try {
+        return require(path.resolve(findVitroAppDir(), VERSION_FILE_PATH))
+    } catch {
+        return '0.0.0'
+        // fatal(`cannot find vitro app version file`)
     }
 }
 
@@ -68,7 +105,12 @@ export const fatal = (x = '') => {
     process.exit(1)
 }
 
-export async function runCommand({ command, env = {}, silent = false, cwd = '.' }) {
+export async function runCommand({
+    command,
+    env = {},
+    silent = false,
+    cwd = '.',
+}) {
     // return execSync(command, {
     //     stdio: 'inherit',
     //     env: { ...process.env, ...env },

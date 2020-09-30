@@ -1,10 +1,20 @@
-import { runCommand, printGreen, printRed, fatal } from './support'
+import {
+    runCommand,
+    printGreen,
+    printRed,
+    fatal,
+    findVitroJsConfigPath,
+    findVitroAppDir,
+    getVitroAppVersion,
+    getVitroConfig,
+} from './support'
 import path from 'path'
-import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
+// import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
 import { CommandModule } from 'yargs'
 import { initHandler } from './init'
 import { existsSync } from 'fs-extra'
 import { VitroConfig, PackageManager } from '@vitro/plugin'
+import { NEXT_APP_PATH } from './constants'
 const { version: cliVersion } = require('../package.json')
 
 const command: CommandModule = {
@@ -23,15 +33,13 @@ const command: CommandModule = {
     handler: async (argv) => {
         try {
             // if no vitro config is present, ask to run init first
-            if (!existsSync(CONFIG_PATH)) {
-                fatal(
-                    `There is no ./${CONFIG_PATH} file, you probably need to run '${CMD} init' first or change cwd`,
-                )
-            }
+            const jsConfigPath = findVitroJsConfigPath()
+            process.chdir(path.resolve(path.dirname(jsConfigPath), '../'))
+            const appDir = findVitroAppDir()
             const vitroConfig = getVitroConfig()
             const packageManager = vitroConfig.packageManager || 'npm'
             // if no vitro app is present, run init
-            if (!existsSync(NEXT_APP_PATH)) {
+            if (!existsSync(appDir)) {
                 printGreen(
                     `no ./${NEXT_APP_PATH} found, running init command first`,
                     true,
@@ -53,27 +61,13 @@ const command: CommandModule = {
                     packageManager,
                 })
             }
-            // if no node_modules folder is present inside the app, rerun init
-            if (
-                packageManager == 'npm' && // TODO remove node_modules check after npm has workspaces
-                !existsSync(
-                    path.resolve(NEXT_APP_PATH, 'node_modules', 'react'),
-                )
-            ) {
-                printGreen(
-                    `${NEXT_APP_PATH}/node_modules is empty, rerunning init`,
-                    true,
-                )
-                await initHandler({
-                    packageManager,
-                })
-            }
 
             console.info('starting the server')
             await start({
                 port: argv.port,
                 verbose: Boolean(argv.verbose),
                 packageManager,
+                cwd: appDir,
             })
         } catch (e) {
             printRed(`could not start the dev server, ${e}`, true)
@@ -82,26 +76,9 @@ const command: CommandModule = {
     },
 } // as CommandModule
 
-function getVitroAppVersion() {
-    try {
-        return require(path.resolve(NEXT_APP_PATH, VERSION_FILE_PATH))
-    } catch {
-        return '0.0.0'
-        // fatal(`cannot find vitro app version file`)
-    }
-}
-
-function getVitroConfig(): VitroConfig {
-    try {
-        return require(path.resolve(CONFIG_PATH))
-    } catch (e) {
-        fatal(`cannot require vitro config,\n${e}`)
-    }
-}
-
 export default command
 
-async function start({ port, verbose, packageManager }) {
+async function start({ port, verbose, packageManager, cwd }) {
     const command = getDevCommand(packageManager, port)
     return await runCommand({
         command,
@@ -114,9 +91,9 @@ async function start({ port, verbose, packageManager }) {
                 : {}),
         },
         silent: false,
-        cwd: path.resolve('.', NEXT_APP_PATH),
+        cwd,
     }).catch((e) => {
-        throw new Error(`could not start ${CMD}: ${e}`)
+        throw new Error(`could not start vitro: ${e}`)
     })
 }
 
@@ -125,7 +102,10 @@ function getDevCommand(packageManager: PackageManager, port): string {
         return `yarn next dev -p ${port}`
     }
     if (packageManager === 'npm') {
-        const NPM_NEXT_BIN = path.join(NEXT_APP_PATH, `node_modules/.bin/next`)
+        const NPM_NEXT_BIN = path.join(
+            findVitroAppDir(),
+            `node_modules/.bin/next`,
+        )
         return `${NPM_NEXT_BIN} dev -p ${port}`
     }
     if (packageManager === 'pnpm') {
