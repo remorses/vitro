@@ -49,6 +49,7 @@ export async function generateExperiments(p: {
     const allFiles = await globWithGit(path.join(targetDir, '**'), {
         absolute: true,
     })
+    console.log(allFiles)
     allFiles.forEach((file) => {
         if (!generatedFiles.includes(file)) {
             console.info('removing unused file', file)
