@@ -34,7 +34,7 @@ const command: CommandModule = {
         try {
             // if no vitro config is present, ask to run init first
             const jsConfigPath = findVitroJsConfigPath()
-            process.chdir(path.resolve(path.dirname(jsConfigPath), '../'))
+            process.chdir(path.resolve(path.dirname(jsConfigPath)))
             const appDir = findVitroAppDir()
             const vitroConfig = getVitroConfig()
             const packageManager = vitroConfig.packageManager || 'npm'

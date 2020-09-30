@@ -42,7 +42,7 @@ Currently SSR is disabled because
 
 ## Things to do
 
--   [ ] call vitro commands from subdirectories
+-   [x] call vitro commands from subdirectories
 -   [x] debug what files are transpiled with an additional loader
 -   [ ] wrap internal UI in shadow dom to isolate it from user CSS
 -   [x] add `importCSS` feature to let user import css like in CRA

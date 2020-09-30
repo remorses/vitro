@@ -14,6 +14,9 @@ export const debug = (...args) => {
 }
 
 export function findVitroJsConfigPath() {
+    // if (fs.existsSync(CONFIG_PATH)) {
+    //     return path.resolve(CONFIG_PATH)
+    // }
     const p = findUp.sync(CONFIG_PATH)
     if (!p) {
         fatal(

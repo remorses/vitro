@@ -39,12 +39,8 @@ export async function generateExperiments(p: {
                 .toString()
                 .trim()
             if (existing === code) {
-                return
+                return absolutePath
             }
-            // TODO remove files that have not been generated but still exists in the experiments directory
-            // await Promise.all(
-            //     getConflictingFiles(target).map((x) => unlink(x).catch()),
-            // )
             await outputFile(absolutePath, code + '\n')
             return absolutePath
         }),
