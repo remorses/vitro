@@ -114,7 +114,10 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 // process.env.NODE_ENV === 'production' &&
                 process.env.DEBUG
             ) {
-                const ProfilingAnalyzer = require('umi-webpack-profiling-analyzer')
+                const {
+                    ProfilingAnalyzer,
+                } = require('umi-webpack-profiling-analyzer')
+                // console.log({ ProfilingAnalyzer })
                 if (ProfilingAnalyzer) {
                     config.plugins.push(
                         new ProfilingAnalyzer({
