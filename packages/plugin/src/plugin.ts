@@ -68,7 +68,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
     //     ...transpileModules,
     // ])
 
-    const resultConfig = {
+    let resultConfig = {
         ...nextConfig,
         webpack: (config, options) => {
             const { webpack } = options
@@ -119,7 +119,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                     new ProfilingAnalyzer({
                         analyzerMode: 'none',
                     }),
-                    )
+                )
                 // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
                 // config.plugins.push(
                 //     new SpeedMeasurePlugin({
@@ -201,14 +201,6 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 })
             }
 
-            const transpilePlugin = transpilationPlugin({
-                rootPath: path.resolve(cwd, '../').toString(),
-                doNotTranspile,
-                transpileModules,
-            })
-
-            config = transpilePlugin(config, options)
-
             if (typeof nextConfig.webpack === 'function') {
                 return nextConfig.webpack(config, options)
             }
@@ -217,13 +209,21 @@ export const withVitro = (vitroConfig: VitroConfig) => (
         },
     }
 
+    const transpilePlugin = transpilationPlugin({
+        rootPath: path.resolve(cwd, '../').toString(),
+        doNotTranspile,
+        transpileModules,
+    })
+
+    resultConfig = transpilePlugin(resultConfig)
+
     if (importCSS) {
         console.log(
             `using css loader version ${
                 require('css-loader/package.json').version
             }`,
         )
-        return withCSS(resultConfig)
+        resultConfig = withCSS(resultConfig)
     }
     return resultConfig
 }

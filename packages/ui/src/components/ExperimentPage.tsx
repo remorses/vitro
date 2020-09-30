@@ -47,7 +47,6 @@ export function ExperimentPage({
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
-    const [columns, setColumnsCount] = useState(1)
 
     // let [fileExports] = usePromise(fileExportsImporter)
     const fileExports = useMemo(
@@ -146,6 +145,7 @@ export function ExperimentPage({
             </Stack>
             {/* <Box flexShrink={0} h='4' /> */}
             <Stack flexShrink={0} direction='row'>
+                <Box flex='1' />
                 <Button
                     onClick={() => setCssDebug((x) => !x)}
                     opacity={0.8}
@@ -155,32 +155,14 @@ export function ExperimentPage({
                     <Box mr='2' d='inline-block' as={FaBug} />
                     CSS debug
                 </Button>
-                <Box flex='1' />
-                <Select
-                    onChange={(e) => {
-                        const columns = Number(String(e.target.value).trim())
-                        setColumnsCount(columns)
-                        // console.log({ columns })
-                    }}
-                    defaultValue='1'
-                    variant='filled'
-                    bg={bg}
-                    w='auto'
-                >
-                    <option value='1'>1 column</option>
-                    <option value='2'>2 columns</option>
-                    <option value='3'>3 columns</option>
-                </Select>
             </Stack>
-            <SimpleGrid
+            <Stack
                 flexShrink={0}
                 // direction='row'
-                columns={columns}
                 flexWrap='wrap'
                 overflow='visible' // TODO simple grid has overflow hidden
                 // justify='space-between'
-                spacingX='12'
-                spacingY='16'
+                spacing='16'
             >
                 {fileExports &&
                     Object.keys(fileExports)
@@ -207,7 +189,6 @@ export function ExperimentPage({
                                     maxW='100%'
                                     overflowX='auto' // TODO overflow x scroll not working
                                     flexShrink={0}
-                                    columns={columns}
                                     title={k}
                                     blockWidth='100%'
                                     key={id}
@@ -240,12 +221,12 @@ export function ExperimentPage({
                                 </StoryBlock>
                             )
                         })}
-            </SimpleGrid>
+            </Stack>
         </Stack>
     )
 }
 
-const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
+const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
     const [fullScreen, setFullScreen] = useState(false)
     const { colorMode } = useColorMode()
     const bg = useMemo(
@@ -274,7 +255,9 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
 
     useEffect(() => {
         if (!Profiler) {
-            console.warn('your current react version does not export `Profiler`, some features are disabled')
+            console.warn(
+                'your current react version does not export `Profiler`, some features are disabled',
+            )
         }
     }, [])
 
@@ -367,7 +350,6 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
                 <Box flex='1' />
                 <Couple
                     borderRadius='md'
-                    hide={columns > 2}
                     bg={bg}
                     p='4px'
                     a={<Box as={FiZap} size='1em' />}
@@ -381,7 +363,6 @@ const StoryBlock = ({ children, blockWidth, columns, id, title, ...rest }) => {
                 )
                 <Couple
                     borderRadius='md'
-                    hide={columns > 2}
                     bg={bg}
                     p='4px'
                     a={<Box as={FiHash} size='1em' />}
@@ -504,7 +485,7 @@ class ErrorBoundary extends React.Component {
     }
 }
 
-export const Couple = ({ a, b, hide, ...rest }) => {
+export const Couple = ({ a, b, hide = false, ...rest }) => {
     return (
         <Stack
             // display={hide ? 'none' : ['none', null, 'flex']}
