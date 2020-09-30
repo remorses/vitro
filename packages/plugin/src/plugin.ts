@@ -115,17 +115,17 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 process.env.DEBUG
             ) {
                 const ProfilingAnalyzer = require('umi-webpack-profiling-analyzer')
-                const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
                 config.plugins.push(
                     new ProfilingAnalyzer({
                         analyzerMode: 'none',
                     }),
-                )
-                config.plugins.push(
-                    new SpeedMeasurePlugin({
-                        // outputFormat: 'humanVerbose',
-                    }),
-                )
+                    )
+                // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+                // config.plugins.push(
+                //     new SpeedMeasurePlugin({
+                //         // outputFormat: 'humanVerbose',
+                //     }),
+                // )
             }
             // replace the experiments react packages with local ones to not dedupe
             config.resolve.alias = {
