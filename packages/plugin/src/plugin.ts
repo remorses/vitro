@@ -6,7 +6,7 @@ import globrex from 'globrex'
 // import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
 
 import path from 'path'
-import { loader } from 'webpack'
+
 import { TESTING, VERBOSE } from './constants'
 
 import { debug, resolve, regexEqual } from './support'
@@ -156,31 +156,6 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 }),
                 'imports-loader': require.resolve('imports-loader'),
                 ...config.resolveLoader.alias,
-            }
-
-            if (VERBOSE) {
-                // prints some info about what is being compiled
-                config.module.rules.push({
-                    test: /\.tsx?$/,
-                    loader: {
-                        loader: 'inspect-loader',
-                        options: {
-                            callback(inspect) {
-                                // console.log(inspect.arguments)
-                                const context: loader.LoaderContext =
-                                    inspect.context
-                                console.info(
-                                    'compiling',
-                                    path.relative(
-                                        path.resolve('..'),
-                                        context.resourcePath,
-                                    ),
-                                )
-                                // console.log(inspect.options)
-                            },
-                        },
-                    },
-                })
             }
 
             // add css imports to _app.tsx

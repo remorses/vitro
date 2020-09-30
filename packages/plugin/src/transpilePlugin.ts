@@ -1,11 +1,13 @@
-
 // forked from https://github.com/martpie/next-transpile-modules/blob/master/src/next-transpile-modules.js
 
 import path from 'path'
 import globrex from 'globrex'
 import { regexEqual } from './support'
+import { DEBUG } from './constants'
+import { loader as loaderTypes } from 'webpack'
 
 const PATH_DELIMITER = '[\\\\/]' // match 2 antislashes or one slash
+const ALL_MODULES_REGEX = /\.(tsx|ts|js|mjs|jsx)$/
 
 const generateIncludes = (modules) => {
     if (!modules?.length) {
@@ -58,12 +60,18 @@ export function transpilationPlugin({
     return (nextConfig) => ({
         webpack: (config, options) => {
             const loader = config.module.rules.find((x) => {
-                return regexEqual(x.test, /\.(tsx|ts|js|mjs|jsx)$/)
+                return regexEqual(x.test, ALL_MODULES_REGEX)
             })
 
-            if (typeof loader.exclude === 'function') {
-                const original = loader.exclude
-                loader.exclude = (p) => {
+            // if (typeof loader.exclude === 'function') {
+            //     const original = loader.exclude
+            //     loader.
+            // } else {
+            //     throw new Error('unsupported next version, ' + loader.exclude)
+            // }
+
+            const newRule = {
+                exclude: (p) => {
                     if (excludes.some((r) => r.test(p))) {
                         return true
                     }
@@ -72,17 +80,41 @@ export function transpilationPlugin({
                     }
                     return /node_modules/.test(p)
                     // return original(p)
-                }
-            } else {
-                throw new Error('unsupported next version, ' + loader.exclude)
+                },
+                include: [
+                    rootPath,
+                    ...loader.include,
+                    ...generateIncludes(transpileModules),
+                ],
             }
+            Object.assign(loader, newRule)
 
-            // delete loader.include
-            loader.include = [
-                rootPath,
-                ...loader.include,
-                ...generateIncludes(transpileModules),
-            ]
+            if (DEBUG) {
+                config.module.rules.push({
+                    ...newRule,
+                    test: ALL_MODULES_REGEX,
+                    loader: {
+                        loader: 'inspect-loader',
+                        options: {
+                            callback(inspect) {
+                                // console.log(inspect.arguments)
+                                const context: loaderTypes.LoaderContext =
+                                    inspect.context
+                                console.info(
+                                    `${
+                                        options.isServer ? 'server' : 'client'
+                                    } transpiling`,
+                                    path.relative(
+                                        path.resolve('..'),
+                                        context.resourcePath,
+                                    ),
+                                )
+                                // console.log(inspect.options)
+                            },
+                        },
+                    },
+                })
+            }
 
             const shouldBeInServerBundle = (ctx, req) => {
                 return includes.find((include) =>
