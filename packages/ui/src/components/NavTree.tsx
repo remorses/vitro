@@ -9,7 +9,7 @@ import {
     Collapse,
 } from '@chakra-ui/core'
 import orderBy from 'lodash/orderBy'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { ComponentLink } from './NavLink'
 import { useStorageState } from 'react-storage-hooks'
 import { findTreeInPath, ExperimentsTree } from '../support'
@@ -132,17 +132,20 @@ const NavTreeComponent = ({
 }: ExperimentsTree & { depth?: number; hideDivider?: boolean }) => {
     const isFolder = !url
     const formattedTitle = title || name
-    const subTree =
-        children &&
-        children.map((x) => {
-            return (
-                <NavTreeComponent
-                    key={x.path || x.title}
-                    {...x}
-                    depth={depth + 1}
-                />
-            )
-        })
+    const subTree = useMemo(
+        () =>
+            children &&
+            children.map((x) => {
+                return (
+                    <NavTreeComponent
+                        key={x.path || x.title}
+                        {...x}
+                        depth={depth + 1}
+                    />
+                )
+            }),
+        [children],
+    )
     if (isFolder) {
         return (
             <CollapsableTreeNode

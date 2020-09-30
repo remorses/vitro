@@ -95,27 +95,6 @@
                     "children": []
                 },
                 {
-                    "name": "anotherExperiment copy copy copy.vitro.tsx",
-                    "url": "/experiments/example-package/src/anotherExperiment copy copy copy.vitro",
-                    "path": "example-package/src/anotherExperiment copy copy copy.vitro.tsx",
-                    "title": "Another Experiment Copy Copy Copy",
-                    "children": []
-                },
-                {
-                    "name": "anotherExperiment copy copy.vitro.tsx",
-                    "url": "/experiments/example-package/src/anotherExperiment copy copy.vitro",
-                    "path": "example-package/src/anotherExperiment copy copy.vitro.tsx",
-                    "title": "Another Experiment Copy Copy",
-                    "children": []
-                },
-                {
-                    "name": "anotherExperiment copy.vitro.tsx",
-                    "url": "/experiments/example-package/src/anotherExperiment copy.vitro",
-                    "path": "example-package/src/anotherExperiment copy.vitro.tsx",
-                    "title": "Another Experiment Copy",
-                    "children": []
-                },
-                {
                     "name": "anotherExperiment.vitro.tsx",
                     "url": "/experiments/example-package/src/anotherExperiment.vitro",
                     "path": "example-package/src/anotherExperiment.vitro.tsx",
