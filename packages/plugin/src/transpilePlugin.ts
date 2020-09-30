@@ -132,7 +132,7 @@ export function transpilationPlugin({
                 return false
             }
             // bundle transpiled stuff on server on server
-            if (config.externals) {
+            if (includes?.length && config.externals) {
                 config.externals = config.externals.map((external) => {
                     if (typeof external !== 'function') return external
 
