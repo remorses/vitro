@@ -1,11 +1,12 @@
 import startCase from 'lodash/startCase'
 import { useEffect, useState } from 'react'
+import cloneDeep from 'lodash/cloneDeep'
 
 export const version = require('../package.json').version
 
 export const TOP_TITLE_H = '60px'
 
-export const debug = x => {
+export const debug = (x) => {
     if (process.env.DEBUG) {
         console.log('[DEBUG]', x)
     }
@@ -110,4 +111,25 @@ export function findSubtreeInPathByUrl(
             return found
         }
     }
+}
+
+export function filterTree(
+    tree: ExperimentsTree,
+    filter: (x: ExperimentsTree) => boolean,
+) {
+    if (!tree) {
+        return tree
+    }
+    return {
+        ...tree,
+        children: filterChildren(cloneDeep(tree?.children || []), filter),
+    }
+}
+
+function filterChildren(data: ExperimentsTree[], filter) {
+    var r = data.filter(function (o) {
+        if (o?.children) o.children = filterChildren(o.children, filter)
+        return filter(o)
+    })
+    return r
 }

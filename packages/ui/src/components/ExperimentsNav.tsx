@@ -1,19 +1,18 @@
 import {
     Box,
     Icon,
-
     Input,
     InputGroup,
     InputGroupProps,
     InputLeftElement,
     Stack,
-    useColorMode
+    useColorMode,
 } from '@chakra-ui/core'
 import debounce from 'lodash/debounce'
 import NextLink from 'next/link'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useMemo } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
-import { ExperimentsTree, TOP_TITLE_H, version } from '../support'
+import { ExperimentsTree, TOP_TITLE_H, version, filterTree } from '../support'
 import { NavTree } from './NavTree'
 
 export const ExperimentsNav = ({
@@ -24,6 +23,13 @@ export const ExperimentsNav = ({
 }) => {
     let [filter, setFilter] = useState('')
     filter = filter.toLowerCase()
+    const filteredExperimentsTree = useMemo(
+        () =>
+            filterTree(experimentsTree, (x) =>
+                x.path.toLowerCase().includes(filter),
+            ),
+        [experimentsTree, filter],
+    )
     const throttledSetFilter = useCallback<any>(debounce(setFilter, 100), [
         setFilter,
     ])
@@ -60,7 +66,7 @@ export const ExperimentsNav = ({
                 />
             </InputGroup>
             {/* <NavList experiments={experiments} filter={filter} /> */}
-            <NavTree tree={experimentsTree} />
+            <NavTree tree={filteredExperimentsTree} />
         </Stack>
     )
 }

@@ -23,7 +23,7 @@ export type SideNavProps = {
     contentHeight?: string
 } & BoxProps
 
-export const NavTree = ({ tree = { children: [] }, ...rest }: SideNavProps) => {
+export const NavTree = ({ tree = { children: [] },  ...rest }: SideNavProps) => {
     const { sidebarOrdering = undefined, docsRootPath = 'pages' } = {}
 
     tree = applySidebarOrdering({ tree, order: sidebarOrdering })
