@@ -12581,22 +12581,10 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
 
-smart-glob@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.16.tgz#21374322d405d13445c8f5c00ae3273d3dd1d972"
-  integrity sha512-bSSID9nwm+NG94vC0B7FwWNE4cBI6ZcDeZmOo9l0ReerjVOoUMUAX9p0PM6w5Y8VW6BAc4Vsuzk9K03/U8eF/Q==
-  dependencies:
-    globalyzer "^0.1.4"
-    globrex "^0.1.2"
-    lodash.uniq "^4.5.0"
-    memoizee "^0.4.14"
-    promisify-child-process "^4.1.1"
-    tslib "^2.0.0"
-
-smart-glob@^0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.17.tgz#31d5caf41a6a0976db0d360f5f96ed60623a75e6"
-  integrity sha512-QWg96mIGnRLG2zZX5aO3gzr6ksQImUNq9ojG6TAYcEz3UMVE34g/09pBk2SOkuMlO94sjj8OECb15qpAaa+OvA==
+smart-glob@^0.0.19:
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.19.tgz#533755d96fb78e9ff8cf70fa512b7580f812688f"
+  integrity sha512-XGARK4onWTv5gS9C1LkY4N0i4LvumTVZ3p1EXn9qsrGuB8DhcJRkBTi8VKCDRZjMzAhyhR0y8k3OtrNuRKjOBQ==
   dependencies:
     debug "^4.1.1"
     globalyzer "^0.1.4"
