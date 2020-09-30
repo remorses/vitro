@@ -115,11 +115,13 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 process.env.DEBUG
             ) {
                 const ProfilingAnalyzer = require('umi-webpack-profiling-analyzer')
-                config.plugins.push(
-                    new ProfilingAnalyzer({
-                        analyzerMode: 'none',
-                    }),
-                )
+                if (ProfilingAnalyzer) {
+                    config.plugins.push(
+                        new ProfilingAnalyzer({
+                            analyzerMode: 'none',
+                        }),
+                    )
+                }
                 // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
                 // config.plugins.push(
                 //     new SpeedMeasurePlugin({
