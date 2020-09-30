@@ -25,8 +25,11 @@ export const ExperimentsNav = ({
     filter = filter.toLowerCase()
     const filteredExperimentsTree = useMemo(
         () =>
-            filterTree(experimentsTree, (x) =>
-                x.path.toLowerCase().includes(filter),
+            filterTree(
+                experimentsTree,
+                (x) =>
+                    (x.title && x.title.toLowerCase().includes(filter)) ||
+                    x.path.toLowerCase().includes(filter),
             ),
         [experimentsTree, filter],
     )
