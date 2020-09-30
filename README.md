@@ -43,12 +43,14 @@ Currently SSR is disabled because
 ## Things to do
 
 -   [x] call vitro commands from subdirectories
+-   [ ] `vitro screenshot` to make screenshots of all the stories and save them on disk (or upload them to s3 compatible store)
 -   [x] debug what files are transpiled with an additional loader
+-   [ ] `--filter` filters out globs outside of cwd (adding an ignore glob)
 -   [ ] wrap internal UI in shadow dom to isolate it from user CSS
 -   [x] add `importCSS` feature to let user import css like in CRA
 -   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
 -   [ ] wait for nextjs 9.5.4 for pnpm support
--   [ ] make vitro callable from sub directories, searching for a top level vitro.config.js file and setting the cwd to that level, filtering out globs outside of cwd (adding a param in the globber to ignore all folders not child of this path)
+-   [x] make vitro callable from sub directories, searching for a top level vitro.config.js file and setting the cwd to that level, 
 -   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
 -   [ ] make an example with an iframe in wrapper with emotion
 -   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on vitro start, the same for babel

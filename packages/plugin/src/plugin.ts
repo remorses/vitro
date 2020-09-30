@@ -213,7 +213,7 @@ function watchChanges({ ignored, globs, cb }) {
         return cb()
     }
     const onChange = throttle(cb, 500)
-    onChange()
+    // onChange()
     const watcher = chokidar.watch(globs, {
         ignored: (path) => {
             return ignored.some((s) => path.includes(s))

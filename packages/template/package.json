@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "build": "vitro build && next build --profile",
-        "dev": "next dev",
+        "dev": "vitro build && next dev",
         "start": "next start"
     },
     "dependencies": {

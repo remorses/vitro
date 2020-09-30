@@ -5,7 +5,7 @@
     "scripts": {
         "gen": "VITRO_TESTING=1 node -r sucrase/register ../../packages/cli/src/main.ts build",
         "build": "yarn --cwd ../../ build && yarn gen && yarn next build --profile",
-        "dev": "cross-env VITRO_TESTING=1 next dev",
+        "dev": "VITRO_TESTING=1 node -r sucrase/register ../../packages/cli/src/main.ts build && VITRO_TESTING=1 next dev",
         "start": "next start"
     },
     "dependencies": {
