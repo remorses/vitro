@@ -21,7 +21,7 @@ export const generate = async (args: VitroConfig) => {
         experiments.map((s) =>
             globWithGit(s, {
                 ignoreGlobs,
-                absolute: true,
+                absolute: false,
                 cwd: path.resolve(path.join(cwd, '..')),
                 // filesOnly: true,
             }),

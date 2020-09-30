@@ -12581,10 +12581,10 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
 
-smart-glob@^0.0.21:
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.21.tgz#5fc1a5868df1a2e2a958de88207ac38553a5da8f"
-  integrity sha512-Ik+y24YOFMiYTsLkHSiW7eyGOh89R9/miHklTVzOrrQ+BtMDozlzGzAJLGujIhria48LdXe1Z/AoA0I89BX6ww==
+smart-glob@^0.0.22:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.22.tgz#12f10092e5406520bbe50b32b5f5cfe105a12930"
+  integrity sha512-OVzEaQZGAlSgjT1K1218nPXHTCyY5EnxtYXyRMN+OuY1D5006bpuFItl5wbvnm3e43a+nDS5OVmLRdVn9ieyxg==
   dependencies:
     debug "^4.1.1"
     globalyzer "^0.1.4"
