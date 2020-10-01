@@ -1,7 +1,7 @@
 {
     "name": "@vitro/plugin",
     "_": "[bump]",
-    "version": "0.0.79",
+    "version": "0.0.80",
     "description": "Vitro nextjs plugin",
     "keywords": [],
     "main": "dist/index.js",
