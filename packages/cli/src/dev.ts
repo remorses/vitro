@@ -90,6 +90,7 @@ async function start({ port, verbose, packageManager, cwd }) {
                   }
                 : {}),
         },
+        
         silent: false,
         cwd,
     }).catch((e) => {
@@ -99,7 +100,7 @@ async function start({ port, verbose, packageManager, cwd }) {
 
 function getDevCommand(packageManager: PackageManager, port): string {
     if (packageManager === 'yarn') {
-        return `yarn next dev -p ${port}`
+        return `yarn run dev -p ${port}`
     }
     if (packageManager === 'npm') {
         // const NPM_NEXT_BIN = path.join(
