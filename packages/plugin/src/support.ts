@@ -1,4 +1,4 @@
-import { VERBOSE } from './constants'
+import { VERBOSE, FILTER_EXPERIMENTS } from './constants'
 import { attempt, mapKeys } from 'lodash'
 import path from 'path'
 import { isError } from 'util'
@@ -13,6 +13,11 @@ export function resolve(p, opts?: { paths?: string[] }) {
     return path.dirname(
         require.resolve(path.join(p, 'package.json').toString(), opts),
     )
+}
+
+export function getExperimentsPathFilter() {
+    const filter = process.env[FILTER_EXPERIMENTS] || ''
+    return filter.split(',').map((x) => x.trim())
 }
 
 /**

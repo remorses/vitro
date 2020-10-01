@@ -13,7 +13,12 @@ import path from 'path'
 import { CommandModule } from 'yargs'
 import { initHandler } from './init'
 import { existsSync } from 'fs-extra'
-import { VitroConfig, PackageManager } from '@vitro/plugin'
+import {
+    VitroConfig,
+    PackageManager,
+    FILTER_EXPERIMENTS,
+    getExperimentsPathFilter,
+} from '@vitro/plugin'
 import { NEXT_APP_PATH } from './constants'
 const { version: cliVersion } = require('../package.json')
 
@@ -30,7 +35,7 @@ const command: CommandModule = {
         })
         return argv
     },
-    handler: async (argv) => {
+    handler: async (argv: any) => {
         try {
             // if no vitro config is present, ask to run init first
             const jsConfigPath = findVitroJsConfigPath()
@@ -63,11 +68,27 @@ const command: CommandModule = {
             }
 
             console.info('starting the server')
-            await start({
-                port: argv.port,
-                verbose: Boolean(argv.verbose),
-                packageManager,
+            const command = getDevCommand(packageManager, argv.port)
+            await runCommand({
+                command,
+                env: {
+                    ...process.env,
+                    ...(Boolean(argv.verbose)
+                        ? {
+                              VERBOSE: 'true',
+                          }
+                        : {}),
+                    [FILTER_EXPERIMENTS]: argv.filter?.length
+                        ? argv.filter
+                        : getExperimentsPathFilter(),
+                },
+
+                silent: false,
                 cwd: appDir,
+            }).catch((e) => {
+                throw new Error(
+                    `error running vitro's nextjs application: ${e}`,
+                )
             })
         } catch (e) {
             printRed(`could not start the dev server, ${e}`, true)
@@ -77,26 +98,6 @@ const command: CommandModule = {
 } // as CommandModule
 
 export default command
-
-async function start({ port, verbose, packageManager, cwd }) {
-    const command = getDevCommand(packageManager, port)
-    return await runCommand({
-        command,
-        env: {
-            ...process.env,
-            ...(verbose
-                ? {
-                      VERBOSE: 'true',
-                  }
-                : {}),
-        },
-        
-        silent: false,
-        cwd,
-    }).catch((e) => {
-        throw new Error(`could not start vitro: ${e}`)
-    })
-}
 
 function getDevCommand(packageManager: PackageManager, port): string {
     if (packageManager === 'yarn') {

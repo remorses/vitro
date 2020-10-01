@@ -11,12 +11,13 @@ import { debug } from './support'
 
 const excludedDirs = ['**/.vitro/**', '**/pages/experiments/**']
 
-export const generate = async (args: VitroConfig) => {
+export const generate = async (args: VitroConfig & {filter?: string[]}) => {
     let { experiments = [], ignore: userIgnore = [], wrapper, cwd } = args
     experiments = experiments.map(path.normalize)
     const ignoreGlobs = [...userIgnore, ...excludedDirs]
 
     debug(`starting globWithGit`)
+    // TODO filter results to only files under the filter path
     const results = await Promise.all(
         experiments.map((s) =>
             globWithGit(s, {

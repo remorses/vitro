@@ -12,18 +12,11 @@ yargs
         type: 'boolean',
         default: false,
     })
-    // .middleware([
-    //     (argv) => {
-    //         if (argv.verbose) {
-    //             winston.configure({
-    //                 ...winstonConf,
-    //                 level: 'debug',
-    //             })
-    //             return
-    //         }
-    //         winston.configure({ ...winstonConf, silent: true, level: 'error' })
-    //     },
-    // ])
+    .option('filter', {
+        alias: 'f',
+        type: 'string',
+        array: true,
+    })
     .command(withErrorHandling(initCommand))
     .command(withErrorHandling(buildCommand))
     .command(withErrorHandling(migrateCommand))

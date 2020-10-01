@@ -3,9 +3,9 @@
     "version": "0.0.78",
     "private": true,
     "scripts": {
-        "gen": "VITRO_TESTING=1 node -r sucrase/register ../../packages/cli/src/main.ts build",
+        "gen": "VITRO_TESTING=1 node -r sucrase/register ../../packages/cli/dist/main.js build",
         "build": "yarn --cwd ../../ build && yarn gen && yarn next build --profile",
-        "dev": "VITRO_TESTING=1 node -r sucrase/register ../../packages/cli/src/main.ts build && VITRO_TESTING=1 next dev",
+        "dev": "VITRO_TESTING=1 yarn gen && VITRO_TESTING=1 next dev",
         "start": "next start"
     },
     "dependencies": {

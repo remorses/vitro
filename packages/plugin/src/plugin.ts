@@ -10,7 +10,7 @@ import path from 'path'
 
 import { TESTING, VERBOSE } from './constants'
 
-import { debug, resolve, regexEqual } from './support'
+import { debug, resolve, regexEqual, getExperimentsPathFilter } from './support'
 import { generate } from './generate'
 import chokidar from 'chokidar'
 import { mapKeys, throttle } from 'lodash'
@@ -80,7 +80,10 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                         return
                     }
                     console.info('generating experiments files')
-                    await generate(vitroConfig).catch(console.error)
+                    await generate({
+                        ...vitroConfig,
+                        filter: getExperimentsPathFilter(),
+                    }).catch(console.error)
                     console.info('generated experiments files')
                 },
                 ignored: [

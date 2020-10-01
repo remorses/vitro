@@ -1,3 +1,5 @@
 export * from './experiments'
 export * from './plugin'
 export * from './generate'
+export { getExperimentsPathFilter } from './support'
+export { FILTER_EXPERIMENTS } from './constants'
