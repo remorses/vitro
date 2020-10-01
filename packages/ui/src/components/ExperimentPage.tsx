@@ -81,10 +81,13 @@ export function ExperimentPage({
     const vscodeUrl = `vscode://file${sourceExperimentPath}`
     // exported.then(z => console.log(Object.keys(z)))
     // console.log({ fileExports })
-    const ExperimentWrapper = useMemo(
-        () => fileExports?.default?.wrapper || DefaultWrapper,
-        [fileExports, colorMode],
-    )
+    const ExperimentWrapper = useMemo(() => {
+        const experimentWrapper = fileExports?.default?.wrapper
+        if (experimentWrapper) {
+            console.info('using experiments wrapper ' + experimentWrapper?.name)
+        }
+        return experimentWrapper || DefaultWrapper
+    }, [fileExports, colorMode])
 
     const experimentTitle =
         fileExports?.default?.title ||
@@ -214,6 +217,7 @@ export function ExperimentPage({
                                                 dark={colorMode == 'dark'}
                                             >
                                                 <Component
+                                                    key={colorMode}
                                                     dark={colorMode == 'dark'}
                                                 />
                                             </ExperimentWrapper>
