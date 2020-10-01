@@ -43,6 +43,7 @@ export function ExperimentPage({
     experimentsTree,
     GlobalWrapper,
     absolutePath,
+    sourceExperimentPath,
     fileExports: fileExportsObject,
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
@@ -77,7 +78,7 @@ export function ExperimentPage({
         }
     }, [GlobalWrapper])
 
-    const vscodeUrl = `vscode://file${absolutePath}`
+    const vscodeUrl = `vscode://file${sourceExperimentPath}`
     // exported.then(z => console.log(Object.keys(z)))
     // console.log({ fileExports })
     const ExperimentWrapper = useMemo(

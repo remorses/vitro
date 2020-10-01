@@ -43,6 +43,7 @@ Currently SSR is disabled because
 ## Things to do
 
 -   [x] call vitro commands from subdirectories
+-   [ ] open in vscode redirects to original file
 -   [ ] `vitro screenshot` to make screenshots of all the stories and save them on disk (or upload them to s3 compatible store)
 -   [x] debug what files are transpiled with an additional loader
 -   [ ] `--filter` filters out globs outside of cwd (adding an ignore glob)

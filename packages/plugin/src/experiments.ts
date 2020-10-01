@@ -26,12 +26,14 @@ export async function generateExperiments(p: {
         // TODO batched promise.all
         files.map(async (p) => {
             const absolutePath = path.join(targetDir, p)
+            const sourceExperimentPath = path.resolve(p)
             // console.log({ target: absolutePath })
             const code = generateExperimentPage({
                 importPath: removeExtension(
                     '_vitro-root_/../' + path.normalize(p),
                 ),
                 absolutePath,
+                sourceExperimentPath,
                 wrapperComponentPath,
             }).trim()
             const existing = await readFile(absolutePath)
@@ -61,6 +63,7 @@ export async function generateExperiments(p: {
 function generateExperimentPage({
     importPath,
     absolutePath,
+    sourceExperimentPath,
     wrapperComponentPath,
 }) {
     return `
@@ -71,6 +74,7 @@ import experimentsTree from '_vitro-root_/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui${TESTING ? '/src' : ''}'
 
 const absolutePath = '${absolutePath}'
+const sourceExperimentPath = '${sourceExperimentPath}'
 
 export default function Page() {
     return (
@@ -78,6 +82,7 @@ export default function Page() {
             experimentsTree={experimentsTree}
             GlobalWrapper={GlobalWrapper}
             absolutePath={absolutePath}
+            sourceExperimentPath={sourceExperimentPath}
             fileExports={exported}
         />
     )
