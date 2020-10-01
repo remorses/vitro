@@ -4,7 +4,7 @@ import { spawn, execSync } from 'child_process'
 import fs from 'fs'
 import findUp from 'find-up'
 import { CONFIG_PATH, NEXT_APP_PATH, VERSION_FILE_PATH } from './constants'
-import { VitroConfig } from '@vitro/plugin'
+import { VitroConfig, getExperimentsPathFilter } from '@vitro/plugin'
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 export const debug = (...args) => {
@@ -26,7 +26,6 @@ export function findVitroJsConfigPath() {
     return path.resolve(p)
 }
 
-
 export function getVitroConfig(): VitroConfig {
     try {
         return require(findVitroJsConfigPath())
@@ -34,7 +33,6 @@ export function getVitroConfig(): VitroConfig {
         fatal(`cannot require vitro config,\n${e}`)
     }
 }
-
 
 export function findVitroAppDir() {
     const p = findVitroJsConfigPath()
@@ -101,6 +99,15 @@ export const printRed = (x = '', pad = false) => {
         console.info()
     }
 }
+
+export function getExperimentsFilters(argv): string[] {
+    let experimentsFilter = argv.filter?.length
+        ? argv.filter
+        : getExperimentsPathFilter()
+    experimentsFilter = experimentsFilter.map((p) => path.resolve(p))
+    return experimentsFilter
+}
+
 export const fatal = (x = '') => {
     console.info()
     console.info(chalk.red(x))

@@ -7,6 +7,7 @@ import {
     findVitroAppDir,
     getVitroConfig,
     fatal,
+    getExperimentsFilters,
 } from './support'
 import path from 'path'
 import os from 'os'
@@ -35,14 +36,13 @@ const command: CommandModule = {
         // debug('argv', argv)
         // debug('cwd', process.cwd())
         const jsConfigPath = findVitroJsConfigPath()
+        const experimentsFilter = getExperimentsFilters(argv)
         process.chdir(path.resolve(path.dirname(jsConfigPath)))
         const cwd = findVitroAppDir()
         await generate({
             ...getVitroConfig(),
             cwd,
-            filter: argv.filter?.length
-                ? argv.filter
-                : getExperimentsPathFilter(),
+            filter: experimentsFilter,
         })
         // TODO maybe also run next build?
         printGreen(`Generated pages inside ${cwd}`, true)

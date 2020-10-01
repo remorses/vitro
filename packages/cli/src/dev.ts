@@ -7,6 +7,7 @@ import {
     findVitroAppDir,
     getVitroAppVersion,
     getVitroConfig,
+    getExperimentsFilters,
 } from './support'
 import path from 'path'
 // import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
@@ -39,6 +40,7 @@ const command: CommandModule = {
         try {
             // if no vitro config is present, ask to run init first
             const jsConfigPath = findVitroJsConfigPath()
+            const experimentsFilter = getExperimentsFilters(argv)
             process.chdir(path.resolve(path.dirname(jsConfigPath)))
             const appDir = findVitroAppDir()
             const vitroConfig = getVitroConfig()
@@ -78,11 +80,8 @@ const command: CommandModule = {
                               VERBOSE: 'true',
                           }
                         : {}),
-                    [FILTER_EXPERIMENTS]: argv.filter?.length
-                        ? argv.filter
-                        : getExperimentsPathFilter(),
+                    [FILTER_EXPERIMENTS]: experimentsFilter.join(','),
                 },
-
                 silent: false,
                 cwd: appDir,
             }).catch((e) => {
