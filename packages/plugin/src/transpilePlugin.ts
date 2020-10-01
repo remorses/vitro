@@ -58,6 +58,7 @@ export function transpilationPlugin({
         ...generateExcludes(transpileModules),
     ]
     return (nextConfig) => ({
+        ...nextConfig,
         webpack: (config, options) => {
             const loader = config.module.rules.find((x) => {
                 return regexEqual(x.test, ALL_MODULES_REGEX)

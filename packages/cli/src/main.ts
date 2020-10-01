@@ -15,6 +15,7 @@ yargs
     .option('filter', {
         alias: 'f',
         type: 'string',
+        description: 'Only build experiments inside the specified path',
         array: true,
     })
     .command(withErrorHandling(initCommand))
