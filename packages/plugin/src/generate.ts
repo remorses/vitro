@@ -21,6 +21,8 @@ export const generate = async (
         cwd,
         experimentsFilters = [],
     } = args
+
+    debug({experimentsFilters})
     experiments = experiments.map(path.normalize)
     const ignoreGlobs = [...userIgnore, ...excludedDirs]
 

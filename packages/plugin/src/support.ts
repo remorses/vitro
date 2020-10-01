@@ -17,7 +17,7 @@ export function resolve(p, opts?: { paths?: string[] }) {
 
 export function getExperimentsPathFilter() {
     const filter = process.env[FILTER_EXPERIMENTS] || ''
-    return filter.split(',').map((x) => x.trim())
+    return filter.split(',').map((x) => x.trim()).filter(Boolean)
 }
 
 export function isWithin(outer, inner) {
