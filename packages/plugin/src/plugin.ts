@@ -161,7 +161,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             config.resolveLoader.alias = {
                 'inspect-loader': require.resolve('inspect-loader'),
                 ...(importCSS && {
-                    'css-loader': require.resolve('css-loader'),
+                    'fast-css-loader': require.resolve('fast-css-loader'),
                     'style-loader': require.resolve('style-loader'),
                     'ignore-loader': require.resolve('ignore-loader'),
                 }),
@@ -207,8 +207,8 @@ export const withVitro = (vitroConfig: VitroConfig) => (
 
     if (importCSS) {
         console.log(
-            `using css loader version ${
-                require('css-loader/package.json').version
+            `importing CSS will apply css globally using 'fast-css-loader' version ${
+                require('fast-css-loader/package.json').version
             }`,
         )
         resultConfig = withCSS(resultConfig)

@@ -88,7 +88,7 @@ export const cssLoaderConfig = (
     // }
 
     const cssLoader = {
-        loader: 'css-loader',
+        loader: 'fast-css-loader',
         options: Object.assign(
             {},
             {
@@ -111,5 +111,5 @@ export const cssLoaderConfig = (
         return [cssLoader, postcssLoader, ...loaders].filter(Boolean)
     }
 
-    return ['style-loader', 'css-loader', ...loaders].filter(Boolean)
+    return ['style-loader', 'fast-css-loader', ...loaders].filter(Boolean)
 }

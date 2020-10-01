@@ -3,7 +3,7 @@
 import path from 'path'
 import globrex from 'globrex'
 import { regexEqual } from './support'
-import { DEBUG } from './constants'
+import { DEBUG, NODE_ENV } from './constants'
 import { loader as loaderTypes } from 'webpack'
 
 const PATH_DELIMITER = '[\\\\/]' // match 2 antislashes or one slash
@@ -117,10 +117,11 @@ export function transpilationPlugin({
             }
 
             const shouldBeInServerBundle = (ctx, req) => {
+                if (NODE_ENV !== 'prod') {
+                    return false
+                }
                 return includes.find((include) =>
-                    req.startsWith('.')
-                        ? include.test(path.resolve(ctx, req))
-                        : include.test(req),
+                    include.test(resolveRelativePath(req, ctx)),
                 )
                 req = req.startsWith('.') ? path.resolve(ctx, req) : req
                 // if (excludes.some((r) => r.test(req))) {
@@ -136,16 +137,30 @@ export function transpilationPlugin({
                 config.externals = config.externals.map((external) => {
                     if (typeof external !== 'function') return external
 
+                    const makeDebugCb = (pkg, originalCb, ctx) => (...args) => {
+                        pkg = resolveRelativePath(pkg, ctx)
+                        if (args.length === 0) {
+                            console.info(`server bundling ${pkg}`)
+                        }
+                        return originalCb(...args)
+                    }
+
                     return isWebpack5
                         ? ({ context, request }, cb) => {
+                              const newCb = DEBUG
+                                  ? makeDebugCb(request, cb, context)
+                                  : cb
                               return shouldBeInServerBundle(context, request)
-                                  ? cb()
-                                  : external({ context, request }, cb)
+                                  ? newCb()
+                                  : external({ context, request }, newCb)
                           }
-                        : (ctx, req, cb) => {
-                              return shouldBeInServerBundle(ctx, req)
-                                  ? cb()
-                                  : external(ctx, req, cb)
+                        : (context, request, cb) => {
+                              const newCb = DEBUG
+                                  ? makeDebugCb(request, cb, context)
+                                  : cb
+                              return shouldBeInServerBundle(context, request)
+                                  ? newCb()
+                                  : external(context, request, newCb)
                           }
                 })
             }
@@ -187,4 +202,8 @@ export function transpilationPlugin({
             return config
         },
     })
+}
+
+function resolveRelativePath(p: string, ctx) {
+    return p.startsWith('.') ? path.join(ctx, p) : p
 }
