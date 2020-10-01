@@ -43,7 +43,7 @@ Currently SSR is disabled because
 ## Things to do
 
 -   [x] call vitro commands from subdirectories
--   [ ] open in vscode redirects to original file
+-   [x] open in vscode redirects to original file
 -   [ ] `vitro screenshot` to make screenshots of all the stories and save them on disk (or upload them to s3 compatible store)
 -   [x] debug what files are transpiled with an additional loader
 -   [ ] `--filter` filters out globs outside of cwd (adding an ignore glob)
@@ -54,7 +54,7 @@ Currently SSR is disabled because
 -   [x] make vitro callable from sub directories, searching for a top level vitro.config.js file and setting the cwd to that level, 
 -   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
 -   [ ] make an example with an iframe in wrapper with emotion
--   [ ] how to pass a custom tsconfig, babel? pass a tsconfigPath and copy it on vitro start, the same for babel
+-   [ ] how to pass a custom babel? add a babelConfig and merge it in the babel.config.js
 -   [ ] exit from full screen with esc key
 -   [ ] reset render count to zero when rendering above profiler
 -   [ ] add max zIndex to story toolbar (no this way is difficult to cover them with overlay in full screen)
