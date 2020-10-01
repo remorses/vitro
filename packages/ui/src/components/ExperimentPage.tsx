@@ -50,7 +50,7 @@ export function ExperimentPage({
     const [cssDebugEnabled, setCssDebug] = useState(false)
 
     // let [fileExports] = usePromise(fileExportsImporter)
-    const fileExports = useMemo(
+    const experimentComponents = useMemo(
         () =>
             assign(
                 {},
@@ -82,15 +82,15 @@ export function ExperimentPage({
     // exported.then(z => console.log(Object.keys(z)))
     // console.log({ fileExports })
     const ExperimentWrapper = useMemo(() => {
-        const experimentWrapper = fileExports?.default?.wrapper
+        const experimentWrapper = fileExportsObject?.default?.wrapper
         if (experimentWrapper) {
             console.info('using experiments wrapper ' + experimentWrapper?.name)
         }
         return experimentWrapper || DefaultWrapper
-    }, [fileExports, colorMode])
+    }, [fileExportsObject, colorMode])
 
     const experimentTitle =
-        fileExports?.default?.title ||
+        fileExportsObject?.default?.title ||
         formatPathToTitle(absolutePath) ||
         'Untitled'
 
@@ -168,11 +168,11 @@ export function ExperimentPage({
                 // justify='space-between'
                 spacing='16'
             >
-                {fileExports &&
-                    Object.keys(fileExports)
+                {experimentComponents &&
+                    Object.keys(experimentComponents)
                         .filter((k) => k !== 'default')
                         .map((k) => {
-                            const Component = fileExports[k]
+                            const Component = experimentComponents[k]
                             // console.log({ Component })
 
                             if (!isValidElementType(Component)) {
