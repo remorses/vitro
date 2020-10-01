@@ -1,7 +1,7 @@
 {
   "name": "@vitro/cli",
   "_": "[bump]",
-  "version": "0.0.75",
+  "version": "0.0.76",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
@@ -34,8 +34,8 @@
   "license": "ISC",
   "dependencies": {
     "@types/yargs": "^15.0.5",
-    "@vitro/codemod": "^0.0.75",
-    "@vitro/plugin": "^0.0.75",
+    "@vitro/codemod": "^0.0.76",
+    "@vitro/plugin": "^0.0.76",
     "chalk": "latest",
     "find-up": "^5.0.0",
     "fs-extra": "^9.0.1",
