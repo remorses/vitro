@@ -37,10 +37,8 @@ const command: CommandModule = {
     handler: async (argv) => {
         // debug('argv', argv)
         // debug('cwd', process.cwd())
-        const configPath: string = findVitroJsConfigPath()
-        if (!existsSync(configPath)) {
-            fatal(`There is no '${CONFIG_PATH}' file at ${configPath}`)
-        }
+        const jsConfigPath = findVitroJsConfigPath()
+        process.chdir(path.resolve(path.dirname(jsConfigPath)))
         const cwd = findVitroAppDir()
         await generate({
             ...getVitroConfig(),

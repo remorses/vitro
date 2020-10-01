@@ -5384,7 +5384,7 @@ css-loader@3.5.3:
     schema-utils "^2.6.6"
     semver "^6.3.0"
 
-css-loader@^3.5.2, css-loader@^3.6.0:
+css-loader@^3.5.2:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-3.6.0.tgz#2e4b2c7e6e2d27f8c8f28f61bffcd2e6c91ef645"
   integrity sha512-M5lSukoWi1If8dhQAUCvj4H8vUt3vOnwbQBH9DdTm/s4Ym2B/3dPMtYZeJmq7Q3S3Pa+I94DcZ7pc9bP14cWIQ==
@@ -12609,10 +12609,10 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
 
-smart-glob@^0.0.22:
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.22.tgz#12f10092e5406520bbe50b32b5f5cfe105a12930"
-  integrity sha512-OVzEaQZGAlSgjT1K1218nPXHTCyY5EnxtYXyRMN+OuY1D5006bpuFItl5wbvnm3e43a+nDS5OVmLRdVn9ieyxg==
+smart-glob@^0.0.25:
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.25.tgz#800b753907dba841ae59595fb5801adb7cb6e164"
+  integrity sha512-RpAGxMqPXq8fIhs7XZckRASRq8KE6s8GBAWCr6R7H02tGQRrEKFVar5t9eppXzyeDYK/Mc8R8qK52VVybmBwWg==
   dependencies:
     debug "^4.1.1"
     globalyzer "^0.1.4"
