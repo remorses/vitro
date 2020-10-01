@@ -102,11 +102,11 @@ function getDevCommand(packageManager: PackageManager, port): string {
         return `yarn next dev -p ${port}`
     }
     if (packageManager === 'npm') {
-        const NPM_NEXT_BIN = path.join(
-            findVitroAppDir(),
-            `node_modules/.bin/next`,
-        )
-        return `${NPM_NEXT_BIN} dev -p ${port}`
+        // const NPM_NEXT_BIN = path.join(
+        //     findVitroAppDir(),
+        //     `node_modules/.bin/next`,
+        // )
+        return `npm run dev -- -p ${port}`
     }
     if (packageManager === 'pnpm') {
         return `pnpm dev -- -p ${port}`
