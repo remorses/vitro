@@ -1,4 +1,5 @@
 import fs from 'fs'
+
 import { withCSS } from './css'
 import globrex from 'globrex'
 // import transpilePlugin from 'next-transpile-modules'
@@ -131,6 +132,13 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                 //         // outputFormat: 'humanVerbose',
                 //     }),
                 // )
+            }
+            if (
+                !options.isServer &&
+                // process.env.NODE_ENV === 'production' &&
+                process.env.PROFILE
+            ) {
+                config.plugins.push(new webpack.debug.ProfilingPlugin())
             }
             // replace the experiments react packages with local ones to not dedupe
             config.resolve.alias = {
