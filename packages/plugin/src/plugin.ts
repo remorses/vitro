@@ -82,7 +82,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
                     console.info('generating experiments files')
                     await generate({
                         ...vitroConfig,
-                        filter: getExperimentsPathFilter(),
+                        experimentsFilters: getExperimentsPathFilter(),
                     }).catch(console.error)
                     console.info('generated experiments files')
                 },

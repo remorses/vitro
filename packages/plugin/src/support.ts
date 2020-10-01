@@ -20,6 +20,11 @@ export function getExperimentsPathFilter() {
     return filter.split(',').map((x) => x.trim())
 }
 
+export function isWithin(outer, inner) {
+    const rel = path.relative(outer, inner);
+    return !rel.startsWith('../') && rel !== '..';
+}
+
 /**
  * Stolen from https://stackoverflow.com/questions/10776600/testing-for-equality-of-regular-expressions
  */

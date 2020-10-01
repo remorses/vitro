@@ -55,7 +55,7 @@ export async function generateExperiments(p: {
     allFiles.forEach((file) => {
         if (!generatedFiles.includes(file)) {
             console.info('removing unused file', file)
-            unlink(file)
+            unlink(file).catch(x => null)
         }
     })
 }

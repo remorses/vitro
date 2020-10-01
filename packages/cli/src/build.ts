@@ -42,7 +42,7 @@ const command: CommandModule = {
         await generate({
             ...getVitroConfig(),
             cwd,
-            filter: experimentsFilter,
+            experimentsFilters: experimentsFilter,
         })
         // TODO maybe also run next build?
         printGreen(`Generated pages inside ${cwd}`, true)

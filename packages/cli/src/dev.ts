@@ -20,7 +20,7 @@ import {
     FILTER_EXPERIMENTS,
     getExperimentsPathFilter,
 } from '@vitro/plugin'
-import { NEXT_APP_PATH } from './constants'
+import { NEXT_APP_PATH, TESTING } from './constants'
 const { version: cliVersion } = require('../package.json')
 
 const command: CommandModule = {
@@ -46,7 +46,7 @@ const command: CommandModule = {
             const vitroConfig = getVitroConfig()
             const packageManager = vitroConfig.packageManager || 'npm'
             // if no vitro app is present, run init
-            if (!existsSync(appDir)) {
+            if (!TESTING && !existsSync(appDir)) {
                 printGreen(
                     `no ./${NEXT_APP_PATH} found, running init command first`,
                     true,
@@ -58,7 +58,7 @@ const command: CommandModule = {
             }
             // if vitro version is different, run init
             const vitroAppVersion = getVitroAppVersion()
-            if (cliVersion !== vitroAppVersion) {
+            if (!TESTING && cliVersion !== vitroAppVersion) {
                 printGreen(
                     `vitro app version ('${vitroAppVersion}') is different than the cli version ('${cliVersion}'), running init`,
                     true,

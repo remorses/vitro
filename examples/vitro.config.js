@@ -2,6 +2,7 @@ const NODE_ENV = process.env.NODE_ENV
 console.log('NODE_ENV', NODE_ENV)
 
 module.exports = {
+    packageManager: 'yarn',
     // basePath: NODE_ENV == 'production' ? '/.vitro' : '/',
     experiments: ['./**/*.vitro.jsx', './**/*.vitro.tsx'],
     // globalCSS: ['tailwindcss/dist/tailwind.css'],
