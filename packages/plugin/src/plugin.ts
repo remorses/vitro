@@ -75,6 +75,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             const { webpack } = options
 
             watchChanges({
+                dev: options.dev,
                 cb: async (p) => {
                     if (options.isServer) {
                         return
@@ -115,7 +116,6 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             )
             if (
                 !options.isServer &&
-                // process.env.NODE_ENV === 'production' &&
                 process.env.DEBUG
             ) {
                 const {
@@ -138,7 +138,6 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             }
             if (
                 !options.isServer &&
-                // process.env.NODE_ENV === 'production' &&
                 process.env.PROFILE
             ) {
                 config.plugins.push(new webpack.debug.ProfilingPlugin())
@@ -219,8 +218,8 @@ export const withVitro = (vitroConfig: VitroConfig) => (
     return resultConfig
 }
 
-function watchChanges({ ignored, globs, cb }) {
-    if (process.env.DISABLE_WATCH || process.env.NODE_ENV === 'production') {
+function watchChanges({ ignored, globs, cb, dev }) {
+    if (process.env.DISABLE_WATCH || !dev) {
         return cb()
     }
     const onChange = throttle(cb, 500)
