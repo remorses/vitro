@@ -103,6 +103,7 @@ export const withVitro = (vitroConfig: VitroConfig) => (
             config.plugins.push(
                 new webpack.DefinePlugin({
                     'process.env.DEBUG': JSON.stringify(process.env.DEBUG),
+                    'process.env.USE_HREF': JSON.stringify(process.env.USE_HREF),
                     GLOBAL_CSS_CODE: makeCssImportCodeSnippet(globalCSS),
                     WRAPPER_COMPONENT_PATH: JSON.stringify(
                         wrapper

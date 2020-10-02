@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import { Box } from "@chakra-ui/core";
 
-export const MdxStyler = styled.div`
+export const MdxStyler = styled(Box)`
     max-width: 900px;
 
     & .octicon {

@@ -64,20 +64,24 @@ export const SideNavLink = forwardRef(
     },
 )
 
-const NavLink = ({ children, ...props }: any) => {
+const NavLink = ({ children, href, ...props }: any) => {
     const router = useRouter()
     const pathname = router?.pathname || ''
     let isActive = false
 
     if (
         pathname?.replace(/\/$/, '').replace(/\bindex$/, '') ===
-        props.href.replace(/\/$/, '')
+        href.replace(/\/$/, '')
     ) {
         isActive = true
     }
 
+    if (process.env.USE_HREF) {
+        return typeof children === 'function' ? children(isActive) : children
+    }
+
     return (
-        <NextLink prefetch={false} passHref {...props}>
+        <NextLink prefetch={false} href={href} passHref {...props}>
             {typeof children === 'function' ? children(isActive) : children}
         </NextLink>
     )
