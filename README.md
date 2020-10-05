@@ -42,16 +42,18 @@ Currently SSR is disabled because
 
 ## Things to do
 
+-   [ ] use snowpack instead of nextjs, the routes are implemented with react-router and based on the tree file
+-   [ ] make a single tsdx standalone bundle for `@vitro/ui` and export it from cli to only have one dependency, no more need to install the vitro app folder or adding it to workspaces
 -   [x] call vitro commands from subdirectories
 -   [x] open in vscode redirects to original file
 -   [ ] `vitro screenshot` to make screenshots of all the stories and save them on disk (or upload them to s3 compatible store)
 -   [x] debug what files are transpiled with an additional loader
--   [ ] `--filter` filters out globs outside of cwd (adding an ignore glob)
+-   [x] `--filter` filters out globs outside of cwd (adding an ignore glob)
 -   [ ] wrap internal UI in shadow dom to isolate it from user CSS
 -   [x] add `importCSS` feature to let user import css like in CRA
 -   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
--   [ ] wait for nextjs 9.5.4 for pnpm support
--   [x] make vitro callable from sub directories, searching for a top level vitro.config.js file and setting the cwd to that level, 
+-   [x] wait for nextjs 9.5.4 for pnpm support
+-   [x] make vitro callable from sub directories, searching for a top level vitro.config.js file and setting the cwd to that level,
 -   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
 -   [ ] make an example with an iframe in wrapper with emotion
 -   [ ] how to pass a custom babel? add a babelConfig and merge it in the babel.config.js
