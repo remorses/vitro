@@ -11,7 +11,7 @@
 
 ## Differences with storybook
 
--   No addons, if you want more features open a pull request here, we want a cohesive code base
+-   No addons, if you want more features open a pull request here, i want a cohesive code base
 -   Many features inherited from next.js like
     -   Zero config typescript, babel, css support
     -   Incremental compilation
@@ -27,18 +27,8 @@
 
 -   Actions
 -   Knobs
--   Docs
--   Console
--   Links
 -   Props
 
-## How to enable SSR
-
-Currently SSR is disabled because
-
--   nextjs webpack resolve aliases are not picked up during first ssr render (only on refresh of a page that is not /index)
--   a lot of people probably don't support ssr rendering because of use of window (when ssr will be possible, it will be disabled by default)
--   not that much useful (first render performance is not that important for a project like this)
 
 ## Things to do
 
