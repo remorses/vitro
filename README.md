@@ -44,6 +44,7 @@ Currently SSR is disabled because
 
 -   [ ] use snowpack instead of nextjs, the routes are implemented with react-router and based on the tree file
 -   [ ] make a single tsdx standalone bundle for `@vitro/ui` and export it from cli to only have one dependency, no more need to install the vitro app folder or adding it to workspaces
+-   [ ] analyze webpack or snowpack output and determine the size of each page creating a bundle size report
 -   [x] call vitro commands from subdirectories
 -   [x] open in vscode redirects to original file
 -   [ ] `vitro screenshot` to make screenshots of all the stories and save them on disk (or upload them to s3 compatible store)
