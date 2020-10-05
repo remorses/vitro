@@ -33,6 +33,7 @@ export const generate = async (
         experiments.map((s) =>
             globWithGit(s, {
                 ignoreGlobs,
+                gitignore: true,
                 absolute: false,
                 cwd: globsBase,
                 // filesOnly: true,

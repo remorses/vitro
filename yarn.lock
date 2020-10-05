@@ -12616,10 +12616,10 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
 
-smart-glob@^0.0.28:
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.28.tgz#5c3ad007de569d8d5869aecd2e205bacfd4544db"
-  integrity sha512-9eF1tyKbouCxrw2+KJV10eyI+1IMxghmy47Y2a/Am9qevNxIam7O7bkad9J3Mwz48XfzdYJkR36VtWHO98wgoA==
+smart-glob@^0.0.31:
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-0.0.31.tgz#c854bbe03f48fbdf78addd36743894cbf55eadeb"
+  integrity sha512-TbxcmCzTTYTnifyfb0rEDrHIICPDjqOc6sCW4Cosr8Ay/sPIeBWZqCpI/Ube4zIFwNfGb8v6GYoz7RPlDAMjbg==
   dependencies:
     globalyzer "^0.1.4"
     globrex "^0.1.2"

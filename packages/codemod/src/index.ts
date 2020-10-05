@@ -37,6 +37,7 @@ export async function runMigrateCodemod({
 
     const files = await globWithGit(glob, {
         absolute: true,
+        gitignore: true,
         ignoreGlobs: ['**/node_modules/**', '**/dist/**'],
     })
 
