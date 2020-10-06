@@ -31,7 +31,7 @@
 
 ## Things to do
 
--   [ ] make only one depenendecy for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the cli dependency will also need snowpack ...)
+-   [ ] make only one dependency for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the cli dependency will also need snowpack ...)
 -   [ ] use snowpack instead of nextjs, the routes are computed from the tree file with react router
 -   [ ] snowpack should use esbuild to bundle dependencies snowpack/discussions/1216
 -   [ ] snowpack should bundle dependencies incrementally snowpack/discussions/1208
