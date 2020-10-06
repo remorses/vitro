@@ -29,9 +29,9 @@
 -   Knobs
 -   Props
 
-
 ## Things to do
 
+-   [ ] make only one depenendecy for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the main dependency will also need snowpack ...)
 -   [ ] use snowpack instead of nextjs, the routes are implemented with react-router and based on the tree file
 -   [ ] make a single tsdx standalone bundle for `@vitro/ui` and export it from cli to only have one dependency, no more need to install the vitro app folder or adding it to workspaces
 -   [ ] analyze webpack or snowpack output and determine the size of each page creating a bundle size report
