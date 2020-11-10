@@ -9,26 +9,24 @@ import {
     useColorMode,
     Box,
 } from '@chakra-ui/core'
+import {useHistory} from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { MdDehaze } from 'react-icons/md'
-import { useRouter } from 'next/router'
 import { ExperimentsNav } from './ExperimentsNav'
 
 export const useRouteChanged = (callback) => {
-    const router = useRouter()
+    const history = useHistory()
+    
     useEffect(() => {
         const handleRouteChange = (url) => {
             callback()
             console.log('App is changing to: ', url)
         }
-
-        router && router.events.on('routeChangeComplete', handleRouteChange)
-
+        const unlisten = history.listen(handleRouteChange)
         return () => {
-            router &&
-                router.events.off('routeChangeComplete', handleRouteChange)
+            unlisten()
         }
-    }, [router && router.events, callback])
+    }, [history, callback])
 }
 
 export const MobileNav = ({ experimentsTree, ...rest }) => {

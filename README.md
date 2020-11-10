@@ -34,11 +34,11 @@
 -   [ ] make only one dependency for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the cli dependency will also need snowpack ...)
 -   [ ] use snowpack instead of nextjs, the routes are computed from the tree file with react router
 -   [ ] snowpack should use esbuild to bundle dependencies snowpack/discussions/1216
--   [ ] snowpack should bundle dependencies incrementally snowpack/discussions/1208
+-   [x] snowpack should bundle dependencies incrementally snowpack/discussions/1208, impossible
 -   [ ] replace next link with react router
 -   [ ] replace Router.on with react router like https://gist.github.com/shelldandy/02ad1a9f8b5b86d1b2e4dd26a11967b2
 -   [ ] make a single tsdx standalone bundle for `@vitro/ui` and export it from cli to only have one dependency, no more need to install the vitro app folder or adding it to workspaces
--   [ ] analyze webpack or snowpack output and determine the size of each page creating a bundle size report
+-   [ ] analyze webpack or snowpack output and determine the size of each page creating a bundle size report, can be done analyzing the esbuild metafile or snowpack 
 -   [x] call vitro commands from subdirectories
 -   [x] open in vscode redirects to original file
 -   [ ] `vitro screenshot` to make screenshots of all the stories and save them on disk (or upload them to s3 compatible store)

@@ -54,18 +54,18 @@ export const generate = async (
         })
 
     debug(`creating pages tree`)
+    const experimentsTree = makeExperimentsTree(files)
     await fs.promises.writeFile(
         path.join(cwd, 'experimentsTree.json'),
-        JSON.stringify(makeExperimentsTree(files), null, 4),
+        JSON.stringify(experimentsTree, null, 4),
     )
     debug(`created pages tree`)
 
-    const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
-
-    // await remove(targetDir)
-    await generateExperiments({
-        files,
-        wrapperComponentPath: wrapper,
-        targetDir,
-    })
+    // TODO generate the index.js file with routes
+    // const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
+    // await generateExperiments({
+    //     files,
+    //     wrapperComponentPath: wrapper,
+    //     targetDir,
+    // })
 }

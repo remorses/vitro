@@ -9,10 +9,9 @@ import {
     useColorMode,
 } from '@chakra-ui/core'
 import debounce from 'lodash/debounce'
-import NextLink from 'next/link'
 import React, { useCallback, useState, useMemo } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
-import { ExperimentsTree, TOP_TITLE_H, version, filterTree } from '../support'
+import { ExperimentsTree, TOP_TITLE_H,  filterTree } from '../support'
 import { NavTree } from './NavTree'
 
 export const ExperimentsNav = ({
@@ -48,9 +47,9 @@ export const ExperimentsNav = ({
             >
                 <Logo fontSize='24px' />
                 <Box flex='1' />
-                <Box fontSize='0.9em' fontWeight='500' opacity={0.6}>
+                {/* <Box fontSize='0.9em' fontWeight='500' opacity={0.6}>
                     v{version}
-                </Box>
+                </Box> */}
             </Stack>
             <InputGroup
             // opacity={0.7}

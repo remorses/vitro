@@ -44,10 +44,11 @@ export function ExperimentPage({
     GlobalWrapper,
     absolutePath,
     sourceExperimentPath,
-    fileExports: fileExportsObject,
+    fileExports: getFileExports = () => Promise.resolve({}),
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
+    const [fileExportsObject] = usePromise(getFileExports, {})
 
     // let [fileExports] = usePromise(fileExportsImporter)
     const experimentComponents = useMemo(

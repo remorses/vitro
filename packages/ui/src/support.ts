@@ -2,7 +2,7 @@ import startCase from 'lodash/startCase'
 import { useEffect, useState } from 'react'
 import cloneDeep from 'lodash/cloneDeep'
 
-export const version = require('../package.json').version
+// export const version = require('../package.json').version
 
 export const TOP_TITLE_H = '60px'
 
@@ -22,34 +22,17 @@ export function formatPathToTitle(path: string) {
     return startCase(withoutExt)
 }
 
-export function usePromise(p) {
-    const [v, set] = useState(!isPromise(p) ? p : {})
+export function usePromise(p, defaultValue): [any] {
+    const [v, set] = useState(defaultValue)
     useEffect(() => {
-        if (isPromise(p)) {
-            p.then(set)
-        } else {
-            set(p)
-        }
+        p()
+            .then(set)
+            .catch((e) => {
+                console.error('error in usePromise\n' + e)
+            })
     }, [p])
     return [v]
 }
-
-// export function usePolledPromise(fn, time = 1000) {
-//     const [v, set] = useState(undefined)
-//     useEffect(() => {
-//         let id = setInterval(() => {
-//             fn().then((x) => {
-//                 if (x !== v) {
-//                     set(x)
-//                 }
-//             })
-//         }, time)
-//         return () => {
-//             clearInterval(id)
-//         }
-//     }, [])
-//     return [v]
-// }
 
 function isPromise(p) {
     return p && typeof p.then === 'function'
@@ -132,4 +115,26 @@ function filterChildren(data: ExperimentsTree[], filter) {
         return filter(o)
     })
     return r
+}
+
+export function bfs(tree: ExperimentsTree): ExperimentsTree[] {
+    const results = []
+    // tree.depth = 0
+    var queue = [tree]
+    var n: ExperimentsTree
+
+    while (queue.length > 0) {
+        n = queue.shift()
+        results.push(n)
+
+        if (!n.children) {
+            continue
+        }
+        for (var i = 0; i < n.children.length; i++) {
+            const child = n.children[i]
+            // child.depth = (n.depth || 0) + 1
+            queue.push(child)
+        }
+    }
+    return results
 }

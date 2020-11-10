@@ -70,6 +70,16 @@ const command: CommandModule = {
             }
 
             console.info('starting the server')
+            // TODO create a .vitro folder with an index.js file that renders the routes with react, routes are generated from the files tree
+            // the generate command will just generate experimentsTree.json file and an index.js file with the routes (react-router will be imported from the vitro cli)
+            // the generation will be executed from inside a snowpack plugin, this way i have access to snowpack watcher
+            // the routes must be statically analyzable by snowpack, this means i have to create the index.js file with routes hard coded
+            // the dev command will just run snowpack dev command imported from dependencies
+            // the wrapper route out of Switch will be the vitro main ui, imported from the same package as the cli
+            // the individual routes will be wrapped by ExperimentPage and will dynamically import from their story path (this way the server only transforms files on demand)
+            // the dev command is just `snowpack dev`, this exposes a server that serves the stories and bundles (after it bundles all the dependencies)
+            // the --filter option will make build install times slower, maybe i should enable --filter . by default
+            // if build fails user will see snowpack errors
             const command = getDevCommand(packageManager, argv.port)
             await runCommand({
                 command,

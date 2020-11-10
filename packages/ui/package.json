@@ -17,6 +17,7 @@
     "nprogress": "^0.2.0",
     "react-icons": "latest",
     "react-is": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-storage-hooks": "^4.0.1",
     "stylis-plugin-extra-scope": "^0.2.1",
     "tslib": "^2.0.0"
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@types/mocha": "^7.0.2",
     "@types/react-icons": "^3.0.0",
+    "@types/react-router-dom": "^5.1.6",
     "assert": "^2.0.0",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
@@ -53,7 +55,8 @@
   "repository": "remorses/vitro",
   "scripts": {
     "test": "NODE_ENV=test mocha --colors --exit",
-    "build": "tsc -b && tsc -b tsconfig.esm.json"
+    "build": "microbundle -i src/index.ts -f cjs,es --jsx React.createElement --external react,next,react-dom",
+    "build2": "tsc -b && tsc -b tsconfig.esm.json"
   },
   "types": "dist/index.d.ts",
   "gitHead": "aeeca7004155ed4b27e2a6d3441d0dff61a9d4ee"

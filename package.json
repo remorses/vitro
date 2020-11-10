@@ -20,6 +20,7 @@
     },
     "devDependencies": {
         "lerna": "^3.22.1",
+        "microbundle": "^0.12.4",
         "syncpack": "^5.0.3"
     },
     "dependencies": {

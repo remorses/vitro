@@ -1,6 +1,6 @@
 import { Box, PseudoBox, useColorMode } from '@chakra-ui/core'
-import NextLink from 'next/link'
-import { useRouter } from 'next/router'
+import {Link as RouterLink} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import React, { cloneElement, forwardRef } from 'react'
 
 export const ComponentLink = React.memo(
@@ -65,8 +65,8 @@ export const SideNavLink = forwardRef(
 )
 
 const NavLink = ({ children, href, ...props }: any) => {
-    const router = useRouter()
-    const pathname = router?.pathname || ''
+    // const router = useRouter()
+    const {pathname=''} = useLocation()
     let isActive = false
 
     if (
@@ -81,9 +81,9 @@ const NavLink = ({ children, href, ...props }: any) => {
     }
 
     return (
-        <NextLink prefetch={false} href={href} passHref {...props}>
+        <RouterLink to={href} {...props}>
             {typeof children === 'function' ? children(isActive) : children}
-        </NextLink>
+        </RouterLink>
     )
 }
 

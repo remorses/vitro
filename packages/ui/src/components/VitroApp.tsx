@@ -8,7 +8,6 @@ import {
     useColorMode,
 } from '@chakra-ui/core'
 import { Global, jsx, css, CacheProvider } from '@emotion/core'
-import { Router } from 'next/router'
 import NProgress from 'nprogress'
 import React, { useState, useEffect, useMemo } from 'react'
 import { globalStyles } from '../css'
@@ -21,18 +20,18 @@ import { ExperimentsTree } from '../support'
 
 jsx
 
-Router.events.on('routeChangeStart', (url) => {
-    // console.log(`Loading: ${url}`)
-    NProgress.start()
-})
-Router.events.on('routeChangeComplete', () => NProgress.done())
-Router.events.on('routeChangeError', () => NProgress.done())
+// TODO nprogress stuff
+// Router.events.on('routeChangeStart', (url) => {
+//     // console.log(`Loading: ${url}`)
+//     NProgress.start()
+// })
+// Router.events.on('routeChangeComplete', () => NProgress.done())
+// Router.events.on('routeChangeError', () => NProgress.done())
 
 const PAGE_PADDING = '40px'
 const SM_PAGE_PADDING = '20px'
 
-export function VitroApp({ experimentsTree, ...props }) {
-    const { Component, pageProps } = props
+export function VitroApp({ experimentsTree, children, ...props }) {
     return (
         <ColorModeProvider value='light'>
             {/* TODO make initial color mode configurable via webpack define */}
@@ -42,7 +41,7 @@ export function VitroApp({ experimentsTree, ...props }) {
                 <Content
                     experimentsTree={experimentsTree}
                 >
-                    <Component {...pageProps} />
+                    {children}
                 </Content>
             </ThemeProvider>
         </ColorModeProvider>
