@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "declaration": true,
+        "outDir": "dist",
+        "allowJs": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "jsx": "react",
+        "composite": true,
+        "rootDir": "src"
+    },
+
+    "exclude": ["template", "tests", "dist", "esm"],
+    "references": []
+}
