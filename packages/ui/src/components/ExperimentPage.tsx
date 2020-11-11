@@ -8,7 +8,6 @@ import {
     IconButton,
     Link,
     Select,
-    SimpleGrid,
     Stack,
     StackProps,
     useColorMode,
@@ -77,6 +76,57 @@ export function ExperimentPage({
             )
         }
     }, [GlobalWrapper])
+
+    const [clickToSeeSourceOption, setClickToSeeSource] = useState('disabled')
+    const clickToSourceEnabled = clickToSeeSourceOption !== 'disabled'
+    useEffect(() => {
+        if (clickToSourceEnabled) {
+            const elements = Array.from(
+                document.querySelectorAll(
+                    '.vitro-block *[data-vitro-filename]',
+                ),
+            )
+
+            elements.forEach((elem) => {
+                elem.addEventListener('click', onClickToSource)
+            })
+        } else {
+            const elements = Array.from(
+                document.querySelectorAll('*[data-vitro-filename]'),
+            )
+            elements.forEach((elem) => {
+                elem.removeEventListener('click', onClickToSource)
+            })
+        }
+    }, [clickToSourceEnabled])
+
+    const onClickToSource = useCallback(
+        function onClickToSource(e) {
+            // e.preventDefault()
+            e.stopPropagation()
+            setClickToSeeSource('disabled')
+            const target = e.currentTarget
+            const filename = target.getAttribute('data-vitro-filename')
+            // TODO filename is a path realtive to the root of the repository, this path can be used on vscode or on github using different path.join
+            const lineNumber = target.getAttribute('data-vitro-line')
+            if (!filename) {
+                console.warn(
+                    `no filename found among ${[target.attributes]
+                        .map((x) => `${x.name}='${x.value}'`)
+                        .join(', ')}`,
+                )
+                return
+            }
+            if (!lineNumber) {
+                console.warn(
+                    `no line number found for ${target} among ${target.attributes}`,
+                )
+                return
+            }
+            window.location.href = `vscode://file${filename}:${lineNumber}`
+        },
+        [setClickToSeeSource],
+    )
 
     const vscodeUrl = `vscode://file${sourceExperimentPath}`
     // exported.then(z => console.log(Object.keys(z)))
@@ -148,7 +198,7 @@ export function ExperimentPage({
                 )}
             </Stack>
             {/* <Box flexShrink={0} h='4' /> */}
-            <Stack flexShrink={0} direction='row'>
+            <Stack align='center' flexShrink={0} direction='row'>
                 <Box flex='1' />
                 <Button
                     onClick={() => setCssDebug((x) => !x)}
@@ -159,6 +209,28 @@ export function ExperimentPage({
                     <Box mr='2' d='inline-block' as={FaBug} />
                     CSS debug
                 </Button>
+
+                <Select
+                    onChange={(e) => {
+                        const value = e.target.value
+                        setClickToSeeSource(value)
+                    }}
+                    value={clickToSeeSourceOption}
+                    opacity={0.8}
+                    variant='filled'
+                    bg={bg}
+                    // placeholder='click to see source'
+                    w='auto'
+                >
+                    <option
+                        value='disabled'
+                        children='click to source disabled'
+                    />
+                    <option
+                        value='vscode'
+                        children='click to source on Vscode'
+                    />
+                </Select>
             </Stack>
             <Stack
                 flexShrink={0}
@@ -200,7 +272,11 @@ export function ExperimentPage({
                                 >
                                     <Stack
                                         // flex='1'
-                                        className='vitro-block'
+                                        className={`${
+                                            clickToSourceEnabled
+                                                ? 'vitro-block'
+                                                : ''
+                                        }`}
                                         w='100%'
                                         h='100%'
                                         minH='100%'
