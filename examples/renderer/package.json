@@ -12,6 +12,7 @@
         "@mdx-js/react": "^1.6.16",
         "@vitro/plugin": "^0.0.83",
         "@vitro/ui": "^0.0.83",
+        "@vitro/babel-plugin-inject-location": "^0.0.83",
         "babel-plugin-macros": "^2.8.0",
         "inline-mdx.macro": "^1.0.0",
         "next": "^9.5.2",
