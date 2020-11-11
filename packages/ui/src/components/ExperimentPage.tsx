@@ -200,6 +200,7 @@ export function ExperimentPage({
                                 >
                                     <Stack
                                         // flex='1'
+                                        className='vitro-block'
                                         w='100%'
                                         h='100%'
                                         minH='100%'

@@ -5,7 +5,7 @@ import experimentsTree from '_vitro-root_/experimentsTree.json'
 import { ExperimentPage } from '@vitro/ui/src'
 
 const absolutePath = '/Users/morse/Documents/GitHub/react-comics/examples/renderer/pages/experiments/styled-components/src/big-width.vitro.jsx'
-const sourceExperimentPath = '/Users/morse/Documents/GitHub/react-comics/examples/renderer/styled-components/src/big-width.vitro.jsx'
+const sourceExperimentPath = '/Users/morse/Documents/GitHub/react-comics/examples/styled-components/src/big-width.vitro.jsx'
 
 export default function Page() {
     return (

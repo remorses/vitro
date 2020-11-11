@@ -5,8 +5,8 @@ exports[`babel plugin class component: code 1`] = `
   render() {
     return (
       <div
-        __line={4}
-        __filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
+        data-vitro-line={4}
+        data-vitro-filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
       >
         <a>link</a>
         <SomeOtherComponent />
@@ -20,8 +20,8 @@ exports[`babel plugin class component: code 1`] = `
 exports[`babel plugin closed element: code 1`] = `
 "const x = (
   <a
-    __line={1}
-    __filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
+    data-vitro-line={1}
+    data-vitro-filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
   >
     <div id=\\"Hello World!\\" />
   </a>
@@ -36,8 +36,8 @@ exports[`babel plugin function component with early return: code 1`] = `
   if (loading) {
     return (
       <div
-        __line={5}
-        __filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
+        data-vitro-line={5}
+        data-vitro-filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
       >
         <a>link</a>
         loading
@@ -47,8 +47,8 @@ exports[`babel plugin function component with early return: code 1`] = `
 
   return (
     <div
-      __line={12}
-      __filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
+      data-vitro-line={12}
+      data-vitro-filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
     >
       <a>link</a>
       <SomeOtherComponent />
@@ -62,8 +62,8 @@ exports[`babel plugin function component: code 1`] = `
 "function Component() {
   return (
     <div
-      __line={3}
-      __filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
+      data-vitro-line={3}
+      data-vitro-filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
     >
       <a>link</a>
       <SomeOtherComponent />
@@ -76,8 +76,8 @@ exports[`babel plugin function component: code 1`] = `
 exports[`babel plugin simple const jsx: code 1`] = `
 "const x = (
   <a
-    __line={1}
-    __filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
+    data-vitro-line={1}
+    data-vitro-filename=\\"/Users/morse/Documents/GitHub/react-comics/packages/babel-plugin-inject-location/filename.js\\"
   >
     <div id=\\"Hello World!\\"></div>
   </a>

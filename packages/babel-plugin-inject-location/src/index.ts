@@ -15,7 +15,6 @@ import * as babel from '@babel/core'
 
 import { NodePath, PluginObj } from '@babel/core'
 import jsxSyntax from '@babel/plugin-syntax-jsx'
-const TRACE_ID = '__self'
 
 export default function plugin({ types: t }: typeof babel): PluginObj {
     let filename = ''
@@ -36,13 +35,13 @@ export default function plugin({ types: t }: typeof babel): PluginObj {
             const location = node.loc.start
             node.attributes.push(
                 t.jsxAttribute(
-                    t.jsxIdentifier('__line'),
+                    t.jsxIdentifier('data-vitro-line'),
                     t.jsxExpressionContainer(t.numericLiteral(location.line)),
                 ),
             )
             node.attributes.push(
                 t.jsxAttribute(
-                    t.jsxIdentifier('__filename'),
+                    t.jsxIdentifier('data-vitro-filename'),
                     t.stringLiteral(filename),
                 ),
             )
