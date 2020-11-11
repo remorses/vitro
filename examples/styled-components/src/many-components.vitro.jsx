@@ -36,7 +36,7 @@ const List = ({ items }) => {
 
 const ListItem = ({ i }) => {
     const MyTitle = i % 2 === 0 ? Title : TitleEmotion
-    return <MyTitle data-filename='df'>Item N {i}</MyTitle>
+    return <MyTitle>Item N {i}</MyTitle>
 }
 
 export const RootComponent = () => (
