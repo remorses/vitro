@@ -11,6 +11,7 @@
         "@vitro/cli": "^0.0.83",
         "@vitro/plugin": "^0.0.83",
         "@vitro/ui": "^0.0.83",
+        "@vitro/babel-plugin-inject-location": "^0.0.83",
         "next": "9.5.3",
         "react": "latest",
         "react-dom": "latest"
