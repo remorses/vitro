@@ -1,7 +1,7 @@
-.vitro-block *[data-vitro-filename] {
+.click-to-source-enabled *[data-vitro-filename] {
     /* outline: 1px solid #2980b9 !important; */
 }
-.vitro-block *[data-vitro-filename]:hover {
+.click-to-source-enabled *[data-vitro-filename]:hover {
     background-color: rgba(3, 255, 3, 0.1) !important;
     outline: 1px solid #2980b9 !important;
 }

@@ -110,7 +110,7 @@ export function ClickToSourceProviderStateless({
         }
         if (enabled) {
             const elements = Array.from(
-                root.querySelectorAll('.vitro-block *[data-vitro-filename]'),
+                root.querySelectorAll('.click-to-source-enabled *[data-vitro-filename]'),
             )
 
             elements.forEach((elem) => {
@@ -125,7 +125,7 @@ export function ClickToSourceProviderStateless({
             })
         }
     }, [enabled])
-    const enabledClassName = enabled ? 'vitro-block' : ''
+    const enabledClassName = enabled ? 'click-to-source-enabled' : ''
     const contextValue = {
         ...value,
     }
