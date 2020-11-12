@@ -282,7 +282,7 @@ const ClickToSourceContext = createContext<ClickToSourceState>({ provider: '' })
 
 function ClickToSourceProvider({ children = null }) {
     const [state, setState] = useState<ClickToSourceState>({ provider: '' })
-    const [elem] = useState(document.createElement('div'))
+    const [elem] = useState(() => document.createElement('div'))
 
     useEffect(() => {
         document.body.appendChild(elem)
