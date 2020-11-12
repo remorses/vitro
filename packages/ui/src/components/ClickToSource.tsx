@@ -126,11 +126,8 @@ export function ClickToSourceProviderStateless({
         }
     }, [enabled])
     const enabledClassName = enabled ? 'click-to-source-enabled' : ''
-    const contextValue = {
-        ...value,
-    }
     return (
-        <ClickToSourceContext.Provider value={contextValue}>
+        <ClickToSourceContext.Provider value={value}>
             <div
                 className={
                     className
