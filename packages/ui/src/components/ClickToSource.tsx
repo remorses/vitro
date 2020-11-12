@@ -12,7 +12,7 @@ import React, {
 import ReactDOM from 'react-dom'
 
 export type ClickToSourceState = {
-    provider: '' | 'vscode'
+    provider: '' | 'vscode' // TODO add github provider, passing githubUrl
 }
 
 const ClickToSourceContext = createContext<ClickToSourceState>({ provider: '' })
