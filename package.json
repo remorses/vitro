@@ -19,9 +19,9 @@
         "nohoist": []
     },
     "devDependencies": {
+        "esbuild": "^0.8.17",
         "lerna": "^3.22.1",
-        "microbundle": "^0.12.4",
-        "syncpack": "^5.0.3"
+        "rollup": "^2.34.0"
     },
     "dependencies": {
         "react": "^16.13.1",
