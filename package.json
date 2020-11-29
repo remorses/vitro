@@ -3,7 +3,7 @@
     "private": true,
     "scripts": {
         "cli": "cross-env VITRO_TESTING=1 node -r sucrase/register packages/cli/src/main.ts",
-        "start": "tsc -b -w",
+        "watch": "tsc -b --clean && tsc -b -w",
         "test": "lerna run --scope @vitro/* --ignore website test",
         "examples": "yarn --cwd examples/renderer dev",
         "examples:build": "yarn --cwd examples/renderer build",

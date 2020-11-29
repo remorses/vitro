@@ -1,5 +1,4 @@
 // @jsx jsx
-
 import {
     Box,
     BoxProps,
@@ -8,12 +7,12 @@ import {
     IconButton,
     Link,
     Select,
-    SimpleGrid,
     Stack,
     StackProps,
     useColorMode,
 } from '@chakra-ui/core'
-import { jsx, css } from '@emotion/core'
+import { jsx } from '@emotion/core'
+import assign from 'lodash/assign'
 import React, {
     Profiler,
     ProfilerOnRenderCallback,
@@ -23,17 +22,19 @@ import React, {
     useRef,
     useState,
 } from 'react'
-import assign from 'lodash/assign'
 import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
 import { DebugCSS } from '../debugCSS'
+import { debug, formatPathToTitle, TOP_TITLE_H } from '../support'
+import {
+    ClickToSourceProviderStateless,
+    ClickToSourceState,
+} from './ClickToSource'
 import { DefaultWrapper } from './DefaultWrapper'
-import { MobileNav } from './MobileNav'
-import { formatPathToTitle, TOP_TITLE_H, usePromise, debug } from '../support'
-import styled from '@emotion/styled'
 import { MdxStyler } from './MarkdownStyler'
+import { MobileNav } from './MobileNav'
 
 jsx
 
@@ -78,6 +79,10 @@ export function ExperimentPage({
             )
         }
     }, [GlobalWrapper])
+
+    const [clickToSeeSourceProvider, setClickToSeeSource] = useState<
+        ClickToSourceState['provider']
+    >('')
 
     const vscodeUrl = `vscode://file${sourceExperimentPath}`
     // exported.then(z => console.log(Object.keys(z)))
@@ -149,7 +154,7 @@ export function ExperimentPage({
                 )}
             </Stack>
             {/* <Box flexShrink={0} h='4' /> */}
-            <Stack flexShrink={0} direction='row'>
+            <Stack align='center' flexShrink={0} direction='row'>
                 <Box flex='1' />
                 <Button
                     onClick={() => setCssDebug((x) => !x)}
@@ -160,7 +165,28 @@ export function ExperimentPage({
                     <Box mr='2' d='inline-block' as={FaBug} />
                     CSS debug
                 </Button>
+
+                <Select
+                    onChange={(e) => {
+                        const value = e.target.value as any
+                        setClickToSeeSource(value)
+                    }}
+                    fontWeight={500}
+                    value={clickToSeeSourceProvider}
+                    opacity={0.8}
+                    variant='filled'
+                    bg={bg}
+                    // placeholder='click to see source'
+                    w='auto'
+                >
+                    <option value='' children='click to source disabled' />
+                    <option
+                        value='vscode'
+                        children='click to source on Vscode'
+                    />
+                </Select>
             </Stack>
+
             <Stack
                 flexShrink={0}
                 // direction='row'
@@ -199,31 +225,46 @@ export function ExperimentPage({
                                     key={id}
                                     id={id}
                                 >
-                                    <Stack
-                                        // flex='1'
-                                        w='100%'
-                                        h='100%'
-                                        minH='100%'
-                                        spacing='0'
-                                        align='center'
-                                        justify='center'
-                                        as={cssDebugEnabled ? DebugCSS : 'div'}
+                                    <ClickToSourceProviderStateless
+                                        value={{
+                                            provider: clickToSeeSourceProvider,
+                                        }}
+                                        onChange={(state) => {
+                                            setClickToSeeSource(state.provider)
+                                        }}
                                     >
-                                        <ValidGlobalWrapper
-                                            key={colorMode} // TODO remounting on color mode change or the providers get fucked up
-                                            dark={colorMode == 'dark'}
+                                        <Stack
+                                            // flex='1'
+                                            w='100%'
+                                            h='100%'
+                                            minH='100%'
+                                            spacing='0'
+                                            align='center'
+                                            justify='center'
+                                            as={
+                                                cssDebugEnabled
+                                                    ? DebugCSS
+                                                    : 'div'
+                                            }
                                         >
-                                            <ExperimentWrapper
-                                                key={colorMode}
+                                            <ValidGlobalWrapper
+                                                key={colorMode} // TODO remounting on color mode change or the providers get fucked up
                                                 dark={colorMode == 'dark'}
                                             >
-                                                <Component
+                                                <ExperimentWrapper
                                                     key={colorMode}
                                                     dark={colorMode == 'dark'}
-                                                />
-                                            </ExperimentWrapper>
-                                        </ValidGlobalWrapper>
-                                    </Stack>
+                                                >
+                                                    <Component
+                                                        key={colorMode}
+                                                        dark={
+                                                            colorMode == 'dark'
+                                                        }
+                                                    />
+                                                </ExperimentWrapper>
+                                            </ValidGlobalWrapper>
+                                        </Stack>
+                                    </ClickToSourceProviderStateless>
                                 </StoryBlock>
                             )
                         })}

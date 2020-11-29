@@ -41,6 +41,13 @@
                     "path": "styled-components/src/example-styled-components.vitro.jsx",
                     "title": "Example Styled Components",
                     "children": []
+                },
+                {
+                    "name": "many-components.vitro.jsx",
+                    "url": "/experiments/styled-components/src/many-components.vitro",
+                    "path": "styled-components/src/many-components.vitro.jsx",
+                    "title": "Many Components",
+                    "children": []
                 }
             ]
         },
