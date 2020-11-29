@@ -1,6 +1,5 @@
 // rollup.config.js
 
-
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import esbuild from 'rollup-plugin-esbuild'
@@ -15,13 +14,14 @@ const config = {
         sourcemap: 'inline',
     },
     sourcemap: '',
-    external: ['react', 'react-dom', 'react-router-dom'],
+    external: ['react', 'react-dom', 'react-router-dom', './inspect-mode.css'],
     plugins: [
         resolve({
             // extensions: ['.js', '.ts', '.tsx', '.jsx'],
         }),
         esbuild({
             sourceMap: true,
+            exclude: '*.css',
             // exclude: ['node_modules/**'],
             // transforms: ['typescript', 'jsx'],
         }),
