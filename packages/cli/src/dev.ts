@@ -24,8 +24,8 @@ const command: CommandModule = {
     builder: (argv) => {
         argv.option('port', {
             alias: 'p',
-            type: 'string',
-            default: '7007',
+            type: 'number',
+            default: 7007,
             required: false,
             description: 'The port for the dev server',
         })
@@ -95,7 +95,7 @@ function listen(
         }
     })
 
-    server = server.listen(port, () => {
+    server.listen(port, () => {
         console.log()
         console.log(`  Dev server running at:`)
         const interfaces = os.networkInterfaces()
