@@ -2,31 +2,21 @@ import chokidar from 'chokidar'
 import dedent from 'dedent'
 import { throttle } from 'lodash'
 import memoize from 'memoizee'
-import { UserConfig, ServerPluginContext, Plugin } from 'vite'
-import path from 'path'
-import {
-    VIRTUAL_INDEX_PUBLIC_PATH,
-    VIRTUAL_INDEX_TEMPLATE_LOCATION,
-    EXPERIMENTS_TREE_PUBLIC_PATH,
-} from './constants'
+import { Plugin, ServerPluginContext } from 'vite'
+import { EXPERIMENTS_TREE_PUBLIC_PATH, VIRTUAL_INDEX_PUBLIC_PATH } from './constants'
 import { generate } from './generate'
 
 export interface VitroConfig {
     experiments: string[]
     wrapper?: string
-    importCSS?: boolean
     basePath?: string
-    transpileModules?: string[]
-    globalCSS?: string[]
     ignore?: string[]
-    doNotTranspile?: string[]
 }
 
 export function createConfigureServer(config: VitroConfig) {
     const generateCode = memoize(() => generate(process.cwd(), config))
     function configureServer({ app, watcher, root }: ServerPluginContext) {
         app.use(async (ctx, next) => {
-            // TODO cache the tree generation
             const { experimentsTree, virtualIndexCode } = await generateCode()
             // TODO manually trigger a hmr reload on virtual file on new stories added?
             if (ctx.path === VIRTUAL_INDEX_PUBLIC_PATH) {
