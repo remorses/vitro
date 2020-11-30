@@ -10,15 +10,13 @@ import { VIRTUAL_INDEX_TEMPLATE_LOCATION } from './constants'
 
 const excludedDirs = ['**/.vitro/**', '**/pages/experiments/**']
 
-export const generate = async (
-    cwd: string,
-    args: VitroConfig & { experimentsFilters?: string[] },
-) => {
-    let {
-        experiments = [],
-        ignore: userIgnore = [],
-        experimentsFilters = [],
-    } = args
+export const generate = async (args: {
+    root: string
+    config: VitroConfig
+    experimentsFilters: string[]
+}) => {
+    const { config, root, experimentsFilters = [] } = args
+    let { experiments = [], ignore: userIgnore = [] } = config
 
     debug({ experimentsFilters })
     experiments = experiments.map(path.normalize)
@@ -31,7 +29,7 @@ export const generate = async (
                 ignoreGlobs,
                 gitignore: true,
                 absolute: false,
-                cwd: cwd,
+                cwd: root,
                 // filesOnly: true,
             }),
         ),
@@ -43,7 +41,7 @@ export const generate = async (
         .filter((p) => {
             return (
                 !experimentsFilters?.length ||
-                experimentsFilters.some((f) => isWithin(f, path.join(cwd, p)))
+                experimentsFilters.some((f) => isWithin(f, path.join(root, p)))
             )
         })
 
@@ -67,7 +65,7 @@ export const generate = async (
 
     const virtualIndexCode = await generateVirtualIndexFile({
         experimentsTree,
-        root: cwd,
+        root: root,
     })
     return { experimentsTree, virtualIndexCode }
 }

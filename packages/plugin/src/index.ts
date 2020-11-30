@@ -1,7 +1,5 @@
 export * from './plugin'
 export * from './generate'
-export { getExperimentsPathFilter } from './support'
-export { FILTER_EXPERIMENTS } from './constants'
 export { vitroPlugin as default } from './plugin'
 // make this a vite plugin
 // serve the entry as a virtual file

@@ -2,20 +2,14 @@ import path from 'path'
 
 export const CMD = 'vitro'
 export const TESTING = process.env.VITRO_TESTING
-export const NEXT_APP_PATH = TESTING ? 'renderer' : '.vitro'
 
 export const CONFIG_PATH = 'vitro.config.js'
-export const VERSION_FILE_PATH = 'version.js'
 
-export const TEMPLATE_PATH = TESTING
-    ? path.resolve(__dirname, '../../template')
-    : path.resolve(__dirname, '../template')
 
 // TODO add more options commented out and the docs link for the configuration object
-export const getDefaultConfig = ({packageManager}) => `
+export const getDefaultConfig = ({}) => `
 // read more at https://vitro.now.sh/docs/config
 module.exports = {
-    packageManager: '${packageManager}', // npm or yarn
     experiments: ['./**/*.vitro.jsx'], // globs to search for experiment files
     globalCSS: [], // path to css files to use to for all experiments
     ignore: [], // add directories to ignore when searching for experiment files

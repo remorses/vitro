@@ -18,14 +18,19 @@ export interface VitroConfig {
 
 interface PluginArgs {
     config: VitroConfig
+    experimentsFilters: string[]
 }
 
 export function createConfigureServer(_args: PluginArgs) {
-    const { config } = _args
-    const generateCode = memoize((root) => generate(root, config))
+    const { config, experimentsFilters } = _args
+    const generateCode = memoize((root) =>
+        generate({ config, root, experimentsFilters }),
+    )
     function configureServer({ app, watcher, root }: ServerPluginContext) {
         app.use(async (ctx, next) => {
-            const { experimentsTree, virtualIndexCode } = await generateCode(root)
+            const { experimentsTree, virtualIndexCode } = await generateCode(
+                root,
+            )
             // TODO manually trigger a hmr reload on virtual file on new stories added?
             if (ctx.path === VIRTUAL_INDEX_PUBLIC_PATH) {
                 ctx.body = virtualIndexCode

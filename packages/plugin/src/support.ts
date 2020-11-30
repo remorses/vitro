@@ -1,4 +1,4 @@
-import { VERBOSE, FILTER_EXPERIMENTS } from './constants'
+
 import { attempt, mapKeys } from 'lodash'
 import path from 'path'
 import dedent from 'dedent'
@@ -8,14 +8,6 @@ export const debug = (...args) => {
     if (process.env.DEBUG) {
         console.error('[DEBUG]', ...args)
     }
-}
-
-export function getExperimentsPathFilter() {
-    const filter = process.env[FILTER_EXPERIMENTS] || ''
-    return filter
-        .split(',')
-        .map((x) => x.trim())
-        .filter(Boolean)
 }
 
 export function isWithin(outer, inner) {
