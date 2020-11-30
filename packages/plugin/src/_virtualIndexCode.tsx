@@ -4,6 +4,9 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { HomePage, ExperimentPage, VitroApp } from '@vitro/ui/bundle'
 
 import '@vitro/ui/src/inspect-mode.css'
+import '@vitro/ui/src/inspector.css'
+
+
 // @ts-expect-error
 import experimentsTree from '/vitro-experiments-tree.js'
 

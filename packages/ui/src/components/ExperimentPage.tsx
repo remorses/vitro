@@ -26,7 +26,6 @@ import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
-import { DebugCSS } from '../debugCSS'
 import { debug, formatPathToTitle, TOP_TITLE_H, usePromise } from '../support'
 import {
     ClickToSourceProviderStateless,
@@ -240,10 +239,10 @@ export function ExperimentPage({
                                             spacing='0'
                                             align='center'
                                             justify='center'
-                                            as={
+                                            className={
                                                 cssDebugEnabled
-                                                    ? DebugCSS
-                                                    : 'div'
+                                                    ? 'vitro-inspect-css'
+                                                    : ''
                                             }
                                         >
                                             <ValidGlobalWrapper
