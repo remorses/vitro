@@ -3,7 +3,10 @@ import dedent from 'dedent'
 import { throttle } from 'lodash'
 import memoize from 'memoizee'
 import { Plugin, ServerPluginContext } from 'vite'
-import { EXPERIMENTS_TREE_PUBLIC_PATH, VIRTUAL_INDEX_PUBLIC_PATH } from './constants'
+import {
+    EXPERIMENTS_TREE_PUBLIC_PATH,
+    VIRTUAL_INDEX_PUBLIC_PATH,
+} from './constants'
 import { generate } from './generate'
 
 export interface VitroConfig {
@@ -13,11 +16,16 @@ export interface VitroConfig {
     ignore?: string[]
 }
 
-export function createConfigureServer(config: VitroConfig) {
-    const generateCode = memoize(() => generate(process.cwd(), config))
+interface PluginArgs {
+    config: VitroConfig
+}
+
+export function createConfigureServer(_args: PluginArgs) {
+    const { config } = _args
+    const generateCode = memoize((root) => generate(root, config))
     function configureServer({ app, watcher, root }: ServerPluginContext) {
         app.use(async (ctx, next) => {
-            const { experimentsTree, virtualIndexCode } = await generateCode()
+            const { experimentsTree, virtualIndexCode } = await generateCode(root)
             // TODO manually trigger a hmr reload on virtual file on new stories added?
             if (ctx.path === VIRTUAL_INDEX_PUBLIC_PATH) {
                 ctx.body = virtualIndexCode
@@ -62,9 +70,9 @@ export function createConfigureServer(config: VitroConfig) {
     return configureServer
 }
 
-export function vitroPlugin(config: VitroConfig): Plugin {
+export function vitroPlugin(args: PluginArgs): Plugin {
     return {
-        configureServer: createConfigureServer(config),
+        configureServer: createConfigureServer(args),
     }
 }
 

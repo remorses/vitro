@@ -23,7 +23,7 @@ const config: UserConfig = {
                 // link: ['example-linked-package'],
                 force: true,
             }),
-        vitro(require('./vitro.config')),
+        vitro({ config: require('./vitro.config') }),
     ],
 }
 
