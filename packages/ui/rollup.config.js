@@ -14,7 +14,7 @@ const config = {
         sourcemap: 'inline',
     },
     sourcemap: '',
-    external: ['react', 'react-dom', 'react-router-dom', './inspect-mode.css'],
+    external: ['react', 'react-dom', 'react-router-dom'],
     plugins: [
         resolve({
             // extensions: ['.js', '.ts', '.tsx', '.jsx'],

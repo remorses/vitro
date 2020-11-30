@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { HomePage, ExperimentPage, VitroApp } from '@vitro/ui/bundle'
-
+import '@vitro/ui/src/inspect-mode.css'
 import experimentsTree from './experimentsTree.json'
 
 const absolutePath =
