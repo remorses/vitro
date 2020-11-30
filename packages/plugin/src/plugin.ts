@@ -24,6 +24,7 @@ export interface VitroConfig {
 export function createConfigureServer(config: VitroConfig) {
     function configureServer({ app, watcher, root }: ServerPluginContext) {
         app.use(async (ctx, next) => {
+            
             // TODO cache the tree generation
             const { experimentsTree, virtualIndexCode } = await generate(
                 root,
@@ -42,6 +43,7 @@ export function createConfigureServer(config: VitroConfig) {
                 )}`
                 ctx.type = 'js'
             }
+            await next()
             if (ctx.path === '/' || ctx.path === '/index.html') {
                 ctx.body = dedent`
                     <!DOCTYPE html>
@@ -65,8 +67,8 @@ export function createConfigureServer(config: VitroConfig) {
                     </html>
                     `
                 ctx.type = 'html'
+                ctx.status = 200
             }
-            return next()
         })
     }
     return configureServer
