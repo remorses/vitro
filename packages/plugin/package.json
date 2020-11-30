@@ -24,6 +24,7 @@
     },
     "license": "ISC",
     "dependencies": {
+        "@loadable/component": "^5.14.1",
         "@types/fs-extra": "^9.0.1",
         "chokidar": "^3.4.2",
         "fast-css-loader": "^1.0.2",

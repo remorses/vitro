@@ -2,34 +2,30 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { HomePage, ExperimentPage, VitroApp } from '@vitro/ui/bundle'
+
 import '@vitro/ui/src/inspect-mode.css'
 import experimentsTree from './experimentsTree.json'
 
-const absolutePath =
-    '/Users/morse/Documents/GitHub/react-comics/examples/renderer/pages/experiments/example-package/src/anAwesomeExperiment.vitro.tsx'
-const sourceExperimentPath =
-    '/Users/morse/Documents/GitHub/react-comics/examples/example-package/src/anAwesomeExperiment.vitro.tsx'
-
-const imports = [
-    () =>
-        import(
-            './tailwind/src/example-tailwind.vitro.jsx'
-        ),
-]
-
 const routes = [
-    <Route path='/example'>
-        {imports.map((importer) => (
-            <ExperimentPage
-                experimentsTree={experimentsTree}
-                GlobalWrapper={null}
-                absolutePath={absolutePath}
-                sourceExperimentPath={sourceExperimentPath}
-                fileExports={importer}
-            />
-        ))}
-    </Route>,
-]
+    {
+        fileExports: () => import('./tailwind/src/example-tailwind.vitro.jsx'),
+        route: '/experiments/tailwind/src/example-tailwind.vitro',
+        absolutePath:
+            '/Users/morse/Documents/GitHub/react-comics/examples/renderer/pages/experiments/example-package/src/anAwesomeExperiment.vitro.tsx',
+        sourceExperimentPath:
+            '/Users/morse/Documents/GitHub/react-comics/examples/example-package/src/anAwesomeExperiment.vitro.tsx',
+    },
+].map(({ fileExports, route, absolutePath, sourceExperimentPath }) => (
+    <Route path={route}>
+        <ExperimentPage
+            experimentsTree={experimentsTree}
+            GlobalWrapper={null}
+            absolutePath={absolutePath}
+            sourceExperimentPath={sourceExperimentPath}
+            fileExports={fileExports}
+        />
+    </Route>
+))
 
 ReactDOM.render(
     <Router>
