@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core'
 
-export default function Wrapper({ children, dark, ...rest }) {
+export default function Wrapper({ children, dark=false, ...rest }) {
     return (
         <ColorModeProvider value={dark ? 'dark' : 'light'}>
             <ThemeProvider {...rest}>
