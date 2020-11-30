@@ -6,7 +6,6 @@ import { HomePage, ExperimentPage, VitroApp } from '@vitro/ui/bundle'
 import '@vitro/ui/src/inspect-mode.css'
 import experimentsTree from './experimentsTree.json'
 
-
 declare const GlobalWrapper: ComponentType
 
 // GlobalWrapper import goes here

@@ -43,7 +43,6 @@ const mdxComponentPrefix = '_VitroMdx'
 export function ExperimentPage({
     experimentsTree,
     GlobalWrapper,
-    absolutePath,
     sourceExperimentPath,
     fileExports: getFileExports = () => Promise.resolve({}),
 }) {
@@ -97,7 +96,7 @@ export function ExperimentPage({
 
     const experimentTitle =
         fileExportsObject?.default?.title ||
-        formatPathToTitle(absolutePath) ||
+        formatPathToTitle(sourceExperimentPath) ||
         'Untitled'
 
     const bg = useMemo(
@@ -214,7 +213,7 @@ export function ExperimentPage({
                                 )
                             }
 
-                            const id = `${absolutePath}/${k}`
+                            const id = `${sourceExperimentPath}/${k}`
                             return (
                                 <StoryBlock
                                     maxW='100%'

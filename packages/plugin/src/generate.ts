@@ -2,11 +2,12 @@ import fs from 'fs'
 import { remove } from 'fs-extra'
 import { flatten, uniq } from 'lodash'
 import path from 'path'
+import dedent from 'dedent'
 import { globWithGit } from 'smart-glob'
 import { TESTING } from './constants'
 import { generateExperiments } from './experiments'
 import { VitroConfig } from './plugin'
-import { makeExperimentsTree } from './tree'
+import { makeExperimentsTree, bfs, ExperimentsTree } from './tree'
 import { debug, isWithin } from './support'
 
 const excludedDirs = ['**/.vitro/**', '**/pages/experiments/**']
@@ -22,7 +23,7 @@ export const generate = async (
         experimentsFilters = [],
     } = args
 
-    debug({experimentsFilters})
+    debug({ experimentsFilters })
     experiments = experiments.map(path.normalize)
     const ignoreGlobs = [...userIgnore, ...excludedDirs]
 
@@ -55,11 +56,13 @@ export const generate = async (
 
     debug(`creating pages tree`)
     const experimentsTree = makeExperimentsTree(files)
-    await fs.promises.writeFile(
-        path.join(cwd, 'experimentsTree.json'),
-        JSON.stringify(experimentsTree, null, 4),
-    )
+    // await fs.promises.writeFile(
+    //     path.join(cwd, 'experimentsTree.json'),
+    //     JSON.stringify(experimentsTree, null, 4),
+    // )
     debug(`created pages tree`)
+
+    // generate the index virtual file from the tree, adding the routes list and global wrapper import
 
     // TODO generate the index.js file with routes
     // const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
@@ -68,4 +71,63 @@ export const generate = async (
     //     wrapperComponentPath: wrapper,
     //     targetDir,
     // })
+
+    const virtualIndexCode = await generateVirtualIndexFile({
+        experimentsTree,
+        root: globsBase,
+    })
+    return { experimentsTree, virtualIndexCode }
+}
+
+const VIRTUAL_INDEX_LOCATION = path.resolve(
+    __dirname,
+    '../src/_virtualIndexCode.tsx',
+)
+export async function generateVirtualIndexFile(args: {
+    root: string
+    experimentsTree: ExperimentsTree
+    globalWrapperPath?: string
+}) {
+    const routes =
+        '[\n' +
+        bfs(args.experimentsTree)
+            .slice(1) // first node is empty
+            .map((node) => {
+                return dedent`{
+                        fileExports: () => import('./${node.path}'),
+                        url: ${JSON.stringify(node.url)},
+                        sourceExperimentPath: ${JSON.stringify(
+                            path.join(args.root, node.path),
+                        )},
+                    }`
+                    .split('\n')
+                    .map((x) => '  ' + x)
+                    .join('\n')
+            })
+            .join(',\n') +
+        '\n]'
+    let code = await (
+        await fs.promises.readFile(VIRTUAL_INDEX_LOCATION)
+    ).toString()
+    code = assertReplace(
+        code,
+        '// routes go here',
+        `const __ROUTES__ = ${routes}`,
+    )
+    code = assertReplace(
+        code,
+        '// GlobalWrapper import goes here',
+        args.globalWrapperPath
+            ? `import GlobalWrapper from ${args.globalWrapperPath}`
+            : `const GlobalWrapper = null`,
+    )
+    return code
+}
+
+function assertReplace(code, replaced, replacement) {
+    const res = code.replace(replaced, replacement)
+    if (res === code) {
+        throw new Error(`could not find ${replaced}`)
+    }
+    return res
 }

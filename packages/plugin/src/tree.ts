@@ -10,7 +10,7 @@ export function makeExperimentsTree(files: string[]) {
     })
 }
 
-export function arrangeIntoTree(paths: string[][]) {
+export function arrangeIntoTree(paths: string[][]): ExperimentsTree[] {
     // Adapted from http://brandonclapp.com/arranging-an-array-of-flat-paths-into-a-json-tree-like-structure/
     var tree = []
 
@@ -79,7 +79,7 @@ function pathToURL(path: string) {
 
 const DUMMY_NAMES = ['index', 'experiment', 'story']
 
-export function removeSingleChildFolders(tree) {
+export function removeSingleChildFolders(tree): ExperimentsTree {
     tree = tree || {}
     if (!tree?.children || !tree?.children?.length) {
         return tree
@@ -105,4 +105,35 @@ export function removeSingleChildFolders(tree) {
         return removeSingleChildFolders(x)
     })
     return { ...tree, children }
+}
+
+export interface ExperimentsTree {
+    path?: string
+    name?: string
+    children?: ExperimentsTree[]
+    url?: string
+    title?: string
+    // meta?: Record<string, any>
+}
+
+export function bfs(tree: ExperimentsTree): ExperimentsTree[] {
+    const results = []
+    // tree.depth = 0
+    var queue = [tree]
+    var n: ExperimentsTree
+
+    while (queue.length > 0) {
+        n = queue.shift()
+        results.push(n)
+
+        if (!n.children) {
+            continue
+        }
+        for (var i = 0; i < n.children.length; i++) {
+            const child = n.children[i]
+            // child.depth = (n.depth || 0) + 1
+            queue.push(child)
+        }
+    }
+    return results
 }
