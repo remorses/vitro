@@ -72,7 +72,7 @@ function formatPathToTitle(path: string) {
 
 function pathToURL(path: string) {
     // console.log(path)
-    path = path.replace(/\.\w+$/, '').replace(/\bindex$/, '')
+    // path = path.replace(/\.\w+$/, '').replace(/\bindex$/, '')
 
     return '/experiments/' + (path || '')
 }
@@ -94,9 +94,11 @@ export function removeSingleChildFolders(tree): ExperimentsTree {
             DUMMY_NAMES.includes(tree.children[0]?.title?.toLowerCase?.())
         ) {
             // leaf with a dummy name
+            const isDir = !tree.url
             return removeSingleChildFolders({
                 ...tree,
-                url: tree.url || tree.children[0]?.url,
+                url: isDir ? tree.children[0]?.url : tree.url,
+                path: isDir ? tree.children[0]?.path : tree.path,
                 children: [],
             })
         }
