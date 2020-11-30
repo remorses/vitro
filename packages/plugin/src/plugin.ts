@@ -1,222 +1,81 @@
-import fs from 'fs'
-
-import { withCSS } from './css'
-import globrex from 'globrex'
-// import transpilePlugin from 'next-transpile-modules'
-// import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
-// import { ProfilingAnalyzer } from 'umi-webpack-profiling-analyzer'
-
-import path from 'path'
-
-import { TESTING, VERBOSE } from './constants'
-
-import { debug, resolve, regexEqual, getExperimentsPathFilter } from './support'
-import { generate } from './generate'
 import chokidar from 'chokidar'
-import { mapKeys, throttle } from 'lodash'
-import { transpilationPlugin } from './transpilePlugin'
-
-export type PackageManager = 'yarn' | 'npm' | 'pnpm'
+import dedent from 'dedent'
+import { throttle } from 'lodash'
+import { UserConfig, ServerPluginContext, Plugin } from 'vite'
+import path from 'path'
+import {
+    VIRTUAL_INDEX_PUBLIC_PATH,
+    VIRTUAL_INDEX_TEMPLATE_LOCATION,
+    EXPERIMENTS_TREE_PUBLIC_PATH,
+} from './constants'
+import { generate } from './generate'
 
 export interface VitroConfig {
     experiments: string[]
-    packageManager: PackageManager
     wrapper?: string
     importCSS?: boolean
     basePath?: string
     transpileModules?: string[]
     globalCSS?: string[]
-    cwd: string
     ignore?: string[]
     doNotTranspile?: string[]
 }
 
-export const withVitro = (vitroConfig: VitroConfig) => (
-    nextConfig = {} as any,
-) => {
-    if (!vitroConfig.experiments) {
-        throw new Error(
-            `Config file has no 'experiments' field, add a field with an array of globs`,
-        )
-    }
-
-    // validate
-    mapKeys(vitroConfig, (v, k) => {
-        if (
-            v &&
-            ['experiments', 'globalCSS', 'transpileModules'].includes(k) &&
-            !Array.isArray(v)
-        ) {
-            throw new Error(`${k} should be an array, received '${v}'`)
-        }
-    })
-
-    let {
-        experiments = [],
-        wrapper,
-        importCSS,
-        transpileModules = [],
-        doNotTranspile = [],
-        globalCSS = [],
-        cwd,
-    } = vitroConfig
-
-    experiments = experiments.map(path.normalize)
-
-    // console.log({transpileModules})
-    // const transpile = transpilePlugin([
-    //     path.resolve(cwd, '../').toString(),
-    //     ...transpileModules,
-    // ])
-
-    let resultConfig = {
-        ...nextConfig,
-        webpack: (config, options) => {
-            const { webpack } = options
-
-            watchChanges({
-                dev: options.dev,
-                cb: async (p) => {
-                    if (options.isServer) {
-                        return
-                    }
-                    console.info('generating experiments files')
-                    await generate({
-                        ...vitroConfig,
-                        experimentsFilters: getExperimentsPathFilter(),
-                    }).catch(console.error)
-                    console.info('generated experiments files')
-                },
-                ignored: [
-                    'pages/experiments',
-                    '.next/',
-                    'node_modules',
-                    '.git/',
-                ],
-                globs: [
-                    ...experiments.map((p) => path.join('../', p)),
-                    ...(wrapper ? [wrapper] : []),
-                ],
-            })
-
-            // console.log({ dir, recursive, match })
-            config.plugins.push(
-                new webpack.DefinePlugin({
-                    'process.env.DEBUG': JSON.stringify(process.env.DEBUG),
-                    'process.env.USE_HREF': JSON.stringify(process.env.USE_HREF),
-                    GLOBAL_CSS_CODE: makeCssImportCodeSnippet(globalCSS),
-                    WRAPPER_COMPONENT_PATH: JSON.stringify(
-                        wrapper
-                            ? path.join(
-                                  path.resolve(cwd, '../').toString(),
-                                  wrapper,
-                              )
-                            : '',
-                    ),
-                }),
+export function createConfigureServer(config: VitroConfig) {
+    function configureServer({ app, watcher, root }: ServerPluginContext) {
+        app.use(async (ctx, next) => {
+            // TODO cache the tree generation
+            const { experimentsTree, virtualIndexCode } = await generate(
+                root,
+                config,
             )
-            if (
-                !options.isServer &&
-                process.env.DEBUG
-            ) {
-                const {
-                    ProfilingAnalyzer,
-                } = require('umi-webpack-profiling-analyzer')
-                // console.log({ ProfilingAnalyzer })
-                if (ProfilingAnalyzer) {
-                    config.plugins.push(
-                        new ProfilingAnalyzer({
-                            analyzerMode: 'none',
-                        }),
-                    )
-                }
-                // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
-                // config.plugins.push(
-                //     new SpeedMeasurePlugin({
-                //         // outputFormat: 'humanVerbose',
-                //     }),
-                // )
+            // TODO manually trigger a hmr reload on virtual file on new stories added?
+            if (ctx.path === VIRTUAL_INDEX_PUBLIC_PATH) {
+                ctx.body = virtualIndexCode
+                ctx.type = 'js'
             }
-            if (
-                !options.isServer &&
-                process.env.PROFILE
-            ) {
-                config.plugins.push(new webpack.debug.ProfilingPlugin())
+            if (ctx.path === EXPERIMENTS_TREE_PUBLIC_PATH) {
+                ctx.body = `export default ${JSON.stringify(
+                    experimentsTree,
+                    null,
+                    4,
+                )}`
+                ctx.type = 'js'
             }
-            // replace the experiments react packages with local ones to not dedupe
-            config.resolve.alias = {
-                ...config.resolve.alias,
-                // '@vitro': path.resolve(__dirname, '../'),
-                ...aliasOfPackages({
-                    cwd,
-                    packages: [
-                        'react',
-                        'react-dom',
-                        'next',
-                        // '@emotion/core', // TODO sometimes emotion is picked from different places (in yarn workspaces for example) maybe i should vendor it
-                        // 'emotion-theming',
-                        // '@vitro'
-                    ],
-                }),
+            if (ctx.path === '/' || ctx.path === '/index.html') {
+                ctx.body = dedent`
+                    <!DOCTYPE html>
+                    <html lang="en">
+                        <head>
+                            <meta charset="utf-8" />
+                            <link rel="icon" href="/favicon.ico" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1" />
+                            <meta
+                                name="description"
+                                content="Vitro"
+                            />
+                            <title>Vitro</title>
+                        </head>
+                        <body>
+                            <div id="root"></div>
+                            <noscript>You need to enable JavaScript to run this app.</noscript>
+                            <script>window.global = window</script>
+                            <script type="module" src="${VIRTUAL_INDEX_PUBLIC_PATH}"></script>
+                        </body>
+                    </html>
+                    `
+                ctx.type = 'html'
             }
-
-            // resolve loaders for yarn v2
-            config.resolveLoader.alias = {
-                'inspect-loader': require.resolve('inspect-loader'),
-                ...(importCSS && {
-                    'fast-css-loader': require.resolve('fast-css-loader'),
-                    'style-loader': require.resolve('style-loader'),
-                    'ignore-loader': require.resolve('ignore-loader'),
-                }),
-                'imports-loader': require.resolve('imports-loader'),
-                ...config.resolveLoader.alias,
-            }
-
-            // add css imports to _app.tsx
-            if (globalCSS && globalCSS.length) {
-                config.module.rules.push({
-                    // You can use `regexp`
-                    // test: /example\.js/$
-                    test: /_app\.tsx$/,
-                    use: [
-                        {
-                            loader: 'imports-loader',
-                            options: {
-                                imports: globalCSS.map((moduleName) => ({
-                                    syntax: 'side-effects',
-                                    moduleName,
-                                })),
-                            },
-                        },
-                    ],
-                })
-            }
-
-            if (typeof nextConfig.webpack === 'function') {
-                return nextConfig.webpack(config, options)
-            }
-
-            return config
-        },
+            return next()
+        })
     }
+    return configureServer
+}
 
-    const transpilePlugin = transpilationPlugin({
-        rootPath: path.resolve(cwd, '../').toString(),
-        doNotTranspile,
-        transpileModules,
-    })
-
-    resultConfig = transpilePlugin(resultConfig)
-
-    if (importCSS) {
-        console.log(
-            `importing CSS will apply css globally using 'fast-css-loader' version ${
-                require('fast-css-loader/package.json').version
-            }`,
-        )
-        resultConfig = withCSS(resultConfig)
+export function vitroPlugin(config: VitroConfig): Plugin {
+    return {
+        configureServer: createConfigureServer(config),
     }
-    return resultConfig
 }
 
 function watchChanges({ ignored, globs, cb, dev }) {
@@ -237,28 +96,28 @@ function watchChanges({ ignored, globs, cb, dev }) {
     watcher.on('add', onChange).on('change', onChange).on('unlink', onChange)
 }
 
-function aliasOfPackages(args: { packages: string[]; cwd }) {
-    return Object.assign(
-        {},
-        ...args.packages.map((p) => {
-            try {
-                const resolved = resolve(p)
-                debug(`using local instance of '${p}' at '${resolved}'`)
-                return {
-                    [p]: resolved,
-                }
-            } catch (e) {
-                console.error(`ERROR: cannot resolve local instance of ${p}`)
-                return {}
-            }
-        }),
-    )
-}
+// function aliasOfPackages(args: { packages: string[]; cwd }) {
+//     return Object.assign(
+//         {},
+//         ...args.packages.map((p) => {
+//             try {
+//                 const resolved = resolve(p)
+//                 debug(`using local instance of '${p}' at '${resolved}'`)
+//                 return {
+//                     [p]: resolved,
+//                 }
+//             } catch (e) {
+//                 console.error(`ERROR: cannot resolve local instance of ${p}`)
+//                 return {}
+//             }
+//         }),
+//     )
+// }
 
-function makeCssImportCodeSnippet(imports: string[]) {
-    let code = ''
-    imports.forEach((p) => {
-        code += `import '${p}'\n`
-    })
-    return code
-}
+// function makeCssImportCodeSnippet(imports: string[]) {
+//     let code = ''
+//     imports.forEach((p) => {
+//         code += `import '${p}'\n`
+//     })
+//     return code
+// }

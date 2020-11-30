@@ -1,25 +1,22 @@
+import dedent from 'dedent'
 import fs from 'fs'
-import { remove } from 'fs-extra'
 import { flatten, uniq } from 'lodash'
 import path from 'path'
-import dedent from 'dedent'
 import { globWithGit } from 'smart-glob'
-import { TESTING } from './constants'
-import { generateExperiments } from './experiments'
 import { VitroConfig } from './plugin'
-import { makeExperimentsTree, bfs, ExperimentsTree } from './tree'
-import { debug, isWithin } from './support'
+import { debug, isWithin, dedentTo } from './support'
+import { bfs, ExperimentsTree, makeExperimentsTree } from './tree'
+import { VIRTUAL_INDEX_TEMPLATE_LOCATION } from './constants'
 
 const excludedDirs = ['**/.vitro/**', '**/pages/experiments/**']
 
 export const generate = async (
+    cwd: string,
     args: VitroConfig & { experimentsFilters?: string[] },
 ) => {
     let {
         experiments = [],
         ignore: userIgnore = [],
-        wrapper,
-        cwd,
         experimentsFilters = [],
     } = args
 
@@ -28,15 +25,13 @@ export const generate = async (
     const ignoreGlobs = [...userIgnore, ...excludedDirs]
 
     debug(`starting globWithGit`)
-    const globsBase = path.resolve(path.join(cwd, '..'))
-    // TODO filter results to only files under the filter path
     const results = await Promise.all(
         experiments.map((s) =>
             globWithGit(s, {
                 ignoreGlobs,
                 gitignore: true,
                 absolute: false,
-                cwd: globsBase,
+                cwd: cwd,
                 // filesOnly: true,
             }),
         ),
@@ -48,9 +43,7 @@ export const generate = async (
         .filter((p) => {
             return (
                 !experimentsFilters?.length ||
-                experimentsFilters.some((f) =>
-                    isWithin(f, path.join(globsBase, p)),
-                )
+                experimentsFilters.some((f) => isWithin(f, path.join(cwd, p)))
             )
         })
 
@@ -74,15 +67,11 @@ export const generate = async (
 
     const virtualIndexCode = await generateVirtualIndexFile({
         experimentsTree,
-        root: globsBase,
+        root: cwd,
     })
     return { experimentsTree, virtualIndexCode }
 }
 
-const VIRTUAL_INDEX_LOCATION = path.resolve(
-    __dirname,
-    '../src/_virtualIndexCode.tsx',
-)
 export async function generateVirtualIndexFile(args: {
     root: string
     experimentsTree: ExperimentsTree
@@ -92,22 +81,23 @@ export async function generateVirtualIndexFile(args: {
         '[\n' +
         bfs(args.experimentsTree)
             .slice(1) // first node is empty
+            .filter((x) => x.url)
             .map((node) => {
-                return dedent`{
+                return dedentTo(
+                    '    ',
+                    `{
                         fileExports: () => import('./${node.path}'),
                         url: ${JSON.stringify(node.url)},
                         sourceExperimentPath: ${JSON.stringify(
                             path.join(args.root, node.path),
                         )},
-                    }`
-                    .split('\n')
-                    .map((x) => '  ' + x)
-                    .join('\n')
+                    }`,
+                )
             })
             .join(',\n') +
         '\n]'
-    let code = await (
-        await fs.promises.readFile(VIRTUAL_INDEX_LOCATION)
+    let code = (
+        await fs.promises.readFile(VIRTUAL_INDEX_TEMPLATE_LOCATION)
     ).toString()
     code = assertReplace(
         code,

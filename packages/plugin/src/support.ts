@@ -1,6 +1,7 @@
 import { VERBOSE, FILTER_EXPERIMENTS } from './constants'
 import { attempt, mapKeys } from 'lodash'
 import path from 'path'
+import dedent from 'dedent'
 import { isError } from 'util'
 
 export const debug = (...args) => {
@@ -9,20 +10,17 @@ export const debug = (...args) => {
     }
 }
 
-export function resolve(p, opts?: { paths?: string[] }) {
-    return path.dirname(
-        require.resolve(path.join(p, 'package.json').toString(), opts),
-    )
-}
-
 export function getExperimentsPathFilter() {
     const filter = process.env[FILTER_EXPERIMENTS] || ''
-    return filter.split(',').map((x) => x.trim()).filter(Boolean)
+    return filter
+        .split(',')
+        .map((x) => x.trim())
+        .filter(Boolean)
 }
 
 export function isWithin(outer, inner) {
-    const rel = path.relative(outer, inner);
-    return !rel.startsWith('../') && rel !== '..';
+    const rel = path.relative(outer, inner)
+    return !rel.startsWith('../') && rel !== '..'
 }
 
 /**
@@ -37,4 +35,19 @@ export const regexEqual = (x, y) => {
         x.ignoreCase === y.ignoreCase &&
         x.multiline === y.multiline
     )
+}
+export function removeExtension(f: string) {
+    const parsed = path.parse(f)
+    const p = {
+        ...parsed,
+        base: parsed.name,
+    }
+    return path.format(p)
+}
+
+export function dedentTo(to: string, code: string) {
+    return dedent(code)
+        .split('\n')
+        .map((x) => to + x)
+        .join('\n')
 }

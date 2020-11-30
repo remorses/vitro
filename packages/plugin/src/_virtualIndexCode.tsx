@@ -4,7 +4,8 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { HomePage, ExperimentPage, VitroApp } from '@vitro/ui/bundle'
 
 import '@vitro/ui/src/inspect-mode.css'
-import experimentsTree from './experimentsTree.json'
+// @ts-expect-error
+import experimentsTree from '/vitro-experiments-tree.js'
 
 declare const GlobalWrapper: ComponentType
 
@@ -18,10 +19,11 @@ declare const __ROUTES__: {
 
 // routes go here
 
-const routes = __ROUTES__.map(
-    ({ fileExports, url: route, sourceExperimentPath }) => {
+const routes = __ROUTES__
+    .filter((x) => x.url)
+    .map(({ fileExports, url: route, sourceExperimentPath }) => {
         return (
-            <Route path={route}>
+            <Route key={route} path={route}>
                 <ExperimentPage
                     experimentsTree={experimentsTree}
                     GlobalWrapper={GlobalWrapper}
@@ -30,8 +32,7 @@ const routes = __ROUTES__.map(
                 />
             </Route>
         )
-    },
-)
+    })
 
 ReactDOM.render(
     <Router>
