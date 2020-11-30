@@ -14905,6 +14905,20 @@ smart-glob@^0.0.31:
     tslib "^2.0.0"
     yargs "^16.0.3"
 
+smart-glob@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/smart-glob/-/smart-glob-1.0.1.tgz#50c82470d0026b71bc24b1f5714e75cffba11aab"
+  integrity sha512-1rx0k/6d6K3SZl73/FMmlZF2ODFr1hrsg7+PKNJiWX77A5iw9kDzB25eNgf2bI2m/3GepKY9vTyi2h/6DNNskw==
+  dependencies:
+    globalyzer "^0.1.4"
+    globrex "^0.1.2"
+    lodash "^4.17.20"
+    memoizee "^0.4.14"
+    promisify-child-process "^4.1.1"
+    slash "^3.0.0"
+    tslib "^2.0.0"
+    yargs "^16.0.3"
+
 snake-case@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/snake-case/-/snake-case-2.1.0.tgz#41bdb1b73f30ec66a04d4e2cad1b76387d4d6d9f"

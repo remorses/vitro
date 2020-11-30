@@ -26,7 +26,7 @@ describe('tree', () => {
 
     it('removeSingleChildFolders', async () => {
         const exampleTree = makeExperimentsTree(
-            await globWithGit('.', { cwd: __dirname, gitignore: true }),
+            await globWithGit('./**', { cwd: __dirname, gitignore: true }),
         )
         let tree = removeSingleChildFolders(exampleTree)
         console.log(JSON.stringify(tree, null, 4))
