@@ -12,9 +12,8 @@ import { CommandModule } from 'yargs'
 import {
     fatal,
     findVitroJsConfigPath,
-
-
-    getVitroConfig, printRed
+    getVitroConfig,
+    printRed,
 } from './support'
 // const { version: cliVersion } = require('../package.json')
 
@@ -40,6 +39,12 @@ const command: CommandModule = {
                 ? argv.filter
                 : []
             ).map(path.resolve)
+
+            // only run stories inside cwd
+            const cwd = path.resolve(process.cwd())
+            if (cwd !== root) {
+                experimentsFilters.push(cwd)
+            }
 
             const server = createServer({
                 root,
