@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "vitro": "./dist/main.js"
+    "vitro": "./bin.js"
   },
   "mocha": {
     "require": "sucrase/register",
@@ -17,6 +17,7 @@
   "files": [
     "dist",
     "src",
+    "bin.js",
     "template"
   ],
   "scripts": {

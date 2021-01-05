@@ -1,13 +1,11 @@
 import chokidar from 'chokidar'
 import dedent from 'dedent'
-import { throttle } from 'lodash'
+import { throttle, escapeRegExp } from 'lodash'
 import memoize from 'memoizee'
-import { Plugin, ServerPluginContext } from 'vite'
-import {
-    EXPERIMENTS_TREE_PUBLIC_PATH,
-    VIRTUAL_INDEX_PUBLIC_PATH,
-} from './constants'
+import { Plugin } from '@bundless/cli'
+import { EXPERIMENTS_TREE_PATH, VIRTUAL_INDEX_PATH } from './constants'
 import { generate } from './generate'
+import path from 'path'
 
 export interface VitroConfig {
     experiments: string[]
@@ -21,65 +19,88 @@ interface PluginArgs {
     experimentsFilters: string[]
 }
 
-export function createConfigureServer(_args: PluginArgs) {
-    const { config, experimentsFilters } = _args
+export function VitroPlugin(args: PluginArgs): Plugin {
+    const { config, experimentsFilters } = args
     const generateCode = memoize((root) =>
         generate({ config, root, experimentsFilters }),
     )
-    function configureServer({ app, watcher, root }: ServerPluginContext) {
-        app.use(async (ctx, next) => {
-            const { experimentsTree, virtualIndexCode } = await generateCode(
-                root,
+    return {
+        name: 'vitro',
+        setup({ ctx: { root }, onTransform, onResolve, onLoad }) {
+            // TODO invalidate cache on file changes
+            onResolve({ filter: /\.html$/ }, (args) => {
+                return { path: path.resolve(args.path) }
+            })
+            onLoad({ filter: /\.html$/ }, (args) => {
+                return { contents: htmlTemplate }
+            })
+
+            onResolve(
+                { filter: new RegExp(escapeRegExp(VIRTUAL_INDEX_PATH)) },
+                (args) => {
+                    return {
+                        path: path.resolve(root, VIRTUAL_INDEX_PATH),
+                    }
+                },
             )
-            // TODO manually trigger a hmr reload on virtual file on new stories added?
-            if (ctx.path === VIRTUAL_INDEX_PUBLIC_PATH) {
-                ctx.body = virtualIndexCode
-                ctx.type = 'js'
-            }
-            if (ctx.path === EXPERIMENTS_TREE_PUBLIC_PATH) {
-                ctx.body = `export default ${JSON.stringify(
-                    experimentsTree,
-                    null,
-                    4,
-                )}`
-                ctx.type = 'js'
-            }
-            await next()
-            if (ctx.path === '/' || ctx.path === '/index.html') {
-                ctx.body = dedent`
-                    <!DOCTYPE html>
-                    <html lang="en">
-                        <head>
-                            <meta charset="utf-8" />
-                            <link rel="icon" href="/favicon.ico" />
-                            <meta name="viewport" content="width=device-width, initial-scale=1" />
-                            <meta
-                                name="description"
-                                content="Vitro"
-                            />
-                            <title>Vitro</title>
-                        </head>
-                        <body>
-                            <div id="root"></div>
-                            <noscript>You need to enable JavaScript to run this app.</noscript>
-                            <script>window.global = window</script>
-                            <script type="module" src="${VIRTUAL_INDEX_PUBLIC_PATH}"></script>
-                        </body>
-                    </html>
-                    `
-                ctx.type = 'html'
-                ctx.status = 200
-            }
-        })
+            onLoad(
+                { filter: new RegExp(escapeRegExp(VIRTUAL_INDEX_PATH)) },
+                async (args) => {
+                    const { virtualIndexCode } = await generateCode(root)
+                    return {
+                        contents: virtualIndexCode,
+                        loader: 'jsx',
+                    }
+                },
+            )
+            onResolve(
+                { filter: new RegExp(escapeRegExp(EXPERIMENTS_TREE_PATH)) },
+                (args) => {
+                    return {
+                        path: path.resolve(root, EXPERIMENTS_TREE_PATH),
+                    }
+                },
+            )
+            onLoad(
+                { filter: new RegExp(escapeRegExp(EXPERIMENTS_TREE_PATH)) },
+                async (args) => {
+                    const { experimentsTree } = await generateCode(root)
+                    const contents = `export default ${JSON.stringify(
+                        experimentsTree,
+                        null,
+                        4,
+                    )}`
+                    return {
+                        contents,
+                        loader: 'js',
+                    }
+                },
+            )
+        },
     }
-    return configureServer
 }
 
-export function vitroPlugin(args: PluginArgs): Plugin {
-    return {
-        configureServer: createConfigureServer(args),
-    }
-}
+const htmlTemplate = `
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="description"
+            content="Vitro"
+        />
+        <title>Vitro</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <script>window.global = window</script>
+        <script type="module" src="/${VIRTUAL_INDEX_PATH}?namespace=file"></script>
+    </body>
+</html>
+`
 
 function watchChanges({ ignored, globs, cb, dev }) {
     if (process.env.DISABLE_WATCH || !dev) {

@@ -7,18 +7,12 @@ import '@vitro/ui/src/inspect-mode.css'
 import '@vitro/ui/src/inspector.css'
 
 
-// @ts-expect-error
+
 import experimentsTree from '/vitro-experiments-tree.js'
 
-declare const GlobalWrapper: ComponentType
+
 
 // GlobalWrapper import goes here
-
-declare const __ROUTES__: {
-    fileExports: () => any
-    url: string
-    sourceExperimentPath: string
-}[]
 
 // routes go here
 

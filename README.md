@@ -33,7 +33,7 @@
 
 -   [ ] make only one dependency for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the cli dependency will also need snowpack ...)
 -   [ ] Add the githubUrl to config, make the `open in vscode` and `click to source` isomorphic
--   [x] use vite instead of nextjs, the routes are computed from the tree file with react router
+-   [ ] use bundless instead of nextjs, the routes are computed from the tree file with react router
 -   [x] snowpack should bundle dependencies incrementally snowpack/discussions/1208, impossible
 -   [ ] replace next link with react router
 -   [ ] replace Router.on with react router like https://gist.github.com/shelldandy/02ad1a9f8b5b86d1b2e4dd26a11967b2
