@@ -1,6 +1,6 @@
 {
     "name": "@vitro/cli",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -31,6 +31,8 @@
     },
     "license": "ISC",
     "dependencies": {
+        "@bundless/cli": "^0.1.1",
+        "@bundless/plugin-react-refresh": "^1.0.0",
         "@types/yargs": "^15.0.5",
         "@vitro/codemod": "^0.1.0",
         "@vitro/plugin": "^0.1.0",
@@ -38,10 +40,8 @@
         "chalk": "latest",
         "find-up": "^5.0.0",
         "fs-extra": "^9.0.1",
-        "prompts": "^2.3.2",
-        "tslib": "^2.0.0",
         "react-router-dom": "^5.2.0",
-        "react-router": "^5.2.0",
+        "tslib": "^2.0.0",
         "yargs": "^15.3.1"
     },
     "peerDependencies": {
@@ -52,8 +52,6 @@
         "@types/fs-extra": "^9.0.1",
         "@types/mocha": "^7.0.2",
         "@types/node": "^14.0.20",
-        "@types/prompts": "^2.0.8",
-        "@types/webpack": "^4.41.21",
         "assert": "^2.0.0",
         "cross-env": "^7.0.2",
         "dotenv": "^8.2.0",
