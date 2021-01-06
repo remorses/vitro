@@ -1,5 +1,15 @@
 # @vitro/cli
 
+## 0.1.2
+
+### Patch Changes
+
+- ef4a8a7: Add src in npm files
+- Updated dependencies [ef4a8a7]
+  - @vitro/codemod@0.1.1
+  - @vitro/plugin@0.1.1
+  - @vitro/ui@0.1.1
+
 ## 0.1.1
 
 ### Patch Changes
