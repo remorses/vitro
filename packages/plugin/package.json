@@ -1,6 +1,5 @@
 {
     "name": "@vitro/plugin",
-    
     "version": "0.0.83",
     "description": "Vitro bundless plugin",
     "keywords": [],
@@ -24,19 +23,20 @@
     },
     "license": "ISC",
     "dependencies": {
+        "@bundless/cli": "^0.1.0",
+        "@bundless/plugin-react-refresh": "^1.0.0",
+        "babel-plugin-macros": "^3.0.1",
         "chokidar": "^3.4.2",
         "fs-extra": "^9.0.1",
         "lodash": "^4.17.19",
         "memoizee": "^0.4.14",
         "smart-glob": "^1.0.1",
-        "@bundless/cli": "^0.1.0",
-        "@bundless/plugin-react-refresh": "^1.0.0",
         "tslib": "^2.0.0"
     },
     "peerDependencies": {},
     "devDependencies": {
-        "@types/fs-extra": "^9.0.1",
         "@types/chokidar": "^2.1.3",
+        "@types/fs-extra": "^9.0.1",
         "@types/globrex": "^0.1.0",
         "@types/lodash": "^4.14.157",
         "@types/mini-css-extract-plugin": "^0.9.1",

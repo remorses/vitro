@@ -1,6 +1,8 @@
 const { createMacro } = require('babel-plugin-macros')
+import { babelParserOpts } from '@bundless/cli/dist/utils'
 const mdx = require('@mdx-js/mdx')
 const { createHash } = require('crypto')
+import { transform, transformSync } from 'esbuild'
 const {
     default: restSpreadSyntax,
 } = require('@babel/plugin-proposal-object-rest-spread')
@@ -22,7 +24,7 @@ function docsMDX({ references, babel, state }) {
         // Grab the raw mdx code
         let rawCode = reference.parent.quasi.quasis[0].value.raw
         // Transform mdx code
-        let mdxCode = md.render(dedent(rawCode))
+        let mdxCode = md.render(rawCode)
         // console.log('mdxCode first', '\n\n\n', mdxCode, '\n\n\n')
 
         // mdxCode = mdxCode.replace(/\bexports/g, 'module.exports')
@@ -33,13 +35,21 @@ function docsMDX({ references, babel, state }) {
         // })
         // replace export default
         const name = `${mdxComponentPrefix}${hash(mdxCode)}${referenceIndex}`
-        mdxCode = dedent(`export function ${name}() {
+        mdxCode = `export function ${name}() {
             return (
                 <>
                     ${mdxCode}
                 </>
             )
-        }`)
+        }`
+
+        mdxCode = transformSync(mdxCode, {
+            format: 'esm',
+            sourcemap: 'inline',
+            loader: 'jsx',
+        }).code
+
+        // TODO maintain original line numbers to not fuck source maps
 
         // console.log('mdxCode after', '\n\n\n', mdxCode, '\n\n\n')
         // transform the code back to an ast
@@ -48,10 +58,7 @@ function docsMDX({ references, babel, state }) {
         //     // remove duplicate makeShortcode
         //     mdxCode = mdxCode.replace(/const makeShortcode(.|\s| )*\};/, '')
         // }
-        let ast = parse(mdxCode, {
-            sourceType: 'module',
-            plugins: ['jsx', restSpreadSyntax],
-        })
+        let ast = parse(mdxCode, { ...babelParserOpts, sourceType: 'module' })
 
         // Replace the docs`` content with the ast above
         reference.parentPath.replaceWithMultiple(ast.program.body)
@@ -61,7 +68,9 @@ function docsMDX({ references, babel, state }) {
 }
 
 function hash(data) {
-    return createHash('sha1').update(data).digest('hex')
+    return createHash('sha1')
+        .update(data)
+        .digest('hex')
 }
 
 module.exports = createMacro(docsMDX)

@@ -1,5 +1,6 @@
 import { serve } from '@bundless/cli'
 import { VitroPlugin } from '@vitro/plugin'
+import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
 import path from 'path'
 // import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
 import { CommandModule } from 'yargs'
@@ -53,6 +54,7 @@ const command: CommandModule = {
                         config: vitroConfig,
                         experimentsFilters,
                     }),
+                    ReactRefreshPlugin()
                 ],
             })
         } catch (e) {

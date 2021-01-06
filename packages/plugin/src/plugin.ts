@@ -1,5 +1,7 @@
 import { Plugin } from '@bundless/cli'
+import { babelParserOpts } from '@bundless/cli/dist/utils'
 import chokidar from 'chokidar'
+import { transform } from '@babel/core'
 import { escapeRegExp, throttle } from 'lodash'
 import memoize from 'memoizee'
 import path from 'path'
@@ -32,6 +34,29 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             onLoad({ filter: /\.html$/ }, (args) => {
                 return { contents: htmlTemplate }
             })
+
+            // onTransform({ filter: /.*/ }, async (args) => {
+            //     if (!args.contents.includes('@vitro/docs.macro')) {
+            //         return
+            //     }
+            //     // TODO add a way to accumulate babel plugins and run them together
+            //     const result = await transform(args.contents, {
+            //         parserOpts: babelParserOpts,
+            //         // make the docs.macro plugin not a macro, use a regex instead to replace vitroDocs``
+            //         plugins: [require('babel-plugin-macros')],
+            //         sourceMaps: true,
+            //         sourceFileName: args.path,
+            //     })
+
+            //     if (!result || !result.code) {
+            //         return
+            //     }
+            //     return {
+            //         // loader: 'default',
+            //         contents: result.code,
+            //         map: result.map,
+            //     }
+            // })
 
             onResolve(
                 { filter: new RegExp(escapeRegExp(VIRTUAL_INDEX_PATH)) },
@@ -115,7 +140,10 @@ function watchChanges({ ignored, globs, cb, dev }) {
     })
 
     // Add event listeners.
-    watcher.on('add', onChange).on('change', onChange).on('unlink', onChange)
+    watcher
+        .on('add', onChange)
+        .on('change', onChange)
+        .on('unlink', onChange)
 }
 
 // function aliasOfPackages(args: { packages: string[]; cwd }) {
