@@ -9,7 +9,6 @@ import { generate } from './generate'
 export interface VitroConfig {
     experiments: string[]
     wrapper?: string
-    basePath?: string
     ignore?: string[]
 }
 

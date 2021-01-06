@@ -1,6 +1,6 @@
 {
     "name": "@vitro/codemod",
-    "_": "[bump]",
+    
     "version": "0.0.83",
     "description": "",
     "keywords": [],
@@ -13,8 +13,7 @@
     },
     "files": [
         "dist",
-        "src",
-        "template"
+        "src"
     ],
     "scripts": {
         "test": "NODE_ENV=test mocha --colors --exit",

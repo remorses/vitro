@@ -1,6 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-packages/cli/template
 web_modules
 
 # dependencies
@@ -18,7 +17,7 @@ sidebar.json
 
 # testing
 /coverage
-
+.ultra.cache.json
 # next.js
 /.next/
 /out/

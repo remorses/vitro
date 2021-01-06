@@ -4,11 +4,10 @@
     "scripts": {
         "cli": "cross-env VITRO_TESTING=1 node -r sucrase/register packages/cli/src/main.ts",
         "watch": "tsc -b --clean && tsc -b -w",
-        "test": "lerna run --scope @vitro/* --ignore website test",
+        "test": "ultra -r --serial test",
         "examples": "yarn --cwd examples/renderer dev",
         "examples:build": "yarn --cwd examples/renderer build",
-        "publ": "yarn build && yarn lerna publish -y patch",
-        "build": "lerna exec --scope @vitro/* 'yarn build'"
+        "build": "ultra -r --serial -b --filter '@vitro/*' build"
     },
     "workspaces": {
         "packages": [
@@ -19,9 +18,10 @@
         "nohoist": []
     },
     "devDependencies": {
+        "@changesets/cli": "^2.12.0",
         "esbuild": "^0.8.17",
-        "lerna": "^3.22.1",
-        "rollup": "^2.34.0"
+        "rollup": "^2.34.0",
+        "ultra-runner": "^3.8.0"
     },
     "dependencies": {
         "react": "^16.13.1",

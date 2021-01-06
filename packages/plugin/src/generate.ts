@@ -80,7 +80,8 @@ export async function generateVirtualIndexFile(args: {
             .slice(1) // first node is empty
             .filter((x) => x.url)
             .map((node) => {
-                return `{
+                return `
+                    {
                         fileExports: () => import('./${node.path}'),
                         url: ${JSON.stringify(node.url)},
                         sourceExperimentPath: ${JSON.stringify(
