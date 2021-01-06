@@ -1,7 +1,7 @@
 {
     "name": "@vitro/ui",
     "description": "Vitro ui components",
-    "version": "0.0.83",
+    "version": "0.1.0",
     "main": "bundle/index.js",
     "module": "bundle/index.js",
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
