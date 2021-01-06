@@ -1,5 +1,11 @@
 # @vitro/plugin
 
+## 0.1.2
+
+### Patch Changes
+
+- f9a03e4: Added missing files in npm files
+
 ## 0.1.1
 
 ### Patch Changes
