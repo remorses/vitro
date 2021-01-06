@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import yargs from 'yargs'
 import devCommand from './dev'
+import buildCommand from './build'
 import initCommand from './init'
 
 import migrateCommand from './migrate'
@@ -19,7 +20,7 @@ yargs
         array: true,
     })
     .command(withErrorHandling(initCommand))
-    // .command(withErrorHandling(buildCommand))
+    .command(withErrorHandling(buildCommand))
     .command(withErrorHandling(migrateCommand))
     // .demandCommand()
     .command(withErrorHandling(devCommand))

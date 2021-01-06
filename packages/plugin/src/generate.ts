@@ -53,15 +53,6 @@ export const generate = async (args: {
     debug(`created pages tree`)
 
     // generate the index virtual file from the tree, adding the routes list and global wrapper import
-
-    // TODO generate the index.js file with routes
-    // const targetDir = path.resolve(path.join(cwd, './pages/experiments'))
-    // await generateExperiments({
-    //     files,
-    //     wrapperComponentPath: wrapper,
-    //     targetDir,
-    // })
-
     const virtualIndexCode = await generateVirtualIndexFile({
         experimentsTree,
         root: root,
