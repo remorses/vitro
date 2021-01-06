@@ -2,7 +2,7 @@
     "name": "@vitro/plugin",
     
     "version": "0.0.83",
-    "description": "Vitro nextjs plugin",
+    "description": "Vitro bundless plugin",
     "keywords": [],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

@@ -16,7 +16,6 @@
     -   Zero config typescript, babel, css support
     -   Incremental compilation
     -   React Fast refresh
-    -   Awesome Nextjs plugins like `next-transpile-modules`, `next-images` and more
 
 ### Features missing from storybook (in progress)
 
@@ -47,7 +46,6 @@
 -   [ ] wrap internal UI in shadow dom to isolate it from user CSS
 -   [x] add `importCSS` feature to let user import css like in CRA
 -   [ ] add a blocks view, made of files and folders (folders are taken from files title slashes), each file shows its experiments rendered in a small grid (because every file can have more than one experiment) (svg thumbnails are generated during dev), clicking on a file block shows its experiments thumbnails larger)
--   [x] wait for nextjs 9.5.4 for pnpm support
 -   [x] make vitro callable from sub directories, searching for a top level vitro.config.js file and setting the cwd to that level,
 -   [ ] make a dashboard where you can login with github, connect a repository and deploy its vitro app and get all the additional features like visual diffs, performance report, bundle size report
 -   [ ] make an example with an iframe in wrapper with emotion
@@ -71,7 +69,6 @@
 -   [x] remove the new command, the default command checks if a vitro.config.js exists, if not asks if user wants to create .vitro and config (or errors if not tty), this way the default command always works and is idempotent
 -   [x] the start command keeps the `.vitro` updated running the new command when it sees that its version is greater than the generated one
 -   [x] rename stories, fileExports to files, fileExports
--   [x] add a globalCSS options to pass an array of css files to paste in the \_app.jsx file, this way people can use tailwind for example
 -   [x] add the next css plugin to let users import css files that are not css modules, yes but this plugin is bugged
 -   [x] use more complex _vitro-root_/ because user could be using it already
 -   [x] sidebar in safari has zindex too high

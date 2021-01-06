@@ -56,8 +56,10 @@ const command: CommandModule = {
                 ],
             })
         } catch (e) {
-            printRed(`could not start the dev server, ${e}`, true)
-            fatal(`try rerunning the 'vitro init' command`)
+            printRed(`could not start the dev server`, true)
+            printRed(e.message)
+            printRed(e.stack)
+            fatal()
         }
     },
 } // as CommandModule
