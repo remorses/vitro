@@ -8,7 +8,7 @@ node_modules
 .pnp.js
 .next
 .vitro
-
+bundle
 dist
 esm
 *.tsbuildinfo
