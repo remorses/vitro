@@ -2,6 +2,8 @@
     "name": "@vitro/ui",
     "description": "Vitro ui components",
     "version": "0.0.83",
+    "main": "bundle/index.js",
+    "module": "bundle/index.js",
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
     "scripts": {
         "test": "NODE_ENV=test mocha --colors --exit",
@@ -9,7 +11,8 @@
         "bundle": "yarn rollup -c rollup.config.js",
         "bundle2": "esbuild --bundle --outdir=bundle --splitting --external:react --external:react-dom --format=esm --target=es2017 src/index.ts"
     },
-    "dependencies": {
+    "dependencies": {},
+    "devDependencies": {
         "@chakra-ui/core": "^0.8.0",
         "@emotion/cache": "^10.0.29",
         "@emotion/core": "^10.0.28",
@@ -24,9 +27,7 @@
         "react-router-dom": "^5.2.0",
         "react-storage-hooks": "^4.0.1",
         "stylis-plugin-extra-scope": "^0.2.1",
-        "tslib": "^2.0.0"
-    },
-    "devDependencies": {
+        "tslib": "^2.0.0",
         "@rollup/plugin-commonjs": "^16.0.0",
         "@rollup/plugin-node-resolve": "^10.0.0",
         "rollup-plugin-esbuild": "^2.6.0",
@@ -41,6 +42,7 @@
     },
     "peerDependencies": {
         "react": "*",
+        "react-router-dom": "*",
         "react-dom": "*"
     },
     "files": [
@@ -49,13 +51,11 @@
     ],
     "keywords": [],
     "license": "ISC",
-    "main": "dist/index.js",
     "mocha": {
         "require": "sucrase/register",
         "spec": "tests/**.ts",
         "timeout": 9999999999
     },
-    "module": "esm/index.js",
     "repository": "remorses/vitro",
     "types": "dist/index.d.ts",
     "gitHead": "aeeca7004155ed4b27e2a6d3441d0dff61a9d4ee"
