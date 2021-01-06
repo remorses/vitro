@@ -1,8 +1,5 @@
-
-import { attempt, mapKeys } from 'lodash'
-import path from 'path'
 import dedent from 'dedent'
-import { isError } from 'util'
+import path from 'path'
 
 export const debug = (...args) => {
     if (process.env.DEBUG) {
@@ -35,11 +32,4 @@ export function removeExtension(f: string) {
         base: parsed.name,
     }
     return path.format(p)
-}
-
-export function dedentTo(to: string, code: string) {
-    return dedent(code)
-        .split('\n')
-        .map((x) => to + x)
-        .join('\n')
 }

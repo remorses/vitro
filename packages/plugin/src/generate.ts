@@ -1,12 +1,11 @@
-import dedent from 'dedent'
 import fs from 'fs'
 import { flatten, uniq } from 'lodash'
 import path from 'path'
 import { globWithGit } from 'smart-glob'
-import { VitroConfig } from './plugin'
-import { debug, isWithin, dedentTo } from './support'
-import { bfs, ExperimentsTree, makeExperimentsTree } from './tree'
 import { VIRTUAL_INDEX_TEMPLATE_LOCATION } from './constants'
+import { VitroConfig } from './plugin'
+import { debug, isWithin } from './support'
+import { bfs, ExperimentsTree, makeExperimentsTree } from './tree'
 
 const excludedDirs = ['**/.vitro/**', '**/pages/experiments/**']
 
@@ -81,16 +80,13 @@ export async function generateVirtualIndexFile(args: {
             .slice(1) // first node is empty
             .filter((x) => x.url)
             .map((node) => {
-                return dedentTo(
-                    '    ',
-                    `{
+                return `{
                         fileExports: () => import('./${node.path}'),
                         url: ${JSON.stringify(node.url)},
                         sourceExperimentPath: ${JSON.stringify(
                             path.join(args.root, node.path),
                         )},
-                    }`,
-                )
+                    }`
             })
             .join(',\n') +
         '\n]'

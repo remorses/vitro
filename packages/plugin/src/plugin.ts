@@ -1,11 +1,10 @@
-import chokidar from 'chokidar'
-import dedent from 'dedent'
-import { throttle, escapeRegExp } from 'lodash'
-import memoize from 'memoizee'
 import { Plugin } from '@bundless/cli'
+import chokidar from 'chokidar'
+import { escapeRegExp, throttle } from 'lodash'
+import memoize from 'memoizee'
+import path from 'path'
 import { EXPERIMENTS_TREE_PATH, VIRTUAL_INDEX_PATH } from './constants'
 import { generate } from './generate'
-import path from 'path'
 
 export interface VitroConfig {
     experiments: string[]
