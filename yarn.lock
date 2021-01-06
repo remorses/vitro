@@ -1586,10 +1586,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bundless/cli@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@bundless/cli/-/cli-0.1.0.tgz#4a976f5fcad7b5e6cbec86c3a4fde22c4cfb0919"
-  integrity sha512-yZsOi89Pa/f0AwqBi2lPsx7+bwIYXyNJaI8kMwhrFnu5ztEeB0JD99D9ozQAjxH/MhIgCQLYCSNlO7KV9+6c6A==
+"@bundless/cli@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@bundless/cli/-/cli-0.1.1.tgz#ef85e8ce94f24a9a24d686a82675ac049dbd10c8"
+  integrity sha512-g5YoEMx8//7Av/+DjaUHACHdcefWzqw3o1cDva8p4oq5OeK6qD58Ee+I4YW7jOyk/P/xjwUaWCYvMvYxpfmJiw==
   dependencies:
     "@babel/parser" "^7.12.10"
     "@babel/types" "^7.12.10"

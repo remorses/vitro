@@ -12,6 +12,6 @@
         "rootDir": "src"
     },
 
-    "exclude": ["template", "tests", "dist", "esm"],
+    "exclude": ["tests", "dist", "esm"],
     "references": []
 }

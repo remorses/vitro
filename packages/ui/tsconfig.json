@@ -10,6 +10,6 @@
         "rootDir": "src"
     },
     "include": ["src"],
-    "exclude": ["template", "tests", "experiments"],
+    "exclude": ["tests", "experiments"],
     "references": []
 }

@@ -9,7 +9,7 @@
         "composite": true,
         "rootDir": "src"
     },
-    "exclude": ["template", "tests"],
+    "exclude": ["tests"],
     "include": ["src"],
     "references": [
         {

@@ -23,7 +23,7 @@
     },
     "license": "ISC",
     "dependencies": {
-        "@bundless/cli": "^0.1.0",
+        "@bundless/cli": "^0.1.1",
         "@bundless/plugin-react-refresh": "^1.0.0",
         "babel-plugin-macros": "^3.0.1",
         "chokidar": "^3.4.2",
