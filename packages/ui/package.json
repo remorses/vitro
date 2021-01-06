@@ -46,6 +46,7 @@
         "react-dom": "*"
     },
     "files": [
+        "src",
         "dist",
         "bundle"
     ],

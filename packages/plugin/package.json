@@ -11,6 +11,7 @@
         "timeout": 9999999999
     },
     "files": [
+        "src",
         "dist"
     ],
     "scripts": {
