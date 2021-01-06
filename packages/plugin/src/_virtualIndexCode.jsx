@@ -1,16 +1,12 @@
 import React, { ComponentType } from 'react'
 import ReactDOM from 'react-dom'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { HomePage, ExperimentPage, VitroApp } from '@vitro/ui/bundle'
+import { Route, BrowserRouter as Router, Switch } from '@vitro/cli/reexports/react-router-dom'
+import { HomePage, ExperimentPage, VitroApp } from '@vitro/cli/reexports/ui'
 
-import '@vitro/ui/src/inspect-mode.css'
-import '@vitro/ui/src/inspector.css'
-
-
+import '@vitro/cli/reexports/inspect-mode.css'
+import '@vitro/cli/reexports/inspector.css'
 
 import experimentsTree from '/vitro-experiments-tree.js'
-
-
 
 // GlobalWrapper import goes here
 

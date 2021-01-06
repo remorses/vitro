@@ -70,7 +70,7 @@ export function ExperimentPage({
     )
 
     useEffect(() => {
-        if (!GlobalWrapper || !isValidElementType(GlobalWrapper)) {
+        if (GlobalWrapper && !isValidElementType(GlobalWrapper)) {
             console.warn(
                 `your global wrapper is not a valid react component: ` +
                     String(GlobalWrapper),

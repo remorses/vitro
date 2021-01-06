@@ -3,6 +3,12 @@
     "description": "Vitro ui components",
     "version": "0.0.83",
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
+    "scripts": {
+        "test": "NODE_ENV=test mocha --colors --exit",
+        "build2": "tsc -b && tsc -b tsconfig.esm.json",
+        "bundle": "yarn rollup -c rollup.config.js",
+        "bundle2": "esbuild --bundle --outdir=bundle --splitting --external:react --external:react-dom --format=esm --target=es2017 src/index.ts"
+    },
     "dependencies": {
         "@chakra-ui/core": "^0.8.0",
         "@emotion/cache": "^10.0.29",
@@ -38,7 +44,8 @@
         "react-dom": "*"
     },
     "files": [
-        "dist"
+        "dist",
+        "bundle"
     ],
     "keywords": [],
     "license": "ISC",
@@ -50,12 +57,6 @@
     },
     "module": "esm/index.js",
     "repository": "remorses/vitro",
-    "scripts": {
-        "test": "NODE_ENV=test mocha --colors --exit",
-        "build2": "tsc -b && tsc -b tsconfig.esm.json",
-        "bundle": "yarn rollup -c rollup.config.js",
-        "bundle2": "esbuild --bundle --outdir=bundle --splitting --external:react --external:react-dom --format=esm --target=es2017 src/index.ts"
-    },
     "types": "dist/index.d.ts",
     "gitHead": "aeeca7004155ed4b27e2a6d3441d0dff61a9d4ee"
 }
