@@ -144,7 +144,7 @@ const Page = () => (
 
             <Image
                 minWidth='0px'
-                src='/vitro-site-mockup.jpg'
+                src='/vitro-site-mockup.jpeg'
                 width={['95%', null, null, '800px']}
                 borderRadius='md'
                 shadow='sm'
