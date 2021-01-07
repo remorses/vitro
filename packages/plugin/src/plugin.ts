@@ -1,7 +1,5 @@
 import { Plugin } from '@bundless/cli'
-import { babelParserOpts } from '@bundless/cli/dist/utils'
 import chokidar from 'chokidar'
-import { transform } from '@babel/core'
 import { escapeRegExp, throttle } from 'lodash'
 import memoize from 'memoizee'
 import path from 'path'
