@@ -1,4 +1,3 @@
-import dedent from 'dedent'
 import path from 'path'
 
 export const debug = (...args) => {
