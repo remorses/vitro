@@ -284,7 +284,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
             w: '100vw',
             maxW: '100vw',
             h: '100vh',
-            p: '50px',
+            // p: '50px',
             pt: '80px',
             bg,
             position: 'fixed',
@@ -349,7 +349,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                     // borderWidth='1px'
                     flex='1'
                     // shadow='sm'
-                    borderRadius='10px'
+                    borderRadius='4px'
                     overflow='hidden'
                     overflowX='auto'
                     bg={bg}
