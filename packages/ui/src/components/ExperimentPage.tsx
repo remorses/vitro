@@ -283,7 +283,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
         () => ({
             w: '100vw',
             maxW: '100vw',
-            h: '100vh',
+            minHeight: '100%',
             // p: '50px',
             pt: '80px',
             bg,
