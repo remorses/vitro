@@ -41,7 +41,7 @@ const command: CommandModule = {
                 experimentsFilters.push(cwd)
             }
 
-            const server = serve({
+            const server = await serve({
                 root,
                 jsx: 'react',
                 entries: ['index.html'],

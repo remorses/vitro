@@ -1,6 +1,5 @@
 import { Plugin } from '@bundless/cli'
-import chokidar from 'chokidar'
-import { escapeRegExp, throttle } from 'lodash'
+import { escapeRegExp } from 'lodash'
 import memoize from 'memoizee'
 import path from 'path'
 import { EXPERIMENTS_TREE_PATH, VIRTUAL_INDEX_PATH } from './constants'
@@ -122,50 +121,3 @@ const htmlTemplate = `
     </body>
 </html>
 `
-
-function watchChanges({ ignored, globs, cb, dev }) {
-    if (process.env.DISABLE_WATCH || !dev) {
-        return cb()
-    }
-    const onChange = throttle(cb, 500)
-    // onChange()
-    const watcher = chokidar.watch(globs, {
-        ignored: (path) => {
-            return ignored.some((s) => path.includes(s))
-        },
-        ignoreInitial: true,
-        persistent: true,
-    })
-
-    // Add event listeners.
-    watcher
-        .on('add', onChange)
-        .on('change', onChange)
-        .on('unlink', onChange)
-}
-
-// function aliasOfPackages(args: { packages: string[]; cwd }) {
-//     return Object.assign(
-//         {},
-//         ...args.packages.map((p) => {
-//             try {
-//                 const resolved = resolve(p)
-//                 debug(`using local instance of '${p}' at '${resolved}'`)
-//                 return {
-//                     [p]: resolved,
-//                 }
-//             } catch (e) {
-//                 console.error(`ERROR: cannot resolve local instance of ${p}`)
-//                 return {}
-//             }
-//         }),
-//     )
-// }
-
-// function makeCssImportCodeSnippet(imports: string[]) {
-//     let code = ''
-//     imports.forEach((p) => {
-//         code += `import '${p}'\n`
-//     })
-//     return code
-// }
