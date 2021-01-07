@@ -43,7 +43,6 @@ const command: CommandModule = {
             printGreen(`creating default ${CONFIG_PATH}`, true)
             await writeFile(CONFIG_PATH, getDefaultConfig({}))
         }
-        printGreen('created vitro app successfully!', true)
     },
 } // as CommandModule
 
