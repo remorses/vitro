@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { Box, Flex, Image } from '@chakra-ui/core'
-import { jsx } from '@emotion/core'
+import { Box, Flex, Image } from '@chakra-ui/react'
 import { Faded } from 'baby-i-am-faded'
 import {
     Button,
@@ -32,7 +30,6 @@ import ExperimentStep from '../public/experiment_step.svg'
 
 import Logo from '../public/vitro_text_and_beaker.svg'
 
-jsx
 
 const heroCode = `
 npm i -g @vitro/cli
