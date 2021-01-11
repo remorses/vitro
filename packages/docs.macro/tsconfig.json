@@ -1,18 +1,11 @@
 {
+    "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "target": "ES2018",
-        "moduleResolution": "Node",
-        "esModuleInterop": true,
-        "declaration": true,
-        "outDir": "dist",
-        "allowJs": true,
-        "sourceMap": true,
-        "skipLibCheck": true,
-        "jsx": "react",
         "composite": true,
+        "outDir": "dist",
         "rootDir": "src"
     },
-
+    "include": ["src"],
     "exclude": ["tests", "dist", "esm"],
     "references": []
 }

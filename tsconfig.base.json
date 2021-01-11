@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "ES2018",
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "declarationMap": true,
+        "skipLibCheck": true,
+        "jsx": "react",
+        "module": "CommonJS"
+    }
+}

@@ -97,10 +97,11 @@ export function ExperimentPage({
         return experimentWrapper || DefaultWrapper
     }, [fileExportsObject, colorMode])
 
-    const experimentTitle =
-        fileExportsObject?.default?.title ||
-        formatPathToTitle(sourceExperimentPath) ||
-        'Untitled'
+    const experimentTitle = loading
+        ? ''
+        : fileExportsObject?.default?.title ||
+          formatPathToTitle(sourceExperimentPath) ||
+          ''
 
     const bg = useMemo(
         () => ({ light: 'white', dark: 'gray.700' }[colorMode]),
