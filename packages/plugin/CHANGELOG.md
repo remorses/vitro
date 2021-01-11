@@ -1,5 +1,11 @@
 # @vitro/plugin
 
+## 0.1.3
+
+### Patch Changes
+
+- 77f328b: Added loading and error states to stories
+
 ## 0.1.2
 
 ### Patch Changes

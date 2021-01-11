@@ -1,5 +1,14 @@
 # @vitro/cli
 
+## 0.1.4
+
+### Patch Changes
+
+- 28b7376: Up bundless
+- Updated dependencies [77f328b]
+  - @vitro/plugin@0.1.3
+  - @vitro/ui@0.1.3
+
 ## 0.1.3
 
 ### Patch Changes
