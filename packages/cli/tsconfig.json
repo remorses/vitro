@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "target": "ES2018",
         "moduleResolution": "Node",
         "esModuleInterop": true,
         "outDir": "dist",
@@ -9,7 +10,6 @@
         "composite": true,
         "rootDir": "src"
     },
-
     "exclude": ["tests"],
     "include": ["src"],
     "references": [

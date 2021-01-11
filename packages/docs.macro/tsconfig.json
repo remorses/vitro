@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "target": "ES2018",
         "moduleResolution": "Node",
         "esModuleInterop": true,
         "declaration": true,

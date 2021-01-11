@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+if (process.argv.includes('--debug')) {
+    process.env.DEBUG_BUNDLESS = 'true'
+}
 import yargs from 'yargs'
 import devCommand from './dev'
 import buildCommand from './build'
@@ -18,6 +21,10 @@ yargs
         type: 'string',
         description: 'Only build experiments inside the specified path',
         array: true,
+    })
+    .option('debug', {
+        type: 'boolean',
+        description: 'Enables debug logging',
     })
     .command(withErrorHandling(initCommand))
     .command(withErrorHandling(buildCommand))
