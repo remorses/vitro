@@ -5,6 +5,9 @@ import fs from 'fs'
 import findUp from 'find-up'
 import { CONFIG_PATH } from './constants'
 import { VitroConfig } from '@vitro/plugin'
+import {Logger} from '@bundless/cli'
+
+export const logger = new Logger({prefix: '[vitro]    '})
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 export const debug = (...args) => {
@@ -26,17 +29,19 @@ export function findVitroJsConfigPath() {
     return path.resolve(p)
 }
 
-export function getVitroConfig(): VitroConfig {
+export function getVitroConfig(p?: string): VitroConfig {
     try {
-        return require(findVitroJsConfigPath())
+        return require(p || findVitroJsConfigPath())
     } catch (e) {
         fatal(`cannot require vitro config,\n${e}`)
     }
 }
 
-
 export function transformName(name: string) {
-    return name.toLowerCase().replace('_', '-').replace(' ', '-')
+    return name
+        .toLowerCase()
+        .replace('_', '-')
+        .replace(' ', '-')
 }
 
 export function readFile(path) {

@@ -1,16 +1,15 @@
 import { serve } from '@bundless/cli'
-import { VitroPlugin } from '@vitro/plugin'
 import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
+import { VitroPlugin } from '@vitro/plugin'
 import path from 'path'
 // import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
 import { CommandModule } from 'yargs'
 import {
     fatal,
     findVitroJsConfigPath,
-    getVitroConfig,
+    getVitroConfig as loadVitroConfig,
     printRed,
 } from './support'
-// const { version: cliVersion } = require('../package.json')
 
 const command: CommandModule = {
     command: ['dev', '*'],
@@ -28,8 +27,10 @@ const command: CommandModule = {
     handler: async (argv: any) => {
         try {
             // if no vitro config is present, ask to run init first
-            const root = path.dirname(findVitroJsConfigPath())
-            const vitroConfig = getVitroConfig()
+
+            const configPath = findVitroJsConfigPath()
+            const root = path.dirname(configPath)
+            const vitroConfig = loadVitroConfig(configPath)
             const experimentsFilters = (argv.filter?.length
                 ? argv.filter
                 : []
@@ -54,7 +55,7 @@ const command: CommandModule = {
                         config: vitroConfig,
                         experimentsFilters,
                     }),
-                    ReactRefreshPlugin()
+                    ReactRefreshPlugin(),
                 ],
             })
         } catch (e) {
