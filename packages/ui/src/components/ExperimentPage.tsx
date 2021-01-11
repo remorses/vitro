@@ -168,7 +168,7 @@ export function ExperimentPage({
                     CSS debug
                 </Button>
 
-                <Select
+                {/* <Select
                     onChange={(e) => {
                         const value = e.target.value as any
                         setClickToSeeSource(value)
@@ -186,7 +186,7 @@ export function ExperimentPage({
                         value='vscode'
                         children='click to source on Vscode'
                     />
-                </Select>
+                </Select> */}
             </Stack>
 
             <Stack
