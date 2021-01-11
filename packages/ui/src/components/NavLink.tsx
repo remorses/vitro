@@ -1,6 +1,6 @@
 import { Box, PseudoBox, useColorMode } from '@chakra-ui/core'
-import {Link as RouterLink} from 'react-router-dom'
-import {useLocation} from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import React, { cloneElement, forwardRef } from 'react'
 
 export const ComponentLink = React.memo(
@@ -8,7 +8,7 @@ export const ComponentLink = React.memo(
         const { colorMode } = useColorMode()
         const hoverColor = { light: 'gray.900', dark: 'whiteAlpha.900' }
         const activeColor = { light: 'gray.800', dark: 'gray.200' }
-        const activeBg = { light: 'gray.100', dark: 'gray.700' }
+        // const activeBg = { light: 'yellow.100', dark: 'gray.700' }
 
         return (
             <NavLink href={href}>
@@ -22,10 +22,12 @@ export const ComponentLink = React.memo(
                             transform: 'translateX(4px)',
                         }}
                         {...(isActive && {
-                            bg: activeBg[colorMode],
+                            textDecoration: 'underline',
+                            // bg: activeBg[colorMode],
                             rounded: 'sm',
+                            fontWeight: 600,
                             color: activeColor[colorMode],
-                            _hover: {},
+                            // _hover: {},
                         })}
                         {...props}
                     />
@@ -36,28 +38,24 @@ export const ComponentLink = React.memo(
 )
 
 export const SideNavLink = forwardRef(
-    ({ children, icon, ...props }: any, ref) => {
+    ({ children, icon, bg, ...props }: any, ref) => {
         const { colorMode } = useColorMode()
         const color = { light: 'gray.700', dark: 'whiteAlpha.700' }
         return (
             <PseudoBox
                 ref={ref}
-                // mx={-2}
                 display='flex'
                 cursor='pointer'
                 alignItems='center'
-                // px='2'
-                py='1'
                 transition='all 0.2s'
-                // fontWeight='medium'
                 outline='none'
                 _focus={{ shadow: 'outline' }}
-                // color={color[colorMode]}
                 _notFirst={{ mt: 1 }}
+                py='1'
                 {...props}
             >
                 {icon && cloneElement(icon, { mr: 3 })}
-                <Box>{children}</Box>
+                <Box bg={bg}>{children}</Box>
             </PseudoBox>
         )
     },
@@ -65,16 +63,10 @@ export const SideNavLink = forwardRef(
 
 const NavLink = ({ children, href, ...props }: any) => {
     // const router = useRouter()
-    const {pathname=''} = useLocation()
-    let isActive = false
-
-    if (
+    const { pathname = '' } = useLocation()
+    let isActive =
         pathname?.replace(/\/$/, '').replace(/\bindex$/, '') ===
         href.replace(/\/$/, '')
-    ) {
-        isActive = true
-    }
-
     if (process.env.USE_HREF) {
         return typeof children === 'function' ? children(isActive) : children
     }
@@ -87,5 +79,8 @@ const NavLink = ({ children, href, ...props }: any) => {
 }
 
 export const stringToUrl = (str, path = '/') => {
-    return `${path}${str.toLowerCase().split(' ').join('-')}`
+    return `${path}${str
+        .toLowerCase()
+        .split(' ')
+        .join('-')}`
 }

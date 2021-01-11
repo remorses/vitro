@@ -23,7 +23,7 @@ export type SideNavProps = {
     contentHeight?: string
 } & BoxProps
 
-export const NavTree = ({ tree = { children: [] },  ...rest }: SideNavProps) => {
+export const NavTree = ({ tree = { children: [] }, ...rest }: SideNavProps) => {
     const { sidebarOrdering = undefined, docsRootPath = 'pages' } = {}
 
     tree = applySidebarOrdering({ tree, order: sidebarOrdering })
@@ -36,21 +36,9 @@ export const NavTree = ({ tree = { children: [] },  ...rest }: SideNavProps) => 
     }
 
     return (
-        <Stack
-            // borderRightWidth='1px'
-            // minWidth='240px'
-            // overflowY='hidden'
-            as='nav'
-            aria-label='Main navigation'
-            // py='6'
-            // px='4'
-            // pr='6'
-            {...rest}
-        >
+        <Stack as='nav' aria-label='Main navigation' {...rest}>
             <Box>
-                {tree.children.map((
-                    x, // i map on children to exclude the `pages` or `docsRootPage` first node
-                ) => (
+                {tree.children.map((x) => (
                     <NavTreeComponent
                         hideDivider
                         key={x.path || x.title}
