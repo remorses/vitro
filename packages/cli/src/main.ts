@@ -11,11 +11,6 @@ import migrateCommand from './migrate'
 import { withErrorHandling } from './support'
 
 yargs
-    .option('verbose', {
-        alias: 'v',
-        type: 'boolean',
-        default: false,
-    })
     .option('filter', {
         alias: 'f',
         type: 'string',
