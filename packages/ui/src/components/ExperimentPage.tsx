@@ -10,6 +10,7 @@ import {
     Stack,
     StackProps,
     useColorMode,
+    Skeleton,
 } from '@chakra-ui/core'
 import { jsx } from '@emotion/core'
 import assign from 'lodash/assign'
@@ -47,7 +48,10 @@ export function ExperimentPage({
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
-    const [fileExportsObject] = usePromise(getFileExports, {})
+    const { value: fileExportsObject, error, loading } = usePromise(
+        getFileExports,
+        {},
+    )
 
     // let [fileExports] = usePromise(fileExportsImporter)
     const experimentComponents = useMemo(
@@ -189,11 +193,39 @@ export function ExperimentPage({
                 flexShrink={0}
                 // direction='row'
                 flexWrap='wrap'
-                overflow='visible' // TODO simple grid has overflow hidden
+                overflow='visible'
                 // justify='space-between'
                 spacing='16'
             >
-                {experimentComponents &&
+                {error && (
+                    <Stack>
+                        <Box
+                            color='red.500'
+                            fontSize='0.9em'
+                            wordBreak='break-word'
+                            whiteSpace='pre-wrap'
+                            as='pre'
+                        >
+                            {error?.stack}
+                        </Box>
+                    </Stack>
+                )}
+                {loading && (
+                    <Stack spacing='16'>
+                        {new Array(3).fill(null).map((_, i) => {
+                            return (
+                                <Skeleton
+                                    borderRadius='4px'
+                                    key={i}
+                                    width='100%'
+                                    height='300px'
+                                />
+                            )
+                        })}
+                    </Stack>
+                )}
+                {!loading &&
+                    experimentComponents &&
                     Object.keys(experimentComponents)
                         .filter((k) => k !== 'default')
                         .map((k) => {

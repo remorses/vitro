@@ -22,16 +22,26 @@ export function formatPathToTitle(path: string) {
     return startCase(withoutExt)
 }
 
-export function usePromise(p, defaultValue): [any] {
+export function usePromise(p, defaultValue) {
     const [v, set] = useState(defaultValue)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<Error>()
+
     useEffect(() => {
+        setLoading(true)
         p()
-            .then(set)
+            .then((x) => {
+                set(x)
+                setLoading(false)
+            })
             .catch((e) => {
+                setLoading(false)
+                setError(e)
                 console.error('error in usePromise\n' + e)
+                console.error(e.stack)
             })
     }, [p])
-    return [v]
+    return { value: v, loading, error }
 }
 
 function isPromise(p) {
@@ -110,7 +120,7 @@ export function filterTree(
 }
 
 function filterChildren(data: ExperimentsTree[], filter) {
-    var r = data.filter(function (o) {
+    var r = data.filter(function(o) {
         if (o?.children) o.children = filterChildren(o.children, filter)
         return filter(o)
     })

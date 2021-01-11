@@ -20,7 +20,7 @@ export const useRouteChanged = (callback) => {
     useEffect(() => {
         const handleRouteChange = (url) => {
             callback()
-            console.log('App is changing to: ', url)
+            // console.log('App is changing to: ', url)
         }
         const unlisten = history.listen(handleRouteChange)
         return () => {
