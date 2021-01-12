@@ -1,7 +1,8 @@
-import { serve } from '@bundless/cli'
+import { serve, Config as BundlessConfig } from '@bundless/cli'
 import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
 import { VitroPlugin } from '@vitro/plugin'
 import path from 'path'
+import deepmerge from 'deepmerge'
 // import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'
 import { CommandModule } from 'yargs'
 import {
@@ -42,7 +43,7 @@ const command: CommandModule = {
                 experimentsFilters.push(cwd)
             }
 
-            const server = await serve({
+            const ownConfig: BundlessConfig = {
                 root,
                 jsx: 'react',
                 entries: ['index.html'],
@@ -57,7 +58,10 @@ const command: CommandModule = {
                     }),
                     ReactRefreshPlugin(),
                 ],
-            })
+            }
+            const server = await serve(
+                deepmerge(vitroConfig?.bundlessConfig || {}, ownConfig),
+            )
         } catch (e) {
             printRed(`could not start the dev server`, true)
             printRed(e.message)
@@ -65,6 +69,6 @@ const command: CommandModule = {
             fatal()
         }
     },
-} // as CommandModule
+}
 
 export default command

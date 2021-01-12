@@ -1,4 +1,4 @@
-import { Plugin } from '@bundless/cli'
+import { Plugin, Config as BundlessConfig } from '@bundless/cli'
 import { escapeRegExp } from 'lodash'
 import memoize from 'memoizee'
 import path from 'path'
@@ -9,6 +9,7 @@ export interface VitroConfig {
     experiments: string[]
     wrapper?: string
     ignore?: string[]
+    bundlessConfig?: BundlessConfig
 }
 
 interface PluginArgs {

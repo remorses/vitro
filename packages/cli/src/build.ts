@@ -1,4 +1,4 @@
-import { build } from '@bundless/cli'
+import { build, Config as BundlessConfig } from '@bundless/cli'
 import { VitroPlugin } from '@vitro/plugin'
 import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
 import path from 'path'
@@ -9,6 +9,7 @@ import {
     getVitroConfig,
     printRed,
 } from './support'
+import deepmerge from 'deepmerge'
 
 const buildCommand: CommandModule = {
     command: ['build'],
@@ -28,7 +29,7 @@ const buildCommand: CommandModule = {
             // if no vitro config is present, ask to run init first
             const root = path.dirname(findVitroJsConfigPath())
             const vitroConfig = getVitroConfig()
-            const buildResult = build({
+            const ownConfig: BundlessConfig = {
                 root,
                 jsx: 'react',
                 entries: ['index.html'],
@@ -43,7 +44,10 @@ const buildCommand: CommandModule = {
                         experimentsFilters: [],
                     }),
                 ],
-            })
+            }
+            const buildResult = build(
+                deepmerge(vitroConfig.bundlessConfig || {}, ownConfig),
+            )
         } catch (e) {
             printRed(`could not build`, true)
             printRed(e.message)
@@ -51,6 +55,6 @@ const buildCommand: CommandModule = {
             fatal()
         }
     },
-} // as CommandModule
+}
 
 export default buildCommand
