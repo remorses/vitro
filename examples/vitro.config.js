@@ -1,4 +1,4 @@
 module.exports = {
     packageManager: 'yarn',
-    experiments: ['./**/*.vitro.jsx', './**/*.vitro.tsx'],
+    globs: ['./**/*.vitro.jsx', './**/*.vitro.tsx'],
 }

@@ -97,7 +97,7 @@ The file will be transpiled so you can use typescript and ESNext features
 // vitro.config.js
 
 module.exports = {
-    experiments: ['./example-package/.experiment.tsx'], // glob to your experiments
+    globs: ['./example-package/*.experiment.tsx'], // glob to your experiments
     wrapper: './example-package/src/Wrapper.tsx', // file that has a react component as default export
 }
 ```

@@ -15,15 +15,15 @@ export const generate = async (args: {
     experimentsFilters: string[]
 }) => {
     const { config, root, experimentsFilters = [] } = args
-    let { experiments = [], ignore: userIgnore = [] } = config
+    let { globs = [], ignore: userIgnore = [] } = config
 
     debug({ experimentsFilters })
-    experiments = experiments.map(path.normalize)
+    globs = globs.map(path.normalize)
     const ignoreGlobs = [...userIgnore, ...excludedDirs]
 
     debug(`starting globWithGit`)
     const results = await Promise.all(
-        experiments.map((s) =>
+        globs.map((s) =>
             globWithGit(s, {
                 ignoreGlobs,
                 gitignore: true,

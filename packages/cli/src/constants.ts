@@ -10,7 +10,7 @@ export const CONFIG_PATH = 'vitro.config.js'
 export const getDefaultConfig = ({}) => `
 // read more at https://vitro.now.sh/docs/config
 module.exports = {
-    experiments: ['./**/*.vitro.jsx'], // globs to search for experiment files
+    globs: ['./**/*.vitro.jsx'], // globs to search for experiment files
     ignore: [], // add directories to ignore when searching for experiment files
     // wrapper: './wrapper.tsx', // file that has a wrapper component as default export 
     // basePath: '/vitro-app', // modifies the deployed base path

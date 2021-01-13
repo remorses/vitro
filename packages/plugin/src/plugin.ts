@@ -6,7 +6,7 @@ import { EXPERIMENTS_TREE_PATH, VIRTUAL_INDEX_PATH } from './constants'
 import { generate } from './generate'
 
 export interface VitroConfig {
-    experiments: string[]
+    globs: string[]
     wrapper?: string
     ignore?: string[]
     bundlessConfig?: BundlessConfig
