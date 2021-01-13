@@ -28,6 +28,9 @@ export function usePromise(p, defaultValue) {
     const [error, setError] = useState<Error>()
 
     useEffect(() => {
+        if (!p) {
+            return
+        }
         setLoading(true)
         p()
             .then((x) => {

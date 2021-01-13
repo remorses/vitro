@@ -2,7 +2,7 @@ import { generate, generateVirtualIndexFile } from '../src/generate'
 import { makeExperimentsTree } from '../src/tree'
 import { globWithGit, glob } from 'smart-glob'
 
-it('generate', async () => {
+it('makeExperimentsTree', async () => {
     const files = await glob('./**', {
         cwd: __dirname,
         gitignore: true,

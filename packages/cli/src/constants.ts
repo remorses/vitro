@@ -12,7 +12,6 @@ export const getDefaultConfig = ({}) => `
 module.exports = {
     globs: ['./**/*.vitro.jsx'], // globs to search for experiment files
     ignore: [], // add directories to ignore when searching for experiment files
-    // wrapper: './wrapper.tsx', // file that has a wrapper component as default export 
     // basePath: '/vitro-app', // modifies the deployed base path
 }
 `

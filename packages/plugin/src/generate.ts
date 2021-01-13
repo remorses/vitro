@@ -1,13 +1,16 @@
 import fs from 'fs'
+import memoize from 'micro-memoize'
+import { glob as smartGlob } from 'smart-glob'
 import { flatten, uniq } from 'lodash'
 import path from 'path'
 import { globWithGit } from 'smart-glob'
-import { VIRTUAL_INDEX_TEMPLATE_LOCATION } from './constants'
+import {
+    VIRTUAL_INDEX_TEMPLATE_LOCATION,
+    DEFAULT_OVERRIDES_BASENAME,
+} from './constants'
 import { VitroConfig } from './plugin'
 import { debug, isWithin } from './support'
 import { bfs, ExperimentsTree, makeExperimentsTree } from './tree'
-
-const excludedDirs = ['**/.vitro/**', '**/pages/experiments/**']
 
 export const generate = async (args: {
     root: string
@@ -19,7 +22,7 @@ export const generate = async (args: {
 
     debug({ experimentsFilters })
     globs = globs.map(path.normalize)
-    const ignoreGlobs = [...userIgnore, ...excludedDirs]
+    const ignoreGlobs = [...userIgnore]
 
     debug(`starting globWithGit`)
     const results = await Promise.all(
@@ -46,10 +49,7 @@ export const generate = async (args: {
 
     debug(`creating pages tree`)
     const experimentsTree = makeExperimentsTree(files)
-    // await fs.promises.writeFile(
-    //     path.join(cwd, 'experimentsTree.json'),
-    //     JSON.stringify(experimentsTree, null, 4),
-    // )
+    
     debug(`created pages tree`)
 
     // generate the index virtual file from the tree, adding the routes list and global wrapper import
@@ -60,14 +60,19 @@ export const generate = async (args: {
     return { experimentsTree, virtualIndexCode }
 }
 
-export async function generateVirtualIndexFile(args: {
+export async function generateVirtualIndexFile(_args: {
     root: string
     experimentsTree: ExperimentsTree
-    globalWrapperPath?: string
+    overridesBasename?: string
 }) {
+    const {
+        experimentsTree,
+        root,
+        overridesBasename = DEFAULT_OVERRIDES_BASENAME,
+    } = _args
     const routes =
         '[\n' +
-        bfs(args.experimentsTree)
+        bfs(experimentsTree)
             .slice(1) // first node is empty
             .filter((x) => x.url)
             .map((node) => {
@@ -76,7 +81,7 @@ export async function generateVirtualIndexFile(args: {
                         fileExports: () => import('./${node.path}'),
                         url: ${JSON.stringify(node.url)},
                         sourceExperimentPath: ${JSON.stringify(
-                            path.join(args.root, node.path),
+                            path.join(root, node.path),
                         )},
                     }`
             })
@@ -90,12 +95,14 @@ export async function generateVirtualIndexFile(args: {
         '// routes go here',
         `const __ROUTES__ = ${routes}`,
     )
+    const overrides = await generateOverridesCode({
+        root,
+        overridesBasename,
+    })
     code = assertReplace(
         code,
-        '// GlobalWrapper import goes here',
-        args.globalWrapperPath
-            ? `import GlobalWrapper from ${args.globalWrapperPath}`
-            : `const GlobalWrapper = null`,
+        '// overrides go here',
+        `const __OVERRIDES__ = ${overrides}`,
     )
     return code
 }
@@ -106,4 +113,25 @@ function assertReplace(code, replaced, replacement) {
         throw new Error(`could not find ${replaced}`)
     }
     return res
+}
+
+const generateOverridesCode = async ({ root, overridesBasename }) => {
+    const files = await smartGlob('**/' + overridesBasename, {
+        cwd: root,
+        gitignore: true,
+        absolute: true,
+    })
+
+    const couples = files
+        .map((file) => {
+            const relative = path.posix.relative(root, file)
+            return `\n    ${JSON.stringify(
+                path.dirname(file),
+            )}: () => import(${JSON.stringify('./' + relative)})\n`
+        })
+        .join(',\n')
+
+    const code = `{\n${couples}\n}`
+
+    return code
 }

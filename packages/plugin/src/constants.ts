@@ -10,3 +10,5 @@ export const VIRTUAL_INDEX_TEMPLATE_LOCATION = path.resolve(
     __dirname,
     '../src/_virtualIndexCode.jsx',
 )
+
+export const DEFAULT_OVERRIDES_BASENAME = 'vitro-overrides.jsx'

@@ -42,18 +42,19 @@ const mdxComponentPrefix = '_VitroMdx'
 
 export function ExperimentPage({
     experimentsTree,
-    GlobalWrapper,
     sourceExperimentPath,
+    componentsOverrides,
     fileExports: getFileExports = () => Promise.resolve({}),
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
     const [cssDebugEnabled, setCssDebug] = useState(false)
-    const { value: fileExportsObject, error, loading } = usePromise(
-        getFileExports,
-        {},
-    )
+    const {
+        value: fileExportsObject,
+        error: exportsError,
+        loading: exportsLoading,
+    } = usePromise(getFileExports, {})
 
-    // let [fileExports] = usePromise(fileExportsImporter)
+    // TODO make useComponentExport hook that memoizes a component export and check it's valid component
     const experimentComponents = useMemo(
         () =>
             assign(
@@ -65,22 +66,22 @@ export function ExperimentPage({
         [fileExportsObject],
     )
 
+    const {
+        value: overridesExports,
+        error: overridesError,
+        loading: overridesLoading,
+    } = usePromise(componentsOverrides, {})
+
+    const loading = exportsLoading || overridesLoading
+    const error = exportsError || overridesError
+
     const ValidGlobalWrapper = useMemo(
         () =>
-            !GlobalWrapper || !isValidElementType(GlobalWrapper)
+            !overridesExports || !isValidElementType(overridesExports.Wrapper)
                 ? DefaultWrapper
-                : GlobalWrapper,
-        [GlobalWrapper, colorMode],
+                : overridesExports.Wrapper,
+        [overridesExports, colorMode],
     )
-
-    useEffect(() => {
-        if (GlobalWrapper && !isValidElementType(GlobalWrapper)) {
-            console.warn(
-                `your global wrapper is not a valid react component: ` +
-                    String(GlobalWrapper),
-            )
-        }
-    }, [GlobalWrapper])
 
     const [clickToSeeSourceProvider, setClickToSeeSource] = useState<
         ClickToSourceState['provider']
