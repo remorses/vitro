@@ -11,10 +11,9 @@
         "bundle": "yarn rollup -c rollup.config.js",
         "bundle2": "esbuild --bundle --outdir=bundle --splitting --external:react --external:react-dom --format=esm --target=es2017 src/index.ts"
     },
-    "dependencies": {
-        "history": "^5.0.0"
-    },
+    "dependencies": {},
     "devDependencies": {
+        "history": "^5.0.0",
         "@chakra-ui/core": "^0.8.0",
         "@emotion/cache": "^10.0.29",
         "@emotion/core": "^10.0.28",
