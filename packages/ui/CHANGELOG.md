@@ -1,5 +1,11 @@
 # @vitro/ui
 
+## 0.1.5
+
+### Patch Changes
+
+- 45e5855: Use git for globbing overrides
+
 ## 0.1.4
 
 ### Patch Changes

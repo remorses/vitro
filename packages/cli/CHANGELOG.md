@@ -1,5 +1,14 @@
 # @vitro/cli
 
+## 0.1.6
+
+### Patch Changes
+
+- 45e5855: Use git for globbing overrides
+- Updated dependencies [45e5855]
+  - @vitro/plugin@0.1.5
+  - @vitro/ui@0.1.5
+
 ## 0.1.5
 
 ### Patch Changes
