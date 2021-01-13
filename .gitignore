@@ -12,7 +12,7 @@ bundle
 dist
 esm
 *.tsbuildinfo
-
+out
 sidebar.json
 
 # testing
