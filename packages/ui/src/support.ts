@@ -12,12 +12,12 @@ export const debug = (x) => {
     }
 }
 
-export function formatPathToTitle(path: string) {
-    const endPath = path
+export function formatPathToTitle(filePath: string) {
+    const endPath = filePath
+        .split('\\')
+        .pop()
         .split('/')
-        .map((x) => x.trim())
-        .filter(Boolean)
-        .reverse()[0]
+        .pop()
     const withoutExt = endPath.split('.')[0]
     return startCase(withoutExt)
 }
