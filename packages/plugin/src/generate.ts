@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { flatten, uniq } from 'lodash'
 import path from 'path'
-import { glob as smartGlob, globWithGit } from 'smart-glob'
+import { globWithGit } from 'smart-glob'
 import {
     DEFAULT_OVERRIDES_BASENAME,
     VIRTUAL_INDEX_TEMPLATE_LOCATION,
@@ -114,7 +114,7 @@ function assertReplace(code, replaced, replacement) {
 }
 
 const generateOverridesCode = async ({ root, overridesBasename }) => {
-    const files = await smartGlob('**/' + overridesBasename, {
+    const files = await globWithGit('**/' + overridesBasename, {
         cwd: root,
         gitignore: true,
         absolute: true,
