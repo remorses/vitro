@@ -1,12 +1,10 @@
 import fs from 'fs'
-import memoize from 'micro-memoize'
-import { glob as smartGlob } from 'smart-glob'
 import { flatten, uniq } from 'lodash'
 import path from 'path'
-import { globWithGit } from 'smart-glob'
+import { glob as smartGlob, globWithGit } from 'smart-glob'
 import {
-    VIRTUAL_INDEX_TEMPLATE_LOCATION,
     DEFAULT_OVERRIDES_BASENAME,
+    VIRTUAL_INDEX_TEMPLATE_LOCATION,
 } from './constants'
 import { VitroConfig } from './plugin'
 import { debug, isWithin } from './support'
@@ -49,7 +47,7 @@ export const generate = async (args: {
 
     debug(`creating pages tree`)
     const experimentsTree = makeExperimentsTree(files)
-    
+
     debug(`created pages tree`)
 
     // generate the index virtual file from the tree, adding the routes list and global wrapper import

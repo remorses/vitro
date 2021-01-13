@@ -1,16 +1,14 @@
-import React, { ComponentType } from 'react'
-import ReactDOM from 'react-dom'
-import path from 'path'
-import {
-    Route,
-    BrowserRouter as Router,
-    Switch,
-} from '@vitro/cli/reexports/react-router-dom'
-import { HomePage, ExperimentPage, VitroApp } from '@vitro/cli/reexports/ui'
-
 import '@vitro/cli/reexports/inspect-mode.css'
 import '@vitro/cli/reexports/inspector.css'
-
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+} from '@vitro/cli/reexports/react-router-dom'
+import { ExperimentPage, HomePage, VitroApp } from '@vitro/cli/reexports/ui'
+import path from 'path'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import experimentsTree from '/vitro-experiments-tree.js'
 
 // routes go here

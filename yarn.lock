@@ -6005,10 +6005,10 @@ disparity@3.0.0:
     ansi-styles "^4.1.0"
     diff "^4.0.1"
 
-dokz@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/dokz/-/dokz-2.0.1.tgz#08e948f3aa1fca1fa93bb26e63ae423fadb5f663"
-  integrity sha512-OQHr6ea4SaSGOsV4UKZp8eKwWFUqgrkKrRHoyRKb5xSA0VBT8T4vS//utGNFmptgkVfqBmRJdEuh4hjXY7uD6w==
+dokz@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/dokz/-/dokz-2.0.3.tgz#29ba6296a954d97ebd20bab0a693aa8a77613a59"
+  integrity sha512-dxGNFcTdyzessPZy4FwIFjUKja0i/g2diKr88+W/vK4AoL+JPQbKYwk89+G/BhPQTd1uDi3RiLlgD5ftOJfPAA==
   dependencies:
     "@babel/generator" "^7.10.2"
     "@babel/parser" "^7.10.2"
