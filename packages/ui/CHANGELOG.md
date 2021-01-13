@@ -1,5 +1,11 @@
 # @vitro/ui
 
+## 0.1.4
+
+### Patch Changes
+
+- 8f3bd60: Rename dark to isDark, added vitro-overrides.jsx feature
+
 ## 0.1.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
     "name": "@vitro/plugin",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "Vitro bundless plugin",
     "keywords": [],
     "main": "dist/index.js",
