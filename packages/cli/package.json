@@ -1,6 +1,6 @@
 {
     "name": "@vitro/cli",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -35,8 +35,8 @@
         "@bundless/plugin-react-refresh": "^1.0.3",
         "@types/yargs": "^15.0.5",
         "@vitro/codemod": "^0.1.1",
-        "@vitro/plugin": "^0.1.3",
-        "@vitro/ui": "^0.1.3",
+        "@vitro/plugin": "^0.1.4",
+        "@vitro/ui": "^0.1.4",
         "chalk": "latest",
         "deepmerge": "^4.2.2",
         "find-up": "^5.0.0",

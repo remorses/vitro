@@ -1,5 +1,11 @@
 # @vitro/cli
 
+## 0.1.5
+
+### Patch Changes
+
+- 3274eda: Update local packages
+
 ## 0.1.4
 
 ### Patch Changes
