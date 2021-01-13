@@ -1,13 +1,16 @@
 import '@vitro/cli/reexports/inspect-mode.css'
 import '@vitro/cli/reexports/inspector.css'
+
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-} from '@vitro/cli/reexports/react-router-dom'
-import { ExperimentPage, HomePage, VitroApp } from '@vitro/cli/reexports/ui'
+    ExperimentPage,
+    HomePage,
+    VitroApp,
+    history,
+    useRouteChanged,
+    getFileParam,
+} from '@vitro/cli/reexports/ui'
 import path from 'path'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import experimentsTree from '/vitro-experiments-tree.js'
 
@@ -17,7 +20,7 @@ import experimentsTree from '/vitro-experiments-tree.js'
 
 const routes = __ROUTES__
     .filter((x) => x.url)
-    .map(({ fileExports, url: route, sourceExperimentPath }) => {
+    .map(({ fileExports, url, sourceExperimentPath }) => {
         const componentsOverridesScope = Object.keys(__OVERRIDES__).find(
             (scopeDir) => {
                 // console.log({ scopeDir, sourceExperimentPath })
@@ -31,29 +34,49 @@ const routes = __ROUTES__
             },
         )
         const overrides = __OVERRIDES__[componentsOverridesScope]
-        return (
-            <Route key={route} path={route}>
-                <ExperimentPage
-                    componentsOverrides={overrides}
-                    experimentsTree={experimentsTree}
-                    sourceExperimentPath={sourceExperimentPath}
-                    fileExports={fileExports}
-                />
-            </Route>
-        )
+        return {
+            url,
+            param: getFileParam(url),
+            Component: () => {
+                return (
+                    <ExperimentPage
+                        componentsOverrides={overrides}
+                        experimentsTree={experimentsTree}
+                        sourceExperimentPath={sourceExperimentPath}
+                        fileExports={fileExports}
+                    />
+                )
+            },
+        }
     })
 
-ReactDOM.render(
-    <Router>
-        <VitroApp experimentsTree={experimentsTree}>
-            <Switch>
-                <Route path='/' exact>
-                    <HomePage experimentsTree={experimentsTree} />
-                </Route>
-                {routes}
-            </Switch>
-        </VitroApp>
-    </Router>,
+function MainApp() {
+    const [fileParam, setFileParam] = useState(() =>
+        getFileParam(window.location.href),
+    )
+    useRouteChanged(() => {
+        setFileParam(getFileParam(window.location.href))
+    })
+    if (!fileParam) {
+        return (
+            <VitroApp experimentsTree={experimentsTree}>
+                <HomePage />
+                {/* TODO let user customize home  */}
+            </VitroApp>
+        )
+    }
+    const route = routes.find((route) => {
+        return route.param === fileParam
+    })
 
-    document.getElementById('root'),
-)
+    if (!route) {
+        return <VitroApp experimentsTree={experimentsTree}></VitroApp>
+    }
+    return (
+        <VitroApp experimentsTree={experimentsTree}>
+            <route.Component />
+        </VitroApp>
+    )
+}
+
+ReactDOM.render(<MainApp />, document.getElementById('root'))

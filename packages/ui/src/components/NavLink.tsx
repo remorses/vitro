@@ -1,7 +1,6 @@
 import { Box, PseudoBox, useColorMode } from '@chakra-ui/core'
-import { Link as RouterLink } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
 import React, { cloneElement, forwardRef } from 'react'
+import { history, getFileParam } from '../history'
 
 export const ComponentLink = React.memo(
     forwardRef(({ href, ...props }: any, ref) => {
@@ -63,18 +62,22 @@ export const SideNavLink = forwardRef(
 
 const NavLink = ({ children, href, ...props }: any) => {
     // const router = useRouter()
-    const { pathname = '' } = useLocation()
-    let isActive =
-        pathname?.replace(/\/$/, '').replace(/\bindex$/, '') ===
-        href.replace(/\/$/, '')
-    if (process.env.USE_HREF) {
-        return typeof children === 'function' ? children(isActive) : children
-    }
-
+    const fileParam = getFileParam(window.location.href)
+    const hrefFileParam = getFileParam(href)
+    let isActive = fileParam === hrefFileParam
     return (
-        <RouterLink to={href} {...props}>
+        <a
+            onClick={(e) => {
+                if (!e.ctrlKey && !e.altKey && !e.metaKey && !e.shiftKey) {
+                    e.preventDefault()
+                    history.push(href)
+                }
+            }}
+            href={href}
+            {...props}
+        >
             {typeof children === 'function' ? children(isActive) : children}
-        </RouterLink>
+        </a>
     )
 }
 

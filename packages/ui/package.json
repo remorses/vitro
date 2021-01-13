@@ -11,39 +11,41 @@
         "bundle": "yarn rollup -c rollup.config.js",
         "bundle2": "esbuild --bundle --outdir=bundle --splitting --external:react --external:react-dom --format=esm --target=es2017 src/index.ts"
     },
-    "dependencies": {},
+    "dependencies": {
+        "history": "^5.0.0"
+    },
     "devDependencies": {
         "@chakra-ui/core": "^0.8.0",
         "@emotion/cache": "^10.0.29",
         "@emotion/core": "^10.0.28",
         "@emotion/styled": "^10.0.27",
+        "@rollup/plugin-commonjs": "^16.0.0",
+        "@rollup/plugin-node-resolve": "^10.0.0",
         "@types/lodash": "^4.14.157",
+        "@types/react-icons": "^3.0.0",
+        "@types/react-router-dom": "^5.1.6",
+        "assert": "^2.0.0",
         "baby-i-am-faded": "^1.0.2",
+        "cross-env": "^7.0.2",
+        "dotenv": "^8.2.0",
         "emotion-theming": "^10.0.27",
+        "esbuild": "^0.8.17",
         "lodash": "^4.17.19",
         "nprogress": "^0.2.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
         "react-icons": "latest",
         "react-is": "^16.13.1",
         "react-router-dom": "^5.2.0",
         "react-storage-hooks": "^4.0.1",
-        "stylis-plugin-extra-scope": "^0.2.1",
-        "tslib": "^2.0.0",
-        "@rollup/plugin-commonjs": "^16.0.0",
-        "@rollup/plugin-node-resolve": "^10.0.0",
         "rollup-plugin-esbuild": "^2.6.0",
-        "@types/react-icons": "^3.0.0",
-        "@types/react-router-dom": "^5.1.6",
-        "assert": "^2.0.0",
-        "cross-env": "^7.0.2",
-        "dotenv": "^8.2.0",
-        "esbuild": "^0.8.17",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1"
+        "stylis-plugin-extra-scope": "^0.2.1",
+        "tslib": "^2.0.0"
     },
     "peerDependencies": {
         "react": "*",
-        "react-router-dom": "*",
-        "react-dom": "*"
+        "react-dom": "*",
+        "react-router-dom": "*"
     },
     "files": [
         "src",

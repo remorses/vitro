@@ -73,8 +73,7 @@ function formatPathToTitle(path: string) {
 function pathToURL(path: string) {
     // console.log(path)
     // path = path.replace(/\.\w+$/, '').replace(/\bindex$/, '')
-
-    return '/experiments/' + (path || '')
+    return '/?file=' + encodeURIComponent(path)
 }
 
 const DUMMY_NAMES = ['index', 'experiment', 'story']
