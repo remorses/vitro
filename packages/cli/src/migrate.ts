@@ -3,7 +3,7 @@ import { CommandModule } from 'yargs'
 
 
 const command: CommandModule = {
-    command: ['migrate <glob>'],
+    command: ['migrate-storybook <glob>'],
     describe: 'Migrate from storybook to vitro',
     builder: (argv) => {
         argv.option('rename', {
