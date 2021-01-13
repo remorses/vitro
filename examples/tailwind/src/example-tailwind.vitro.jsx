@@ -1,7 +1,7 @@
 import React from 'react'
 import 'tailwindcss/dist/tailwind.css'
 
-export const CardExample = ({ dark }) => (
+export const CardExample = ({ isDark }) => (
     <div className='md:flex'>
         <div className='md:flex-shrink-0'>
             <img
@@ -12,7 +12,7 @@ export const CardExample = ({ dark }) => (
         </div>
         <div className='mt-4 md:mt-0 md:ml-6'>
             <div className='uppercase tracking-wide text-sm text-indigo-600 font-bold'>
-                {dark ? 'dark' : 'light'} Marketing
+                {isDark ? 'dark' : 'light'} Marketing
             </div>
             <a
                 href='#'

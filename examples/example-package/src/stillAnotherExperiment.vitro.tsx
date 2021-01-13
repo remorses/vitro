@@ -8,18 +8,9 @@ import {
     Stack,
 } from '@chakra-ui/core'
 import { Component } from './index'
-import Wrapper from './Wrapper'
 
 export default {
     title: 'My Awesome Component!',
-    wrapper: ({ children }) => {
-        return (
-            <Wrapper>
-                <Box>This text comes from a wrapper</Box>
-                {children}
-            </Wrapper>
-        )
-    },
 }
 
 export const SimpleButton = ({}) => {

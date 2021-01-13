@@ -11,15 +11,15 @@ import { ColorModeProvider } from '@chakra-ui/system'
 
 export default {
     title: 'Example',
-    wrapper: ({ dark, children }) => (
-        <ColorModeProvider value={dark ? 'dark' : 'light'}>
+    wrapper: ({ isDark, children }) => (
+        <ColorModeProvider value={isDark ? 'dark' : 'light'}>
             <ThemeProvider>{children}</ThemeProvider>
         </ColorModeProvider>
     ),
 }
 
-export const MyExperiment = ({ dark }) => (
-    <div>dark mode is {dark ? 'enabled' : 'disabled'}</div>
+export const MyExperiment = ({ isDark }) => (
+    <div>dark mode is {isDark ? 'enabled' : 'disabled'}</div>
 )
 ```
 
@@ -32,8 +32,8 @@ import { ColorModeProvider } from '@chakra-ui/system/src'
 
 import React from 'react'
 
-export const Wrapper = ({ dark, children }) => (
-    <ColorModeProvider value={dark ? 'dark' : 'light'}>
+export const Wrapper = ({ isDark, children }) => (
+    <ColorModeProvider value={isDark ? 'dark' : 'light'}>
         <ThemeProvider>{children}</ThemeProvider>
     </ColorModeProvider>
 )

@@ -281,15 +281,15 @@ export function ExperimentPage({
                                         >
                                             <ValidGlobalWrapper
                                                 key={colorMode} // TODO remounting on color mode change or the providers get fucked up
-                                                dark={colorMode == 'dark'}
+                                                isDark={colorMode == 'dark'}
                                             >
                                                 <ExperimentWrapper
                                                     key={colorMode}
-                                                    dark={colorMode == 'dark'}
+                                                    isDark={colorMode == 'dark'}
                                                 >
                                                     <Component
                                                         key={colorMode}
-                                                        dark={
+                                                        isDark={
                                                             colorMode == 'dark'
                                                         }
                                                     />
