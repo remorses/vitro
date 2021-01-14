@@ -7,7 +7,6 @@ import { generate } from './generate'
 
 export interface VitroConfig {
     globs: string[]
-    wrapper?: string
     ignore?: string[]
     bundlessConfig?: BundlessConfig
 }

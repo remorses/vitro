@@ -31,7 +31,7 @@
     },
     "license": "ISC",
     "dependencies": {
-        "@bundless/cli": "^0.1.5",
+        "@bundless/cli": "^0.1.7",
         "@bundless/plugin-react-refresh": "^1.0.3",
         "@types/yargs": "^15.0.5",
         "@vitro/codemod": "^0.1.1",
