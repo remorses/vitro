@@ -28,3 +28,9 @@ async function uploadFolder({ folderPath, bucketName, destinationFolder }) {
 
     await batchedPromiseAll(files, uploadFile, os.cpus().length * 2)
 }
+
+uploadFolder({
+    bucketName: 'vitro-test-1',
+    destinationFolder: 'example-upload',
+    folderPath: '/Users/morse/Documents/GitHub/react-comics/examples/out',
+})

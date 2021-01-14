@@ -1,16 +1,19 @@
 import { startCase } from 'lodash'
 import { debug } from './support'
 
-export function makeExperimentsTree(files: string[]) {
+export function makeExperimentsTree(files: string[], basePath: string) {
     debug('makeExperimentsTree')
     const filesParts = files.map((f) => f.split('/')).filter(Boolean)
-    const children = arrangeIntoTree(filesParts)
+    const children = arrangeIntoTree(filesParts, basePath)
     return removeSingleChildFolders({
         children,
     })
 }
 
-export function arrangeIntoTree(paths: string[][]): ExperimentsTree[] {
+export function arrangeIntoTree(
+    paths: string[][],
+    basePath: string,
+): ExperimentsTree[] {
     // Adapted from http://brandonclapp.com/arranging-an-array-of-flat-paths-into-a-json-tree-like-structure/
     var tree = []
 
@@ -28,10 +31,11 @@ export function arrangeIntoTree(paths: string[][]): ExperimentsTree[] {
                 const reconstructedPath = path.slice(0, j + 1).join('/')
                 // remove url for non leafs
                 const isDir = path[j + 1]
-                const url = isDir ? '' : pathToURL(reconstructedPath)
+                const url =
+                    basePath + '?file=' + encodeURIComponent(reconstructedPath)
                 var newPart = {
                     name: part,
-                    url,
+                    url: isDir ? '' : url,
                     path: reconstructedPath,
                     title: formatPathToTitle(part),
                     children: [],
@@ -68,12 +72,6 @@ function formatPathToTitle(path: string) {
         .reverse()[0]
     const withoutExt = endPath.split('.')[0]
     return startCase(withoutExt)
-}
-
-function pathToURL(path: string) {
-    // console.log(path)
-    // path = path.replace(/\.\w+$/, '').replace(/\bindex$/, '')
-    return '/?file=' + encodeURIComponent(path)
 }
 
 const DUMMY_NAMES = ['index', 'experiment', 'story']

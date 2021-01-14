@@ -36,6 +36,7 @@ const buildCommand: CommandModule = {
                 build: {
                     minify: true,
                     outDir: argv.out,
+                    basePath: vitroConfig.basePath || '/',
                 },
                 // entries: ['./index.html'],
                 plugins: [

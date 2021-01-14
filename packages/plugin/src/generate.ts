@@ -16,7 +16,7 @@ export const generate = async (args: {
     experimentsFilters: string[]
 }) => {
     const { config, root, experimentsFilters = [] } = args
-    let { globs = [], ignore: userIgnore = [] } = config
+    let { globs = [], ignore: userIgnore = [], basePath = '/' } = config
 
     debug({ experimentsFilters })
     globs = globs.map(path.normalize)
@@ -46,7 +46,7 @@ export const generate = async (args: {
         })
 
     debug(`creating pages tree`)
-    const experimentsTree = makeExperimentsTree(files)
+    const experimentsTree = makeExperimentsTree(files, basePath)
 
     debug(`created pages tree`)
 
