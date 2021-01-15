@@ -1,10 +1,10 @@
-import { Plugin, Config as BundlessConfig } from '@bundless/cli'
+import { Plugin, Config as BundlessConfig, MAIN_FIELDS } from '@bundless/cli'
 import { escapeRegExp } from 'lodash'
 import memoize from 'memoizee'
 import path from 'path'
 import { EXPERIMENTS_TREE_PATH, VIRTUAL_INDEX_PATH } from './constants'
 import { generate } from './generate'
-
+import { resolveAsync } from '@esbuild-plugins/node-resolve'
 export interface VitroConfig {
     globs: string[]
     ignore?: string[]
@@ -31,6 +31,21 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             })
             onLoad({ filter: /\.html$/ }, (args) => {
                 return { contents: htmlTemplate }
+            })
+
+            // resolve react and react-dom to root to prevent duplication
+            onResolve({ filter: /^(react|react-dom)/ }, async (args) => {
+                const resolved = await resolveAsync(args.path, {
+                    basedir: root,
+                    extensions: ['.js', '.cjs'],
+                    preserveSymlinks: false,
+                    mainFields: MAIN_FIELDS,
+                })
+                if (resolved) {
+                    return {
+                        path: resolved,
+                    }
+                }
             })
 
             // onTransform({ filter: /.*/ }, async (args) => {

@@ -24,6 +24,7 @@
     },
     "license": "ISC",
     "dependencies": {
+        "@esbuild-plugins/node-resolve": "^0.0.14",
         "babel-plugin-macros": "^3.0.1",
         "chokidar": "^3.4.2",
         "fs-extra": "^9.0.1",
