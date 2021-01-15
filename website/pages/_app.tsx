@@ -36,6 +36,7 @@ export default function App(props) {
                             'index.mdx': true,
                             'config.mdx': true,
                             'writing-experiments': true,
+                            'overrides.mdx': true,
                             'dark-mode': true,
                             deploy: true,
                         },

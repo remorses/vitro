@@ -1,3 +1,22 @@
 # Deploy
 
-<!-- TODO how to deploy -->
+To deploy your vitro website you can use a website hosting platform like [Vercel](https://vercel.com)
+
+To produce your static assets you can run
+
+```sh
+vitro build --out ./dist
+```
+
+## Change base path
+
+In case you want to deploy to a sub path like `https://example.com/path` you will need to pass the basePath option in config
+
+```js
+// vitro.config.js
+module.exports = {
+    basePath: '/path',
+}
+```
+
+> `basePath` will not be used in development!

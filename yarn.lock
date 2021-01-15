@@ -5833,10 +5833,10 @@ disparity@3.0.0:
     ansi-styles "^4.1.0"
     diff "^4.0.1"
 
-dokz@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/dokz/-/dokz-2.0.3.tgz#29ba6296a954d97ebd20bab0a693aa8a77613a59"
-  integrity sha512-dxGNFcTdyzessPZy4FwIFjUKja0i/g2diKr88+W/vK4AoL+JPQbKYwk89+G/BhPQTd1uDi3RiLlgD5ftOJfPAA==
+dokz@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/dokz/-/dokz-2.0.4.tgz#33ae3ab3415538653d12454a413c956e11604b99"
+  integrity sha512-ovMTYwNyzsBZ8PTf5e9qwb+oyqBlBM6tJnCFTdakGg1HUMTx5BODwtwRilaxL8riU7PDR5OUrNrr2TKLUSSS8g==
   dependencies:
     "@babel/generator" "^7.10.2"
     "@babel/parser" "^7.10.2"
