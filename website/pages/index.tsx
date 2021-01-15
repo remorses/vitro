@@ -40,6 +40,7 @@ vitro
 const Page = () => (
     <LandingProvider
         position='relative'
+        pageWidth='1100px'
         // minH='100%'
         minH='100%'
         black='#333'
