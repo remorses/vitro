@@ -5,6 +5,9 @@ The configuration used by Vitro must be in a file named `vitro.config.js` with a
 This is what the default configuration looks like
 
 ```js
+// vitro.config.js
+
+/** @type {import('@vitro/cli').VitroConfig} */
 module.exports = {
     globs: ['./**/*.vitro.jsx'], // globs to search for experiment files
     ignore: [], // add directories to ignore when searching for experiment files

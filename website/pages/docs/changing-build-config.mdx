@@ -1,0 +1,18 @@
+# Changing build config
+
+Vitro uses [bundless](https://github.com/remorses/bundless) to serve and build your vitro app, to change the esbuild config you can pass your custom options to `config.bundlessConfig`
+
+```js
+// vitro.config.js
+
+/** @type {import('@vitro/cli').VitroConfig} */
+module.exports = {
+    // other options can be found at https://bundless.vercel.app/docs/config
+    bundlessConfig: {
+        build: {
+            minify: false,
+        },
+    },
+    globs: ['./**/*.vitro.jsx'],
+}
+```
