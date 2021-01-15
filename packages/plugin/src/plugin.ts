@@ -4,7 +4,7 @@ import memoize from 'memoizee'
 import path from 'path'
 import { EXPERIMENTS_TREE_PATH, VIRTUAL_INDEX_PATH } from './constants'
 import { generate } from './generate'
-import { resolveAsync } from '@esbuild-plugins/node-resolve'
+
 export interface VitroConfig {
     globs: string[]
     ignore?: string[]

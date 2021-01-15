@@ -69,6 +69,8 @@ export const SimpleButton = () => {
 
 ## Adding documentation
 
+> Still not implemented
+
 You can add inline documentation to your components via the `docs` macro
 
 ```jsx
@@ -87,16 +89,4 @@ export const SimpleButton = () => {
 
 ## Adding a global wrapper to all experiments
 
-If you want to add a wrapper to all experiments you can pass a path to the wrapper field in `vitro.config.js`
-
-The path must have a default export with the wrapper component
-
-The file will be transpiled so you can use typescript and ESNext features
-
-```js
-// vitro.config.js
-
-module.exports = {
-    globs: ['./example-package/*.experiment.tsx'], // glob to your experiments
-}
-```
+To add a global wrapper you can create a `vitro-overrides.jsx` to add a wrapper to all experiments children of that dirname, see [overrides](/overrides) to read more

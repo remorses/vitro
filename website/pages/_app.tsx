@@ -18,12 +18,10 @@ export default function App(props) {
             <ChakraProvider resetCSS>
                 <DokzProvider
                     docsRootPath='pages/docs'
+                    githubUrl='https://github.com/remorses/vitro'
                     headerLogo={
                         <a href='/'>
                             <Box as={Logo} width='120px' />
-                            {/* <Box fontSize='1.4em' fontWeight='600'>
-                            Vitro
-                        </Box> */}
                         </a>
                     }
                     headerItems={[

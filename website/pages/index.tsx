@@ -30,7 +30,6 @@ import ExperimentStep from '../public/experiment_step.svg'
 
 import Logo from '../public/vitro_text_and_beaker.svg'
 
-
 const heroCode = `
 npm i -g @vitro/cli
 vitro init
@@ -46,11 +45,6 @@ const Page = () => (
         black='#333'
         primary='#4C00EB'
         color='#444'
-        theme={{
-            space: {
-                pagePadding: '40px',
-            } as any,
-        }}
     >
         <MyNavbar />
         <Box
