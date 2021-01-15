@@ -34,19 +34,20 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             })
 
             // resolve react and react-dom to root to prevent duplication
-            onResolve({ filter: /^(react|react-dom)/ }, async (args) => {
-                const resolved = await resolveAsync(args.path, {
-                    basedir: root,
-                    extensions: ['.js', '.cjs'],
-                    preserveSymlinks: false,
-                    mainFields: MAIN_FIELDS,
-                })
-                if (resolved) {
-                    return {
-                        path: resolved,
-                    }
-                }
-            })
+            // TODO add react aliases after esbuild allows resolve overrides https://github.com/evanw/esbuild/issues/501
+            // onResolve({ filter: /^(react|react-dom)/ }, async (args) => {
+            //     const resolved = await resolveAsync(args.path, {
+            //         basedir: root,
+            //         extensions: ['.js', '.cjs'],
+            //         preserveSymlinks: false,
+            //         mainFields: MAIN_FIELDS,
+            //     })
+            //     if (resolved) {
+            //         return {
+            //             path: resolved,
+            //         }
+            //     }
+            // })
 
             // onTransform({ filter: /.*/ }, async (args) => {
             //     if (!args.contents.includes('@vitro/docs.macro')) {
