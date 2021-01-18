@@ -1,5 +1,15 @@
 # @vitro/cli
 
+## 0.1.7
+
+### Patch Changes
+
+- 9ca99aa: bump
+- 33e4469: Bump
+- Updated dependencies [33e4469]
+  - @vitro/plugin@0.1.6
+  - @vitro/ui@0.1.6
+
 ## 0.1.6
 
 ### Patch Changes

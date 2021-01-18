@@ -1,5 +1,11 @@
 # @vitro/ui
 
+## 0.1.6
+
+### Patch Changes
+
+- 33e4469: Bump
+
 ## 0.1.5
 
 ### Patch Changes
