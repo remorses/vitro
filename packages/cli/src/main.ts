@@ -11,6 +11,8 @@ import migrateCommand from './migrate'
 import { withErrorHandling } from './support'
 
 yargs
+    .scriptName('vitro')
+    .locale('en')
     .option('filter', {
         alias: 'f',
         type: 'string',

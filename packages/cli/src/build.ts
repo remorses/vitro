@@ -46,7 +46,7 @@ const buildCommand: CommandModule = {
                     }),
                 ],
             }
-            const buildResult = build(
+            const buildResult = await build(
                 deepmerge(vitroConfig.bundlessConfig || {}, ownConfig),
             )
         } catch (e) {

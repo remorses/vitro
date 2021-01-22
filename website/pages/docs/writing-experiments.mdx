@@ -90,3 +90,36 @@ export const SimpleButton = () => {
 ## Adding a global wrapper to all experiments
 
 To add a global wrapper you can create a `vitro-overrides.jsx` to add a wrapper to all experiments children of that dirname, see [overrides](/overrides) to read more
+
+## Differences with storybook
+
+## Don't use static properties
+
+Instead of using static properties like `args` and `parameters`
+
+```tsx
+import React from 'react'
+
+const Template = (args) => <div {...args} />
+
+export const Primary = Template.bind({})
+Primary.args = {
+    name: 'world',
+}
+```
+
+Just pass your args
+
+```
+import React from "react";
+
+const Template = args => <div  {...args} />;
+
+export const Primary = () => <Template {...{
+  name: "world"
+}} />
+```
+
+## Always use the `jsx` and `tsx` extensions for code containing jsx
+
+Vitro will not transpile code in files with the js extension, if you use `jsx` you should use the jsx extension
