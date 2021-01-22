@@ -1,5 +1,11 @@
 # @vitro/cli
 
+## 0.1.8
+
+### Patch Changes
+
+- 97fbc47: Titles are outside blocks, update deps
+
 ## 0.1.7
 
 ### Patch Changes

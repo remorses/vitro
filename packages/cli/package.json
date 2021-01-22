@@ -1,6 +1,6 @@
 {
     "name": "@vitro/cli",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -31,8 +31,8 @@
     },
     "license": "ISC",
     "dependencies": {
-        "@bundless/cli": "^0.1.8",
-        "@bundless/plugin-react-refresh": "^1.0.4",
+        "@bundless/cli": "^0.1.9",
+        "@bundless/plugin-react-refresh": "^1.0.7",
         "@types/yargs": "^15.0.5",
         "@vitro/codemod": "^0.1.1",
         "@vitro/plugin": "^0.1.6",
