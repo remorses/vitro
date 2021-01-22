@@ -1,5 +1,11 @@
 # @vitro/plugin
 
+## 0.1.7
+
+### Patch Changes
+
+- 6430f63: Sync packages
+
 ## 0.1.6
 
 ### Patch Changes

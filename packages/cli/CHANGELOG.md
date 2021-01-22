@@ -1,5 +1,14 @@
 # @vitro/cli
 
+## 0.1.9
+
+### Patch Changes
+
+- 6430f63: Sync packages
+- Updated dependencies [6430f63]
+  - @vitro/plugin@0.1.7
+  - @vitro/ui@0.1.7
+
 ## 0.1.8
 
 ### Patch Changes
