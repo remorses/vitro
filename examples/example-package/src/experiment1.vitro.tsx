@@ -7,7 +7,7 @@ export const DifferentColor = ({}) => {
 }
 
 export const Simple = ({}) => {
-    return <Box flex='1 0 400px' width='100%' minHeight='100%' bg='gray.100' />
+    return <Box  width='100%' minHeight='100%' bg='gray.100' />
 }
 export const AnotherOne = ({}) => {
     return <Component w='10px' bg='red.100' />

@@ -22,6 +22,7 @@ import React, {
     useMemo,
     useRef,
     useState,
+    Fragment,
 } from 'react'
 import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
@@ -55,16 +56,6 @@ export function ExperimentPage({
     } = usePromise(getFileExports, {})
 
     // TODO make useComponentExport hook that memoizes a component export and check it's valid component
-    const experimentComponents = useMemo(
-        () =>
-            assign(
-                {},
-                ...Object.keys(fileExportsObject)
-                    .filter((k) => isValidElementType(fileExportsObject[k]))
-                    .map((k) => ({ [k]: fileExportsObject[k] })),
-            ),
-        [fileExportsObject],
-    )
 
     const {
         value: overridesExports,
@@ -95,7 +86,7 @@ export function ExperimentPage({
         if (experimentWrapper) {
             console.info('using experiments wrapper ' + experimentWrapper?.name)
         }
-        return experimentWrapper || DefaultWrapper
+        return experimentWrapper || FragmentLike
     }, [fileExportsObject, colorMode])
 
     const experimentTitle = loading
@@ -227,13 +218,17 @@ export function ExperimentPage({
                     </Stack>
                 )}
                 {!loading &&
-                    experimentComponents &&
-                    Object.keys(experimentComponents)
-                        .filter((k) => k !== 'default')
+                    fileExportsObject &&
+                    Object.keys(fileExportsObject)
+                        .filter((k) => {
+                            const Component = fileExportsObject[k]
+                            return (
+                                k !== 'default' && isValidElementType(Component)
+                            )
+                        })
                         .map((k) => {
-                            const Component = experimentComponents[k]
                             // console.log({ Component })
-
+                            const Component = fileExportsObject[k]
                             if (!isValidElementType(Component)) {
                                 return null
                             }
@@ -250,7 +245,7 @@ export function ExperimentPage({
                             return (
                                 <StoryBlock
                                     maxW='100%'
-                                    overflowX='auto' // TODO overflow x scroll not working
+                                    overflowX='auto'
                                     flexShrink={0}
                                     title={k}
                                     blockWidth='100%'
@@ -267,9 +262,10 @@ export function ExperimentPage({
                                     >
                                         <Stack
                                             // flex='1'
-                                            w='100%'
-                                            h='100%'
+                                            width='100%'
+                                            height='100%'
                                             minH='100%'
+                                            minW='100%'
                                             spacing='0'
                                             align='center'
                                             justify='center'
@@ -378,6 +374,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 {/* Block */}
                 <Stack
                     minH='340px'
+                    height='100%'
                     shadow='sm'
                     // shadow='0 0 40px rgba(0,0,0,0.1), 0 -10px 40px rgba(0,0,0,0.1)'
                     // borderWidth='1px'
@@ -389,7 +386,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                     bg={bg}
                     // minH='100%'
                     spacing='0'
-                    align='center'
+                    align='stretch'
                     justify='center'
                     // p='6'
                     // css={cssDebugEnabled ? debugCSS : css``}
@@ -595,4 +592,8 @@ export const ToggleColorModeButton = ({ ...rest }) => {
             {...rest}
         />
     )
+}
+
+function FragmentLike({ children }) {
+    return <Fragment children={children} />
 }

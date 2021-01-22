@@ -8,7 +8,8 @@ export const DefaultWrapper = ({ children }) => {
             justify='center'
             flex='1'
             width='100%'
-            height='100%'
+            minWidth='100%'
+            minHeight='100%'
             spacing='0'
         >
             {/* <CSSReset /> */}
