@@ -30,14 +30,14 @@
 
 ## Things to do
 
--   [ ] do a vitro-overrides.tsx or similar that can export components to customize vitro aspect: for example `Logo`, `StoryWrapper`, `Footer`, `HomePage`, ...
--   [ ] make only one dependency for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the cli dependency will also need snowpack ...)
+-   [x] do a vitro-overrides.tsx or similar that can export components to customize vitro aspect: for example `Logo`, `StoryWrapper`, `Footer`, `HomePage`, ...
+-   [x] make only one dependency for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the cli dependency will also need snowpack ...)
 -   [ ] Add the githubUrl to config, make the `open in vscode` and `click to source` isomorphic
--   [ ] use bundless instead of nextjs, the routes are computed from the tree file with react router
+-   [x] use bundless instead of nextjs, the routes are computed from the tree file with react router
 -   [x] snowpack should bundle dependencies incrementally snowpack/discussions/1208, impossible
--   [ ] replace next link with react router
--   [ ] replace Router.on with react router like https://gist.github.com/shelldandy/02ad1a9f8b5b86d1b2e4dd26a11967b2
--   [ ] make a single standalone bundle for `@vitro/ui` and export it from cli to only have one dependency, no more need to install the vitro app folder or adding it to workspaces
+-   [x] replace next link with react router
+-   [x] replace Router.on with react router like https://gist.github.com/shelldandy/02ad1a9f8b5b86d1b2e4dd26a11967b2
+-   [x] make a single standalone bundle for `@vitro/ui` and export it from cli to only have one dependency, no more need to install the vitro app folder or adding it to workspaces
 -   [ ] analyze esbuild deps output and determine the size of each page creating a bundle size report, can be done analyzing the esbuild metafile or snowpack
 -   [x] call vitro commands from subdirectories
 -   [x] open in vscode redirects to original file
