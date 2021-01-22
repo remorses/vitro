@@ -309,6 +309,8 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
         [colorMode],
     )
 
+    
+
     const fullScreenStyles: StackProps = useMemo(
         () => ({
             w: '100vw',
@@ -363,9 +365,59 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
             {...rest}
             {...(fullScreen ? fullScreenStyles : {})}
         >
+            <Stack
+                spacing='8'
+                mx={fullScreen ? '20px' : ''}
+                direction='row'
+                align='center'
+            >
+                <Box
+                    borderRadius='md'
+                    p='4px'
+                    fontSize='18px'
+                    fontWeight='medium'
+                >
+                    {formatPathToTitle(title)}
+                </Box>
+                <Box flex='1' />
+                <Couple
+                    borderRadius='md'
+                    p='4px'
+                    a={<Box as={FiZap} size='1em' />}
+                    b={
+                        <AutoUpdateBox
+                            fontWeight='500'
+                            contentRef={actualDurationRef}
+                        />
+                    }
+                />
+                )
+                <Couple
+                    borderRadius='md'
+                    p='4px'
+                    a={<Box as={FiHash} size='1em' />}
+                    b={
+                        <AutoUpdateBox
+                            fontWeight='500'
+                            map={(x) => x + ' renders'}
+                            contentRef={renderCount}
+                        />
+                    }
+                />
+                )
+                <IconButton
+                    borderRadius='md'
+                    // isRound
+                    size='sm'
+                    onClick={() => setFullScreen((x) => !x)}
+                    fontSize='1.4em'
+                    // bg='transparent'
+                    icon={fullScreen ? MdFullscreenExit : MdFullscreen}
+                    aria-label='full-screen'
+                />
+            </Stack>
             <Box
                 // spacing='0'
-
                 flexShrink={0}
                 flex='1'
                 minH='340px'
@@ -403,66 +455,6 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 </Stack>
             </Box>
             {/* ToolBar */}
-            <Stack
-                zIndex={700}
-                spacing='8'
-                position='absolute'
-                opacity={0.7}
-                top={fullScreen ? '20px' : '10px'}
-                left={fullScreen ? '20px' : '20px'}
-                right={fullScreen ? '20px' : '20px'}
-                direction='row'
-                align='center'
-            >
-                <Box
-                    borderRadius='md'
-                    bg={bg}
-                    p='4px'
-                    fontSize='18px'
-                    fontWeight='medium'
-                >
-                    {title}
-                </Box>
-                <Box flex='1' />
-                <Couple
-                    borderRadius='md'
-                    bg={bg}
-                    p='4px'
-                    a={<Box as={FiZap} size='1em' />}
-                    b={
-                        <AutoUpdateBox
-                            fontWeight='500'
-                            contentRef={actualDurationRef}
-                        />
-                    }
-                />
-                )
-                <Couple
-                    borderRadius='md'
-                    bg={bg}
-                    p='4px'
-                    a={<Box as={FiHash} size='1em' />}
-                    b={
-                        <AutoUpdateBox
-                            fontWeight='500'
-                            map={(x) => x + ' renders'}
-                            contentRef={renderCount}
-                        />
-                    }
-                />
-                )
-                <IconButton
-                    borderRadius='md'
-                    bg={bg}
-                    // isRound
-                    size='sm'
-                    onClick={() => setFullScreen((x) => !x)}
-                    fontSize='1.4em'
-                    // bg='transparent'
-                    icon={fullScreen ? MdFullscreenExit : MdFullscreen}
-                    aria-label='full-screen'
-                />
-            </Stack>
         </Stack>
     )
 }
