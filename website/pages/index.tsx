@@ -103,19 +103,7 @@ const Page = () => (
         />
         <Divider heading='one tool to rule them all' />
         <Features alignSelf='center' />
-        {/* <TestimonialsLogos
-            animate
-            // heading='Works everywhere'
-            // subheading='browser and node environments'
-            testimonials={[
-                <Box size='80px' as={ReactIcon} />,
-                <Box size='90px' as={AngularIcon} />,
-                <Box size='90px' as={NodeIcon} />,
-                <Box size='90px' as={AngularIcon} />,
 
-                // <Box size='90px' as={OtherIcon} />,
-            ]}
-        /> */}
         <Stack spacing='20' position='relative' align='stretch'>
             <Box
                 opacity={0.3}
