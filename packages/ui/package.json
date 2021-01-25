@@ -8,18 +8,17 @@
     "scripts": {
         "test": "NODE_ENV=test mocha --colors --exit",
         "build2": "tsc -b && tsc -b tsconfig.esm.json",
-        "bundle": "yarn rollup -c rollup.config.js",
-        "bundle2": "esbuild --bundle --outdir=bundle --splitting --external:react --external:react-dom --format=esm --target=es2017 src/index.ts"
+        "build": "yarn tsc && yarn bundle",
+        "bundle": "node -r esbuild-register scripts/bundle.js",
+        "bundle:watch": "WATCH=1 yarn bundle"
     },
     "dependencies": {},
     "devDependencies": {
-        "history": "^5.0.0",
         "@chakra-ui/core": "^0.8.0",
         "@emotion/cache": "^10.0.29",
         "@emotion/core": "^10.0.28",
         "@emotion/styled": "^10.0.27",
-        "@rollup/plugin-commonjs": "^16.0.0",
-        "@rollup/plugin-node-resolve": "^10.0.0",
+        "@esbuild-plugins/esm-externals": "^0.0.4",
         "@types/lodash": "^4.14.157",
         "@types/react-icons": "^3.0.0",
         "@types/react-router-dom": "^5.1.6",
@@ -28,7 +27,7 @@
         "cross-env": "^7.0.2",
         "dotenv": "^8.2.0",
         "emotion-theming": "^10.0.27",
-        "esbuild": "^0.8.17",
+        "history": "^5.0.0",
         "lodash": "^4.17.19",
         "nprogress": "^0.2.0",
         "react": "^16.13.1",
@@ -37,14 +36,12 @@
         "react-is": "^16.13.1",
         "react-router-dom": "^5.2.0",
         "react-storage-hooks": "^4.0.1",
-        "rollup-plugin-esbuild": "^2.6.0",
         "stylis-plugin-extra-scope": "^0.2.1",
         "tslib": "^2.0.0"
     },
     "peerDependencies": {
         "react": "*",
-        "react-dom": "*",
-        "react-router-dom": "*"
+        "react-dom": "*"
     },
     "files": [
         "src",

@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@changesets/cli": "^2.12.0",
-        "esbuild": "^0.8.17",
+        "esbuild": "^0.8.34",
         "esbuild-register": "^1.2.1",
         "rollup": "^2.34.0",
         "ultra-runner": "^3.8.0"
