@@ -5,9 +5,9 @@ import fs from 'fs'
 import findUp from 'find-up'
 import { CONFIG_PATH } from './constants'
 import { VitroConfig } from '@vitro/plugin'
-import {Logger} from '@bundless/cli'
+import { Logger } from '@bundless/cli'
 
-export const logger = new Logger({prefix: '[vitro]    '})
+export const logger = new Logger({ prefix: '[vitro]    ' })
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 export const debug = (...args) => {
@@ -16,22 +16,22 @@ export const debug = (...args) => {
     }
 }
 
-export function findVitroJsConfigPath() {
+export function findVitroJsConfigPath(cwd: string) {
     // if (fs.existsSync(CONFIG_PATH)) {
     //     return path.resolve(CONFIG_PATH)
     // }
-    const p = findUp.sync(CONFIG_PATH)
+    const p = findUp.sync(CONFIG_PATH, { cwd })
     if (!p) {
         fatal(
-            `There is no ./${CONFIG_PATH} file, you probably need to run 'vitro init' first or change cwd`,
+            `There is no ./${CONFIG_PATH} file in '${process.cwd()}'\nYou probably need to run 'vitro init' first or change cwd`,
         )
     }
     return path.resolve(p)
 }
 
-export function getVitroConfig(p?: string): VitroConfig {
+export function getVitroConfig(p: string): VitroConfig {
     try {
-        return require(p || findVitroJsConfigPath())
+        return require(p)
     } catch (e) {
         fatal(`cannot require vitro config,\n${e}`)
     }

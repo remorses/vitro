@@ -10,9 +10,10 @@ import {
     printRed,
 } from './support'
 import deepmerge from 'deepmerge'
+import { CONFIG_NAME } from '@bundless/cli/dist/constants'
 
 const buildCommand: CommandModule = {
-    command: ['build'],
+    command: ['build [cwd]'],
     describe: 'Builds to a static folder',
     builder: (argv) => {
         argv.option('out', {
@@ -22,13 +23,19 @@ const buildCommand: CommandModule = {
             required: false,
             description: 'The folder to store the static site',
         })
+        argv.positional('cwd', {
+            type: 'string',
+            required: false,
+            description: `The starting directory to search for ${CONFIG_NAME}`,
+        })
         return argv
     },
     handler: async (argv: any) => {
         try {
             // if no vitro config is present, ask to run init first
-            const root = path.dirname(findVitroJsConfigPath())
-            const vitroConfig = getVitroConfig()
+            const cwd = path.resolve(argv.cwd || process.cwd())
+            const root = path.dirname(findVitroJsConfigPath(cwd))
+            const vitroConfig = getVitroConfig(findVitroJsConfigPath(cwd))
             const ownConfig: BundlessConfig = {
                 root,
                 jsx: 'react',

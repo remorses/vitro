@@ -27,7 +27,7 @@ export function VitroPlugin(args: PluginArgs): Plugin {
         setup({ ctx: { root }, onTransform, onResolve, onLoad }) {
             // TODO invalidate cache on file changes
             onResolve({ filter: /\.html$/ }, (args) => {
-                return { path: path.resolve(args.path) }
+                return { path: path.resolve(root, args.path) }
             })
             onLoad({ filter: /\.html$/ }, (args) => {
                 return { contents: htmlTemplate }

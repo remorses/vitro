@@ -5,8 +5,7 @@
         "cli": "cross-env VITRO_TESTING=1 node -r sucrase/register packages/cli/src/main.ts",
         "watch": "tsc -b --clean && tsc -b -w",
         "test": "ultra -r --serial test",
-        "examples": "yarn --cwd examples/renderer dev",
-        "examples:build": "yarn --cwd examples/renderer build",
+        "build:examples": "yarn vitro build examples --out examples_output",
         "build": "ultra -r --serial -b --filter '@vitro/*' build"
     },
     "workspaces": {
