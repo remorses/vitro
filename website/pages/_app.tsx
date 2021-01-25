@@ -1,4 +1,4 @@
-import { DokzProvider, GithubLink, ColorModeSwitch } from 'dokz/dist'
+import { DokzProvider, GithubLink, ColorModeSwitch } from 'dokz'
 import React, { Fragment } from 'react'
 import Head from 'next/head'
 import Logo from '../public/vitro_text_and_beaker.svg'
