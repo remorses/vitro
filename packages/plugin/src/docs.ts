@@ -7,7 +7,8 @@ md.use(jsx)
 
 export const mdxComponentPrefix = '_VitroMdx'
 
-export function makeJsx(markdown: string, index: number) {
+export function makeJsx(opts: { markdown: string; index: number }) {
+    const { index, markdown } = opts
     let code = md.render(markdown)
     code = code.replace(/\n */, '')
     const name = `${mdxComponentPrefix}${hash(code)}${index}`
@@ -35,13 +36,13 @@ function regexIndexOf(text, re, i = 0) {
     return indexInSuffix < 0 ? indexInSuffix : indexInSuffix + i
 }
 
-export function transformInlineMarkdown(code: string) {
-    const parts = code.split(/docs`/)
+export function transformInlineMarkdown(code: string, docsLiteral = 'docs') {
+    const parts = code.split(new RegExp(docsLiteral + '`'))
     let result = parts[0]
     for (let [index, part] of parts.slice(1).entries()) {
         const markdownEndIndex = regexIndexOf(part, /`/) // TODO do not match escaped literal quotes
         const markdown = part.slice(0, markdownEndIndex)
-        const jsxCode = makeJsx(markdown, index)
+        const jsxCode = makeJsx({ markdown, index })
         result += jsxCode
         result += part.slice(markdownEndIndex + 1)
     }

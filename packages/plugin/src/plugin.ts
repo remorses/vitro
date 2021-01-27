@@ -51,6 +51,7 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             // })
 
             onTransform({ filter: /\.(tsx?|jsx)$/ }, (args) => {
+                // TODO only run if there is an import to docs
                 if (!args.contents.includes('docs`')) {
                     return
                 }
