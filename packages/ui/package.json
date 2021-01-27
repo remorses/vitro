@@ -10,7 +10,7 @@
         "build2": "tsc -b && tsc -b tsconfig.esm.json",
         "build": "yarn tsc && yarn bundle",
         "bundle": "node -r esbuild-register scripts/bundle.js",
-        "bundle:watch": "WATCH=1 yarn bundle"
+        "watch": "WATCH=1 yarn bundle"
     },
     "dependencies": {},
     "devDependencies": {

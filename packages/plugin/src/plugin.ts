@@ -1,9 +1,10 @@
-import { Plugin, Config as BundlessConfig, MAIN_FIELDS } from '@bundless/cli'
+import { Plugin, Config as BundlessConfig } from '@bundless/cli'
 import { escapeRegExp } from 'lodash'
 import memoize from 'memoizee'
 import path from 'path'
 import { EXPERIMENTS_TREE_PATH, VIRTUAL_INDEX_PATH } from './constants'
 import { generate } from './generate'
+import { transformInlineMarkdown } from './docs'
 
 export interface VitroConfig {
     globs: string[]
@@ -49,28 +50,15 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             //     }
             // })
 
-            // onTransform({ filter: /.*/ }, async (args) => {
-            //     if (!args.contents.includes('@vitro/docs.macro')) {
-            //         return
-            //     }
-            //     // TODO add a way to accumulate babel plugins and run them together
-            //     const result = await transform(args.contents, {
-            //         parserOpts: babelParserOpts,
-            //         // make the docs.macro plugin not a macro, use a regex instead to replace vitroDocs``
-            //         plugins: [require('babel-plugin-macros')],
-            //         sourceMaps: true,
-            //         sourceFileName: args.path,
-            //     })
-
-            //     if (!result || !result.code) {
-            //         return
-            //     }
-            //     return {
-            //         // loader: 'default',
-            //         contents: result.code,
-            //         map: result.map,
-            //     }
-            // })
+            onTransform({ filter: /\.(tsx?|jsx)$/ }, (args) => {
+                if (!args.contents.includes('docs`')) {
+                    return
+                }
+                const contents = transformInlineMarkdown(args.contents)
+                return {
+                    contents,
+                }
+            })
 
             onResolve(
                 { filter: new RegExp(escapeRegExp(VIRTUAL_INDEX_PATH)) },
