@@ -23,7 +23,7 @@ export function findVitroJsConfigPath(cwd: string) {
     const p = findUp.sync(CONFIG_PATH, { cwd })
     if (!p) {
         fatal(
-            `There is no ./${CONFIG_PATH} file in '${process.cwd()}'\nYou probably need to run 'vitro init' first or change cwd`,
+            `There is no ./${CONFIG_PATH} file in '${cwd}'\nYou probably need to run 'vitro init' first or change cwd`,
         )
     }
     return path.resolve(p)

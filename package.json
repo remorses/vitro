@@ -5,6 +5,7 @@
         "cli": "cross-env VITRO_TESTING=1 node -r sucrase/register packages/cli/src/main.ts",
         "watch": "tsc -b --clean && tsc -b -w",
         "test": "ultra -r --serial test",
+        "depscheck": "ultra  --filter '@vitro/*' -r depcheck",
         "build:examples": "yarn vitro build examples --out examples_output",
         "build": "ultra -r --serial -b --filter '@vitro/*' build"
     },
@@ -20,6 +21,7 @@
         "@changesets/cli": "^2.12.0",
         "esbuild": "^0.8.34",
         "esbuild-register": "^1.2.1",
+        "playwright": "^1.8.0",
         "rollup": "^2.34.0",
         "ultra-runner": "^3.8.0"
     },

@@ -5,7 +5,11 @@
         "outDir": "dist",
         "rootDir": "src"
     },
+    "exclude": ["tests"],
     "include": ["src"],
-    "exclude": ["tests", "dist", "esm"],
-    "references": []
+    "references": [
+        {
+            "path": "../plugin"
+        }
+    ]
 }

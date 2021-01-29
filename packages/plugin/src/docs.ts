@@ -1,17 +1,14 @@
-import { transformSync } from 'esbuild'
-const { createHash } = require('crypto')
-
 var md = require('markdown-it')()
 var jsx = require('markdown-it-jsx')
 md.use(jsx)
 
-export const mdxComponentPrefix = '_VitroMdx'
+export const mdxComponentPrefix = 'VitroMdx'
 
 export function makeJsx(opts: { markdown: string; index: number }) {
     const { index, markdown } = opts
     let code = md.render(markdown)
     code = code.replace(/\n */, '')
-    const name = `${mdxComponentPrefix}${hash(code)}${index}`
+    const name = `${mdxComponentPrefix}__${index}__`
     code = `export function ${name}() {return (<>${code}</>);};`
 
     const markdownLines = markdown.split('\n').length
@@ -47,19 +44,6 @@ export function transformInlineMarkdown(code: string, docsLiteral = 'docs') {
         result += part.slice(markdownEndIndex + 1)
     }
     // console.log('-----\n\n', result, '\n\n-----------')
-    result = transformSync(result, {
-        // format: 'esm', // passing format reorders exports https://github.com/evanw/esbuild/issues/710
-        sourcemap: 'inline',
-        minify: false,
-        keepNames: true,
-        // treeShaking: 'ignore-annotations',
-        loader: 'jsx',
-    }).code
-    return result
-}
 
-function hash(data) {
-    return createHash('sha1')
-        .update(data)
-        .digest('hex')
+    return result
 }

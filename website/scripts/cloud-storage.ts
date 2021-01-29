@@ -16,7 +16,6 @@ async function uploadFolder({ folderPath, bucketName, destinationFolder }) {
 
     const files = await glob('**', {
         cwd: folderPath,
-        filesOnly: true,
         absolute: true,
         gitignore: false,
     })

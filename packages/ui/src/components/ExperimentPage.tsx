@@ -14,6 +14,8 @@ import {
 } from '@chakra-ui/core'
 import { jsx } from '@emotion/core'
 import assign from 'lodash/assign'
+import { atom, useAtom } from 'jotai'
+import { atomWithReducer } from 'jotai/utils'
 import React, {
     Profiler,
     ProfilerOnRenderCallback,
@@ -28,7 +30,13 @@ import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
-import { debug, formatPathToTitle, TOP_TITLE_H, usePromise } from '../support'
+import {
+    debug,
+    formatPathToTitle,
+    TOP_TITLE_H,
+    usePromise,
+    VITRO_BLOCK_CLASS,
+} from '../support'
 import {
     ClickToSourceProviderStateless,
     ClickToSourceState,
@@ -36,10 +44,18 @@ import {
 import { DefaultWrapper } from './DefaultWrapper'
 import { MdxStyler } from './MarkdownStyler'
 import { MobileNav } from './MobileNav'
+import { getParam, history, useRouteChanged, changeParam } from '../history'
 
 jsx
 
-const mdxComponentPrefix = '_VitroMdx'
+const atomCssDebug = atom(false)
+const atomClickToSource = atom<ClickToSourceState['provider']>('')
+const atomStoryInFullScreen = atom(
+    getParam(window.location.href, 'inFullScreen') || '',
+)
+
+const mdxComponentPrefix = 'VitroMdx'
+const exportsOrderingName = '__vitroExportsOrdering'
 
 export function ExperimentPage({
     experimentsTree,
@@ -48,50 +64,25 @@ export function ExperimentPage({
     fileExports: getFileExports = () => Promise.resolve({}),
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
-    const [cssDebugEnabled, setCssDebug] = useState(false)
-    const {
-        value: fileExportsObject,
-        error: exportsError,
-        loading: exportsLoading,
-    } = usePromise(getFileExports, {})
+    const [, setCssDebug] = useAtom(atomCssDebug)
+    const [clickToSeeSourceProvider, setClickToSeeSource] = useAtom(
+        atomClickToSource,
+    )
+    const [, setStoryInFullScreen] = useAtom(atomStoryInFullScreen)
+    useRouteChanged(() => {
+        const newStory = getParam(window.location.href, 'inFullScreen')
+        setStoryInFullScreen(newStory) // TODO this will be called on every url change
+    })
+    const importResult = usePromise(getFileExports, {})
 
     // TODO make useComponentExport hook that memoizes a component export and check it's valid component
 
-    const {
-        value: overridesExports,
-        error: overridesError,
-        loading: overridesLoading,
-    } = usePromise(componentsOverrides, {})
-
-    const loading = exportsLoading || overridesLoading
-    const error = exportsError || overridesError
-
-    const ValidGlobalWrapper = useMemo(
-        () =>
-            !overridesExports || !isValidElementType(overridesExports.Wrapper)
-                ? DefaultWrapper
-                : overridesExports.Wrapper,
-        [overridesExports, colorMode],
-    )
-
-    const [clickToSeeSourceProvider, setClickToSeeSource] = useState<
-        ClickToSourceState['provider']
-    >('')
-
-    const vscodeUrl = `vscode://file${sourceExperimentPath}`
     // exported.then(z => console.log(Object.keys(z)))
     // console.log({ fileExports })
-    const ExperimentWrapper = useMemo(() => {
-        const experimentWrapper = fileExportsObject?.default?.wrapper
-        if (experimentWrapper) {
-            console.info('using experiments wrapper ' + experimentWrapper?.name)
-        }
-        return experimentWrapper || FragmentLike
-    }, [fileExportsObject, colorMode])
 
-    const experimentTitle = loading
+    const experimentTitle = importResult.loading
         ? ''
-        : fileExportsObject?.default?.title ||
+        : importResult.value?.default?.title ||
           formatPathToTitle(sourceExperimentPath) ||
           ''
 
@@ -104,7 +95,7 @@ export function ExperimentPage({
     //     // TODO return 404
     //     return null
     // }
-    debug({ ValidGlobalWrapper, ExperimentWrapper })
+
     return (
         <Stack spacing='10'>
             <Stack flexShrink={0} align='flex-start' spacing='4'>
@@ -140,7 +131,7 @@ export function ExperimentPage({
                     <Link
                         as='a'
                         fontWeight='500'
-                        href={vscodeUrl}
+                        href={`vscode://file${sourceExperimentPath}`}
                         opacity={0.7}
                     >
                         <Box d='inline' size='.8em' mr='3' as={FaLink} />
@@ -160,7 +151,7 @@ export function ExperimentPage({
                     <Box mr='2' d='inline-block' as={FaBug} />
                     CSS debug
                 </Button>
-
+                {/* TODO to enable click to sourcei need to maintain intact jsx in the plugin */}
                 {/* <Select
                     onChange={(e) => {
                         const value = e.target.value as any
@@ -188,128 +179,182 @@ export function ExperimentPage({
                 flexWrap='wrap'
                 overflow='visible'
                 // justify='space-between'
-                spacing='16'
             >
-                {error && (
-                    <Stack>
-                        <Box
-                            color='red.500'
-                            fontSize='0.9em'
-                            wordBreak='break-word'
-                            whiteSpace='pre-wrap'
-                            as='pre'
-                        >
-                            {error?.stack}
-                        </Box>
-                    </Stack>
-                )}
-                {loading && (
-                    <Stack spacing='16'>
-                        {new Array(3).fill(null).map((_, i) => {
-                            return (
-                                <Skeleton
-                                    borderRadius='4px'
-                                    key={i}
-                                    width='100%'
-                                    height='300px'
-                                />
-                            )
-                        })}
-                    </Stack>
-                )}
-                {!loading &&
-                    fileExportsObject &&
-                    Object.keys(fileExportsObject)
-                        .filter((k) => {
-                            const Component = fileExportsObject[k]
-                            return (
-                                k !== 'default' && isValidElementType(Component)
-                            )
-                        })
-                        .map((k) => {
-                            // console.log({ Component })
-                            const Component = fileExportsObject[k]
-                            if (!isValidElementType(Component)) {
-                                return null
-                            }
-
-                            if (k.startsWith(mdxComponentPrefix)) {
-                                return (
-                                    <MdxStyler>
-                                        <Component />
-                                    </MdxStyler>
-                                )
-                            }
-
-                            const id = `${sourceExperimentPath}/${k}`
-                            return (
-                                <StoryBlock
-                                    maxW='100%'
-                                    overflowX='auto'
-                                    flexShrink={0}
-                                    title={k}
-                                    blockWidth='100%'
-                                    key={id}
-                                    id={id}
-                                >
-                                    <ClickToSourceProviderStateless
-                                        value={{
-                                            provider: clickToSeeSourceProvider,
-                                        }}
-                                        onChange={(state) => {
-                                            setClickToSeeSource(state.provider)
-                                        }}
-                                    >
-                                        <Stack
-                                            // flex='1'
-                                            width='100%'
-                                            height='100%'
-                                            minH='100%'
-                                            minW='100%'
-                                            spacing='0'
-                                            align='center'
-                                            justify='center'
-                                            className={
-                                                cssDebugEnabled
-                                                    ? 'vitro-inspect-css'
-                                                    : ''
-                                            }
-                                        >
-                                            <ValidGlobalWrapper
-                                                key={colorMode} // TODO remounting on color mode change or the providers get fucked up
-                                                isDark={colorMode == 'dark'}
-                                            >
-                                                <ExperimentWrapper
-                                                    key={colorMode}
-                                                    isDark={colorMode == 'dark'}
-                                                >
-                                                    <Component
-                                                        key={colorMode}
-                                                        isDark={
-                                                            colorMode == 'dark'
-                                                        }
-                                                    />
-                                                </ExperimentWrapper>
-                                            </ValidGlobalWrapper>
-                                        </Stack>
-                                    </ClickToSourceProviderStateless>
-                                </StoryBlock>
-                            )
-                        })}
+                <MainContent
+                    componentsOverrides={componentsOverrides}
+                    sourceExperimentPath={sourceExperimentPath}
+                    importResult={importResult}
+                />
             </Stack>
         </Stack>
     )
 }
 
-const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
-    const [fullScreen, setFullScreen] = useState(false)
+function MainContent({
+    importResult,
+    componentsOverrides,
+    sourceExperimentPath,
+}) {
+    const { colorMode } = useColorMode()
+    const fileExportsObject = importResult.value
+    const [storyInFullScreen] = useAtom(atomStoryInFullScreen)
+    const {
+        value: overridesExports,
+        error: overridesError,
+        loading: overridesLoading,
+    } = usePromise(componentsOverrides, {})
+    const loading = importResult.loading || overridesLoading
+    const error = importResult.error || overridesError
+
+    const ValidGlobalWrapper = useMemo(
+        () =>
+            !overridesExports || !isValidElementType(overridesExports.Wrapper)
+                ? DefaultWrapper
+                : overridesExports.Wrapper,
+        [overridesExports, colorMode],
+    )
+
+    const ExperimentWrapper = useMemo(() => {
+        const experimentWrapper = fileExportsObject?.default?.wrapper
+        if (experimentWrapper) {
+            console.info('using experiments wrapper ' + experimentWrapper?.name)
+        }
+        return experimentWrapper || FragmentLike
+    }, [fileExportsObject, colorMode])
+
+    const reorderedExportsKeys = useMemo(() => {
+        const exportsOrder = fileExportsObject?.[exportsOrderingName] || []
+        return Object.keys(fileExportsObject)
+            .sort((a, b) => {
+                return exportsOrder.indexOf(a) - exportsOrder.indexOf(b)
+            })
+            .filter((k) => {
+                const Component = fileExportsObject[k]
+                return (
+                    k !== 'default' &&
+                    k !== exportsOrderingName &&
+                    isValidElementType(Component)
+                )
+            })
+    }, [fileExportsObject])
+    if (error) {
+        return (
+            <Stack>
+                <Box
+                    color='red.500'
+                    fontSize='0.9em'
+                    wordBreak='break-word'
+                    whiteSpace='pre-wrap'
+                    as='pre'
+                >
+                    {error?.stack}
+                </Box>
+            </Stack>
+        )
+    }
+    if (loading && storyInFullScreen) {
+        return (
+            <Box
+                bg={{ dark: 'gray.800', light: 'gray.100' }[colorMode]}
+                zIndex={100000}
+                top={0}
+                opacity={1}
+                bottom={0}
+                right={0}
+                left={0}
+                position='fixed'
+                borderRadius='4px'
+            />
+        )
+    }
+    if (loading) {
+        return (
+            <Stack spacing='16'>
+                {new Array(3).fill(null).map((_, i) => {
+                    return (
+                        <Skeleton
+                            borderRadius='4px'
+                            key={i}
+                            width='100%'
+                            height='300px'
+                        />
+                    )
+                })}
+            </Stack>
+        )
+    }
+
+    const componentProps = {
+        key: colorMode, // TODO remounting on color mode change or the providers get fucked up
+        isDark: colorMode == 'dark',
+    }
+    if (!loading && fileExportsObject) {
+        if (storyInFullScreen) {
+            const Component = fileExportsObject[storyInFullScreen]
+            if (!Component) {
+                return null
+            }
+            const id = `${sourceExperimentPath}/${storyInFullScreen}`
+            return (
+                <StoryBlock exportName={storyInFullScreen} key={id} id={id}>
+                    <ValidGlobalWrapper {...componentProps}>
+                        <ExperimentWrapper {...componentProps}>
+                            <Component {...componentProps} />
+                        </ExperimentWrapper>
+                    </ValidGlobalWrapper>
+                </StoryBlock>
+            )
+        }
+        return (
+            <Stack spacing='16'>
+                {reorderedExportsKeys.map((k) => {
+                    // console.log({ Component })
+                    const Component = fileExportsObject[k]
+
+                    if (k.startsWith(mdxComponentPrefix)) {
+                        return (
+                            <MdxStyler>
+                                <Component />
+                            </MdxStyler>
+                        )
+                    }
+
+                    const id = `${sourceExperimentPath}/${k}`
+                    return (
+                        <StoryBlock exportName={k} key={id} id={id}>
+                            <ValidGlobalWrapper {...componentProps}>
+                                <ExperimentWrapper {...componentProps}>
+                                    <Component {...componentProps} />
+                                </ExperimentWrapper>
+                            </ValidGlobalWrapper>
+                        </StoryBlock>
+                    )
+                })}
+            </Stack>
+        )
+    }
+    return null
+}
+
+const StoryBlock = ({
+    children,
+    blockWidth = '100%',
+    id,
+    exportName,
+    ...rest
+}) => {
+    const [fullScreenStory] = useAtom(atomStoryInFullScreen)
+    const isFullScreen = exportName === fullScreenStory
+
+    const [cssDebugEnabled] = useAtom(atomCssDebug)
+    const [clickToSeeSourceProvider, setClickToSeeSource] = useAtom(
+        atomClickToSource,
+    )
     const { colorMode } = useColorMode()
     const bg = useMemo(
         () => ({ light: 'white', dark: 'gray.700' }[colorMode]),
         [colorMode],
     )
-
-    
 
     const fullScreenStyles: StackProps = useMemo(
         () => ({
@@ -362,12 +407,14 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
             overflow='visible'
             flexBasis={blockWidth}
             position='relative'
+            maxW='100%'
+            overflowX='auto'
             {...rest}
-            {...(fullScreen ? fullScreenStyles : {})}
+            {...(isFullScreen ? fullScreenStyles : {})}
         >
             <Stack
                 spacing='8'
-                mx={fullScreen ? '20px' : ''}
+                mx={isFullScreen ? '20px' : ''}
                 direction='row'
                 align='center'
             >
@@ -377,7 +424,7 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                     fontSize='18px'
                     fontWeight='medium'
                 >
-                    {formatPathToTitle(title)}
+                    {formatPathToTitle(exportName)}
                 </Box>
                 <Box flex='1' />
                 <Couple
@@ -409,10 +456,15 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                     borderRadius='md'
                     // isRound
                     size='sm'
-                    onClick={() => setFullScreen((x) => !x)}
+                    onClick={() =>
+                        changeParam(
+                            'inFullScreen',
+                            isFullScreen ? '' : exportName,
+                        )
+                    }
                     fontSize='1.4em'
                     // bg='transparent'
-                    icon={fullScreen ? MdFullscreenExit : MdFullscreen}
+                    icon={isFullScreen ? MdFullscreenExit : MdFullscreen}
                     aria-label='full-screen'
                 />
             </Stack>
@@ -422,39 +474,57 @@ const StoryBlock = ({ children, blockWidth, id, title, ...rest }) => {
                 flex='1'
                 minH='340px'
                 minHeight='340px'
+                data-vitro-export-name={exportName}
+                className={`${VITRO_BLOCK_CLASS}`}
             >
                 {/* Block */}
                 <Stack
                     minH='340px'
                     height='100%'
                     shadow='sm'
-                    // shadow='0 0 40px rgba(0,0,0,0.1), 0 -10px 40px rgba(0,0,0,0.1)'
-                    // borderWidth='1px'
                     flex='1'
-                    // shadow='sm'
                     borderRadius='4px'
                     overflow='hidden'
                     overflowX='auto'
                     bg={bg}
-                    // minH='100%'
                     spacing='0'
                     align='stretch'
                     justify='center'
-                    // p='6'
-                    // css={cssDebugEnabled ? debugCSS : css``}
                 >
-                    <ErrorBoundary>
-                        {Profiler ? (
-                            <Profiler id={id} onRender={profile}>
-                                {children}
-                            </Profiler>
-                        ) : (
-                            children
-                        )}
-                    </ErrorBoundary>
+                    <ClickToSourceProviderStateless
+                        value={{
+                            provider: clickToSeeSourceProvider,
+                        }}
+                        onChange={(state) => {
+                            setClickToSeeSource(state.provider)
+                        }}
+                    >
+                        <Stack
+                            // flex='1'
+                            width='100%'
+                            height='100%'
+                            minH='100%'
+                            minW='100%'
+                            spacing='0'
+                            align='center'
+                            justify='center'
+                            className={`${
+                                cssDebugEnabled ? 'vitro-inspect-css' : ''
+                            }`}
+                        >
+                            <ErrorBoundary>
+                                {Profiler ? (
+                                    <Profiler id={id} onRender={profile}>
+                                        {children}
+                                    </Profiler>
+                                ) : (
+                                    children
+                                )}
+                            </ErrorBoundary>
+                        </Stack>
+                    </ClickToSourceProviderStateless>
                 </Stack>
             </Box>
-            {/* ToolBar */}
         </Stack>
     )
 }

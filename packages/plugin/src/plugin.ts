@@ -2,9 +2,17 @@ import { Plugin, Config as BundlessConfig } from '@bundless/cli'
 import { escapeRegExp } from 'lodash'
 import memoize from 'memoizee'
 import path from 'path'
-import { EXPERIMENTS_TREE_PATH, VIRTUAL_INDEX_PATH } from './constants'
+import {
+    EXPERIMENTS_TREE_PATH,
+    VIRTUAL_INDEX_PATH,
+    EXPERIMENTS_TREE_GLOBAL_VARIABLE,
+} from './constants'
 import { generate } from './generate'
 import { transformInlineMarkdown } from './docs'
+import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
+import { injectLocationPlugin } from './inject-location'
+import { init, parse } from 'es-module-lexer'
+import { transform } from 'esbuild'
 
 export interface VitroConfig {
     globs: string[]
@@ -25,7 +33,13 @@ export function VitroPlugin(args: PluginArgs): Plugin {
     )
     return {
         name: 'vitro',
-        setup({ ctx: { root }, onTransform, onResolve, onLoad }) {
+        setup(hooks) {
+            const {
+                ctx: { root },
+                onTransform,
+                onResolve,
+                onLoad,
+            } = hooks
             // TODO invalidate cache on file changes
             onResolve({ filter: /\.html$/ }, (args) => {
                 return { path: path.resolve(root, args.path) }
@@ -50,14 +64,39 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             //     }
             // })
 
-            onTransform({ filter: /\.(tsx?|jsx)$/ }, (args) => {
+            let parserReady = false
+            onTransform({ filter: /\.(tsx?|jsx)$/ }, async (args) => {
                 // TODO only run if there is an import to docs
-                if (!args.contents.includes('docs`')) {
-                    return
+                let contents = args.contents
+                if (args.contents.includes('docs`')) {
+                    contents = transformInlineMarkdown(args.contents)
                 }
-                const contents = transformInlineMarkdown(args.contents)
+
+                const result = await transform(contents, {
+                    // format: 'esm', // passing format reorders exports https://github.com/evanw/esbuild/issues/710
+                    sourcemap: 'inline',
+                    sourcefile: args.path,
+                    minify: false,
+                    keepNames: true,
+                    // treeShaking: 'ignore-annotations',
+                    loader: 'default',
+                })
+
+                contents = result.code
+
+                if (!parserReady) {
+                    await init
+                    parserReady = true
+                }
+                const exported = getExports(contents, args.path)
+
+                contents += `\n\nexport const __vitroExportsOrdering = ${JSON.stringify(
+                    exported,
+                )};`
+
                 return {
                     contents,
+                    loader: 'js', // TODO skip built in esbuild if loader is already js
                 }
             })
 
@@ -87,15 +126,23 @@ export function VitroPlugin(args: PluginArgs): Plugin {
                     }
                 },
             )
+
+            // TODO does not work because jsx id replaced by esbuild, this should run before esbuild
+            ReactRefreshPlugin({ babelPlugins: [injectLocationPlugin] }).setup(
+                hooks,
+            )
+
             onLoad(
                 { filter: new RegExp(escapeRegExp(EXPERIMENTS_TREE_PATH)) },
                 async (args) => {
                     const { experimentsTree } = await generateCode(root)
-                    const contents = `export default ${JSON.stringify(
-                        experimentsTree,
-                        null,
-                        4,
-                    )}`
+                    const contents =
+                        `const tree = ${JSON.stringify(
+                            experimentsTree,
+                            null,
+                            4,
+                        )};\nexport default tree;\n` +
+                        `window.${EXPERIMENTS_TREE_GLOBAL_VARIABLE} = tree;\n`
                     return {
                         contents,
                         loader: 'js',
@@ -103,6 +150,15 @@ export function VitroPlugin(args: PluginArgs): Plugin {
                 },
             )
         },
+    }
+}
+
+function getExports(source: string, filename) {
+    try {
+        const [, exports] = parse(source)
+        return exports
+    } catch (e) {
+        throw new Error(`Could not analyze exports for ${filename}\n${source}`)
     }
 }
 

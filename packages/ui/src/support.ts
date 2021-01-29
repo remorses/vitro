@@ -5,6 +5,7 @@ import cloneDeep from 'lodash/cloneDeep'
 // export const version = require('../package.json').version
 
 export const TOP_TITLE_H = '60px'
+export const VITRO_BLOCK_CLASS = '__vitro-block'
 
 export const debug = (x) => {
     if (process.env.DEBUG) {

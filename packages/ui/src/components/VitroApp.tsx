@@ -17,6 +17,7 @@ import weakMemoize from '@emotion/weak-memoize'
 import createCache from '@emotion/cache'
 import { SplashScreen } from './SplashScreen'
 import { ExperimentsTree } from '../support'
+import { Provider as JotaiProvider } from 'jotai'
 
 jsx
 
@@ -35,15 +36,15 @@ export function VitroApp({ experimentsTree, children, ...props }) {
     return (
         <ColorModeProvider value='light'>
             {/* TODO make initial color mode configurable via webpack define */}
-            <ThemeProvider>
-                <CSSReset />
-                <Global styles={[globalStyles]} />
-                <Content
-                    experimentsTree={experimentsTree}
-                >
-                    {children}
-                </Content>
-            </ThemeProvider>
+            <JotaiProvider>
+                <ThemeProvider>
+                    <CSSReset />
+                    <Global styles={[globalStyles]} />
+                    <Content experimentsTree={experimentsTree}>
+                        {children}
+                    </Content>
+                </ThemeProvider>
+            </JotaiProvider>
         </ColorModeProvider>
     )
 }
@@ -71,7 +72,7 @@ const Content = ({
         () =>
             createCache({
                 key: 'vitro',
-                stylisPlugins: [stylisPluginExtraScope('body')], // TODO maybe don't use __next and instead use body
+                stylisPlugins: [stylisPluginExtraScope('body')],
             }),
         [],
     )

@@ -18,7 +18,7 @@ if (process.env.WATCH) {
 
     // One-liner for current directory
     chokidar
-        .watch('.', { ignored: /(node_modules|bundle)/, ignoreInitial: true })
+        .watch('.', { ignored: /(node_modules|bundle|dist|tsconfig\.tsbuildinfo)/, ignoreInitial: true })
         .on('change', (event, path) => {
             console.log(event)
             bundle()

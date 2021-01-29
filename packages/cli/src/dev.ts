@@ -1,5 +1,5 @@
 import { serve, Config as BundlessConfig } from '@bundless/cli'
-import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
+
 import { VitroPlugin } from '@vitro/plugin'
 import path from 'path'
 import deepmerge from 'deepmerge'
@@ -61,7 +61,6 @@ const command: CommandModule = {
                         config: vitroConfig,
                         experimentsFilters,
                     }),
-                    ReactRefreshPlugin(),
                 ],
             }
             const server = await serve(

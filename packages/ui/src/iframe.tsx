@@ -2,14 +2,6 @@ import createCache from '@emotion/cache'
 import React, { Component, FC, ComponentClass } from 'react'
 import ReactDOM from 'react-dom'
 
-let memoizedCreateCacheWithContainer = (container: any = undefined) => {
-    let newCache = createCache({
-        container,
-        key: 'dfgdsfg',
-        // stylisPlugins: [stylisPluginExtraScope('.App')],
-    })
-    return newCache
-}
 
 export function FramedComponent(C): ComponentClass {
     class Framed extends Component {

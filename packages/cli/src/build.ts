@@ -32,30 +32,7 @@ const buildCommand: CommandModule = {
     },
     handler: async (argv: any) => {
         try {
-            // if no vitro config is present, ask to run init first
-            const cwd = path.resolve(argv.cwd || process.cwd())
-            const root = path.dirname(findVitroJsConfigPath(cwd))
-            const vitroConfig = getVitroConfig(findVitroJsConfigPath(cwd))
-            const ownConfig: BundlessConfig = {
-                root,
-                jsx: 'react',
-                entries: ['index.html'],
-                build: {
-                    minify: true,
-                    outDir: argv.out,
-                    basePath: vitroConfig.basePath || '/',
-                },
-                // entries: ['./index.html'],
-                plugins: [
-                    VitroPlugin({
-                        config: vitroConfig,
-                        experimentsFilters: [],
-                    }),
-                ],
-            }
-            const buildResult = await build(
-                deepmerge(vitroConfig.bundlessConfig || {}, ownConfig),
-            )
+            await buildHandler(argv)
         } catch (e) {
             printRed(`could not build`, true)
             printRed(e.message)
@@ -63,6 +40,37 @@ const buildCommand: CommandModule = {
             fatal()
         }
     },
+}
+
+export async function buildHandler(argv: {
+    cwd?: string
+    out?: string
+}): Promise<any> {
+    // if no vitro config is present, ask to run init first
+    const cwd = path.resolve(argv.cwd || process.cwd())
+    const root = path.dirname(findVitroJsConfigPath(cwd))
+    const vitroConfig = getVitroConfig(findVitroJsConfigPath(cwd))
+    const ownConfig: BundlessConfig = {
+        root,
+        jsx: 'react',
+        entries: ['index.html'],
+        build: {
+            minify: true,
+            outDir: argv.out,
+            basePath: vitroConfig.basePath || '/',
+        },
+        // entries: ['./index.html'],
+        plugins: [
+            VitroPlugin({
+                config: vitroConfig,
+                experimentsFilters: [],
+            }),
+        ],
+    }
+    const buildResult = await build(
+        deepmerge(vitroConfig.bundlessConfig || {}, ownConfig),
+    )
+    return buildResult
 }
 
 export default buildCommand

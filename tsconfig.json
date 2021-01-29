@@ -1,17 +1,12 @@
 {
     "references": [
         {
-            "path": "packages/docs.macro"
-        },
-        {
             "path": "packages/cli"
         },
         {
             "path": "packages/ui"
         },
-        {
-            "path": "packages/babel-plugin-inject-location"
-        },
+
         {
             "path": "packages/plugin"
         }

@@ -28,6 +28,7 @@
         "dotenv": "^8.2.0",
         "emotion-theming": "^10.0.27",
         "history": "^5.0.0",
+        "jotai": "^0.12.7",
         "lodash": "^4.17.19",
         "nprogress": "^0.2.0",
         "react": "^16.13.1",
