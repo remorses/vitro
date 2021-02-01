@@ -21,12 +21,15 @@ const command: CommandModule = {
             alias: 'p',
             type: 'number',
             default: 7007,
-            required: false,
             description: 'The port for the dev server',
+        })
+        argv.option('force', {
+            type: 'boolean',
+            default: false,
+            description: 'Force prebundling of dependencies',
         })
         argv.positional('cwd', {
             type: 'string',
-            required: false,
             description: `The starting directory to search for ${CONFIG_NAME}`,
         })
         return argv
@@ -54,6 +57,9 @@ const command: CommandModule = {
                 entries: ['index.html'],
                 server: {
                     port: argv.port,
+                },
+                prebundle: {
+                    force: argv.force,
                 },
                 // entries: ['./index.html'],
                 plugins: [
