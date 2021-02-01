@@ -1,5 +1,11 @@
 # @vitro/ui
 
+## 0.1.8
+
+### Patch Changes
+
+- 817680e: Added [cwd] positional argument, implementing the docs feature
+
 ## 0.1.7
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @vitro/plugin
 
+## 0.1.8
+
+### Patch Changes
+
+- 817680e: Added [cwd] positional argument, implementing the docs feature
+- Updated dependencies [817680e]
+  - @vitro/cli@0.1.10
+
 ## 0.1.7
 
 ### Patch Changes
