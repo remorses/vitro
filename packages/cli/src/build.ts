@@ -1,6 +1,5 @@
 import { build, Config as BundlessConfig } from '@bundless/cli'
 import { VitroPlugin } from '@vitro/plugin'
-import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
 import path from 'path'
 import { CommandModule } from 'yargs'
 import {
