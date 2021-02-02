@@ -30,9 +30,11 @@
 
 ## Things to do
 
-- make a screen shotter package that: has the workflow: build your storybook, tell screen shotter in what folder it is (or url), save all screenshots, tell
+-   [ ] make fixtures test cases with snapshots and checks on outputs
+-   [ ] make the inject plugin use the react.createElement calls instead of jsx, this way it can be used after esbuild step
+-   [ ] make a screen shotter package that: has the workflow: build your storybook, tell screen shotter in what folder it is (or url), save all screenshots, tell
 -   [ ] remove ui, plugin, babel-inject-plugin, docs.macro, codemod packages, make only one package called @vitro/vitro, make a package called screenshot that adds the large browser dependency
--   [ ] rename back experiment to story
+-   [ ] rename experiment to story
 -   [x] do a vitro-overrides.tsx or similar that can export components to customize vitro aspect: for example `Logo`, `StoryWrapper`, `Footer`, `HomePage`, ...
 -   [x] make only one dependency for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the cli dependency will also need snowpack ...)
 -   [ ] Add the githubUrl to config, make the `open in vscode` and `click to source` isomorphic

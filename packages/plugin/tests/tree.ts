@@ -20,15 +20,16 @@ describe('tree', () => {
             ['Account', 'Devices', 'iPad Mini'],
             ['Account', 'Devices', 'Laptop'],
         ]
-        var tree = arrangeIntoTree(paths)
-        console.log(JSON.stringify(tree, null, 4))
+        var tree = arrangeIntoTree(paths, '/')
+        // console.log(JSON.stringify(tree, null, 4))
     })
 
     it('removeSingleChildFolders', async () => {
         const exampleTree = makeExperimentsTree(
             await globWithGit('./**', { cwd: __dirname, gitignore: true }),
+            '/',
         )
         let tree = removeSingleChildFolders(exampleTree)
-        console.log(JSON.stringify(tree, null, 4))
+        // console.log(JSON.stringify(tree, null, 4))
     })
 })

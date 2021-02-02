@@ -3,7 +3,7 @@ import prettier from 'prettier'
 import path from 'path'
 
 describe('docs transform', () => {
-    it('works', () => {
+    it('works', async () => {
         const code = `
 
 export const x = () => {}
@@ -44,8 +44,9 @@ ok
 \`
 
         `
-        const res = transformInlineMarkdown(code)
+        const res = await transformInlineMarkdown(code)
+        console.log(res)
         const formatted = prettier.format(res, { parser: 'babel' })
-        console.log(formatted)
+        // console.log(formatted)
     })
 })

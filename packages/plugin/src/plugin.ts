@@ -1,18 +1,18 @@
-import { Plugin, Config as BundlessConfig } from '@bundless/cli'
+import { Config as BundlessConfig, Plugin } from '@bundless/cli'
+import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
+import { init, parse } from 'es-module-lexer'
 import { escapeRegExp } from 'lodash'
 import memoize from 'memoizee'
 import path from 'path'
+import picomatch from 'picomatch'
+import slash from 'slash'
 import {
+    EXPERIMENTS_TREE_GLOBAL_VARIABLE,
     EXPERIMENTS_TREE_PATH,
     VIRTUAL_INDEX_PATH,
-    EXPERIMENTS_TREE_GLOBAL_VARIABLE,
 } from './constants'
-import { generate } from './generate'
 import { transformInlineMarkdown } from './docs'
-import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
-import { injectLocationPlugin } from './inject-location'
-import { init, parse } from 'es-module-lexer'
-import { transform } from 'esbuild'
+import { generate } from './generate'
 
 export interface VitroConfig {
     globs: string[]
@@ -31,6 +31,8 @@ export function VitroPlugin(args: PluginArgs): Plugin {
     const generateCode = memoize((root) =>
         generate({ config, root, experimentsFilters }),
     )
+    const { globs } = config
+    const storyMatcher = picomatch(globs)
     return {
         name: 'vitro',
         setup(hooks) {
@@ -64,39 +66,32 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             //     }
             // })
 
+            ReactRefreshPlugin({ babelPlugins: [] }).setup(hooks)
+
             let parserReady = false
             onTransform({ filter: /\.(tsx?|jsx)$/ }, async (args) => {
                 // TODO only run if there is an import to docs
                 let contents = args.contents
-                if (args.contents.includes('docs`')) {
-                    contents = transformInlineMarkdown(args.contents)
+
+                if (storyMatcher(slash(path.relative(root, args.path)))) {
+                    if (args.contents.includes('docs`')) {
+                        contents = await transformInlineMarkdown(args.contents)
+                    }
+
+                    if (!parserReady) {
+                        await init
+                        parserReady = true
+                    }
+
+                    const exported = getExports(contents, args.path)
+
+                    contents += `\n\nexport const __vitroExportsOrdering = ${JSON.stringify(
+                        exported,
+                    )};`
                 }
-
-                const result = await transform(contents, {
-                    // format: 'esm', // passing format reorders exports https://github.com/evanw/esbuild/issues/710
-                    sourcemap: 'inline',
-                    sourcefile: args.path,
-                    minify: false,
-                    keepNames: true,
-                    // treeShaking: 'ignore-annotations',
-                    loader: 'default',
-                })
-
-                contents = result.code
-
-                if (!parserReady) {
-                    await init
-                    parserReady = true
-                }
-                const exported = getExports(contents, args.path)
-
-                contents += `\n\nexport const __vitroExportsOrdering = ${JSON.stringify(
-                    exported,
-                )};`
 
                 return {
                     contents,
-                    loader: 'js', // TODO skip built in esbuild if loader is already js
                 }
             })
 
@@ -127,10 +122,6 @@ export function VitroPlugin(args: PluginArgs): Plugin {
                 },
             )
 
-            // TODO does not work because jsx id replaced by esbuild, this should run before esbuild
-            ReactRefreshPlugin({ babelPlugins: [injectLocationPlugin] }).setup(
-                hooks,
-            )
 
             onLoad(
                 { filter: new RegExp(escapeRegExp(EXPERIMENTS_TREE_PATH)) },

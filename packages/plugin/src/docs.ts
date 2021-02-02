@@ -1,16 +1,27 @@
+import { transform } from 'esbuild'
+
 var md = require('markdown-it')()
 var jsx = require('markdown-it-jsx')
 md.use(jsx)
 
 export const mdxComponentPrefix = 'VitroMdx'
 
-export function makeJsx(opts: { markdown: string; index: number }) {
+export async function makeJsx(opts: { markdown: string; index: number }) {
     const { index, markdown } = opts
     let code = md.render(markdown)
-    code = code.replace(/\n */, '')
     const name = `${mdxComponentPrefix}__${index}__`
     code = `export function ${name}() {return (<>${code}</>);};`
 
+    const result = await transform(code, {
+        // format: 'esm', // passing format reorders exports https://github.com/evanw/esbuild/issues/710
+        // sourcemap: 'inline',
+        sourcefile: 'file.jsx',
+        minifyWhitespace: true,
+        // treeShaking: 'ignore-annotations',
+        loader: 'jsx',
+    })
+
+    code = result.code
     const markdownLines = markdown.split('\n').length
     let codeLines = code.split('\n').length
 
@@ -33,13 +44,16 @@ function regexIndexOf(text, re, i = 0) {
     return indexInSuffix < 0 ? indexInSuffix : indexInSuffix + i
 }
 
-export function transformInlineMarkdown(code: string, docsLiteral = 'docs') {
+export async function transformInlineMarkdown(
+    code: string,
+    docsLiteral = 'docs',
+) {
     const parts = code.split(new RegExp(docsLiteral + '`'))
     let result = parts[0]
     for (let [index, part] of parts.slice(1).entries()) {
         const markdownEndIndex = regexIndexOf(part, /`/) // TODO do not match escaped literal quotes
         const markdown = part.slice(0, markdownEndIndex)
-        const jsxCode = makeJsx({ markdown, index })
+        const jsxCode = await makeJsx({ markdown, index })
         result += jsxCode
         result += part.slice(markdownEndIndex + 1)
     }
