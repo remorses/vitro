@@ -28,6 +28,11 @@ const command: CommandModule = {
             default: false,
             description: 'Force prebundling of dependencies',
         })
+        argv.option('stats', {
+            type: 'boolean',
+            default: false,
+            description: 'Show profiling stats on terminal after command exits',
+        })
         argv.positional('cwd', {
             type: 'string',
             description: `The starting directory to search for ${CONFIG_NAME}`,
@@ -64,6 +69,7 @@ const command: CommandModule = {
                 prebundle: {
                     force: argv.force,
                 },
+                printStats: argv.stats,
                 // entries: ['./index.html'],
                 plugins: [
                     VitroPlugin({
