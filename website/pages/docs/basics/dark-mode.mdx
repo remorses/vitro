@@ -11,7 +11,7 @@ import { ColorModeProvider } from '@chakra-ui/system'
 
 export default {
     title: 'Example',
-    wrapper: ({ isDark, children }) => (
+    wrapper: ({ isDark, isFullScreen, children }) => (
         <ColorModeProvider value={isDark ? 'dark' : 'light'}>
             <ThemeProvider>{children}</ThemeProvider>
         </ColorModeProvider>

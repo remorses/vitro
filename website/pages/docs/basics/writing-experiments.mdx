@@ -67,12 +67,21 @@ export const SimpleButton = () => {
 }
 ```
 
+## Detecting dark mode and full screen status
+
+You can use the `isDark` prop to detect if the dark mode switch is active
+
+```tsx
+export const SimpleButton = ({ isDarg, isFullScreen }) => {
+    return <Button>Click me</Button>
+}
+```
+
 ## Adding documentation
 
 You can add inline documentation to your components via the `docs` template literals, docs blocks will be statically analyzed and replaced with jsx code
 
 ```jsx
-
 docs`
 ## Here are some components
 
@@ -123,13 +132,17 @@ Primary.args = {
 Just pass your args
 
 ```tsx
-import React from "react";
+import React from 'react'
 
-const Template = args => <div  {...args} />;
+const Template = (args) => <div {...args} />
 
-export const Primary = () => <Template {...{
-  name: "world"
-}} />
+export const Primary = () => (
+    <Template
+        {...{
+            name: 'world',
+        }}
+    />
+)
 ```
 
 ## Always use the `jsx` and `tsx` extensions for code containing jsx

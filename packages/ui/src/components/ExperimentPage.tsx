@@ -286,12 +286,13 @@ function MainContent({
         )
     }
 
-    const componentProps = {
-        key: colorMode, // TODO remounting on color mode change or the providers get fucked up
-        isDark: colorMode == 'dark',
-    }
     if (!loading && fileExportsObject) {
         if (storyInFullScreen) {
+            const componentProps = {
+                key: colorMode,
+                isDark: colorMode == 'dark',
+                isFullScreen: true,
+            }
             const Component = fileExportsObject[storyInFullScreen]
             if (!Component) {
                 return null
@@ -309,20 +310,24 @@ function MainContent({
         }
         return (
             <Stack spacing='16'>
-                {reorderedExportsKeys.map((k) => {
+                {reorderedExportsKeys.map((exportName) => {
                     // console.log({ Component })
-                    const Component = fileExportsObject[k]
-                    const id = `${sourceExperimentPath}/${k}`
-                    if (k.startsWith(mdxComponentPrefix)) {
+                    const Component = fileExportsObject[exportName]
+                    const id = `${sourceExperimentPath}/${exportName}`
+                    if (exportName.startsWith(mdxComponentPrefix)) {
                         return (
                             <MdxStyler key={id}>
                                 <Component />
                             </MdxStyler>
                         )
                     }
-
+                    const componentProps = {
+                        key: colorMode + storyInFullScreen, // TODO remounting on color mode change or the providers get fucked up
+                        isDark: colorMode == 'dark',
+                        isFullScreen: storyInFullScreen === exportName,
+                    }
                     return (
-                        <StoryBlock exportName={k} key={id} id={id}>
+                        <StoryBlock exportName={exportName} key={id} id={id}>
                             <ValidGlobalWrapper {...componentProps}>
                                 <ExperimentWrapper {...componentProps}>
                                     <Component {...componentProps} />
