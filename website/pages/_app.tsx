@@ -33,12 +33,14 @@ export default function App(props) {
                     ]}
                     sidebarOrdering={{
                         docs: {
-                            'index.mdx': true,
-                            'config.mdx': true,
-                            'writing-experiments': true,
-                            'overrides.mdx': true,
-                            'dark-mode': true,
-                            deploy: true,
+                            basics: {
+                                'index.mdx': true,
+                                'config.mdx': true,
+                                'writing-experiments': true,
+                                'overrides.mdx': true,
+                                'dark-mode': true,
+                                deploy: true,
+                            },
                         },
                     }}
                 >
