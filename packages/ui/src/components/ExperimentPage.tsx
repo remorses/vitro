@@ -254,17 +254,19 @@ function MainContent({
     }
     if (loading && storyInFullScreen) {
         return (
-            <Box
-                bg={{ dark: 'gray.800', light: 'gray.100' }[colorMode]}
-                zIndex={100000}
-                top={0}
-                opacity={1}
-                bottom={0}
-                right={0}
-                left={0}
-                position='fixed'
-                borderRadius='4px'
-            />
+            <Skeleton>
+                <Box
+                    bg={{ dark: 'gray.800', light: 'gray.100' }[colorMode]}
+                    zIndex={100000}
+                    top={0}
+                    opacity={1}
+                    bottom={0}
+                    right={0}
+                    left={0}
+                    position='fixed'
+                    borderRadius='4px'
+                />
+            </Skeleton>
         )
     }
     if (loading) {
