@@ -55,6 +55,9 @@ const command: CommandModule = {
                 root,
                 jsx: 'react',
                 entries: ['index.html'],
+                define: {
+                    'process.env.NODE_ENV': '"development"',
+                },
                 server: {
                     port: argv.port,
                 },

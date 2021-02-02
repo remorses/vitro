@@ -361,7 +361,7 @@ const StoryBlock = ({
             maxW: '100vw',
             minHeight: '100%',
             // p: '50px',
-            pt: '80px',
+            pt: '20px',
             bg,
             position: 'fixed',
             overflow: 'auto',

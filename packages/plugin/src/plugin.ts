@@ -67,8 +67,6 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             //     }
             // })
 
-            
-
             let parserReady = false
             onTransform({ filter: /\.(tsx|jsx)$/ }, async (args) => {
                 // TODO only run if there is an import to docs
@@ -104,7 +102,7 @@ export function VitroPlugin(args: PluginArgs): Plugin {
                 )};`
                 return {
                     contents,
-
+                    map: JSON.parse(res.map),
                     loader: 'js',
                 }
             })

@@ -53,6 +53,9 @@ export async function buildHandler(argv: {
         root,
         jsx: 'react',
         entries: ['index.html'],
+        define: {
+            'process.env.NODE_ENV': '"production"',
+        },
         build: {
             minify: true,
             outDir: argv.out,

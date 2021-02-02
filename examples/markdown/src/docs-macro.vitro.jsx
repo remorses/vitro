@@ -51,6 +51,8 @@ Exercitation fugiat laborum commodo quis do. Deserunt cillum aliquip Lorem offic
 
 `
 
+console.log(new Error('i should be on line 54'))
+
 export const PrimaryButton = () =>
     React.createElement(Button, { primary: true }, 'hello')
 
