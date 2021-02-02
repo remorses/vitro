@@ -69,9 +69,7 @@ export const SimpleButton = () => {
 
 ## Adding documentation
 
-> Still not implemented
-
-You can add inline documentation to your components via the `docs` macro
+You can add inline documentation to your components via the `docs` template literals, docs blocks will be statically analyzed and replaced with jsx code
 
 ```jsx
 
@@ -86,11 +84,26 @@ export const SimpleButton = () => {
 }
 ```
 
+Vitro just statically analyzes for the `docs` calls, you can import a dummy function to make your code type safe, but remember not to change the import name
+
+```ts
+import { docs } from '@vitro/cli/docs'
+
+// docs is just a dummy function: () => {}
+docs`
+# hello
+
+# paragraph
+`
+```
+
+> React fast refresh won't work when you change the order of docs blocks, you need to refresh the page in case you change docs blocks order
+
 ## Adding a global wrapper to all experiments
 
 To add a global wrapper you can create a `vitro-overrides.jsx` to add a wrapper to all experiments children of that dirname, see [overrides](/overrides) to read more
 
-## Differences with storybook
+# Differences with storybook
 
 ## Don't use static properties
 
@@ -109,7 +122,7 @@ Primary.args = {
 
 Just pass your args
 
-```
+```tsx
 import React from "react";
 
 const Template = args => <div  {...args} />;

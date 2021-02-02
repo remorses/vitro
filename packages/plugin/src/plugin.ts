@@ -69,7 +69,7 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             ReactRefreshPlugin({ babelPlugins: [] }).setup(hooks)
 
             let parserReady = false
-            onTransform({ filter: /\.(tsx?|jsx)$/ }, async (args) => {
+            onTransform({ filter: /\.(tsx|jsx)$/ }, async (args) => {
                 // TODO only run if there is an import to docs
                 let contents = args.contents
 
