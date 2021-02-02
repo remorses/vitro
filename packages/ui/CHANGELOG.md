@@ -1,5 +1,11 @@
 # @vitro/ui
 
+## 0.1.9
+
+### Patch Changes
+
+- 9ac20a4: Faster docs transform
+
 ## 0.1.8
 
 ### Patch Changes

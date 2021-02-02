@@ -1,6 +1,6 @@
 {
     "name": "@vitro/cli",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -31,11 +31,11 @@
     },
     "license": "ISC",
     "dependencies": {
-        "@bundless/cli": "^0.1.9",
+        "@bundless/cli": "^0.2.2",
         "@types/yargs": "^15.0.5",
         "@vitro/codemod": "^0.1.1",
-        "@vitro/plugin": "^0.1.8",
-        "@vitro/ui": "^0.1.8",
+        "@vitro/plugin": "^0.1.9",
+        "@vitro/ui": "^0.1.9",
         "batched-promise-all": "^0.9.2",
         "chalk": "latest",
         "deepmerge": "^4.2.2",

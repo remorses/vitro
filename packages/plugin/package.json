@@ -1,6 +1,6 @@
 {
     "name": "@vitro/plugin",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "Vitro bundless plugin",
     "keywords": [],
     "main": "dist/index.js",
@@ -36,7 +36,7 @@
         "memoizee": "^0.4.14",
         "@babel/core": "^7.12.10",
         "smart-glob": "^1.0.2",
-        "@bundless/plugin-react-refresh": "^1.0.8",
+        "@bundless/plugin-react-refresh": "^2.0.0",
         "tslib": "^2.0.0",
         "esbuild": "*"
     },

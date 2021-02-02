@@ -1,5 +1,14 @@
 # @vitro/cli
 
+## 0.1.11
+
+### Patch Changes
+
+- 9ac20a4: Faster docs transform
+- Updated dependencies [9ac20a4]
+  - @vitro/plugin@0.1.9
+  - @vitro/ui@0.1.9
+
 ## 0.1.10
 
 ### Patch Changes
