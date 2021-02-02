@@ -72,8 +72,15 @@ export const SimpleButton = () => {
 You can use the `isDark` prop to detect if the dark mode switch is active
 
 ```tsx
-export const SimpleButton = ({ isDarg, isFullScreen }) => {
-    return <Button>Click me</Button>
+export const SimpleButton = ({ isDark, isFullScreen }) => {
+    return (
+        <Button
+            bg={isDark ? 'white' : 'black'}
+            width={isFullScreen ? '200px' : '100px'}
+        >
+            Click me
+        </Button>
+    )
 }
 ```
 
