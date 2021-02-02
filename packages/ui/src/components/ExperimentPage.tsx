@@ -310,16 +310,15 @@ function MainContent({
                 {reorderedExportsKeys.map((k) => {
                     // console.log({ Component })
                     const Component = fileExportsObject[k]
-
+                    const id = `${sourceExperimentPath}/${k}`
                     if (k.startsWith(mdxComponentPrefix)) {
                         return (
-                            <MdxStyler>
+                            <MdxStyler key={id}>
                                 <Component />
                             </MdxStyler>
                         )
                     }
 
-                    const id = `${sourceExperimentPath}/${k}`
                     return (
                         <StoryBlock exportName={k} key={id} id={id}>
                             <ValidGlobalWrapper {...componentProps}>

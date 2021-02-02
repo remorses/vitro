@@ -13,6 +13,7 @@ import {
 } from './constants'
 import { transformInlineMarkdown } from './docs'
 import { generate } from './generate'
+import { transform } from 'esbuild'
 
 export interface VitroConfig {
     globs: string[]
@@ -66,34 +67,49 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             //     }
             // })
 
-            ReactRefreshPlugin({ babelPlugins: [] }).setup(hooks)
+            
 
             let parserReady = false
             onTransform({ filter: /\.(tsx|jsx)$/ }, async (args) => {
                 // TODO only run if there is an import to docs
+
+                if (!storyMatcher(slash(path.relative(root, args.path)))) {
+                    return
+                }
                 let contents = args.contents
-
-                if (storyMatcher(slash(path.relative(root, args.path)))) {
-                    if (args.contents.includes('docs`')) {
-                        contents = await transformInlineMarkdown(args.contents)
-                    }
-
-                    if (!parserReady) {
-                        await init
-                        parserReady = true
-                    }
-
-                    const exported = getExports(contents, args.path)
-
-                    contents += `\n\nexport const __vitroExportsOrdering = ${JSON.stringify(
-                        exported,
-                    )};`
+                if (args.contents.includes('docs`')) {
+                    contents = await transformInlineMarkdown(args.contents)
                 }
 
+                const res = await transform(contents, {
+                    // format: 'esm', // passing format reorders exports https://github.com/evanw/esbuild/issues/710
+                    // sourcemap: 'inline',
+                    sourcefile: args.path,
+                    sourcemap: true,
+                    // treeShaking: 'ignore-annotations',
+                    loader: 'jsx',
+                })
+
+                contents = res.code
+
+                if (!parserReady) {
+                    await init
+                    parserReady = true
+                }
+
+                const exported = getExports(contents, args.path)
+
+                contents += `\n\nexport const __vitroExportsOrdering = ${JSON.stringify(
+                    exported,
+                )};`
                 return {
                     contents,
+
+                    loader: 'js',
                 }
             })
+
+            ReactRefreshPlugin({ babelPlugins: [] }).setup(hooks)
 
             onResolve(
                 { filter: new RegExp(escapeRegExp(VIRTUAL_INDEX_PATH)) },
@@ -121,7 +137,6 @@ export function VitroPlugin(args: PluginArgs): Plugin {
                     }
                 },
             )
-
 
             onLoad(
                 { filter: new RegExp(escapeRegExp(EXPERIMENTS_TREE_PATH)) },

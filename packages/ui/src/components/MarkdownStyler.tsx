@@ -622,10 +622,6 @@ export const MdxStyler = styled(Box)`
         clear: both;
     }
 
-    & > :first-child {
-        margin-top: 0 !important;
-    }
-
     & > :last-child {
         margin-bottom: 0 !important;
     }
@@ -659,10 +655,6 @@ export const MdxStyler = styled(Box)`
         padding: 0 1em;
         color: #6a737d;
         border-left: 0.25em solid #dfe2e5;
-    }
-
-    & blockquote > :first-child {
-        margin-top: 0;
     }
 
     & blockquote > :last-child {
@@ -773,10 +765,6 @@ export const MdxStyler = styled(Box)`
     & table tr {
         background-color: #fff;
         border-top: 1px solid #c6cbd1;
-    }
-
-    & table tr:nth-child(2n) {
-        background-color: #f6f8fa;
     }
 
     & img {
