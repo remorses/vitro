@@ -1,5 +1,14 @@
 # @vitro/cli
 
+## 0.1.12
+
+### Patch Changes
+
+- ab6fccb: Fix sourcemap problem, fix error in traversal
+- Updated dependencies [ab6fccb]
+  - @vitro/plugin@0.1.10
+  - @vitro/ui@0.1.10
+
 ## 0.1.11
 
 ### Patch Changes

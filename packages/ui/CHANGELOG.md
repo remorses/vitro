@@ -1,5 +1,11 @@
 # @vitro/ui
 
+## 0.1.10
+
+### Patch Changes
+
+- ab6fccb: Fix sourcemap problem, fix error in traversal
+
 ## 0.1.9
 
 ### Patch Changes
