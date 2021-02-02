@@ -11,7 +11,6 @@ import {
 import orderBy from 'lodash/orderBy'
 import React, { useEffect, useMemo } from 'react'
 import { ComponentLink } from './NavLink'
-import { useStorageState } from 'react-storage-hooks'
 import { findTreeInPath, ExperimentsTree } from '../support'
 
 export type SidebarOrdering = { [k: string]: SidebarOrdering } | boolean
@@ -162,15 +161,14 @@ const NavTreeComponent = ({
 
 function CollapsableTreeNode({ title, path, depth, subTree }) {
     const key = 'sidenav-state-' + path
-    const [active, setActive] = useStorageState(
-        typeof window === 'undefined' ? null : localStorage,
-        key,
-        '',
+
+    const { onToggle, isOpen } = useDisclosure(
+        Boolean(localStorage.getItem(key)),
     )
-    const { onToggle, isOpen } = useDisclosure(!!active)
     useEffect(() => {
-        setActive(isOpen ? 'true' : null)
+        localStorage.setItem(key, isOpen ? 'true' : '')
     }, [isOpen])
+    
     return (
         <Stack spacing='0px'>
             <Box
