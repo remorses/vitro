@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from '@chakra-ui/react'
+import { Box, Stack, Image } from '@chakra-ui/react'
 import { Faded } from 'baby-i-am-faded'
 import {
     Button,
@@ -13,7 +13,6 @@ import {
     PageContainer,
     PatternBackground,
     SectionTitle,
-    Stack,
     CodeSnippet,
 } from 'landing-blocks/src'
 import codeTheme from 'prism-react-renderer/themes/vsDark'
@@ -117,6 +116,7 @@ const Page = () => (
             />
 
             <SectionTitle
+                // mt='0px !important'
                 heading='Most productive way to experiment, showcase your components'
                 subheading='Most productive way to experiment, showcase your components'
             />
@@ -271,17 +271,19 @@ export default Page
 export const Features = ({ ...rest }) => {
     return (
         <PageContainer>
-            <Flex
+            <Stack
+                direction={['column', null, 'row']}
                 as={Faded}
                 width='100%'
                 cascade
                 damping={0.6}
+                spacing='6'
                 fontWeight='600'
                 letterSpacing='0.06em'
                 fontSize='1.3em'
                 justify='space-between'
                 align='center'
-                flexWrap='wrap'
+                // flexWrap='wrap'
                 {...rest}
             >
                 {[
@@ -292,8 +294,6 @@ export const Features = ({ ...rest }) => {
                 ].map((x) => (
                     <Stack
                         w={['100%', null, 'auto']}
-                        mx={'10'}
-                        my='12'
                         align='center'
                         spacing='10'
                     >
@@ -301,7 +301,7 @@ export const Features = ({ ...rest }) => {
                         <Box>{x.heading.toUpperCase()}</Box>
                     </Stack>
                 ))}
-            </Flex>
+            </Stack>
         </PageContainer>
     )
 }
