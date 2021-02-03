@@ -36,7 +36,7 @@
         "memoizee": "^0.4.14",
         "@babel/core": "^7.12.10",
         "smart-glob": "^1.0.2",
-        "@bundless/plugin-react-refresh": "^2.0.0",
+        "@bundless/plugin-react-refresh": "^2.0.1",
         "tslib": "^2.0.0",
         "esbuild": "*"
     },
