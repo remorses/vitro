@@ -30,6 +30,7 @@
 
 ## Things to do
 
+-   [ ] make a vite backend version and test its speed
 -   [ ] make fixtures test cases with snapshots and checks on outputs
 -   [ ] make the inject plugin use the react.createElement calls instead of jsx, this way it can be used after esbuild step
 -   [ ] make a screen shotter package that: has the workflow: build your storybook, tell screen shotter in what folder it is (or url), save all screenshots, tell
