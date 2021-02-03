@@ -14,6 +14,7 @@ export default function App(props) {
                     rel='stylesheet'
                     key='google-font-Fira'
                 />
+                <title>Vitro</title>
             </Head>
             <ChakraProvider resetCSS>
                 <DokzProvider
