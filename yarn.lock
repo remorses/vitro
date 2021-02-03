@@ -863,17 +863,17 @@
     check-more-types "2.24.0"
     lazy-ass "1.6.0"
 
-"@bundless/cli@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@bundless/cli/-/cli-0.1.9.tgz#ab2a4e514246da26890fdd0eb8927beb469d8edc"
-  integrity sha512-2TLCS7HCWftDYBXidpHvpIza7PNXG2SS/UP7iz0j//f09mSL2kVvISQhSWcUNGdnNySxRm/2Oa34Nnq2rmBqng==
+"@bundless/cli@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@bundless/cli/-/cli-0.2.2.tgz#bf6dcc4720090b73fb407031a578500d6dbb6647"
+  integrity sha512-F6xksMUd+Cu6t/68+JCI+YEY9tIMuy6rLJJlr1951SpBk/JsC0wvPOAu7Xaj9HWSdD8+Rv2Pd8Lc3Cp4Cqv4HA==
   dependencies:
     "@babel/parser" "^7.12.11"
     "@babel/types" "^7.12.10"
-    "@esbuild-plugins/all" "^0.0.15"
+    "@esbuild-plugins/all" "^0.0.19"
     "@koa/cors" "^3.1.0"
     chalk "^4.1.0"
-    chokidar "^3.4.3"
+    chokidar "^3.5.1"
     deepmerge "^4.2.2"
     degit "^2.8.0"
     es-module-lexer "^0.3.26"
@@ -907,10 +907,10 @@
     ws "^7.4.1"
     yargs "^16.2.0"
 
-"@bundless/plugin-react-refresh@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@bundless/plugin-react-refresh/-/plugin-react-refresh-1.0.8.tgz#6143cab8831cb75c94a1bb4a7f731e0ac3e76c2a"
-  integrity sha512-WTTYK2SELNax6qP+EDRIuJN5o6s2d8KTvNoj7OC+u3cRNIrJxMBjdQCHEN+1+HqsrE2Rtqu/rSOSpf9WuQ7Bpw==
+"@bundless/plugin-react-refresh@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@bundless/plugin-react-refresh/-/plugin-react-refresh-2.0.1.tgz#a7a18c3ede223135e55df36e756db1275f71a724"
+  integrity sha512-96eyBwP9rOs7bSKDCgEjiJ9XChPWRcMFFTRAaVfgo0wxIWB3spBfoRXpTFK5rnfMZlTr90ITJjMhfqx5FF7i0w==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/parser" "^7.12.11"
@@ -1811,26 +1811,18 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@esbuild-plugins/all@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@esbuild-plugins/all/-/all-0.0.15.tgz#6d123f4623b72647e88386d885c496916b1ebbd5"
-  integrity sha512-hPXN3fEGgaoHpTyq3y7zsz5dMaVzY8UaUyT2QDfZJ54XQ8I04tmhSgRfZVS/gYGMc68BR+1cM67eFfXYm4erWw==
+"@esbuild-plugins/all@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@esbuild-plugins/all/-/all-0.0.19.tgz#f56855d978a89a48e9b10407d364070e3bda3b52"
+  integrity sha512-OgEHVefS0ZaM1wOBZg6EWcn6hFUaE8f5dmA7DCT7Kon7QcGJ3pP/iArmIS/Lkirzyk52iFidQJyl2kcceo1yEA==
   dependencies:
-    "@esbuild-plugins/esm-externals" "0.0.2"
-    "@esbuild-plugins/html" "0.0.16"
+    "@esbuild-plugins/esm-externals" "0.0.5"
+    "@esbuild-plugins/html" "0.0.17"
     "@esbuild-plugins/node-globals-polyfill" "0.0.5"
     "@esbuild-plugins/node-modules-polyfill" "0.0.2"
-    "@esbuild-plugins/node-resolve" "0.0.13"
+    "@esbuild-plugins/node-resolve" "0.0.14"
 
-"@esbuild-plugins/esm-externals@0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@esbuild-plugins/esm-externals/-/esm-externals-0.0.2.tgz#2d2932beeb7be98f460fe21f339ae2aac609a7d5"
-  integrity sha512-Ms0n+uZDhi2akPG45DzcSsyIgtHvdZ8+OJ6JSzkSY1mh3VHNEOgDvxX5Bfk2NQleswRmjnBLhnPPBC+16FXUEQ==
-  dependencies:
-    debug "^4.3.1"
-    escape-string-regexp "^4.0.0"
-
-"@esbuild-plugins/esm-externals@^0.0.5":
+"@esbuild-plugins/esm-externals@0.0.5", "@esbuild-plugins/esm-externals@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@esbuild-plugins/esm-externals/-/esm-externals-0.0.5.tgz#820170b68576c3f1be61a677afdd3cee8733caeb"
   integrity sha512-1U/vbTsKNe7QPHrV+vNKs//WAA3iPgsJGCMg1VstdIzWK85mS8OCsNIsSmg08K9bfJpC7Hxf9spBwby2scVqag==
@@ -1838,12 +1830,12 @@
     debug "^4.3.1"
     escape-string-regexp "^4.0.0"
 
-"@esbuild-plugins/html@0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@esbuild-plugins/html/-/html-0.0.16.tgz#e11d57b738113a037b79c0d1cca10cdd57c38371"
-  integrity sha512-icLvdxFwAtotepGqEgBalMZl783IUy3L9mObNIbVC1fYaThWlspflqc9iSkePbcafaXX38Hpuu/l8vYn5lv2oA==
+"@esbuild-plugins/html@0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@esbuild-plugins/html/-/html-0.0.17.tgz#6acab66abdd3cb1f061d6668851a6a8e4b6a89f3"
+  integrity sha512-Jzz0UHC0ulsyluvtw7nWYqwVORhdTPyT6YXS7S43U3BbKRTOsXtVn22xMG1oHf1Px66jUrbSVfdGVExzZKeSww==
   dependencies:
-    "@esbuild-plugins/node-resolve" "0.0.13"
+    "@esbuild-plugins/node-resolve" "0.0.14"
     debug "^4.3.1"
     posthtml "^0.15.1"
 
@@ -1865,17 +1857,7 @@
     resolve "^1.19.0"
     rollup-plugin-node-polyfills "0.2.1"
 
-"@esbuild-plugins/node-resolve@0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@esbuild-plugins/node-resolve/-/node-resolve-0.0.13.tgz#89251a7b6ce50e564ba7d73265c4e414d6b2649a"
-  integrity sha512-Qmu6tbwa8ytE+hN3yKOQmQ6KovQ/sMkiDwivpLBezxaYBVZoXdEuD8SIpJaX7hSQxC8aN81OXIpLwHMwDrIKXg==
-  dependencies:
-    "@types/resolve" "^1.17.1"
-    debug "^4.3.1"
-    escape-string-regexp "^4.0.0"
-    resolve "^1.19.0"
-
-"@esbuild-plugins/node-resolve@^0.0.14":
+"@esbuild-plugins/node-resolve@0.0.14", "@esbuild-plugins/node-resolve@^0.0.14":
   version "0.0.14"
   resolved "https://registry.yarnpkg.com/@esbuild-plugins/node-resolve/-/node-resolve-0.0.14.tgz#d6139bc95926c8b4e0943e85b8d8ffb21d39fa32"
   integrity sha512-VhX6/YfOIHcHWnh7jGDIzGOVUsFcgjUswRrFLpV3yapjjSVKg+aTvuWf4E1Jb++4xdg0/QpjqcyeaJB2Qvg8Ng==
@@ -4341,7 +4323,7 @@ chokidar@^2.1.8:
   optionalDependencies:
     fsevents "^1.2.7"
 
-chokidar@^3.4.3:
+chokidar@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.1.tgz#ee9ce7bbebd2b79f49f304799d5468e31e14e68a"
   integrity sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==
