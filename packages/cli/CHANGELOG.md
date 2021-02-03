@@ -1,5 +1,11 @@
 # @vitro/cli
 
+## 0.1.14
+
+### Patch Changes
+
+- 0437845: updated plugin version
+
 ## 0.1.13
 
 ### Patch Changes
