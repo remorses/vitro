@@ -1,5 +1,11 @@
 # @vitro/plugin
 
+## 0.1.12
+
+### Patch Changes
+
+- 4fee56b: updated react refresh package
+
 ## 0.1.11
 
 ### Patch Changes
