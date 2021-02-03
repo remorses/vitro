@@ -25,12 +25,10 @@ const command: CommandModule = {
         })
         argv.option('force', {
             type: 'boolean',
-            default: false,
             description: 'Force prebundling of dependencies',
         })
         argv.option('stats', {
             type: 'boolean',
-            default: false,
             description: 'Show profiling stats on terminal after command exits',
         })
         argv.positional('cwd', {
