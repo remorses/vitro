@@ -1,5 +1,14 @@
 # @vitro/cli
 
+## 0.1.13
+
+### Patch Changes
+
+- 245a2d8: Fullscreen stories have 0px padding top, added --stats flag, define NODE_ENV
+- Updated dependencies [245a2d8]
+  - @vitro/plugin@0.1.11
+  - @vitro/ui@0.1.11
+
 ## 0.1.12
 
 ### Patch Changes

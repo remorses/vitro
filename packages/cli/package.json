@@ -1,6 +1,6 @@
 {
     "name": "@vitro/cli",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -34,8 +34,8 @@
         "@bundless/cli": "^0.2.2",
         "@types/yargs": "^15.0.5",
         "@vitro/codemod": "^0.1.1",
-        "@vitro/plugin": "^0.1.10",
-        "@vitro/ui": "^0.1.10",
+        "@vitro/plugin": "^0.1.11",
+        "@vitro/ui": "^0.1.11",
         "batched-promise-all": "^0.9.2",
         "chalk": "latest",
         "deepmerge": "^4.2.2",
