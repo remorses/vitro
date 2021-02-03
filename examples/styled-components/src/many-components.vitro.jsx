@@ -1,8 +1,7 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import emotionStyled from '@emotion/styled'
+import styled from 'styled-components'
 
-const TitleEmotion = emotionStyled.h1`
+const TitleEmotion = styled.h1`
     font-size: 1.5em;
     text-align: center;
     color: palevioletred;

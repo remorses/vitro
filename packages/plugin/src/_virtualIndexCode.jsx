@@ -60,7 +60,7 @@ function MainApp() {
     if (!fileParam) {
         return (
             <VitroApp experimentsTree={experimentsTree}>
-                <HomePage />
+                <HomePage experimentsTree={experimentsTree} />
                 {/* TODO let user customize home  */}
             </VitroApp>
         )
