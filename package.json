@@ -6,7 +6,7 @@
         "watch": "tsc -b --clean && tsc -b -w",
         "test": "ultra -r --serial test",
         "depscheck": "ultra  --filter '@vitro/*' -r depcheck",
-        "build:examples": "yarn vitro build examples --out examples_output",
+        "build:examples": "yarn build && yarn vitro build examples --out examples_output",
         "build": "ultra -r --serial -b --filter '@vitro/*' build"
     },
     "workspaces": {

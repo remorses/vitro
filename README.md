@@ -34,12 +34,12 @@
 -   [ ] enable profiling in prod adding aliases for react-dom$ and scheduler/tracing
 -   [ ] make fixtures test cases with snapshots and checks on outputs
 -   [ ] make the inject plugin use the react.createElement calls instead of jsx, this way it can be used after esbuild step
--   [ ] make a screen shotter package that: has the workflow: build your storybook, tell screen shotter in what folder it is (or url), save all screenshots, tell
+-   [ ] make a screen shotter package that has the workflow: build your storybook, tell screen shotter in what folder it is (or url), save all screenshots, tell
+-   [ ] Add the githubUrl to config, make the `open in vscode` and `click to source` isomorphic
 -   [ ] remove ui, plugin, babel-inject-plugin, docs.macro, codemod packages, make only one package called @vitro/vitro, make a package called screenshot that adds the large browser dependency
 -   [ ] rename experiment to story
 -   [x] do a vitro-overrides.tsx or similar that can export components to customize vitro aspect: for example `Logo`, `StoryWrapper`, `Footer`, `HomePage`, ...
 -   [x] make only one dependency for cli and ui called `@vitro/vitro`, the .vitro folder will import from that (the cli dependency will also need snowpack ...)
--   [ ] Add the githubUrl to config, make the `open in vscode` and `click to source` isomorphic
 -   [x] use bundless instead of nextjs, the routes are computed from the tree file with react router
 -   [x] snowpack should bundle dependencies incrementally snowpack/discussions/1208, impossible
 -   [x] replace next link with react router
@@ -48,7 +48,6 @@
 -   [ ] analyze esbuild deps output and determine the size of each page creating a bundle size report, can be done analyzing the esbuild metafile or snowpack
 -   [x] call vitro commands from subdirectories
 -   [x] open in vscode redirects to original file
--   [ ] `vitro screenshot` to make screenshots of all the stories and save them on disk (or upload them to s3 compatible store)
 -   [x] debug what files are transpiled with an additional loader
 -   [x] `--filter` filters out globs outside of cwd (adding an ignore glob)
 -   [ ] wrap internal UI in shadow dom to isolate it from user CSS
@@ -60,7 +59,6 @@
 -   [ ] how to pass a custom babel? add a babelConfig and merge it in the babel.config.js
 -   [ ] exit from full screen with esc key
 -   [ ] reset render count to zero when rendering above profiler
--   [ ] add max zIndex to story toolbar (no this way is difficult to cover them with overlay in full screen)
 -   [ ] investigate if the render count is accurate given that the profiler is parent of Component
 -   [x] add support for yarn v2 using a custom init flag (adding a `packageManager` in config, changes how the install process is done)
 -   [x] wait for https://github.com/vercel/next.js/issues/15950 and 9.5.3
