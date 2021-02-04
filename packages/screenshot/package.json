@@ -33,7 +33,6 @@
     },
     "peerDependencies": {
         "@vitro/cli": "*",
-        "@vitro/plugin": "*",
         "playwright": "*"
     },
     "devDependencies": {

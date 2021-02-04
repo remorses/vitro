@@ -5,12 +5,8 @@
         "outDir": "dist",
         "rootDir": "src"
     },
-    "exclude": ["tests"],
     "include": ["src"],
     "references": [
-        {
-            "path": "../plugin"
-        },
         {
             "path": "../codemod"
         }

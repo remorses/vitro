@@ -2765,11 +2765,6 @@
   dependencies:
     "@types/unist" "*"
 
-"@types/memoizee@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@types/memoizee/-/memoizee-0.4.4.tgz#a8a5e917ef70c79523b8b8d57f529e49616a760c"
-  integrity sha512-c9+1g6+6vEqcw5UuM0RbfQV0mssmZcoG9+hNC5ptDCsv4G+XJW1Z4pE13wV5zbc9e0+YrDydALBTiD3nWG1a3g==
-
 "@types/mime-types@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@types/mime-types/-/mime-types-2.1.0.tgz#9ca52cda363f699c69466c2a6ccdaad913ea7a73"

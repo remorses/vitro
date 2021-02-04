@@ -9,7 +9,7 @@ export const EXPERIMENTS_TREE_PATH = 'vitro-experiments-tree.js'
 
 export const VIRTUAL_INDEX_TEMPLATE_LOCATION = path.resolve(
     __dirname,
-    '../src/_virtualIndexCode.jsx',
+    '../../src/plugin/_virtualIndexCode.jsx',
 )
 
 export const DEFAULT_OVERRIDES_BASENAME = 'vitro-overrides.jsx'

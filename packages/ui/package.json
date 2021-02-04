@@ -50,11 +50,6 @@
     ],
     "keywords": [],
     "license": "ISC",
-    "mocha": {
-        "require": "sucrase/register",
-        "spec": "tests/**.ts",
-        "timeout": 9999999999
-    },
     "repository": "remorses/vitro",
     "types": "dist/index.d.ts",
     "gitHead": "aeeca7004155ed4b27e2a6d3441d0dff61a9d4ee"

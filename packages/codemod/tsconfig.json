@@ -7,9 +7,5 @@
     },
     "exclude": ["tests"],
     "include": ["src"],
-    "references": [
-        {
-            "path": "../plugin"
-        }
-    ]
+    "references": []
 }

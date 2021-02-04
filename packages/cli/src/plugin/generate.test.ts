@@ -1,5 +1,5 @@
-import { generate, generateVirtualIndexFile } from '../src/generate'
-import { makeExperimentsTree } from '../src/tree'
+import { generate, generateVirtualIndexFile } from './generate'
+import { makeExperimentsTree } from './tree'
 import { globWithGit, glob } from 'smart-glob'
 
 it('makeExperimentsTree', async () => {
@@ -9,7 +9,7 @@ it('makeExperimentsTree', async () => {
         absolute: false,
     })
     console.log({ files })
-    const exampleTree = makeExperimentsTree(files)
+    const exampleTree = makeExperimentsTree(files, '/')
     // console.log({ exampleTree: JSON.stringify(exampleTree, null, 4) })
     const virtualIndexCode = await generateVirtualIndexFile({
         experimentsTree: exampleTree,

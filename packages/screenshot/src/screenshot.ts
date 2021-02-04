@@ -14,7 +14,7 @@ import playwright, {
     Browser,
     ElementHandle,
 } from 'playwright'
-import { bfs } from '@vitro/plugin/dist/tree'
+import { bfs } from '@vitro/cli/dist/plugin'
 
 export async function screenshot({
     targetFolder = '',

@@ -1,6 +1,6 @@
 import { serve, Config as BundlessConfig } from '@bundless/cli'
 
-import { VitroPlugin } from '@vitro/plugin'
+import { VitroPlugin } from './plugin'
 import path from 'path'
 import deepmerge from 'deepmerge'
 // import { NEXT_APP_PATH, CMD, CONFIG_PATH, VERSION_FILE_PATH } from './constants'

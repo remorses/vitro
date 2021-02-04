@@ -1,1 +1,1 @@
-export { VitroConfig } from '@vitro/plugin'
+export { VitroConfig } from './plugin'

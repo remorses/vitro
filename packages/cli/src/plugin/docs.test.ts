@@ -1,4 +1,4 @@
-import { transformInlineMarkdown } from '../src/docs'
+import { transformInlineMarkdown } from './docs'
 import prettier from 'prettier'
 import path from 'path'
 
@@ -45,7 +45,7 @@ ok
 
         `
         const res = await transformInlineMarkdown(code)
-        console.log(res)
+        // console.log(res) // TOSO snapshot
         const formatted = prettier.format(res, { parser: 'babel' })
         // console.log(formatted)
     })

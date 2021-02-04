@@ -2,7 +2,7 @@ import {
     arrangeIntoTree,
     removeSingleChildFolders,
     makeExperimentsTree,
-} from '../src/tree'
+} from './tree'
 import { globWithGit } from 'smart-glob'
 
 describe('tree', () => {

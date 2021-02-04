@@ -1,5 +1,5 @@
 import camelCase from 'lodash/camelCase'
-import memoize from 'memoizee'
+import memoize from 'micro-memoize'
 import prettier from 'prettier'
 import upperFirst from 'lodash/upperFirst'
 

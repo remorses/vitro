@@ -5,10 +5,6 @@
         },
         {
             "path": "packages/ui"
-        },
-
-        {
-            "path": "packages/plugin"
         }
     ],
     "compilerOptions": { "types": ["node"] },

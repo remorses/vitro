@@ -1,4 +1,4 @@
-import babelPlugin from '../src/inject-location'
+import babelPlugin from './inject-location'
 import dedent from 'dedent'
 import prettier from 'prettier'
 
@@ -61,7 +61,7 @@ describe('babel plugin', () => {
         it(name, () => {
             const code = sources[name]
             const res = transform(code, OPTIONS)
-            // TODO readd snapshot tests
+            // TODO snapshot tests
             // expect(
             //     prettier.format(res.code, { parser: 'babel' }),
             // ).toMatchSnapshot('code')
