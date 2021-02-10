@@ -50,6 +50,9 @@ export async function screenshot({
         await page.waitForTimeout(300) // TODO emit an event for react that finishes rendering
         // await page.screenshot({ path: i + 'page.png' })
         const elements = await page.$$(`.${'__vitro-block'}`)
+        if (!elements.length) {
+            console.error(`Could not find stories for '${node.path}'`)
+        }
         // console.log({ elements })
         const screenshots: string[] = []
         await batchedPromiseAll(
@@ -74,11 +77,9 @@ export async function screenshot({
             },
             os.cpus().length * 2,
         )
-
-        // await compare({ folderA: targetFolder, folderB: targetFolder })
-
-        await browser.close()
     }
+    // await compare({ folderA: targetFolder, folderB: targetFolder })
+    await browser.close()
 }
 
 async function generateScreenshotName(element: ElementHandle<any>) {
