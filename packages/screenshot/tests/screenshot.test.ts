@@ -23,7 +23,12 @@ describe('screenshot', () => {
         server && server.close()
     })
     it('works', async () => {
-        await screenshot({ baseUrl, targetFolder })
+        await screenshot({
+            baseUrl,
+            targetFolder,
+
+            onScreenshot: (x) => console.log(x.path),
+        })
     })
     it('compare', async () => {
         const folderA = targetFolder

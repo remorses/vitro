@@ -1,26 +1,20 @@
-import path from 'path'
-import * as uuid from 'uuid'
-
-import http from 'http'
-import { once } from 'events'
-import fs from 'fs-extra'
-import os from 'os'
+import { bfs } from '@vitro/cli/dist/plugin'
 import { batchedPromiseAll } from 'batched-promise-all'
 import dify from 'dify-bin'
-
-import playwright, {
-    BrowserType,
-    ChromiumBrowser,
-    Browser,
-    ElementHandle,
-} from 'playwright'
-import { bfs } from '@vitro/cli/dist/plugin'
+import { once } from 'events'
+import fs from 'fs-extra'
+import http from 'http'
+import os from 'os'
+import path from 'path'
+import playwright, { Browser, ElementHandle } from 'playwright'
+import { glob } from 'smart-glob'
+import * as uuid from 'uuid'
 
 export async function screenshot({
     targetFolder = '',
     baseUrl,
-
-    browserTypes = ['chromium'],
+    browserType = 'chromium',
+    onScreenshot = ({ path }) => {},
 }) {
     if (targetFolder) {
         targetFolder = path.resolve(targetFolder)
@@ -32,54 +26,54 @@ export async function screenshot({
         )
     }
 
-    for (const browserType of browserTypes) {
-        const browser: Browser = await playwright[browserType].launch()
-        const context = await browser.newContext()
-        const page = await context.newPage()
-        await page.goto(baseUrl)
-        const tree = await page.evaluate(() => {
-            return window['VITRO_TREE'] || {}
-        })
-        if (!Object.keys(tree).length) {
-            return
-        }
-        // console.log(JSON.stringify(tree, null, 4))
-        const stories = bfs(tree)
-        for (let [i, node] of stories.entries()) {
-            await page.evaluate((url) => {
-                const history = window['VITRO_HISTORY']
-                if (history) {
-                    history.push(url)
-                } else {
-                    throw new Error(`cannot find history object`)
+    const browser: Browser = await playwright[browserType].launch()
+    const context = await browser.newContext()
+    const page = await context.newPage()
+    await page.goto(baseUrl)
+    const tree = await page.evaluate(() => {
+        return window['VITRO_TREE'] || {}
+    })
+    if (!Object.keys(tree).length) {
+        return
+    }
+    // console.log(JSON.stringify(tree, null, 4))
+    const stories = bfs(tree)
+    for (let [i, node] of stories.entries()) {
+        await page.evaluate((url) => {
+            const history = window['VITRO_HISTORY']
+            if (history) {
+                history.push(url)
+            } else {
+                throw new Error(`cannot find history object`)
+            }
+        }, node.url)
+        await page.waitForTimeout(300) // TODO emit an event for react that finishes rendering
+        // await page.screenshot({ path: i + 'page.png' })
+        const elements = await page.$$(`.${'__vitro-block'}`)
+        // console.log({ elements })
+        const screenshots: string[] = []
+        await batchedPromiseAll(
+            elements,
+            async function screen(element) {
+                const name = await generateScreenshotName(element)
+                if (!name) {
+                    console.error(`cannot find name for element`)
                 }
-            }, node.url)
-            await page.waitForTimeout(300) // TODO emit an event for react that finishes rendering
-            // await page.screenshot({ path: i + 'page.png' })
-            const elements = await page.$$(`.${'__vitro-block'}`)
-            // console.log({ elements })
-            const screenshots: string[] = []
-            await batchedPromiseAll(
-                elements,
-                async function screen(element) {
-                    const name = await generateScreenshotName(element)
-                    if (!name) {
-                        console.error(`cannot find name for element`)
-                    }
-                    const targetFile = path.resolve(
-                        targetFolder,
-                        node.path || '',
-                        name + '.jpg',
-                    )
-                    await element.screenshot({
-                        path: targetFile,
-                    })
-                    console.log(targetFile)
-                    screenshots.push(targetFile)
-                },
-                os.cpus().length,
-            )
-        }
+                const targetFile = path.resolve(
+                    targetFolder,
+                    node.path || '',
+                    name + '.jpg',
+                )
+                await element.screenshot({
+                    path: targetFile,
+                })
+                if (onScreenshot) {
+                    await onScreenshot({ path: targetFile })
+                }
+                screenshots.push(targetFile)
+            },
+            os.cpus().length * 2,
+        )
 
         // await compare({ folderA: targetFolder, folderB: targetFolder })
 
@@ -132,7 +126,6 @@ export function asyncDiff({ a, b, output }) {
     })
 }
 
-import { glob } from 'smart-glob'
 export async function compare({ folderA, folderB, targetFolder = '' }) {
     targetFolder = targetFolder || os.tmpdir()
     const filesA = await glob(path.posix.join(folderA, '**'), {
