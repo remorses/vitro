@@ -49,12 +49,15 @@
     },
     "peerDependencies": {
         "react": "*",
+        "@vitro/screenshot": "*",
         "react-dom": "*"
     },
     "devDependencies": {
         "@types/yargs": "^15.0.5",
+        "@types/es-module-lexer": "^0.3.0",
         "@types/fs-extra": "^9.0.1",
-        "@types/node": "^14.0.20"
+        "@types/node": "^14.0.20",
+        "dedent": "^0.7.0"
     },
     "gitHead": "aeeca7004155ed4b27e2a6d3441d0dff61a9d4ee"
 }

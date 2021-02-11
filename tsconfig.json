@@ -4,7 +4,13 @@
             "path": "packages/cli"
         },
         {
+            "path": "packages/screenshot"
+        },
+        {
             "path": "packages/ui"
+        },
+        {
+            "path": "packages/action"
         }
     ],
     "compilerOptions": { "types": ["node"] },

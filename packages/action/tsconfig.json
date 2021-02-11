@@ -5,13 +5,7 @@
         "outDir": "dist",
         "rootDir": "src"
     },
+    "exclude": ["tests"],
     "include": ["src"],
-    "references": [
-        {
-            "path": "../codemod"
-        },
-        {
-            "path": "../screenshot"
-        }
-    ]
+    "references": [{ "path": "../cli" }, { "path": "../screenshot" }]
 }

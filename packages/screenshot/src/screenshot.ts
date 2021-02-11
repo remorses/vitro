@@ -1,4 +1,3 @@
-import { bfs } from '@vitro/cli/dist/plugin'
 import { batchedPromiseAll } from 'batched-promise-all'
 import dify from 'dify-bin'
 import { once } from 'events'
@@ -14,7 +13,7 @@ export async function screenshot({
     targetFolder = '',
     baseUrl,
     browserType = 'chromium',
-    onScreenshot = ({ path }) => {},
+    onScreenshot = ({ path, relativePath }) => {},
 }) {
     if (targetFolder) {
         targetFolder = path.resolve(targetFolder)
@@ -62,16 +61,14 @@ export async function screenshot({
                 if (!name) {
                     console.error(`cannot find name for element`)
                 }
-                const targetFile = path.resolve(
-                    targetFolder,
-                    node.path || '',
-                    name + '.jpg',
-                )
+                const relativePath = path.join(node.path || '', name + '.jpg')
+                const targetFile = path.resolve(targetFolder, relativePath)
+                await fs.createFile(targetFile)
                 await element.screenshot({
                     path: targetFile,
                 })
                 if (onScreenshot) {
-                    await onScreenshot({ path: targetFile })
+                    await onScreenshot({ path: targetFile, relativePath })
                 }
                 screenshots.push(targetFile)
             },
@@ -154,23 +151,34 @@ export async function compare({ folderA, folderB, targetFolder = '' }) {
     return result.filter(Boolean)
 }
 
-/**
- *
- * 1. screenshot each page, following the tree, opening N tabs to do it concurrently
- * 2. Name every screenshot with the story location + the story export name
- * 2. Upload the screenshots to an s3 bucket, on a folder connected to the commit ref or time
- * 2. Upload a json file with the file tree, this way i won't need to do a glob match
- * 3. Download the previous screenshots, download them in a tmp folder
- * 3. for every image found in previous version, get the same relative path but in the new screenshots folder
- * 4. Execute the pixel by pixel comparison on each shot
- * 5. If the image has changes, upload those to S3 and print their urls
- * 6. Add a message on the PR with the changed files urls
- *
- *
- * commands are
- * - screenshot, do the screenshots and save them in a folder, returns the folder
- * - compare --to --from, uses the git ref to find current folder, download from bucket the previous version
- *
- *
- * The bucket will have a top level directory with name vitro-screenshots that will contain all the images
- */
+// TODO how to share this type?
+export interface ExperimentsTree {
+    path?: string
+    name?: string
+    children?: ExperimentsTree[]
+    url?: string
+    title?: string
+    // meta?: Record<string, any>
+}
+
+export function bfs(tree: ExperimentsTree): ExperimentsTree[] {
+    const results = []
+    // tree.depth = 0
+    var queue = [tree]
+    var n: ExperimentsTree
+
+    while (queue.length > 0) {
+        n = queue.shift()
+        results.push(n)
+
+        if (!n.children) {
+            continue
+        }
+        for (var i = 0; i < n.children.length; i++) {
+            const child = n.children[i]
+            // child.depth = (n.depth || 0) + 1
+            queue.push(child)
+        }
+    }
+    return results
+}
