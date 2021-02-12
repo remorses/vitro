@@ -6,17 +6,16 @@ import {
     Collapse,
     IconButton,
     Link,
-    Select,
+    Skeleton,
     Stack,
     StackProps,
+    Switch,
     useColorMode,
-    Skeleton,
 } from '@chakra-ui/core'
 import { jsx } from '@emotion/core'
-import assign from 'lodash/assign'
 import { atom, useAtom } from 'jotai'
-import { atomWithReducer } from 'jotai/utils'
 import React, {
+    Fragment,
     Profiler,
     ProfilerOnRenderCallback,
     useCallback,
@@ -24,14 +23,13 @@ import React, {
     useMemo,
     useRef,
     useState,
-    Fragment,
 } from 'react'
 import { FaBug, FaLink } from 'react-icons/fa'
 import { FiHash, FiZap } from 'react-icons/fi'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
+import { changeParam, getParam, useRouteChanged } from '../history'
 import {
-    debug,
     formatPathToTitle,
     TOP_TITLE_H,
     usePromise,
@@ -44,7 +42,6 @@ import {
 import { DefaultWrapper } from './DefaultWrapper'
 import { MdxStyler } from './MarkdownStyler'
 import { MobileNav } from './MobileNav'
-import { getParam, history, useRouteChanged, changeParam } from '../history'
 
 jsx
 
@@ -151,25 +148,31 @@ export function ExperimentPage({
                     <Box mr='2' d='inline-block' as={FaBug} />
                     CSS debug
                 </Button>
-                <Select
-                    onChange={(e) => {
-                        const value = e.target.value as any
-                        setClickToSeeSource(value)
-                    }}
-                    fontWeight={500}
-                    value={clickToSeeSourceProvider}
-                    opacity={0.8}
-                    variant='filled'
+
+                <Button
                     bg={bg}
                     // placeholder='click to see source'
+                    onClick={() =>
+                        clickToSeeSourceProvider
+                            ? setClickToSeeSource('')
+                            : setClickToSeeSource('vscode')
+                    }
                     w='auto'
+                    fontWeight={500}
+                    as={Button}
                 >
-                    <option value='' children='click to source disabled' />
-                    <option
-                        value='vscode'
-                        children='click to source on Vscode'
-                    />
-                </Select>
+                    <Stack direction='row' spacing='2'>
+                        <Switch
+                            pointerEvents='none'
+                            isChecked={Boolean(clickToSeeSourceProvider)}
+                        />
+                        <Box minWidth='190px'>
+                            {clickToSeeSourceProvider
+                                ? 'Click to source enabled'
+                                : 'Click to source disabled '}
+                        </Box>
+                    </Stack>
+                </Button>
             </Stack>
 
             <Stack
