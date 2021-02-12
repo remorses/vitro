@@ -17,6 +17,7 @@ import {
 import { transformInlineMarkdown } from './docs'
 import { generate } from './generate'
 import { transform } from 'esbuild'
+import injectLocationPlugin from './inject-location'
 
 export interface VitroConfig {
     globs: string[]
@@ -31,7 +32,7 @@ interface PluginArgs {
     experimentsFilters: string[]
 }
 
-export function VitroPlugin<T extends PluginArgs>(args: T): BundlessPlugin {
+export function VitroPlugin(args: PluginArgs): BundlessPlugin {
     const { config, experimentsFilters, root } = args
     const generateCode = memoize((root) =>
         generate({ config, root, experimentsFilters }),
@@ -41,8 +42,6 @@ export function VitroPlugin<T extends PluginArgs>(args: T): BundlessPlugin {
 
     let parserReady = false
     async function storyTransform(args: { path: string; contents: string }) {
-        // TODO only run if there is an import to docs
-
         if (!storyMatcher(slash(path.relative(root, args.path)))) {
             return
         }
@@ -75,7 +74,7 @@ export function VitroPlugin<T extends PluginArgs>(args: T): BundlessPlugin {
         return {
             contents,
             map: JSON.parse(res.map),
-            loader: 'jsx',
+            loader: 'js',
         }
     }
 
@@ -103,13 +102,29 @@ export function VitroPlugin<T extends PluginArgs>(args: T): BundlessPlugin {
 
     const plugin: BundlessPlugin = {
         name: 'vitro',
+        enforce: 'pre',
         setup(hooks) {
             const {
-                ctx: { root },
+                ctx: { root, watcher },
                 onTransform,
                 onResolve,
                 onLoad,
             } = hooks
+
+            if (watcher) {
+                // when a new file gets created or deleted, invalidate this cache
+                function invalidateCache(filePath: string) {
+                    const relativePath = path.isAbsolute(filePath)
+                        ? slash(path.relative(root, filePath))
+                        : filePath
+                    if (storyMatcher(relativePath)) {
+                        generateCode.cache.keys.length = 0
+                        generateCode.cache.values.length = 0
+                    }
+                }
+                watcher.on('add', invalidateCache)
+            }
+
             // TODO invalidate cache on file changes
             onResolve({ filter: /\.html$/ }, (args) => {
                 return { path: path.resolve(root, args.path) }
@@ -120,6 +135,10 @@ export function VitroPlugin<T extends PluginArgs>(args: T): BundlessPlugin {
 
             // resolve react and react-dom to root to prevent duplication
             // TODO add react aliases after esbuild allows resolve overrides https://github.com/evanw/esbuild/issues/501
+
+            ReactRefreshPlugin({ babelPlugins: [injectLocationPlugin] }).setup(
+                hooks,
+            )
 
             onTransform({ filter: jsxExtensionRegex }, async (args) => {
                 const res = await storyTransform(args)
@@ -133,8 +152,6 @@ export function VitroPlugin<T extends PluginArgs>(args: T): BundlessPlugin {
                     map,
                 }
             })
-
-            ReactRefreshPlugin({ babelPlugins: [] }).setup(hooks)
 
             onResolve(
                 { filter: new RegExp(escapeRegExp(VIRTUAL_INDEX_PATH)) },

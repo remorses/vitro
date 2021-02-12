@@ -151,8 +151,7 @@ export function ExperimentPage({
                     <Box mr='2' d='inline-block' as={FaBug} />
                     CSS debug
                 </Button>
-                {/* TODO to enable click to sourcei need to maintain intact jsx in the plugin */}
-                {/* <Select
+                <Select
                     onChange={(e) => {
                         const value = e.target.value as any
                         setClickToSeeSource(value)
@@ -170,7 +169,7 @@ export function ExperimentPage({
                         value='vscode'
                         children='click to source on Vscode'
                     />
-                </Select> */}
+                </Select>
             </Stack>
 
             <Stack
