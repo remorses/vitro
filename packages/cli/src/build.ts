@@ -64,6 +64,7 @@ export async function buildHandler(argv: {
         // entries: ['./index.html'],
         plugins: [
             VitroPlugin({
+                root,
                 config: vitroConfig,
                 experimentsFilters: [],
             }),

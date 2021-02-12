@@ -216,9 +216,6 @@ function MainContent({
 
     const ExperimentWrapper = useMemo(() => {
         const experimentWrapper = fileExportsObject?.default?.wrapper
-        if (experimentWrapper) {
-            console.info('using experiments wrapper ' + experimentWrapper?.name)
-        }
         return experimentWrapper || FragmentLike
     }, [fileExportsObject, colorMode])
 

@@ -53,6 +53,7 @@ const command: CommandModule = {
             if (cwd !== root) {
                 experimentsFilters.push(cwd)
             }
+            
 
             const ownConfig: BundlessConfig = {
                 root,
@@ -72,6 +73,7 @@ const command: CommandModule = {
                 plugins: [
                     VitroPlugin({
                         config: vitroConfig,
+                        root,
                         experimentsFilters,
                     }),
                 ],

@@ -1,4 +1,7 @@
-import { Config as BundlessConfig, Plugin } from '@bundless/cli'
+import {
+    Config as BundlessConfig,
+    Plugin as BundlessPlugin,
+} from '@bundless/cli'
 import { ReactRefreshPlugin } from '@bundless/plugin-react-refresh'
 import { init, parse } from 'es-module-lexer'
 import { escapeRegExp } from 'lodash'
@@ -24,17 +27,81 @@ export interface VitroConfig {
 
 interface PluginArgs {
     config: VitroConfig
+    root: string
     experimentsFilters: string[]
 }
 
-export function VitroPlugin(args: PluginArgs): Plugin {
-    const { config, experimentsFilters } = args
+export function VitroPlugin<T extends PluginArgs>(args: T): BundlessPlugin {
+    const { config, experimentsFilters, root } = args
     const generateCode = memoize((root) =>
         generate({ config, root, experimentsFilters }),
     )
     const { globs } = config
     const storyMatcher = picomatch(globs)
-    return {
+
+    let parserReady = false
+    async function storyTransform(args: { path: string; contents: string }) {
+        // TODO only run if there is an import to docs
+
+        if (!storyMatcher(slash(path.relative(root, args.path)))) {
+            return
+        }
+        let contents = args.contents
+        if (args.contents.includes('docs`')) {
+            contents = await transformInlineMarkdown(args.contents)
+        }
+
+        const res = await transform(contents, {
+            // format: 'esm', // passing format reorders exports https://github.com/evanw/esbuild/issues/710
+            // sourcemap: 'inline',
+            sourcefile: args.path,
+            sourcemap: true,
+            // treeShaking: 'ignore-annotations',
+            loader: 'jsx',
+        })
+
+        contents = res.code
+
+        if (!parserReady) {
+            await init
+            parserReady = true
+        }
+
+        const exported = getExports(contents, args.path)
+
+        contents += `\n\nexport const __vitroExportsOrdering = ${JSON.stringify(
+            exported,
+        )};`
+        return {
+            contents,
+            map: JSON.parse(res.map),
+            loader: 'jsx',
+        }
+    }
+
+    async function treeLoader() {
+        const { experimentsTree } = await generateCode(root)
+        const contents =
+            `const tree = ${JSON.stringify(
+                experimentsTree,
+                null,
+                4,
+            )};\nexport default tree;\n` +
+            `window.${EXPERIMENTS_TREE_GLOBAL_VARIABLE} = tree;\n`
+        return {
+            contents,
+            loader: 'js' as const,
+        }
+    }
+    async function virtualIndexLoader() {
+        const { virtualIndexCode } = await generateCode(root)
+        return {
+            contents: virtualIndexCode,
+            loader: 'jsx' as const,
+        }
+    }
+
+    const plugin: BundlessPlugin = {
         name: 'vitro',
         setup(hooks) {
             const {
@@ -53,57 +120,17 @@ export function VitroPlugin(args: PluginArgs): Plugin {
 
             // resolve react and react-dom to root to prevent duplication
             // TODO add react aliases after esbuild allows resolve overrides https://github.com/evanw/esbuild/issues/501
-            // onResolve({ filter: /^(react|react-dom)/ }, async (args) => {
-            //     const resolved = await resolveAsync(args.path, {
-            //         basedir: root,
-            //         extensions: ['.js', '.cjs'],
-            //         preserveSymlinks: false,
-            //         mainFields: MAIN_FIELDS,
-            //     })
-            //     if (resolved) {
-            //         return {
-            //             path: resolved,
-            //         }
-            //     }
-            // })
 
-            let parserReady = false
-            onTransform({ filter: /\.(tsx|jsx)$/ }, async (args) => {
-                // TODO only run if there is an import to docs
-
-                if (!storyMatcher(slash(path.relative(root, args.path)))) {
+            onTransform({ filter: jsxExtensionRegex }, async (args) => {
+                const res = await storyTransform(args)
+                if (!res) {
                     return
                 }
-                let contents = args.contents
-                if (args.contents.includes('docs`')) {
-                    contents = await transformInlineMarkdown(args.contents)
-                }
-
-                const res = await transform(contents, {
-                    // format: 'esm', // passing format reorders exports https://github.com/evanw/esbuild/issues/710
-                    // sourcemap: 'inline',
-                    sourcefile: args.path,
-                    sourcemap: true,
-                    // treeShaking: 'ignore-annotations',
-                    loader: 'jsx',
-                })
-
-                contents = res.code
-
-                if (!parserReady) {
-                    await init
-                    parserReady = true
-                }
-
-                const exported = getExports(contents, args.path)
-
-                contents += `\n\nexport const __vitroExportsOrdering = ${JSON.stringify(
-                    exported,
-                )};`
+                const { contents, map } = res
                 return {
                     contents,
-                    map: JSON.parse(res.map),
-                    loader: 'js',
+                    loader: 'jsx',
+                    map,
                 }
             })
 
@@ -119,13 +146,7 @@ export function VitroPlugin(args: PluginArgs): Plugin {
             )
             onLoad(
                 { filter: new RegExp(escapeRegExp(VIRTUAL_INDEX_PATH)) },
-                async (args) => {
-                    const { virtualIndexCode } = await generateCode(root)
-                    return {
-                        contents: virtualIndexCode,
-                        loader: 'jsx',
-                    }
-                },
+                virtualIndexLoader,
             )
             onResolve(
                 { filter: new RegExp(escapeRegExp(EXPERIMENTS_TREE_PATH)) },
@@ -138,23 +159,11 @@ export function VitroPlugin(args: PluginArgs): Plugin {
 
             onLoad(
                 { filter: new RegExp(escapeRegExp(EXPERIMENTS_TREE_PATH)) },
-                async (args) => {
-                    const { experimentsTree } = await generateCode(root)
-                    const contents =
-                        `const tree = ${JSON.stringify(
-                            experimentsTree,
-                            null,
-                            4,
-                        )};\nexport default tree;\n` +
-                        `window.${EXPERIMENTS_TREE_GLOBAL_VARIABLE} = tree;\n`
-                    return {
-                        contents,
-                        loader: 'js',
-                    }
-                },
+                treeLoader,
             )
         },
     }
+    return plugin
 }
 
 function getExports(source: string, filename) {
@@ -187,3 +196,5 @@ const htmlTemplate = `
     </body>
 </html>
 `
+
+const jsxExtensionRegex = /\.(tsx|jsx)$/

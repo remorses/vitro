@@ -1,6 +1,6 @@
 {
     "name": "@vitro/cli",
-    "version": "0.1.14",
+    "version": "0.1.19",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -18,6 +18,7 @@
         "test": "NODE_ENV=test mocha --colors --exit",
         "build": "tsc -b",
         "compile": "sucrase -q ./src -d ./dist --transforms typescript,imports",
+        "local": "yarn publish --force --registry http://localhost:4873 --access restricted --no-git-tag-version --patch --message 'Local registry publish'",
         "play": "cross-env VITRO_TESTING=1 node -r sucrase/register src/main.ts"
     },
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
@@ -26,37 +27,37 @@
     },
     "license": "ISC",
     "dependencies": {
+        "@babel/core": "^7.12.10",
         "@bundless/cli": "^0.2.2",
+        "@bundless/plugin-react-refresh": "^2.0.1",
         "@vitro/codemod": "^0.1.1",
         "@vitro/ui": "^0.1.11",
         "chalk": "^4.1.0",
         "deepmerge": "^4.2.2",
-        "find-up": "^5.0.0",
         "es-module-lexer": "^0.3.26",
-        "markdown-it": "^11.0.0",
-        "markdown-it-jsx": "^1.1.0",
+        "esbuild": "*",
+        "find-up": "^5.0.0",
         "fs-extra": "^9.0.1",
         "lodash": "^4.17.19",
-        "picomatch": "^2.2.2",
+        "markdown-it": "^11.0.0",
+        "markdown-it-jsx": "^1.1.0",
         "micro-memoize": "^4.0.9",
+        "picomatch": "^2.2.2",
         "slash": "^3.0.0",
-        "@babel/core": "^7.12.10",
         "smart-glob": "^1.0.2",
-        "@bundless/plugin-react-refresh": "^2.0.1",
         "tslib": "^2.0.0",
-        "esbuild": "*",
         "yargs": "^15.3.1"
     },
     "peerDependencies": {
-        "react": "*",
         "@vitro/screenshot": "*",
+        "react": "*",
         "react-dom": "*"
     },
     "devDependencies": {
-        "@types/yargs": "^15.0.5",
         "@types/es-module-lexer": "^0.3.0",
         "@types/fs-extra": "^9.0.1",
         "@types/node": "^14.0.20",
+        "@types/yargs": "^15.0.5",
         "dedent": "^0.7.0"
     },
     "gitHead": "aeeca7004155ed4b27e2a6d3441d0dff61a9d4ee"
