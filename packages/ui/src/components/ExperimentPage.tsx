@@ -738,7 +738,7 @@ function OpenInEditorLink({ filePath, root, linksConfig = {} as LinksConfig }) {
     }
 
     return (
-        <Link as='a' fontWeight='500' href={href} opacity={0.7}>
+        <Link target='_blank' as='a' fontWeight='500' href={href} opacity={0.7}>
             <Box d='inline' size='.8em' mr='3' as={FaLink} />
             {title}
         </Link>

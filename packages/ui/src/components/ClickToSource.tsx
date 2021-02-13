@@ -226,12 +226,13 @@ export function getGitCodeLink({
     throw new Error(`Unknown click to source provider ${provider}`)
 }
 
-function openInNewTab(href) {
+function openInNewTab(href: string) {
     console.info(`Opening ${href}`)
     const aElem = document.createElement('a')
     Object.assign(aElem, {
         target: '_blank',
         href,
     }).click()
+    aElem.remove()
     // TODO remove a from DOM
 }
