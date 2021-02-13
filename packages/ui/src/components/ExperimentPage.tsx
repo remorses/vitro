@@ -171,6 +171,8 @@ export function ExperimentPage({
                     <Stack direction='row' spacing='2'>
                         <Switch
                             pointerEvents='none'
+                            aria-readonly
+                            onChange={() => {}}
                             isChecked={Boolean(clickToSeeSourceProvider)}
                         />
                         <Box minWidth='190px'>
@@ -341,7 +343,7 @@ function MainContent({
             )
         }
         return (
-            <Stack spacing='16'>
+            <Stack spacing='16' maxWidth='100%'>
                 {reorderedExportsKeys.map((exportName) => {
                     // console.log({ Component })
                     const Component = fileExportsObject[exportName]
@@ -448,12 +450,10 @@ const StoryBlock = ({
             flexShrink={0}
             flexGrow={0}
             minHeight='340px'
-            // minW='100px'
-            // overflowX='hidden'
             overflow='visible'
             flexBasis={blockWidth}
             position='relative'
-            maxW='100%'
+            maxWidth='100%'
             overflowX='auto'
             {...rest}
             {...(isFullScreen ? fullScreenStyles : {})}
