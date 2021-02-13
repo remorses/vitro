@@ -6,7 +6,7 @@ import {
     DEFAULT_OVERRIDES_BASENAME,
     VIRTUAL_INDEX_TEMPLATE_LOCATION,
 } from './constants'
-import { VitroConfig } from './plugin'
+import { VitroConfig } from '../config'
 import { debug, isWithin } from './support'
 import { bfs, ExperimentsTree, makeExperimentsTree } from './tree'
 

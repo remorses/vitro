@@ -18,13 +18,7 @@ import { transformInlineMarkdown } from './docs'
 import { generate } from './generate'
 import { transform } from 'esbuild'
 import injectLocationPlugin from './inject-location'
-
-export interface VitroConfig {
-    globs: string[]
-    ignore?: string[]
-    basePath?: string
-    bundlessConfig?: BundlessConfig
-}
+import { VitroConfig } from '../config'
 
 interface PluginArgs {
     config: VitroConfig
@@ -105,7 +99,7 @@ export function VitroPlugin(args: PluginArgs): BundlessPlugin {
         enforce: 'pre',
         setup(hooks) {
             const {
-                ctx: { root, watcher },
+                ctx: { root, watcher, graph },
                 onTransform,
                 onResolve,
                 onLoad,
@@ -121,8 +115,10 @@ export function VitroPlugin(args: PluginArgs): BundlessPlugin {
                         generateCode.cache.keys.length = 0
                         generateCode.cache.values.length = 0
                     }
+                    graph.sendHmrMessage({ type: 'reload' })
                 }
                 watcher.on('add', invalidateCache)
+                watcher.on('unlink', invalidateCache)
             }
 
             // TODO invalidate cache on file changes

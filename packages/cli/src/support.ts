@@ -4,7 +4,7 @@ import { spawn, execSync } from 'child_process'
 import fs from 'fs'
 import findUp from 'find-up'
 import { CONFIG_PATH } from './constants'
-import { VitroConfig } from './plugin'
+import { VitroConfig } from './config'
 import { Logger } from '@bundless/cli'
 
 export const logger = new Logger({ prefix: '[vitro]    ' })

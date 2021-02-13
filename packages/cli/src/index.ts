@@ -1,1 +1,1 @@
-export { VitroConfig } from './plugin'
+export { VitroConfig } from './config'
