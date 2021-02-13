@@ -19,6 +19,7 @@ import { generate } from './generate'
 import { transform } from 'esbuild'
 import injectLocationPlugin from './inject-location'
 import { VitroConfig } from '../config'
+import BabelPlugin from '@bundless/plugin-babel'
 
 interface PluginArgs {
     config: VitroConfig
@@ -99,7 +100,7 @@ export function VitroPlugin(args: PluginArgs): BundlessPlugin {
         enforce: 'pre',
         setup(hooks) {
             const {
-                ctx: { root, watcher, graph },
+                ctx: { root, watcher, graph, isBuild },
                 onTransform,
                 onResolve,
                 onLoad,
@@ -132,9 +133,18 @@ export function VitroPlugin(args: PluginArgs): BundlessPlugin {
             // resolve react and react-dom to root to prevent duplication
             // TODO add react aliases after esbuild allows resolve overrides https://github.com/evanw/esbuild/issues/501
 
-            ReactRefreshPlugin({ babelPlugins: [injectLocationPlugin] }).setup(
-                hooks,
-            )
+            if (isBuild) {
+                BabelPlugin({
+                    filter: /\.(t|j)sx$/,
+                    babelOptions: {
+                        plugins: [injectLocationPlugin],
+                    },
+                }).setup(hooks)
+            } else {
+                ReactRefreshPlugin({
+                    babelPlugins: [injectLocationPlugin],
+                }).setup(hooks)
+            }
 
             onTransform({ filter: jsxExtensionRegex }, async (args) => {
                 const res = await storyTransform(args)
