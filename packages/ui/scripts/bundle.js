@@ -1,9 +1,13 @@
 import EsmExternals from '@esbuild-plugins/esm-externals'
+import NodeBuiltins from '@esbuild-plugins/node-modules-polyfill'
 import { build } from 'esbuild'
 
 async function bundle() {
     await build({
-        plugins: [EsmExternals({ externals: ['react', 'react-dom'] })],
+        plugins: [
+            NodeBuiltins(),
+            EsmExternals({ externals: ['react', 'react-dom'] }),
+        ],
         target: 'es2018',
         bundle: true,
         format: 'esm',
@@ -18,7 +22,10 @@ if (process.env.WATCH) {
 
     // One-liner for current directory
     chokidar
-        .watch('.', { ignored: /(node_modules|bundle|dist|tsconfig\.tsbuildinfo)/, ignoreInitial: true })
+        .watch('.', {
+            ignored: /(node_modules|bundle|dist|tsconfig\.tsbuildinfo)/,
+            ignoreInitial: true,
+        })
         .on('change', (event, path) => {
             console.log(event)
             bundle()

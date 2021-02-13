@@ -38,10 +38,14 @@ import {
 import {
     ClickToSourceProviderStateless,
     ClickToSourceState,
+    getGitCodeLink,
+    GitProvider,
+    LinksConfig,
 } from './ClickToSource'
 import { DefaultWrapper } from './DefaultWrapper'
 import { MdxStyler } from './MarkdownStyler'
 import { MobileNav } from './MobileNav'
+import path from 'path'
 
 jsx
 
@@ -57,11 +61,14 @@ const exportsOrderingName = '__vitroExportsOrdering'
 export function ExperimentPage({
     experimentsTree,
     sourceExperimentPath,
+    config,
+    root,
     componentsOverrides,
     fileExports: getFileExports = () => Promise.resolve({}),
 }) {
     const { colorMode, toggleColorMode } = useColorMode()
     const [, setCssDebug] = useAtom(atomCssDebug)
+    const preferredClickToSourceProvider = getPreferredProvider(config.links) // TODO make preferredClickToSourceProvider configurable
     const [clickToSeeSourceProvider, setClickToSeeSource] = useAtom(
         atomClickToSource,
     )
@@ -110,7 +117,11 @@ export function ExperimentPage({
                         isTruncated
                         fontWeight='medium'
                     >
-                        {experimentTitle}
+                        {importResult.loading ? (
+                            <Skeleton>Loading the page</Skeleton>
+                        ) : (
+                            experimentTitle
+                        )}
                     </Box>
                     <Box flex='1' />
                     <ToggleColorModeButton
@@ -124,17 +135,11 @@ export function ExperimentPage({
                 {/* <Box fontSize='18px' opacity={0.6}>
                     powered by vitro
                 </Box> */}
-                {process.env.NODE_ENV == 'development' && (
-                    <Link
-                        as='a'
-                        fontWeight='500'
-                        href={`vscode://file${sourceExperimentPath}`}
-                        opacity={0.7}
-                    >
-                        <Box d='inline' size='.8em' mr='3' as={FaLink} />
-                        Open in vscode
-                    </Link>
-                )}
+                <OpenInEditorLink
+                    filePath={sourceExperimentPath}
+                    root={root}
+                    linksConfig={config.links || {}}
+                />
             </Stack>
             {/* <Box flexShrink={0} h='4' /> */}
             <Stack align='center' flexShrink={0} direction='row'>
@@ -155,7 +160,9 @@ export function ExperimentPage({
                     onClick={() =>
                         clickToSeeSourceProvider
                             ? setClickToSeeSource('')
-                            : setClickToSeeSource('vscode')
+                            : setClickToSeeSource(
+                                  preferredClickToSourceProvider,
+                              )
                     }
                     w='auto'
                     fontWeight={500}
@@ -183,6 +190,8 @@ export function ExperimentPage({
                 // justify='space-between'
             >
                 <MainContent
+                    config={config}
+                    root={root}
                     componentsOverrides={componentsOverrides}
                     sourceExperimentPath={sourceExperimentPath}
                     importResult={importResult}
@@ -192,8 +201,26 @@ export function ExperimentPage({
     )
 }
 
+function getPreferredProvider(linksConfig: LinksConfig = {}): GitProvider {
+    if (process.env.NODE_ENV === 'development') {
+        return 'vscode'
+    }
+    if (linksConfig.github) {
+        return 'github'
+    }
+    if (linksConfig.gitlab) {
+        return 'gitlab'
+    }
+    console.warn(
+        'To enable click to source the vitro app owner needs to pass config.links option',
+    ) // TODO add doc links
+    return ''
+}
+
 function MainContent({
     importResult,
+    config,
+    root,
     componentsOverrides,
     sourceExperimentPath,
 }) {
@@ -298,7 +325,13 @@ function MainContent({
             }
             const id = `${sourceExperimentPath}/${storyInFullScreen}`
             return (
-                <StoryBlock exportName={storyInFullScreen} key={id} id={id}>
+                <StoryBlock
+                    root={root}
+                    config={config}
+                    exportName={storyInFullScreen}
+                    key={id}
+                    id={id}
+                >
                     <ValidGlobalWrapper {...componentProps}>
                         <ExperimentWrapper {...componentProps}>
                             <Component {...componentProps} />
@@ -326,7 +359,13 @@ function MainContent({
                         isFullScreen: storyInFullScreen === exportName,
                     }
                     return (
-                        <StoryBlock exportName={exportName} key={id} id={id}>
+                        <StoryBlock
+                            root={root}
+                            config={config}
+                            exportName={exportName}
+                            key={id}
+                            id={id}
+                        >
                             <ValidGlobalWrapper {...componentProps}>
                                 <ExperimentWrapper {...componentProps}>
                                     <Component {...componentProps} />
@@ -345,6 +384,8 @@ const StoryBlock = ({
     children,
     blockWidth = '100%',
     id,
+    config,
+    root,
     exportName,
     ...rest
 }) => {
@@ -497,9 +538,11 @@ const StoryBlock = ({
                     justify='center'
                 >
                     <ClickToSourceProviderStateless
+                        root={root}
                         value={{
                             provider: clickToSeeSourceProvider,
                         }}
+                        linksConfig={config.links}
                         onChange={(state) => {
                             setClickToSeeSource(state.provider)
                         }}
@@ -663,4 +706,41 @@ export const ToggleColorModeButton = ({ ...rest }) => {
 
 function FragmentLike({ children }) {
     return <Fragment children={children} />
+}
+
+function OpenInEditorLink({ filePath, root, linksConfig = {} as LinksConfig }) {
+    const isDev = process.env.NODE_ENV == 'development'
+    let href = ''
+    let title = ''
+    if (isDev) {
+        href = `vscode://file${filePath}`
+        title = 'Open in VScode'
+    } else if (linksConfig.github) {
+        href = getGitCodeLink({
+            linksConfig,
+            filePath,
+            root,
+            provider: 'github', // TODO make provider configurable via config
+        })
+        title = 'Open in Github'
+    } else if (linksConfig.gitlab) {
+        href = getGitCodeLink({
+            linksConfig,
+            filePath,
+            root,
+            provider: 'gitlab',
+        })
+        title = 'Open in Gitlab'
+    }
+
+    if (!href) {
+        return null
+    }
+
+    return (
+        <Link as='a' fontWeight='500' href={href} opacity={0.7}>
+            <Box d='inline' size='.8em' mr='3' as={FaLink} />
+            {title}
+        </Link>
+    )
 }

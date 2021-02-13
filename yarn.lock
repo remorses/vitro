@@ -1978,7 +1978,7 @@
     debug "^4.3.1"
     rollup-plugin-node-polyfills "^0.2.1"
 
-"@esbuild-plugins/node-modules-polyfill@0.0.2":
+"@esbuild-plugins/node-modules-polyfill@0.0.2", "@esbuild-plugins/node-modules-polyfill@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@esbuild-plugins/node-modules-polyfill/-/node-modules-polyfill-0.0.2.tgz#1a3f956cff4b4833ff1a0f8b955de1250c7f4bf6"
   integrity sha512-ugSpQk7oIfzc0OmNG9i/B+64NXWK3LFBzM8T1zGJpuTldT1tQPUQDLsO6h6jrhHoqTSzuC72LBEycbrPLLKQvQ==

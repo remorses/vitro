@@ -9,6 +9,7 @@ import {
 import { VitroConfig } from '../config'
 import { debug, isWithin } from './support'
 import { bfs, ExperimentsTree, makeExperimentsTree } from './tree'
+import slash from 'slash'
 
 export const generate = async (args: {
     root: string
@@ -53,6 +54,7 @@ export const generate = async (args: {
     // generate the index virtual file from the tree, adding the routes list and global wrapper import
     const virtualIndexCode = await generateVirtualIndexFile({
         experimentsTree,
+        config,
         root: root,
     })
     return { experimentsTree, virtualIndexCode }
@@ -60,12 +62,14 @@ export const generate = async (args: {
 
 export async function generateVirtualIndexFile(_args: {
     root: string
+    config: VitroConfig
     experimentsTree: ExperimentsTree
     overridesBasename?: string
 }) {
     const {
         experimentsTree,
         root,
+        config,
         overridesBasename = DEFAULT_OVERRIDES_BASENAME,
     } = _args
     const routes =
@@ -74,9 +78,10 @@ export async function generateVirtualIndexFile(_args: {
             .slice(1) // first node is empty
             .filter((x) => x.url)
             .map((node) => {
+                const relativePath = slash(node.path)
                 return `
                     {
-                        fileExports: () => import('./${node.path}'),
+                        fileExports: () => import('./${relativePath}'),
                         url: ${JSON.stringify(node.url)},
                         sourceExperimentPath: ${JSON.stringify(
                             path.join(root, node.path),
@@ -101,6 +106,16 @@ export async function generateVirtualIndexFile(_args: {
         code,
         '// overrides go here',
         `const __OVERRIDES__ = ${overrides}`,
+    )
+    code = assertReplace(
+        code,
+        '// __CONFIG__ goes here',
+        `const __CONFIG__ = JSON.parse(\`${JSON.stringify(config, null, 4)}\`)`,
+    )
+    code = assertReplace(
+        code,
+        '// __ROOT__ goes here',
+        `const __ROOT__ = ${JSON.stringify(root)}`,
     )
     return code
 }

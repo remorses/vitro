@@ -14,9 +14,13 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import experimentsTree from '/vitro-experiments-tree.js'
 
+// __ROOT__ goes here
+
 // routes go here
 
 // overrides go here
+
+// __CONFIG__ goes here
 
 const routes = __ROUTES__
     .filter((x) => x.url)
@@ -40,6 +44,8 @@ const routes = __ROUTES__
             Component: () => {
                 return (
                     <ExperimentPage
+                        config={__CONFIG__}
+                        root={__ROOT__}
                         componentsOverrides={overrides}
                         experimentsTree={experimentsTree}
                         sourceExperimentPath={sourceExperimentPath}

@@ -14,6 +14,7 @@ it('makeExperimentsTree', async () => {
     const virtualIndexCode = await generateVirtualIndexFile({
         experimentsTree: exampleTree,
         root: __dirname,
+        config: { globs: [] },
     })
     console.log(virtualIndexCode)
 })
