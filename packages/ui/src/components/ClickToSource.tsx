@@ -179,8 +179,10 @@ export function getGitCodeLink({
     filePath: string
     root: string
     lineNumber?: number
+
     linksConfig: LinksConfig
 }): string {
+    const defaultBranch = 'master'
     if (provider == 'vscode') {
         return `vscode://file${filePath}:${lineNumber}`
     } else if (provider === 'github') {
@@ -188,7 +190,11 @@ export function getGitCodeLink({
             return ''
         }
         const relativePath = path.relative(root, filePath)
-        const { url: gitUrl, branch, path: inPath } = linksConfig.github
+        const {
+            url: gitUrl,
+            branch,
+            path: inPath = defaultBranch,
+        } = linksConfig.github
         let url = `${gitUrl}/blob/${branch}/${path.join(
             inPath || '',
             relativePath || '',
@@ -202,7 +208,11 @@ export function getGitCodeLink({
             return ''
         }
         const relativePath = path.relative(root, filePath)
-        const { url: gitUrl, branch, path: inPath } = linksConfig.gitlab
+        const {
+            url: gitUrl,
+            branch,
+            path: inPath = defaultBranch,
+        } = linksConfig.gitlab
         // https://gitlab.com/kmoshonskiy/moon/-/blob/master/.gitlab-ci.yml#L7
         let url = `${gitUrl}/-/blob/${branch}/${path.join(
             inPath || '',

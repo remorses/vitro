@@ -12,5 +12,13 @@ module.exports = {
     globs: ['./**/*.vitro.jsx'], // globs to search for experiment files
     ignore: [], // add directories to ignore when searching for experiment files
     basePath: '/' // deployment base path
+    // to enable the click to source feature in prod
+    links: {
+        github: { // or gitlab
+            url: 'https://github.com/remorses/vitro',
+            branch: 'master',
+            path: 'examples', // or just omit if vitro root is root of the repo
+        },
+    }
 }
 ```
