@@ -1,5 +1,17 @@
 # @vitro/cli
 
+## 1.0.0
+
+### Minor Changes
+
+- 4977542: Added click to source feature
+
+### Patch Changes
+
+- Updated dependencies [4977542]
+  - @vitro/ui@0.2.0
+  - @vitro/screenshot@1.0.0
+
 ## 0.1.14
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @vitro/ui
 
+## 0.2.0
+
+### Minor Changes
+
+- 4977542: Added click to source feature
+
 ## 0.1.11
 
 ### Patch Changes
