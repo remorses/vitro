@@ -1,5 +1,13 @@
 # @vitro/ui
 
+## 0.2.1
+
+### Patch Changes
+
+- dc57ec7: Define border color
+- 566ba51: Using latest chakra and emotion
+- f443820: Using latest chakra and emotion 11
+
 ## 0.2.0
 
 ### Minor Changes

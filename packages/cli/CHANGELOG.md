@@ -1,5 +1,17 @@
 # @vitro/cli
 
+## 0.2.1
+
+### Patch Changes
+
+- dc57ec7: Define border color
+- 566ba51: Using latest chakra and emotion
+- f443820: Using latest chakra and emotion 11
+- Updated dependencies [dc57ec7]
+- Updated dependencies [566ba51]
+- Updated dependencies [f443820]
+  - @vitro/ui@0.2.1
+
 ## 1.0.0
 
 ### Minor Changes
