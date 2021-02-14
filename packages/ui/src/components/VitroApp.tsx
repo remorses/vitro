@@ -75,6 +75,7 @@ const Content = ({
     children
 }) => {
     const loaded = useSSRSkip()
+    const { colorMode } = useColorMode()
 
     if (!loaded) {
         return (
@@ -122,6 +123,7 @@ const Content = ({
                 left={[SM_PAGE_PADDING, null, null, '350px']}
                 as='main'
                 borderLeftWidth={['0', null, null, '2px']}
+                borderColor={{ light: 'gray.200', dark: 'gray.700' }[colorMode]}
                 pl={['0', null, null, PAGE_PADDING]}
                 pt={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
                 pr={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
