@@ -7,7 +7,7 @@ import {
     Divider,
     useDisclosure,
     Collapse,
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import orderBy from 'lodash/orderBy'
 import React, { useEffect, useMemo } from 'react'
 import { ComponentLink } from './NavLink'
@@ -162,13 +162,13 @@ const NavTreeComponent = ({
 function CollapsableTreeNode({ title, path, depth, subTree }) {
     const key = 'sidenav-state-' + path
 
-    const { onToggle, isOpen } = useDisclosure(
-        Boolean(localStorage.getItem(key)),
-    )
+    const { onToggle, isOpen } = useDisclosure({
+        defaultIsOpen: Boolean(localStorage.getItem(key)),
+    })
     useEffect(() => {
         localStorage.setItem(key, isOpen ? 'true' : '')
     }, [isOpen])
-    
+
     return (
         <Stack spacing='0px'>
             <Box
@@ -181,14 +181,15 @@ function CollapsableTreeNode({ title, path, depth, subTree }) {
             >
                 <Box
                     mr='0.4em'
-                    size='0.6em'
+                    boxSize='0.6em'
                     opacity={0.6}
                     display='inline-block'
                     as={isOpen ? CollapseDown : CollapseRight}
                 />
                 {title}
             </Box>
-            <Collapse isOpen={isOpen} pl='20px'>
+
+            <Collapse style={{ paddingLeft: '20px' }} in={isOpen}>
                 {subTree}
             </Collapse>
         </Stack>

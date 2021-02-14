@@ -8,7 +8,7 @@ import {
     Stack,
     useColorMode,
     Box,
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { MdDehaze } from 'react-icons/md'
 import { ExperimentsNav } from './ExperimentsNav'
@@ -25,7 +25,7 @@ export const MobileNav = ({ experimentsTree, ...rest }) => {
                 aria-label='Navigation Menu'
                 fontSize='30px'
                 variant='ghost'
-                icon={MdDehaze}
+                icon={<MdDehaze />}
                 onClick={onToggle}
                 {...rest}
             />

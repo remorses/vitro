@@ -1,4 +1,4 @@
-import { Box, Select } from '@chakra-ui/core'
+import { Box, Select } from '@chakra-ui/react'
 import React, {
     createContext,
     HTMLAttributes,

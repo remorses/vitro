@@ -7,11 +7,12 @@ import {
     InputLeftElement,
     Stack,
     useColorMode,
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import debounce from 'lodash/debounce'
 import React, { useCallback, useState, useMemo } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
-import { ExperimentsTree, TOP_TITLE_H,  filterTree } from '../support'
+import { FaSearch } from 'react-icons/fa'
+import { ExperimentsTree, TOP_TITLE_H, filterTree } from '../support'
 import { NavTree } from './NavTree'
 
 export const ExperimentsNav = ({
@@ -57,7 +58,9 @@ export const ExperimentsNav = ({
             // shadow='sm'
             >
                 <InputLeftElement
-                    children={<Icon name='search' color='gray.400' />}
+                    children={
+                        <Box as={FaSearch} boxSize='1em' color='gray.400' />
+                    }
                 />
                 <Input
                     autoFocus={false}
@@ -123,7 +126,7 @@ export const Logo = ({ ...rest }) => {
                 spacing='2'
                 {...rest}
             >
-                <Box as={Beaker} size='1.5em' />
+                <Box as={Beaker} boxSize='1.5em' />
                 <Box as={VitroText} h='1.5em' />
             </Stack>
         </a>

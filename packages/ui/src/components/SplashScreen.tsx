@@ -1,4 +1,4 @@
-import { Stack, Box, Spinner } from '@chakra-ui/core'
+import { Stack, Box, Spinner } from '@chakra-ui/react'
 import React from 'react'
 import { Faded } from 'baby-i-am-faded'
 import { Logo } from './ExperimentsNav'
@@ -14,7 +14,7 @@ export const SplashScreen = ({}) => {
                 justify='center'
             >
                 <Logo fontSize='60px' />
-                <Spinner size={'60px' as any} borderWidth='10px' />
+                <Spinner boxSize={'60px'} borderWidth='10px' />
             </Stack>
         </Faded>
     )

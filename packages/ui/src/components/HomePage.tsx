@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Stack, Image, Flex } from '@chakra-ui/core'
+import { Box, Stack, Image, Flex } from '@chakra-ui/react'
 import { TOP_TITLE_H } from '../support'
 import { ToggleColorModeButton } from './ExperimentPage'
 import { MobileNav } from './MobileNav'

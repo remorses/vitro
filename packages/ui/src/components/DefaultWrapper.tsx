@@ -1,4 +1,4 @@
-import { Stack, CSSReset } from '@chakra-ui/core'
+import { Stack, CSSReset } from '@chakra-ui/react'
 import React from 'react'
 
 export const DefaultWrapper = ({ children }) => {

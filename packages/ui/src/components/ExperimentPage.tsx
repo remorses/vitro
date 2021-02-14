@@ -1,4 +1,4 @@
-// @jsx jsx
+
 import {
     Box,
     BoxProps,
@@ -11,8 +11,7 @@ import {
     StackProps,
     Switch,
     useColorMode,
-} from '@chakra-ui/core'
-import { jsx } from '@emotion/core'
+} from '@chakra-ui/react'
 import { atom, useAtom } from 'jotai'
 import React, {
     Fragment,
@@ -24,8 +23,8 @@ import React, {
     useRef,
     useState,
 } from 'react'
-import { FaBug, FaLink } from 'react-icons/fa'
-import { FiHash, FiZap } from 'react-icons/fi'
+import { FaBug, FaLink, FaMoon, FaSun } from 'react-icons/fa'
+import { FiHash, FiSun, FiZap } from 'react-icons/fi'
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { isValidElementType } from 'react-is'
 import { changeParam, getParam, useRouteChanged } from '../history'
@@ -46,8 +45,6 @@ import { DefaultWrapper } from './DefaultWrapper'
 import { MdxStyler } from './MarkdownStyler'
 import { MobileNav } from './MobileNav'
 import path from 'path'
-
-jsx
 
 const atomCssDebug = atom(false)
 const atomClickToSource = atom<ClickToSourceState['provider']>('')
@@ -510,7 +507,9 @@ const StoryBlock = ({
                     }
                     fontSize='1.4em'
                     // bg='transparent'
-                    icon={isFullScreen ? MdFullscreenExit : MdFullscreen}
+                    icon={
+                        isFullScreen ? <MdFullscreenExit /> : <MdFullscreen />
+                    }
                     aria-label='full-screen'
                 />
             </Stack>
@@ -658,7 +657,10 @@ class ErrorBoundary extends React.Component {
                             see trace
                         </Button>
                     </Stack>
-                    <Collapse overflowX='auto' isOpen={traceOpen}>
+                    <Collapse
+                        style={{ overflowX: 'auto', maxWidth: '100%' }}
+                        in={traceOpen}
+                    >
                         <Box fontSize='0.9em' as='pre'>
                             {trace}
                         </Box>
@@ -698,7 +700,7 @@ export const ToggleColorModeButton = ({ ...rest }) => {
             onClick={toggleColorMode}
             fontSize='1.2em'
             aria-label='color-mode-toggle'
-            icon={colorMode === 'dark' ? 'moon' : 'sun'}
+            icon={colorMode === 'dark' ? <FaMoon /> : <FiSun />}
             {...rest}
         />
     )

@@ -1,13 +1,14 @@
 // @jsx jsx
 import {
     Box,
+    ChakraProvider,
     ColorModeProvider,
     CSSReset,
     Stack,
     ThemeProvider,
     useColorMode,
-} from '@chakra-ui/core'
-import { Global, jsx, css, CacheProvider } from '@emotion/core'
+} from '@chakra-ui/react'
+import { Global, jsx, css, CacheProvider } from '@emotion/react'
 import NProgress from 'nprogress'
 import React, { useState, useEffect, useMemo } from 'react'
 import { globalStyles } from '../css'
@@ -18,6 +19,7 @@ import createCache from '@emotion/cache'
 import { SplashScreen } from './SplashScreen'
 import { ExperimentsTree } from '../support'
 import { Provider as JotaiProvider } from 'jotai'
+import { history } from '../history'
 
 jsx
 
@@ -32,20 +34,25 @@ jsx
 const PAGE_PADDING = '40px'
 const SM_PAGE_PADDING = '20px'
 
+const emotionCache = createCache({
+    key: 'vitro',
+    stylisPlugins: [stylisPluginExtraScope('body')],
+})
+
 export function VitroApp({ experimentsTree, children, ...props }) {
     return (
-        <ColorModeProvider value='light'>
-            {/* TODO make initial color mode configurable via webpack define */}
-            <JotaiProvider>
-                <ThemeProvider>
+        <CacheProvider value={emotionCache}>
+            <ChakraProvider>
+                {/* TODO make initial color mode configurable via webpack define */}
+                <JotaiProvider>
                     <CSSReset />
                     <Global styles={[globalStyles]} />
                     <Content experimentsTree={experimentsTree}>
                         {children}
                     </Content>
-                </ThemeProvider>
-            </JotaiProvider>
-        </ColorModeProvider>
+                </JotaiProvider>
+            </ChakraProvider>
+        </CacheProvider>
     )
 }
 
@@ -68,14 +75,7 @@ const Content = ({
     children
 }) => {
     const loaded = useSSRSkip()
-    let newCache = useMemo(
-        () =>
-            createCache({
-                key: 'vitro',
-                stylisPlugins: [stylisPluginExtraScope('body')],
-            }),
-        [],
-    )
+
     if (!loaded) {
         return (
             <>
@@ -88,59 +88,58 @@ const Content = ({
     return (
         <>
             <BgStyles />
-            <CacheProvider value={newCache}>
-                <Box
-                    className='vitro'
-                    overflowY='auto'
-                    overflowX='hidden'
-                    // width={['270px']}
-                    width='350px'
-                    position='fixed'
-                    // pr={PAGE_PADDING}
-                    px={PAGE_PADDING}
-                    top='0'
-                    pt={PAGE_PADDING}
-                    bottom='0'
-                    // overflowX='hidden'
-                >
-                    <ExperimentsNav
-                        className='vitro smoothscroll'
-                        experimentsTree={experimentsTree}
-                        width='100%'
-                        fontWeight='500'
-                        display={['none', null, null, 'flex']}
-                    />
-                    <Box h={PAGE_PADDING} />
-                </Box>
-                <Box
+
+            <Box
+                className='vitro'
+                overflowY='auto'
+                overflowX='hidden'
+                // width={['270px']}
+                width='350px'
+                position='fixed'
+                // pr={PAGE_PADDING}
+                px={PAGE_PADDING}
+                top='0'
+                pt={PAGE_PADDING}
+                bottom='0'
+                // overflowX='hidden'
+            >
+                <ExperimentsNav
                     className='vitro smoothscroll'
-                    position='absolute'
-                    height='content'
-                    right='0'
-                    top='0'
-                    bottom='0'
-                    left={[SM_PAGE_PADDING, null, null, '350px']}
-                    as='main'
-                    borderLeftWidth={['0', null, null, '2px']}
-                    pl={['0', null, null, PAGE_PADDING]}
-                    pt={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
-                    pr={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
-                    pb={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
-                    // align='stretch'
-                    overflowY='scroll'
-                    // safari fix
-                    css={css`
-                        & > * {
-                            flex-shrink: 0;
-                        }
-                    `}
-                    // width='100%'
-                    // overflowX='visible'
-                    // zIndex={0}
-                >
-                    {children}
-                </Box>
-            </CacheProvider>
+                    experimentsTree={experimentsTree}
+                    width='100%'
+                    fontWeight='500'
+                    display={['none', null, null, 'flex']}
+                />
+                <Box h={PAGE_PADDING} />
+            </Box>
+            <Box
+                className='vitro smoothscroll'
+                position='absolute'
+                height='content'
+                right='0'
+                top='0'
+                bottom='0'
+                left={[SM_PAGE_PADDING, null, null, '350px']}
+                as='main'
+                borderLeftWidth={['0', null, null, '2px']}
+                pl={['0', null, null, PAGE_PADDING]}
+                pt={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                pr={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                pb={[SM_PAGE_PADDING, null, null, PAGE_PADDING]}
+                // align='stretch'
+                overflowY='scroll'
+                // safari fix
+                css={css`
+                    & > * {
+                        flex-shrink: 0;
+                    }
+                `}
+                // width='100%'
+                // overflowX='visible'
+                // zIndex={0}
+            >
+                {children}
+            </Box>
         </>
     )
 }
