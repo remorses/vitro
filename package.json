@@ -4,6 +4,7 @@
     "scripts": {
         "cli": "cross-env VITRO_TESTING=1 node -r sucrase/register packages/cli/src/main.ts",
         "watch": "tsc -b --clean && tsc -b -w",
+        "fix-mismatches": "syncpack fix-mismatches --dev --prod --indent '    '",
         "test": "ultra -r --serial test",
         "depscheck": "ultra  --filter '@vitro/*' -r depcheck",
         "build:examples": "yarn build && yarn vitro build examples --out examples_output",
@@ -23,7 +24,7 @@
         "@jest/types": "^26.6.2",
         "@sucrase/jest-plugin": "^2.0.0",
         "@types/jest": "^26.0.16",
-        "esbuild": "^0.8.39",
+        "esbuild": "*",
         "esbuild-register": "^1.2.1",
         "jest": "^26.6.3",
         "playwright": "^1.8.0",
