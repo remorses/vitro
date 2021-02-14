@@ -1,5 +1,13 @@
 # @vitro/cli
 
+## 1.0.1
+
+### Patch Changes
+
+- 86ff1b5: Using latest chakra and emotion 11
+- Updated dependencies [86ff1b5]
+  - @vitro/ui@1.0.1
+
 ## 1.0.0
 
 ### Minor Changes
