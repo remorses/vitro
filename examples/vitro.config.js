@@ -2,6 +2,11 @@
 module.exports = {
     globs: ['./**/*.vitro.js', './**/*.vitro.jsx', './**/*.vitro.tsx'],
     // backend: 'vite',
+    bundlessConfig: {
+        prebundle: {
+            // includeWorkspacePackages: true,
+        },
+    },
     links: {
         github: {
             url: 'https://github.com/remorses/vitro',
