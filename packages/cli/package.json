@@ -1,6 +1,6 @@
 {
     "name": "@vitro/cli",
-    "version": "1.0.0",
+    "version": "0.2.0",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
