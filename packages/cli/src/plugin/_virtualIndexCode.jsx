@@ -27,7 +27,6 @@ const routes = __ROUTES__
     .map(({ fileExports, url, sourceExperimentPath }) => {
         const componentsOverridesScope = Object.keys(__OVERRIDES__).find(
             (scopeDir) => {
-                // console.log({ scopeDir, sourceExperimentPath })
                 const isInside = !path
                     .relative(scopeDir, sourceExperimentPath)
                     .startsWith('..')

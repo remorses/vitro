@@ -20,11 +20,11 @@ export const generate = async (args: {
     let { globs = [], ignore: userIgnore = [], basePath = '/' } = config
 
     debug({ experimentsFilters })
-    globs = globs.map(path.normalize)
+    globs = globs.map(path.posix.normalize)
     const ignoreGlobs = [...userIgnore]
 
     debug(`starting globWithGit`)
-    const results = await Promise.all(
+    const relativePaths = await Promise.all(
         globs.map((s) =>
             globWithGit(s, {
                 ignoreGlobs,
@@ -37,7 +37,7 @@ export const generate = async (args: {
     )
     debug(`finished globWithGit`)
     // console.log(results)
-    const files: string[] = uniq(flatten(results))
+    const files: string[] = uniq(flatten(relativePaths))
         .filter(Boolean)
         .filter((p) => {
             return (
@@ -137,7 +137,7 @@ const generateOverridesCode = async ({ root, overridesBasename }) => {
 
     const couples = files
         .map((file) => {
-            const relative = path.posix.relative(root, file)
+            const relative = slash(path.relative(root, file))
             return `\n    ${JSON.stringify(
                 path.dirname(file),
             )}: () => import(${JSON.stringify('./' + relative)})\n`

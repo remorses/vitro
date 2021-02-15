@@ -17,9 +17,6 @@ export const debug = (...args) => {
 }
 
 export function findVitroJsConfigPath(cwd: string) {
-    // if (fs.existsSync(CONFIG_PATH)) {
-    //     return path.resolve(CONFIG_PATH)
-    // }
     const p = findUp.sync(CONFIG_PATH, { cwd })
     if (!p) {
         fatal(
@@ -38,10 +35,7 @@ export function getVitroConfig(p: string): VitroConfig {
 }
 
 export function transformName(name: string) {
-    return name
-        .toLowerCase()
-        .replace('_', '-')
-        .replace(' ', '-')
+    return name.toLowerCase().replace('_', '-').replace(' ', '-')
 }
 
 export function readFile(path) {

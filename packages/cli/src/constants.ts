@@ -17,4 +17,4 @@ module.exports = {
 }
 `
 
-// const root = path.dirname(path.resolve(path.join('..', 'package.json')))
+
