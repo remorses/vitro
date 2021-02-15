@@ -37,7 +37,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - run: yarn
-      - run: ultra -r --serial --rebuild --filter '@vitro/*' build
+      - run: yarn ultra -r --serial --rebuild --filter '@vitro/*' build
       - run: yarn jest tests/fixtures.test.ts --colors
       - run: git -c color.ui=always diff
       # - name: Bump version
