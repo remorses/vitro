@@ -14,20 +14,20 @@ npm i -g @vitro/cli
 
 ## 2. Init the project
 
-Init the project with
+Now go inside your react project directory and create a default config with
 
 ```sh
 vitro init
 ```
 
-The command above creates a `vitro.config.js` config file and a `.vitro` directory
+The command above creates a `vitro.config.js` config file and some example stories
 
-You can customize the config changing the experiments files location and an optional wrapper path that points to a file that has a react component as default export
+You can customize the config changing the experiments files globs
 
 ```js
 // vitro.config.js
 module.exports = {
-    globs: ['./example-package/.story.tsx'], // glob to your experiments
+    globs: ['./**/*.story.tsx'], // glob to your experiments
 }
 ```
 
@@ -36,7 +36,7 @@ module.exports = {
 Now you can start the server with
 
 ```sh
-vitro -p 7007
+vitro dev
 ```
 
 This will start a web server on [localhost:7007](http://localhost:7007) with your experiments
