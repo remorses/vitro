@@ -1,8 +1,8 @@
 # Dark Mode
 
-When you click the dark mode toggle at the top right of a vitro app all the experiments on the page gets re-rendered with an additional prop `dark` set to true
+When you click the dark mode toggle at the top right of a vitro app all the stories on the page gets re-rendered with an additional prop `isDark` set to true
 
-When the dark mode is enabled all your experiments components and wrappers will receive a prop `dark` set to true
+When the dark mode is enabled all your stories components and wrappers will receive a prop `isDark` set to true
 
 This way you can handle the color mode state yourself, adding a react context in the wrapper for example
 
@@ -23,7 +23,7 @@ export const MyExperiment = ({ isDark }) => (
 )
 ```
 
-You can use a global wrapper to add dark mode state to all your experiments
+You can use a global wrapper to add dark mode state to all your stories
 
 > remember to pass the name of the file that exports the wrapper in the config `wrapper` option
 

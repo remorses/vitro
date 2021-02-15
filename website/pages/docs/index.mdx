@@ -22,12 +22,10 @@ vitro init
 
 The command above creates a `vitro.config.js` config file and some example stories
 
-You can customize the config changing the experiments files globs
-
 ```js
 // vitro.config.js
 module.exports = {
-    globs: ['./**/*.story.tsx'], // glob to your experiments
+    globs: ['./**/*.story.tsx'], // glob to your stories
 }
 ```
 
@@ -39,4 +37,4 @@ Now you can start the server with
 vitro dev
 ```
 
-This will start a web server on [localhost:7007](http://localhost:7007) with your experiments
+This will start a web server on [localhost:7007](http://localhost:7007) with your stories

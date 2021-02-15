@@ -1,11 +1,11 @@
-# Writing experiments
+# Writing stories
 
-An experiment is what storybook calls a story: a file that exports some components
+An story is a file that exports some React components
 
 The exported components will be displayed in a page where you can easily experiment with them in isolation
 
 ```jsx
-// example.experiments.jsx
+// example.vitro.jsx
 
 import React from 'react'
 import { Component } from './'
@@ -23,12 +23,13 @@ Every exported component will be displayed as a block on the vitro ui
 
 ## Changing title
 
-you can declare an object as default export to add experiment information like
+you can declare an object as default export to add story information like
 
 -   title
+-   component
 
 ```jsx
-// example.experiments.jsx
+// example.vitro.jsx
 import { Button } from './'
 
 export default {
@@ -47,7 +48,7 @@ You can pass a wrapper key to the default export to add a component to be used a
 This is useful to add necessary react providers like a `ThemeProvider` or redux `Provider`
 
 ```jsx
-// example.experiments.jsx
+// example.vitro.jsx
 import { Button } from './'
 
 export default {
@@ -115,9 +116,9 @@ docs`
 
 > React fast refresh won't work when you change the order of docs blocks, you need to refresh the page in case you change docs blocks order
 
-## Adding a global wrapper to all experiments
+## Adding a global wrapper to all stories
 
-To add a global wrapper you can create a `vitro-overrides.jsx` to add a wrapper to all experiments children of that dirname, see [overrides](/basics/overrides) to read more
+To add a global wrapper you can create a `vitro-overrides.jsx` to add a wrapper to all stories children of that dirname, see [overrides](/basics/overrides) to read more
 
 # Differences with storybook
 
