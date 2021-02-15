@@ -38,7 +38,8 @@ jobs:
             ${{ runner.os }}-npm-
       - run: yarn
       - run: yarn build
-      - run: yarn jest tests/fixtures.test.ts
+      - run: yarn jest tests/fixtures.test.ts --colors
+      - run: git -c color.ui=always diff
       # - name: Bump version
       #   if: github.ref == 'refs/heads/master'
       #   uses: remorses/bump-version@js
