@@ -14,6 +14,7 @@ export default function App(props) {
                     rel='stylesheet'
                     key='google-font-Fira'
                 />
+                <script async src='https://cdn.splitbee.io/sb.js' />
                 <title>Vitro</title>
             </Head>
             <ChakraProvider resetCSS>
