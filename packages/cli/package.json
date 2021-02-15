@@ -16,7 +16,7 @@
     ],
     "scripts": {
         "test": "NODE_ENV=test mocha --colors --exit",
-        "build": "tsc -b",
+        "build": "tsc",
         "compile": "sucrase -q ./src -d ./dist --transforms typescript,imports",
         "local": "yarn publish --force --registry http://localhost:4873 --access restricted --no-git-tag-version --patch --message 'Local registry publish'",
         "play": "cross-env VITRO_TESTING=1 node -r sucrase/register src/main.ts"

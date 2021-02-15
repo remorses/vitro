@@ -7,7 +7,6 @@
     "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
     "scripts": {
         "test": "NODE_ENV=test mocha --colors --exit",
-        "build2": "tsc -b && tsc -b tsconfig.esm.json",
         "build": "yarn tsc && yarn bundle",
         "bundle": "node -r esbuild-register scripts/bundle.js",
         "watch": "WATCH=1 yarn bundle"
