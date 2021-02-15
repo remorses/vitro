@@ -97,3 +97,4 @@ The example will be just a github repo in my namespace,
 Problems
 
 -   how to take project name on first time deploy from CI? generate random name in config maybe
+-   
