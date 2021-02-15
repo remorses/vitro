@@ -37,5 +37,7 @@ yarn-error.log*
 
 examples_output
 
-
 /screenshots*
+examples/__mirror__/__..__
+examples/__mirror__/_*
+examples/__mirror__/path
