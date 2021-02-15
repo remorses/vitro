@@ -30,7 +30,7 @@
 
 ## Things to do
 
--   [ ] make a vite backend version and test its speed
+-   [x] make a vite backend version and test its speed
 -   [ ] enable profiling in prod adding aliases for react-dom$ and scheduler/tracing
 -   [ ] make fixtures test cases with snapshots and checks on outputs
 -   [ ] make the inject plugin use the react.createElement calls instead of jsx, this way it can be used after esbuild step
