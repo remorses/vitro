@@ -24,7 +24,7 @@
         "@changesets/cli": "^2.12.0",
         "@jest/types": "^26.6.2",
         "@sucrase/jest-plugin": "^2.0.0",
-        "@types/jest": "^26.0.16",
+        "@types/jest": "^26.0.19",
         "esbuild": "*",
         "esbuild-register": "^1.2.1",
         "jest": "^26.6.3",
