@@ -9,21 +9,10 @@
     <br/>
 </div>
 
-## Differences with storybook
+Vitro is a storybook alternative that builds 20x faster
 
--   No addons, if you want more features open a pull request here, i want a cohesive code base
--   Many features inherited from next.js like
-    -   Zero config typescript, babel, css support
-    -   Incremental compilation
-    -   React Fast refresh
+It is built on top of [esbuild](https://github.com/evanw/esbuild) (thanks to [bundless](https://github.com/remorses/bundless))
 
-### Features missing from storybook (in progress)
+You can read more on the [website](https://vitro.now.sh)
 
--   Viewport sizing
--   Display source code
 
-### Addons that won't be implemented
-
--   Actions
--   Knobs
--   Props
