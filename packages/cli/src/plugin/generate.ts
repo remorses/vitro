@@ -35,6 +35,7 @@ export const generate = async (args: {
             }),
         ),
     )
+
     debug(`finished globWithGit`)
     // console.log(results)
     const files: string[] = uniq(flatten(relativePaths))
@@ -101,6 +102,7 @@ export async function generateVirtualIndexFile(_args: {
     const overrides = await generateOverridesCode({
         root,
         overridesBasename,
+        ignoreGlobs: config.ignore || [],
     })
     code = assertReplace(
         code,
@@ -128,10 +130,15 @@ function assertReplace(code, replaced, replacement) {
     return res
 }
 
-const generateOverridesCode = async ({ root, overridesBasename }) => {
+const generateOverridesCode = async ({
+    root,
+    overridesBasename,
+    ignoreGlobs,
+}) => {
     const files = await globWithGit('**/' + overridesBasename, {
         cwd: root,
         gitignore: true,
+        ignoreGlobs,
         absolute: true,
     })
 

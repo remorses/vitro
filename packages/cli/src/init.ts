@@ -11,10 +11,14 @@ const command: CommandModule = {
         return argv
     },
     handler: async (argv) => {
-        if (!existsSync(CONFIG_PATH)) {
-            printGreen(`creating default ${CONFIG_PATH}`, true)
-            await writeFile(CONFIG_PATH, getDefaultConfig({}))
+        if (existsSync(CONFIG_PATH)) {
+            return printGreen(`${CONFIG_PATH} already exist`, true)
         }
+        printGreen(`creating default ${CONFIG_PATH}`, true)
+        await writeFile(CONFIG_PATH, getDefaultConfig({}))
+        // printGreen(`creating some example stories`, true)
+        printGreen(`Run 'vitro dev' to start the dev server`, true)
+        
     },
 }
 

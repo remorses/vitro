@@ -7,6 +7,7 @@ module.exports = {
             // includeWorkspacePackages: true,
         },
     },
+    ignore: ['__mirror__/**'],
     links: {
         github: {
             url: 'https://github.com/remorses/vitro',

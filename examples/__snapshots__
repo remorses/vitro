@@ -1,0 +1,1127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshots examples: build 1`] = `Array []`;
+
+exports[`snapshots examples: content-type headers 1`] = `
+Object {
+  "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/.bundless/web_modules/react-dom/index.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/.bundless/web_modules/tailwindcss/dist/tailwind.css?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/__..__/packages/cli/docs.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/__..__/packages/cli/reexports/inspect-mode.css?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/__..__/packages/cli/reexports/inspector.css?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/__..__/packages/cli/reexports/ui.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/__..__/packages/ui/bundle/index.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/vitro-overrides.jsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/anAwesomeExperiment.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/anotherExperiment.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/anotherExperiment1.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/check-sourcemaps-work.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/complex-components.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/example_component.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/experiment1.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/src/stillAnotherExperiment.vitro.tsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/example-package/vitro-overrides.jsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/index.html": "text/html; charset=utf-8",
+  "http://127.0.0.1:9030/markdown/src/docs-macro.vitro.jsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/path?namespace=node-builtins": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/styled-components/src/big-height.vitro.jsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/styled-components/src/big-width.vitro.jsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/styled-components/src/example-styled-components.vitro.jsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/styled-components/src/many-components.vitro.jsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/tailwind/src/example-tailwind.vitro.jsx?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/vitro-experiments-tree.js?namespace=file": "application/javascript; charset=utf-8",
+  "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file": "application/javascript; charset=utf-8",
+}
+`;
+
+exports[`snapshots examples: mirror 1`] = `
+Array [
+  "__..__/packages/cli/docs.js",
+  "__..__/packages/cli/reexports/inspect-mode.css",
+  "__..__/packages/cli/reexports/inspector.css",
+  "__..__/packages/cli/reexports/ui.js",
+  "__..__/packages/ui/bundle/index.js",
+  "_hmr_client.js",
+  "_react-refresh-runtime_.js",
+  "example-package-scope/example-sub-package-1/src/index.tsx",
+  "example-package-scope/example-sub-package-1/src/index.vitro.tsx",
+  "example-package-scope/example-sub-package-2/src/index.tsx",
+  "example-package-scope/example-sub-package-2/src/index.vitro.tsx",
+  "example-package-scope/example-sub-package-2/vitro-overrides.jsx",
+  "example-package/src/anAwesomeExperiment.vitro.tsx",
+  "example-package/src/anotherExperiment.vitro.tsx",
+  "example-package/src/anotherExperiment1.vitro.tsx",
+  "example-package/src/check-sourcemaps-work.vitro.tsx",
+  "example-package/src/complex-components.vitro.tsx",
+  "example-package/src/example_component.vitro.tsx",
+  "example-package/src/experiment1.vitro.tsx",
+  "example-package/src/index.tsx",
+  "example-package/src/stillAnotherExperiment.vitro.tsx",
+  "example-package/src/Wrapper.tsx",
+  "example-package/vitro-overrides.jsx",
+  "index.html",
+  "markdown/src/docs-macro.vitro.jsx",
+  "path",
+  "styled-components/src/big-height.vitro.jsx",
+  "styled-components/src/big-width.vitro.jsx",
+  "styled-components/src/example-styled-components.vitro.jsx",
+  "styled-components/src/many-components.vitro.jsx",
+  "tailwind/src/example-tailwind.vitro.jsx",
+  "vitro-experiments-tree.js",
+  "vitro-virtual-index.jsx",
+]
+`;
+
+exports[`snapshots examples: traverse result 1`] = `
+Array [
+  Object {
+    "importPath": "/__..__/packages/cli/docs.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/markdown/src/docs-macro.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/__..__/packages/cli/docs.js?namespace=file",
+  },
+  Object {
+    "importPath": "/__..__/packages/cli/reexports/inspect-mode.css?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/__..__/packages/cli/reexports/inspect-mode.css?namespace=file",
+  },
+  Object {
+    "importPath": "/__..__/packages/cli/reexports/inspector.css?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/__..__/packages/cli/reexports/inspector.css?namespace=file",
+  },
+  Object {
+    "importPath": "/__..__/packages/cli/reexports/ui.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/__..__/packages/cli/reexports/ui.js?namespace=file",
+  },
+  Object {
+    "importPath": "/__..__/packages/ui/bundle/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/__..__/packages/cli/reexports/ui.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/__..__/packages/ui/bundle/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/__..__/packages/cli/reexports/inspect-mode.css?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/__..__/packages/cli/reexports/inspector.css?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/tailwindcss/dist/tailwind.css?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/vitro-overrides.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/anAwesomeExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/anotherExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/anotherExperiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/check-sourcemaps-work.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/complex-components.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/example_component.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/experiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/stillAnotherExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/example-package/vitro-overrides.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/index.html",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/markdown/src/docs-macro.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/styled-components/src/big-height.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/styled-components/src/big-width.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/styled-components/src/example-styled-components.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/styled-components/src/many-components.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/tailwind/src/example-tailwind.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_hmr_client.js?namespace=hmr-client",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_hmr_client.js?namespace=hmr-client",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/vitro-overrides.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/anAwesomeExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/anotherExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/anotherExperiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/check-sourcemaps-work.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/complex-components.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/example_component.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/experiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/stillAnotherExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/example-package/vitro-overrides.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/markdown/src/docs-macro.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/styled-components/src/big-height.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/styled-components/src/big-width.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/styled-components/src/example-styled-components.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/styled-components/src/many-components.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/tailwind/src/example-tailwind.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/_react-refresh-runtime_.js?namespace=react-refresh-runtime",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/vitro-overrides.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/anAwesomeExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/check-sourcemaps-work.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/complex-components.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/example_component.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/experiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/stillAnotherExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/vitro-overrides.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/react-dom/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.6JBOJUFW.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/react-dom/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.HDRRKAF6.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/@chakra-ui/core/dist/es/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/chunk.QQVKEMAQ.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react-dom/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/__..__/packages/ui/bundle/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react-dom/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react-dom/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/__..__/packages/ui/bundle/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react-dom/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react-dom/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react-dom/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/__..__/packages/ui/bundle/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/__..__/packages/ui/bundle/index.js?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/vitro-overrides.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/anAwesomeExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/anotherExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/anotherExperiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/check-sourcemaps-work.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/complex-components.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/example_component.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/experiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/stillAnotherExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/vitro-overrides.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/markdown/src/docs-macro.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/styled-components/src/big-height.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/styled-components/src/big-width.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/styled-components/src/example-styled-components.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/styled-components/src/many-components.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/tailwind/src/example-tailwind.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/react/index.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/react/index.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/markdown/src/docs-macro.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/styled-components/src/big-height.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/styled-components/src/big-width.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/styled-components/src/example-styled-components.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/styled-components/src/many-components.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/styled-components/dist/styled-components.esm.js?namespace=file",
+  },
+  Object {
+    "importPath": "/.bundless/web_modules/tailwindcss/dist/tailwind.css?namespace=file",
+    "importer": "http://127.0.0.1:9030/tailwind/src/example-tailwind.vitro.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/.bundless/web_modules/tailwindcss/dist/tailwind.css?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package-scope/example-sub-package-1/src/index.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package-scope/example-sub-package-1/src/index.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package-scope/example-sub-package-1/src/index.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package-scope/example-sub-package-2/src/index.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package-scope/example-sub-package-2/src/index.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/src/index.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package-scope/example-sub-package-2/vitro-overrides.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package-scope/example-sub-package-2/vitro-overrides.jsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/anAwesomeExperiment.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/anAwesomeExperiment.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/anotherExperiment.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/anotherExperiment.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/anotherExperiment1.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/anotherExperiment1.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/check-sourcemaps-work.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/check-sourcemaps-work.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/complex-components.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/complex-components.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/example_component.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/example_component.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/experiment1.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/experiment1.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/index.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/anotherExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/index.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/anotherExperiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/index.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/experiment1.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/index.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/stillAnotherExperiment.vitro.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/stillAnotherExperiment.vitro.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/Wrapper.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/anAwesomeExperiment.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/Wrapper.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/check-sourcemaps-work.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/Wrapper.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/complex-components.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/src/Wrapper.tsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/example-package/src/example_component.vitro.tsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/src/Wrapper.tsx?namespace=file",
+  },
+  Object {
+    "importPath": "/example-package/vitro-overrides.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/example-package/vitro-overrides.jsx?namespace=file",
+  },
+  Object {
+    "importPath": "/markdown/src/docs-macro.vitro.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/markdown/src/docs-macro.vitro.jsx?namespace=file",
+  },
+  Object {
+    "importPath": "/path?namespace=node-builtins",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/path?namespace=node-builtins",
+  },
+  Object {
+    "importPath": "/styled-components/src/big-height.vitro.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/styled-components/src/big-height.vitro.jsx?namespace=file",
+  },
+  Object {
+    "importPath": "/styled-components/src/big-width.vitro.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/styled-components/src/big-width.vitro.jsx?namespace=file",
+  },
+  Object {
+    "importPath": "/styled-components/src/example-styled-components.vitro.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/styled-components/src/example-styled-components.vitro.jsx?namespace=file",
+  },
+  Object {
+    "importPath": "/styled-components/src/many-components.vitro.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/styled-components/src/many-components.vitro.jsx?namespace=file",
+  },
+  Object {
+    "importPath": "/tailwind/src/example-tailwind.vitro.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/tailwind/src/example-tailwind.vitro.jsx?namespace=file",
+  },
+  Object {
+    "importPath": "/vitro-experiments-tree.js?namespace=file",
+    "importer": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+    "resolvedImportPath": "http://127.0.0.1:9030/vitro-experiments-tree.js?namespace=file",
+  },
+  Object {
+    "importPath": "/vitro-virtual-index.jsx?namespace=file",
+    "importer": "http://127.0.0.1:9030/index.html",
+    "resolvedImportPath": "http://127.0.0.1:9030/vitro-virtual-index.jsx?namespace=file",
+  },
+]
+`;
