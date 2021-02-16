@@ -1,6 +1,6 @@
 {
     "name": "@vitro/action",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "private": true,
     "keywords": [],
@@ -25,7 +25,7 @@
         "firebase-admin": "^9.4.2",
         "@vitro/screenshot": "*",
         "xmlhttprequest-ssl": "^1.6.0",
-        "@vitro/cli": "0.2.1",
+        "@vitro/cli": "0.2.2",
         "tslib": "^2.0.0"
     },
     "peerDependencies": {

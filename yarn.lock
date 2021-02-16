@@ -971,10 +971,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bundless/cli@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@bundless/cli/-/cli-0.2.3.tgz#22c8adabcb09a205b9b2507e5bbc7cedc7b2434d"
-  integrity sha512-HQYY3qsEOSDXpvhjfYyngRi0UXj84lxczN8Y0p+z9ttn4O6qtPXm4vAHx+TKrv5ed5xCs13c6Us/cbeJ3Uc5yg==
+"@bundless/cli@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@bundless/cli/-/cli-0.2.4.tgz#9010b33c0de6cb6b483439bd1c111029078d35fc"
+  integrity sha512-ErpEaWbUyvRVzjuE0aTD1mzgTjt+jQ67or5VHvkAXG8hrlOiIdKveoFyp5zh01qpI2RhoHVtsg3qKk2EOgOzEg==
   dependencies:
     "@babel/parser" "^7.12.11"
     "@babel/types" "^7.12.10"
@@ -1015,22 +1015,23 @@
     ws "^7.4.1"
     yargs "^16.2.0"
 
-"@bundless/plugin-babel@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@bundless/plugin-babel/-/plugin-babel-0.0.1.tgz#bed0c6749bbc514673d0de1e91fafc6e4c434f3e"
-  integrity sha512-mYSQ39HbCUlOGqa+dQul8DQUiLBcbzRnk7EaGW7njlwpwQa2XZ32tpyaUj9JCumLlDVAww3C5oi7mIPtsMe/ew==
+"@bundless/plugin-babel@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@bundless/plugin-babel/-/plugin-babel-0.0.2.tgz#1417f19c38cc0931f5df2a4fe2a089538478d1d3"
+  integrity sha512-1yes9BdcZ3Smdisf2Jvq0ONUgwJ9d6dwtXkAOjAa/LM3kJa042Vhz1tSHBBpppDLWDLa9oJrM8GjG5u7dcSmlw==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/parser" "^7.12.11"
 
-"@bundless/plugin-react-refresh@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@bundless/plugin-react-refresh/-/plugin-react-refresh-2.0.2.tgz#e2bd8aa731a38a9da856d8dd4f64b16c82b03401"
-  integrity sha512-cIR0I9m77PZ6m/66hpH349ZJXDi4xK/aHpE7ZuVPUKGEdFzg2nlopLAzRgGC69ptcWsML3vqky4EHhnzL+GjmA==
+"@bundless/plugin-react-refresh@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@bundless/plugin-react-refresh/-/plugin-react-refresh-2.0.3.tgz#738cd3e015f1f5f01447f55745ddbc424da9ceaa"
+  integrity sha512-OyTdrcvMgiuv5sRFRPQVEFds37Xf18VpbcCUMVoaY6b+OBrmbqpLuCuK8YjiBYxYOy8zdXmvbNfRjkoxItVibg==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/parser" "^7.12.11"
     react-refresh "^0.8.2"
+    slash "^3.0.0"
 
 "@camwiegert/typical@^0.1.1":
   version "0.1.1"

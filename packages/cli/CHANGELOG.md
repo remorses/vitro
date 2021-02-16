@@ -1,5 +1,11 @@
 # @vitro/cli
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated bundless deps
+
 ## 0.2.1
 
 ### Patch Changes

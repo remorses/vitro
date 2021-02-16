@@ -1,6 +1,6 @@
 {
     "name": "@vitro/cli",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "",
     "keywords": [],
     "main": "dist/index.js",
@@ -28,9 +28,9 @@
     "license": "ISC",
     "dependencies": {
         "@babel/core": "^7.12.10",
-        "@bundless/cli": "^0.2.3",
-        "@bundless/plugin-react-refresh": "^2.0.2",
-        "@bundless/plugin-babel": "^0.0.1",
+        "@bundless/cli": "^0.2.4",
+        "@bundless/plugin-react-refresh": "^2.0.3",
+        "@bundless/plugin-babel": "^0.0.2",
         "@vitro/codemod": "^0.1.1",
         "@vitro/ui": "^0.2.1",
         "chalk": "^4.1.0",
