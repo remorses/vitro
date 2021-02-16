@@ -1,0 +1,37 @@
+# Migrate from storybook
+
+If you use the old storybook syntax with `.storiesOf`, you can use the vitro codemod package to automatically migrate to new CSF syntax
+
+For example this code
+
+```tsx
+stories
+    .add('story1', () => <Button label='Story 1' />)
+    .add('second story', () => (
+        <Button label='Story 2' />
+    ))
+```
+
+Will be converted to
+
+```tsx
+export const Story1 = () => <Button label='Story 1' />
+export const SecondStory = () => <Button label='Story 2' />
+```
+
+```sh
+npm i -g @vitro/codemod
+vitro-codemod --help
+```
+
+Now you can run the codemod on your stories files
+
+```sh
+vitro-codemod storybook 'src/**/*.story.jsx'
+```
+
+If you also want to rename the files you can add `--rename`
+
+```sh
+vitro-codemod storybook 'src/**/*.story.jsx' --rename .story.jsx:.vitro.jsx
+```
