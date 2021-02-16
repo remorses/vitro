@@ -25,6 +25,9 @@
         "url": "https://github.com/remorses/vitro"
     },
     "license": "ISC",
+    "bin": {
+        "vitro-codemod": "bin.js"
+    },
     "dependencies": {
         "@mdx-js/mdx": "^1.6.18",
         "@storybook/csf": "^0.0.2-alpha.0",
@@ -34,11 +37,12 @@
         "jscodeshift": "^0.11.0",
         "micro-memoize": "^4.0.9",
         "prettier": "^2.2.1",
+        "yargs": "^16.2.0",
         "smart-glob": "^1.0.2",
-        "snap-shot-it": "^7.9.3",
         "tslib": "^2.0.0"
     },
     "devDependencies": {
+        "snap-shot-it": "^7.9.3",
         "@types/fs-extra": "^9.0.1",
         "@types/globby": "^9.1.0",
         "@types/jscodeshift": "^0.7.1",

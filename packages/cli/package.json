@@ -31,7 +31,6 @@
         "@bundless/cli": "^0.2.4",
         "@bundless/plugin-react-refresh": "^2.0.3",
         "@bundless/plugin-babel": "^0.0.2",
-        "@vitro/codemod": "^0.1.1",
         "@vitro/ui": "^0.2.1",
         "chalk": "^4.1.0",
         "deepmerge": "^4.2.2",
@@ -53,6 +52,11 @@
         "@vitro/screenshot": "*",
         "react": "*",
         "react-dom": "*"
+    },
+    "peerDependenciesMeta": {
+        "@vitro/screenshot": {
+            "optional": true
+        }
     },
     "devDependencies": {
         "@types/es-module-lexer": "^0.3.0",

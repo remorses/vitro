@@ -8,9 +8,6 @@
     "include": ["src"],
     "references": [
         {
-            "path": "../codemod"
-        },
-        {
             "path": "../screenshot"
         }
     ]
