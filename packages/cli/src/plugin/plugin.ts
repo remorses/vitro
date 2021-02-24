@@ -51,7 +51,7 @@ export function VitroPlugin(args: PluginArgs): BundlessPlugin {
             sourcefile: args.path,
             sourcemap: true,
             // treeShaking: 'ignore-annotations',
-            loader: 'jsx',
+            loader: 'default',
         })
 
         contents = res.code
