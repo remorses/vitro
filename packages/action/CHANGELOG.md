@@ -1,5 +1,12 @@
 # @vitro/action
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @vitro/cli@0.2.3
+
 ## 1.0.1
 
 ### Patch Changes

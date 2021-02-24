@@ -9,6 +9,14 @@ import playwright, { Browser, ElementHandle } from 'playwright'
 import { glob } from 'smart-glob'
 import * as uuid from 'uuid'
 
+export async function makeTempFolder(targetFolder = '') {
+    targetFolder = targetFolder || uuid.v4().slice(0, 4)
+    const folder = path.resolve(
+        await fs.mkdtemp(path.join(os.tmpdir(), targetFolder)),
+    )
+    return folder
+}
+
 export async function screenshot({
     targetFolder = '',
     baseUrl,
@@ -77,6 +85,7 @@ export async function screenshot({
     }
     // await compare({ folderA: targetFolder, folderB: targetFolder })
     await browser.close()
+    return { targetFolder }
 }
 
 async function generateScreenshotName(element: ElementHandle<any>) {

@@ -1,6 +1,6 @@
 {
     "name": "@vitro/action",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "",
     "private": true,
     "keywords": [],
@@ -22,11 +22,14 @@
     },
     "license": "ISC",
     "dependencies": {
-        "firebase-admin": "^9.4.2",
+        "@auth0/s3": "^1.0.0",
+        "@aws-sdk/client-s3": "^3.6.1",
+        "@aws-sdk/lib-storage": "^3.6.1",
+        "@vitro/cli": "0.2.3",
         "@vitro/screenshot": "*",
-        "xmlhttprequest-ssl": "^1.6.0",
-        "@vitro/cli": "0.2.2",
-        "tslib": "^2.0.0"
+        "firebase-admin": "^9.4.2",
+        "tslib": "^2.0.0",
+        "xmlhttprequest-ssl": "^1.6.0"
     },
     "peerDependencies": {
         "@vitro/cli": "*"

@@ -3,4 +3,5 @@ import path from 'path'
 
 export default defineConfig({
     // root: path.resolve(__dirname, '..'),
+    
 })
