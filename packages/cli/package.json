@@ -28,7 +28,7 @@
     "license": "ISC",
     "dependencies": {
         "@babel/core": "^7.12.10",
-        "@bundless/cli": "^0.2.4",
+        "@bundless/cli": "^0.2.6",
         "@bundless/plugin-react-refresh": "^2.0.3",
         "@bundless/plugin-babel": "^0.0.2",
         "@vitro/ui": "^0.2.1",

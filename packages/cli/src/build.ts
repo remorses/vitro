@@ -1,4 +1,4 @@
-import { build, Config as BundlessConfig } from '@bundless/cli'
+import { build, Config as BundlessConfig, Config } from '@bundless/cli'
 import { VitroPlugin } from './plugin'
 import path from 'path'
 import { CommandModule } from 'yargs'
@@ -10,6 +10,7 @@ import {
 } from './support'
 import deepmerge from 'deepmerge'
 import { CONFIG_NAME } from '@bundless/cli/dist/constants'
+import { VitroConfig } from './config'
 
 const buildCommand: CommandModule = {
     command: ['build [cwd]'],
@@ -26,6 +27,11 @@ const buildCommand: CommandModule = {
             type: 'string',
             required: false,
             description: `The starting directory to search for ${CONFIG_NAME}`,
+        })
+        argv.option('basePath', {
+            type: 'string',
+            required: false,
+            description: `The website base path`,
         })
         return argv
     },
@@ -44,11 +50,16 @@ const buildCommand: CommandModule = {
 export async function buildHandler(argv: {
     cwd?: string
     out?: string
+    basePath?: string
+    configOverrides?: Partial<VitroConfig>
 }): Promise<any> {
     // if no vitro config is present, ask to run init first
     const cwd = path.resolve(argv.cwd || process.cwd())
     const root = path.dirname(findVitroJsConfigPath(cwd))
-    const vitroConfig = getVitroConfig(findVitroJsConfigPath(cwd))
+    const vitroConfig = {
+        ...getVitroConfig(findVitroJsConfigPath(cwd)),
+        ...argv.configOverrides,
+    }
     const ownConfig: BundlessConfig = {
         root,
         jsx: 'react',
@@ -59,7 +70,7 @@ export async function buildHandler(argv: {
         build: {
             minify: true,
             outDir: argv.out,
-            basePath: vitroConfig.basePath || '/',
+            basePath: argv.basePath || vitroConfig.basePath || '/',
         },
         // entries: ['./index.html'],
         plugins: [
@@ -70,6 +81,7 @@ export async function buildHandler(argv: {
             }),
         ],
     }
+
     const buildResult = await build(
         deepmerge(vitroConfig.bundlessConfig || {}, ownConfig),
     )
