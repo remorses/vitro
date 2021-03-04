@@ -29,7 +29,7 @@ export default function App(props) {
                     headerItems={[
                         <GithubLink
                             key='0'
-                            url='https://github.com/remorses/dokz'
+                            url='https://github.com/remorses/vitro'
                         />,
                         <ColorModeSwitch key='1' />,
                     ]}
