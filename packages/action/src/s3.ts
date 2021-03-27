@@ -5,8 +5,9 @@ import mime from 'mime-types'
 import { S3Client, S3, CompleteMultipartUploadOutput } from '@aws-sdk/client-s3'
 import { once, on } from 'events'
 
-export class S3Uploader {
+export class S3API {
     client: S3
+    region: string
     legacyClient: any
     constructor({
         accessKeyId,
@@ -14,6 +15,7 @@ export class S3Uploader {
         region,
         endpoint = undefined,
     }) {
+        this.region = region
         this.client = new S3({
             region,
             credentials: { accessKeyId, secretAccessKey },
@@ -37,7 +39,7 @@ export class S3Uploader {
         })
     }
 
-    async uploadImage({
+    async uploadFile({
         destination,
         filePath,
         bucket,
@@ -68,6 +70,26 @@ export class S3Uploader {
         } catch (e) {
             throw e
         }
+    }
+
+    async uploadFolder({ destination, folderPath, bucket }) {
+        const emitter = this.legacyClient.uploadDir({
+            localDir: folderPath,
+            s3Params: {
+                Prefix: destination,
+                Bucket: bucket,
+            },
+            getS3Params(localFile, s3Object, callback) {
+                callback(null, {
+                    ACL: 'public-read',
+                })
+            },
+        })
+        await new Promise((resolve, reject) => {
+            emitter.on('end', resolve)
+            emitter.on('error', reject)
+        })
+        return `https://${bucket}.s3.${this.region}.amazonaws.com/${destination}/`
     }
 
     async downloadFolder({ localDir, s3Folder, bucket, onDownload }) {

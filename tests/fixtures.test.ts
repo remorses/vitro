@@ -16,6 +16,8 @@ const jasmineEnv = (jasmine as any).getEnv()
 jasmineEnv.addReporter(failFast.init())
 jest.setTimeout(100 * 1000)
 
+process.env.BUNDLESS_CONSISTENT_HMR_GRAPH_HASH = '' // makes all urls the same
+
 describe('snapshots', () => {
     const PORT = 9030
     const baseUrl = `http://127.0.0.1:${PORT}`

@@ -1,10 +1,8 @@
 {
-  "name": "example-vite",
-  "private": true,
-  "version": "1.0.0",
-  "author": "remorses",
-  "license": "MIT",
-  "devDependencies": {
-    "vite": "^2.0.1"
-  }
+    "name": "example-vite",
+    "private": true,
+    "version": "1.0.0",
+    "author": "remorses",
+    "license": "MIT",
+    "devDependencies": {}
 }

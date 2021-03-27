@@ -1647,21 +1647,21 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bundless/cli@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@bundless/cli/-/cli-0.2.6.tgz#919416f7d5001b817050a62d43177c95c26ba08c"
-  integrity sha512-Gx2FnnPgH8hLklPqh0zfM9G358z5rcnaOaVWQ/yeRbqh8p3KKezU+d5z1e8uMNGMzXYJc6o9z8qPvyJYZas9hw==
+"@bundless/cli@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@bundless/cli/-/cli-0.5.0.tgz#7c6a83ea14ae9a31c5f1ee59acd0449a3f857a80"
+  integrity sha512-Hu6nRNuUztcnkpYBL2e1k/pLAMWK4sbRdcuOiwpNbGXEulPc5J5AbPT/sOg2M6VuXWB1wDxdf3ZlQI+10vDhVA==
   dependencies:
     "@babel/parser" "^7.12.11"
     "@babel/types" "^7.12.10"
-    "@esbuild-plugins/all" "^0.0.19"
+    "@esbuild-plugins/all" "^0.0.20"
     "@koa/cors" "^3.1.0"
     chalk "^4.1.0"
     chokidar "^3.5.1"
     deepmerge "^4.2.2"
     degit "^2.8.0"
     es-module-lexer "^0.3.26"
-    esbuild "^0.8.54"
+    esbuild "^0.9.4"
     escape-string-regexp "^4.0.0"
     find-up "^5.0.0"
     fromentries "^1.3.2"
@@ -1677,6 +1677,7 @@
     magic-string "^0.25.7"
     merge-source-map "^1.1.0"
     micro-memoize "^4.0.9"
+    mime-types "^2.1.29"
     ora "^5.2.0"
     picomatch "^2.2.2"
     posthtml "^0.15.1"
@@ -1699,10 +1700,10 @@
     "@babel/core" "^7.12.10"
     "@babel/parser" "^7.12.11"
 
-"@bundless/plugin-react-refresh@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@bundless/plugin-react-refresh/-/plugin-react-refresh-2.0.3.tgz#738cd3e015f1f5f01447f55745ddbc424da9ceaa"
-  integrity sha512-OyTdrcvMgiuv5sRFRPQVEFds37Xf18VpbcCUMVoaY6b+OBrmbqpLuCuK8YjiBYxYOy8zdXmvbNfRjkoxItVibg==
+"@bundless/plugin-react-refresh@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@bundless/plugin-react-refresh/-/plugin-react-refresh-2.1.0.tgz#70be31423d440e5642ac7ae425dfcd581e93d3dc"
+  integrity sha512-SIoAjx8lPljkDC9JELJB6fnpL4W4DsTDjpSB/fPR+W8bcoY+0SUEn15mvRTV6z8sfduj11yhS2XqVEo+7wZXCQ==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/parser" "^7.12.11"
@@ -2646,16 +2647,16 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@esbuild-plugins/all@^0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@esbuild-plugins/all/-/all-0.0.19.tgz#f56855d978a89a48e9b10407d364070e3bda3b52"
-  integrity sha512-OgEHVefS0ZaM1wOBZg6EWcn6hFUaE8f5dmA7DCT7Kon7QcGJ3pP/iArmIS/Lkirzyk52iFidQJyl2kcceo1yEA==
+"@esbuild-plugins/all@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@esbuild-plugins/all/-/all-0.0.20.tgz#89375fe31e4a8ce0fb6f5331252e167974fe5a26"
+  integrity sha512-wyUKfAosZ2zzCDlu5D4G4KqL3iklRCPEU2S3JTdjszJ5/sDwi7D2waFkfjQv8FIusiJAvGxfIKAFCyjnJVlscA==
   dependencies:
     "@esbuild-plugins/esm-externals" "0.0.5"
-    "@esbuild-plugins/html" "0.0.17"
+    "@esbuild-plugins/html" "0.0.18"
     "@esbuild-plugins/node-globals-polyfill" "0.0.5"
     "@esbuild-plugins/node-modules-polyfill" "0.0.2"
-    "@esbuild-plugins/node-resolve" "0.0.14"
+    "@esbuild-plugins/node-resolve" "0.0.15"
 
 "@esbuild-plugins/esm-externals@0.0.5", "@esbuild-plugins/esm-externals@^0.0.5":
   version "0.0.5"
@@ -2665,12 +2666,12 @@
     debug "^4.3.1"
     escape-string-regexp "^4.0.0"
 
-"@esbuild-plugins/html@0.0.17":
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/@esbuild-plugins/html/-/html-0.0.17.tgz#6acab66abdd3cb1f061d6668851a6a8e4b6a89f3"
-  integrity sha512-Jzz0UHC0ulsyluvtw7nWYqwVORhdTPyT6YXS7S43U3BbKRTOsXtVn22xMG1oHf1Px66jUrbSVfdGVExzZKeSww==
+"@esbuild-plugins/html@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@esbuild-plugins/html/-/html-0.0.18.tgz#ff95137c637d26ddc129efadba1f0e1bdea85ddb"
+  integrity sha512-xiwSk//8lRriz/liDJ4ie+CAolln70MMNQUv71FYNCI/7Y7Ops4hrcRpxfM2DpEMGu8bGb1GwnO6BvEYu1uyew==
   dependencies:
-    "@esbuild-plugins/node-resolve" "0.0.14"
+    "@esbuild-plugins/node-resolve" "0.0.15"
     debug "^4.3.1"
     posthtml "^0.15.1"
 
@@ -2692,10 +2693,10 @@
     resolve "^1.19.0"
     rollup-plugin-node-polyfills "0.2.1"
 
-"@esbuild-plugins/node-resolve@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@esbuild-plugins/node-resolve/-/node-resolve-0.0.14.tgz#d6139bc95926c8b4e0943e85b8d8ffb21d39fa32"
-  integrity sha512-VhX6/YfOIHcHWnh7jGDIzGOVUsFcgjUswRrFLpV3yapjjSVKg+aTvuWf4E1Jb++4xdg0/QpjqcyeaJB2Qvg8Ng==
+"@esbuild-plugins/node-resolve@0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@esbuild-plugins/node-resolve/-/node-resolve-0.0.15.tgz#fc3a54258e86d77c98d31277ab4d5dd743521f06"
+  integrity sha512-r6qO+Dmj8EQwSQLmttjmhaIPKsaeM6IoL68JiFaUUtTO4ipS7LUG6Q9OoZogChluBFnHvNamPyGW4PbRlU1MzQ==
   dependencies:
     "@types/resolve" "^1.17.1"
     debug "^4.3.1"
@@ -7150,10 +7151,10 @@ esbuild@*:
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.43.tgz#19d79f8c6d1cc6dadd50942057a5aff906a1ecf2"
   integrity sha512-ZVE2CpootS4jtnfV0bbtJdgRsHEXcMP0P7ZXGfTmNzzhBr2e5ag7Vp3ry0jmw8zduJz4iHzxg4m5jtPxWERz1w==
 
-esbuild@^0.8.54:
-  version "0.8.54"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.54.tgz#2f32ff80e95c69a0f25b799d76a27c05e2857cdf"
-  integrity sha512-DJH38OiTgXJxFb/EhHrCrY8eGmtdkTtWymHpN9IYN9AF+4jykT0dQArr7wzFejpVbaB0TMIq2+vfNRWr3LXpvw==
+esbuild@^0.9.4:
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.9.7.tgz#ea0d639cbe4b88ec25fbed4d6ff00c8d788ef70b"
+  integrity sha512-VtUf6aQ89VTmMLKrWHYG50uByMF4JQlVysb8dmg6cOgW8JnFCipmz7p+HNBl+RR3LLCuBxFGVauAe2wfnF9bLg==
 
 escalade@^3.0.1:
   version "3.0.2"
@@ -10640,12 +10641,24 @@ mime-db@1.45.0, "mime-db@>= 1.43.0 < 2", mime-db@^1.28.0:
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.45.0.tgz#cceeda21ccd7c3a745eba2decd55d4b73e7879ea"
   integrity sha512-CkqLUxUk15hofLoLyljJSrukZi8mAtgd+yE5uO4tqRZsdsAJKv0O+rFMhVDRJgozy+yG6md5KwuXhD4ocIoP+w==
 
+mime-db@1.46.0:
+  version "1.46.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.46.0.tgz#6267748a7f799594de3cbc8cde91def349661cee"
+  integrity sha512-svXaP8UQRZ5K7or+ZmfNhg2xX3yKDMUzqadsSqi4NCH/KomcH75MAMYAGVlvXn4+b/xOPhS3I2uHKRUzvjY7BQ==
+
 mime-types@^2.0.8, mime-types@^2.1.12, mime-types@^2.1.18, mime-types@^2.1.28, mime-types@~2.1.19, mime-types@~2.1.24:
   version "2.1.28"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.28.tgz#1160c4757eab2c5363888e005273ecf79d2a0ecd"
   integrity sha512-0TO2yJ5YHYr7M2zzT7gDU1tbwHxEUWBCLt0lscSNpcdAfFyJOVEpRYNS7EXVcTLNj/25QO8gulHC5JtTzSE2UQ==
   dependencies:
     mime-db "1.45.0"
+
+mime-types@^2.1.29:
+  version "2.1.29"
+  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.29.tgz#1d4ab77da64b91f5f72489df29236563754bb1b2"
+  integrity sha512-Y/jMt/S5sR9OaqteJtslsFZKWOIIqMACsJSiHghlCAyhf7jfVYjKBmLiX8OgpWeW+fjJ2b+Az69aPFPkUOY6xQ==
+  dependencies:
+    mime-db "1.46.0"
 
 mime@1.6.0:
   version "1.6.0"

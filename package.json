@@ -5,7 +5,7 @@
         "cli": "cross-env VITRO_TESTING=1 node -r sucrase/register packages/cli/src/main.ts",
         "watch": "tsc -b --clean && tsc -b -w",
         "fix-mismatches": "syncpack fix-mismatches --dev --prod --indent '    '",
-        "test": "jest --color",
+        "test": "jest --color fixtures",
         "depscheck": "ultra  --filter '@vitro/*' -r depcheck",
         "build:examples": "yarn build && yarn vitro build examples --out examples_output",
         "local": "ultra -r --filter '@vitro/*' \"yarn publish --force --registry http://localhost:4873 --access restricted --no-git-tag-version --patch --message 'Local registry publish'\"",

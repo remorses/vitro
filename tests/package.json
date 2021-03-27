@@ -1,13 +1,13 @@
 {
     "name": "tests",
     "private": true,
-    "version": "0.0.3",
+    "version": "0.0.4",
     "scripts": {
         "test": "jest"
     },
     "dependencies": {
         "es-module-traversal": "^0.0.50",
-        "@vitro/cli": "0.2.3",
+        "@vitro/cli": "0.2.4",
         "glob": "^7.1.6",
         "jasmine-fail-fast": "^2.0.1",
         "jest-specific-snapshot": "^4.0.0",

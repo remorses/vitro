@@ -1,6 +1,6 @@
 {
     "name": "@vitro/action",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "",
     "private": true,
     "keywords": [],
@@ -11,7 +11,7 @@
         "src"
     ],
     "scripts": {
-        "test": "NODE_ENV=test mocha --colors --exit",
+        "test": "NODE_ENV=test mocha --colors --exit --timeout 900000",
         "build": "tsc",
         "compile": "sucrase -q ./src -d ./dist --transforms typescript,imports",
         "play": "cross-env VITRO_TESTING=1 node -r sucrase/register src/main.ts"
@@ -25,11 +25,13 @@
         "@auth0/s3": "^1.0.0",
         "@aws-sdk/client-s3": "^3.6.1",
         "@aws-sdk/lib-storage": "^3.6.1",
-        "@vitro/cli": "0.2.3",
+        "@vitro/cli": "0.2.4",
         "@vitro/screenshot": "*",
+        "aws-sdk": "^2.855.0",
         "firebase-admin": "^9.4.2",
         "tslib": "^2.0.0",
-        "xmlhttprequest-ssl": "^1.6.0"
+        "xmlhttprequest-ssl": "^1.6.0",
+        "yargs": "^16.2.0"
     },
     "peerDependencies": {
         "@vitro/cli": "*"
