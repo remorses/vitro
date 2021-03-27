@@ -1,5 +1,11 @@
 # @vitro/cli
 
+## 0.2.5
+
+### Patch Changes
+
+- Updated bundless to latest version
+
 ## 0.2.4
 
 ### Patch Changes
